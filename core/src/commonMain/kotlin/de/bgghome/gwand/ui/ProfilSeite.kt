@@ -66,6 +66,8 @@ import de.bgghome.gwand.res.delete
 import de.bgghome.gwand.res.edit_person
 import de.bgghome.gwand.res.move_down
 import de.bgghome.gwand.res.move_up
+import de.bgghome.gwand.res.menu_history
+import de.bgghome.gwand.res.menu_merge
 import de.bgghome.gwand.res.make_primary_photo
 import de.bgghome.gwand.res.photo_faces
 import de.bgghome.gwand.res.photo_ocr
@@ -153,6 +155,8 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.profile_tree)) }, onClick = { menue = false; viewModel.inDieMitte(p.handle) })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.menu_start_person)) }, onClick = { menue = false; viewModel.startpersonSetzen(p.handle) })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.profile_browser)) }, onClick = { menue = false; viewModel.imBrowser() })
+                                DropdownMenuItem(text = { Text(stringResource(Res.string.menu_history)) }, onClick = { menue = false; viewModel.objektVerlauf() })
+                                if (s.darfBearbeiten) DropdownMenuItem(text = { Text(stringResource(Res.string.menu_merge)) }, onClick = { menue = false; viewModel.zusammenfuehrenDialog() })
                                 if (s.darfBearbeiten) DropdownMenuItem(
                                     text = { Text(stringResource(Res.string.delete), color = MaterialTheme.colorScheme.error) },
                                     onClick = { menue = false; viewModel.personLoeschen() },

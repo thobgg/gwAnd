@@ -44,6 +44,12 @@ import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.daten.Anzeige
 import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.call_number
+import de.bgghome.gwand.res.change_0
+import de.bgghome.gwand.res.change_1
+import de.bgghome.gwand.res.change_2
+import de.bgghome.gwand.res.history_empty
+import de.bgghome.gwand.res.more_history
+import de.bgghome.gwand.res.undo
 import de.bgghome.gwand.res.more_places
 import de.bgghome.gwand.res.more_repositories
 import de.bgghome.gwand.res.more_search
@@ -72,7 +78,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun MehrSeite(s: Zustand, viewModel: GwViewModel) {
     Column(Modifier.fillMaxSize()) {
-        val arten = listOf(Nachschlagart.Orte to Res.string.more_places, Nachschlagart.Quellen to Res.string.more_sources, Nachschlagart.Archive to Res.string.more_repositories)
+        val arten = listOf(Nachschlagart.Orte to Res.string.more_places, Nachschlagart.Quellen to Res.string.more_sources,
+            Nachschlagart.Archive to Res.string.more_repositories, Nachschlagart.Verlauf to Res.string.more_history)
         SingleChoiceSegmentedButtonRow(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp)) {
             arten.forEachIndexed { i, (art, text) ->
                 SegmentedButton(
@@ -81,7 +88,7 @@ fun MehrSeite(s: Zustand, viewModel: GwViewModel) {
                 ) { Text(stringResource(text), maxLines = 1) }
             }
         }
-        OutlinedTextField(
+        if (s.nachschlagart != Nachschlagart.Verlauf) OutlinedTextField(
             s.nachschlagSuche, { viewModel.nachschlagen(s.nachschlagart, it) }, Modifier.fillMaxWidth().padding(horizontal = 16.dp), singleLine = true,
             placeholder = { Text(stringResource(Res.string.more_search)) }, leadingIcon = { Icon(Icons.Default.Search, null) },
         )
@@ -96,6 +103,10 @@ fun MehrSeite(s: Zustand, viewModel: GwViewModel) {
                 Nachschlagart.Quellen -> itemsIndexed(s.quellenListe, key = { _, q -> q.handle }) { i, q ->
                     if (i >= s.quellenListe.size - 10) LaunchedEffect(s.quellenListe.size) { viewModel.weitereNachschlagen() }
                     Zeile(q.title, q.author.ifBlank { null }) { viewModel.quelleOeffnen(q.handle) }
+                }
+                Nachschlagart.Verlauf -> {
+                    if (s.verlauf.isEmpty() && !s.nachschlagLaedt) item { Text(stringResource(Res.string.history_empty), Modifier.padding(16.dp)) }
+                    items(s.verlauf, key = { it.vorgang }) { v -> VerlaufZeile(v, s, viewModel) }
                 }
                 Nachschlagart.Archive -> itemsIndexed(s.archive, key = { _, a -> a.handle }) { i, a ->
                     if (i >= s.archive.size - 10) LaunchedEffect(s.archive.size) { viewModel.weitereNachschlagen() }
@@ -242,4 +253,29 @@ private fun LazyListScope.archiv(d: Detail.ArchivDetail, viewModel: GwViewModel)
         ueber(Res.string.repo_sources)
         items(d.quellen, key = { it.handle }) { q -> Zeile(q.title, q.author.ifBlank { null }) { viewModel.quelleOeffnen(q.handle) } }
     }
+}
+
+/** Ein Vorgang im Verlauf: wann, wer, was; Personen antippbar; Rueckgaengig fuer Bearbeiter. */
+@Composable
+fun VerlaufZeile(v: Verlaufseintrag, s: Zustand, viewModel: GwViewModel) {
+    val zeit = java.time.Instant.ofEpochMilli((v.wann * 1000).toLong()).atZone(java.time.ZoneId.systemDefault())
+        .format(java.time.format.DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))
+    val arten = listOf(Res.string.change_0, Res.string.change_1, Res.string.change_2).map { stringResource(it) }
+    val sprache = java.util.Locale.getDefault().language
+    val was = v.aenderungen.joinToString(" · ") { (schluessel, n) ->
+        val (klasse, art) = schluessel.split('|').let { it[0] to (it.getOrNull(1)?.toIntOrNull() ?: 1) }
+        (if (n > 1) "$n× " else "") + de.bgghome.gwand.daten.Typnamen.klasse(klasse, sprache) + " " + arten.getOrElse(art) { "" }
+    }
+    androidx.compose.foundation.layout.Row(Modifier.fillMaxWidth().padding(start = 16.dp, end = 4.dp, top = 8.dp, bottom = 8.dp),
+        verticalAlignment = Alignment.CenterVertically) {
+        Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(2.dp)) {
+            Text("$zeit · ${v.wer}", style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            Text(was, style = MaterialTheme.typography.bodyMedium)
+            v.personen.take(4).forEach { p ->
+                Text(p.name, Modifier.clickable { viewModel.profilOeffnen(p.xref) }, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.primary)
+            }
+        }
+        if (s.darfBearbeiten) androidx.compose.material3.TextButton(onClick = { viewModel.rueckgaengig(v.vorgang) }) { Text(stringResource(Res.string.undo)) }
+    }
+    HorizontalDivider(color = MaterialTheme.colorScheme.outlineVariant)
 }

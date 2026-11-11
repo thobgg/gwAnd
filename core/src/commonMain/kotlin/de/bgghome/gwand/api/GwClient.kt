@@ -378,6 +378,45 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
 
     suspend fun aufgabe(id: String): Aufgabe = holen("/tasks/$id", Aufgabe.serializer())
 
+    // ── Verlauf, Rueckgaengig, Zusammenfuehren ───────────────────────
+
+    /** Aenderungsverlauf des Baums, neueste zuerst; Klasse "Reference" sind interne Verweis-Eintraege. */
+    suspend fun verlauf(seite: Int, groesse: Int = 30): Seite<Vorgang> {
+        val (gesamt, liste) = sendenMitKopf(Request.Builder().url(url("/transactions/history/",
+            mapOf("page" to "$seite", "pagesize" to "$groesse", "sort" to "-id"))).get().build(), ListSerializer(Vorgang.serializer()))
+        return Seite(liste, seite, groesse, gesamt ?: liste.size)
+    }
+
+    /** Verlauf eines Objekts ([klasse] "Person", "Family" …), aelteste zuerst. */
+    suspend fun objektVerlauf(klasse: String, handle: String): List<Aenderung> =
+        holen("/transactions/history/objects/$klasse/$handle", ListSerializer(Aenderung.serializer()))
+
+    suspend fun rueckgaengigPruefen(vorgang: Int): RueckgaengigPruefung =
+        holen("/transactions/history/$vorgang/undo", RueckgaengigPruefung.serializer())
+
+    /** Vorgang zuruecknehmen (Hintergrundaufgabe, ohne Zwang: scheitert bei Konflikten). Ergebnis: Aufgaben-ID oder null, wenn sofort erledigt. */
+    suspend fun rueckgaengig(vorgang: Int): String? {
+        val antwort = senden(Request.Builder().url(url("/transactions/history/$vorgang/undo")).post(ByteArray(0).toRequestBody(null)).build(),
+            kotlinx.serialization.json.JsonElement.serializer())
+        return (((antwort as? JsonObject)?.get("task") as? JsonObject)?.get("id") as? JsonPrimitive)?.content
+    }
+
+    /** Auf eine Hintergrundaufgabe warten (hoechstens [sekunden]); Ergebnis: die fertige Aufgabe. */
+    suspend fun warten(aufgabe: String, sekunden: Int = 120): Aufgabe {
+        repeat(sekunden) {
+            val a = aufgabe(aufgabe)
+            if (a.fertig || a.fehlgeschlagen) return a
+            kotlinx.coroutines.delay(1000)
+        }
+        throw ApiFehler(504, "Aufgabe dauert zu lange")
+    }
+
+    /** Zwei Personen zusammenfuehren: [bleibt] uebernimmt die Angaben von [geht], [geht] wird geloescht. */
+    suspend fun zusammenfuehren(bleibt: String, geht: String) {
+        senden(Request.Builder().url(url("/people/$bleibt/merge/$geht")).post("""{"family_merger":true}""".toRequestBody(JSON_TYP)).build(),
+            kotlinx.serialization.json.JsonElement.serializer())
+    }
+
     suspend fun ereignisTypen(): List<String> = holen("/types/default/event_types", ListSerializer(kotlinx.serialization.serializer<String>()))
 
     // ── Technik ──────────────────────────────────────────────────────

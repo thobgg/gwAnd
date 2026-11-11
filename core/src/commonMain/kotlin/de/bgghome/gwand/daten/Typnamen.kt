@@ -12,6 +12,16 @@ object Typnamen {
         else -> emptyMap()
     }
 
+    /** Objektklassen fuer den Verlauf ("Family" -> "Familie"). */
+    fun klasse(klasse: String, sprache: String): String = if (sprache == "de") KLASSEN_DE[klasse] ?: klasse else when (klasse) {
+        "Family" -> "Family"; "Media" -> "Media object"; "Repository" -> "Repository"; else -> klasse
+    }
+
+    private val KLASSEN_DE = mapOf(
+        "Person" to "Person", "Family" to "Familie", "Event" to "Ereignis", "Place" to "Ort", "Source" to "Quelle",
+        "Citation" to "Fundstelle", "Media" to "Medium", "Note" to "Notiz", "Repository" to "Archiv", "Tag" to "Schlagwort",
+    )
+
     private val DE = mapOf(
         // Ereignisse
         "Unknown" to "Unbekannt", "Custom" to "Benutzerdefiniert", "Adopted" to "Adoptiert", "Birth" to "Geburt", "Death" to "Tod",

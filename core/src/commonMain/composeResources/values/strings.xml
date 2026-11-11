@@ -180,4 +180,21 @@
     <string name="ocr_save">Save as transcript</string>
     <string name="photo_faces">Faces</string>
     <string name="photo_ocr">Recognise text</string>
+    <string name="more_history">Changes</string>
+    <string name="menu_history">Change history</string>
+    <string name="menu_merge">Merge …</string>
+    <string name="undo">Undo</string>
+    <string name="undo_confirm">Undo this change?</string>
+    <string name="undo_conflict">Not possible: the record was changed again afterwards.</string>
+    <string name="undo_done">Undone</string>
+    <string name="merge_title">Merge people</string>
+    <string name="merge_keeps">stays</string>
+    <string name="merge_goes">is merged in and deleted</string>
+    <string name="merge_swap">Swap</string>
+    <string name="merge_confirm">Merge %1$s into %2$s? %1$s is deleted, all details go to %2$s. Can be undone in the change history.</string>
+    <string name="merge_button">Merge</string>
+    <string name="change_0">added</string>
+    <string name="change_1">changed</string>
+    <string name="change_2">deleted</string>
+    <string name="history_empty">No changes yet.</string>
 </resources>

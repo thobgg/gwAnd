@@ -179,4 +179,21 @@
     <string name="ocr_save">Als Abschrift speichern</string>
     <string name="photo_faces">Gesichter</string>
     <string name="photo_ocr">Text erkennen</string>
+    <string name="more_history">Änderungen</string>
+    <string name="menu_history">Änderungsverlauf</string>
+    <string name="menu_merge">Zusammenführen …</string>
+    <string name="undo">Rückgängig</string>
+    <string name="undo_confirm">Diese Änderung zurücknehmen?</string>
+    <string name="undo_conflict">Nicht möglich: der Datensatz wurde danach noch einmal geändert.</string>
+    <string name="undo_done">Zurückgenommen</string>
+    <string name="merge_title">Personen zusammenführen</string>
+    <string name="merge_keeps">bleibt</string>
+    <string name="merge_goes">wird übernommen und gelöscht</string>
+    <string name="merge_swap">Tauschen</string>
+    <string name="merge_confirm">%1$s mit %2$s zusammenführen? %1$s wird gelöscht, alle Angaben gehen an %2$s. Lässt sich im Änderungsverlauf zurücknehmen.</string>
+    <string name="merge_button">Zusammenführen</string>
+    <string name="change_0">angelegt</string>
+    <string name="change_1">geändert</string>
+    <string name="change_2">gelöscht</string>
+    <string name="history_empty">Noch keine Änderungen.</string>
 </resources>

@@ -21,7 +21,16 @@ enum class Bildschirm { Laden, Anmeldung, Haupt }
 /** Die Reiter unten: Start, Baum, Personen, Fotos, Mehr (Orte, Quellen, Archive, Einstellungen). */
 enum class Bereich { Start, Baum, Personen, Fotos, Mehr }
 
-enum class Nachschlagart { Orte, Quellen, Archive }
+enum class Nachschlagart { Orte, Quellen, Archive, Verlauf }
+
+/** Ein Vorgang im Verlauf, aufbereitet: wer, wann, was (Personen mit Namen). */
+data class Verlaufseintrag(
+    val vorgang: Int,
+    val wann: Double,
+    val wer: String,
+    val aenderungen: List<Pair<String, Int>>,
+    val personen: List<Person>,
+)
 
 /** Ein Jahrestag auf der Startseite: wer, was, wann, vor wie vielen Jahren. */
 data class Jahrestag(
@@ -127,6 +136,7 @@ data class Zustand(
     val nachschlagNaechste: Int? = 1,
     val nachschlagLaedt: Boolean = false,
     val detail: Detail? = null,
+    val verlauf: List<Verlaufseintrag> = emptyList(),
     val typen: Map<String, String> = emptyMap(),
 
     // Bearbeiten
@@ -205,4 +215,10 @@ sealed interface Dialog {
     data class FotoDialog(val person: String) : Dialog
 
     data class LoeschenDialog(val text: String, val aktion: suspend () -> Unit) : Dialog
+
+    /** Verlauf einer Person im Profil; [eintraege] null = laedt. */
+    data class ObjektVerlaufDialog(val titel: String, val eintraege: List<Verlaufseintrag>? = null) : Dialog
+
+    /** Zusammenfuehren: [bleibt] ist die Person im Profil, [geht] die gewaehlte zweite. */
+    data class ZusammenfuehrenDialog(val bleibt: Person, val geht: Person? = null) : Dialog
 }

@@ -83,6 +83,20 @@ fun BearbeitenDialoge(s: Zustand, viewModel: GwViewModel) {
         is Dialog.FotoDialog -> FotoFormular(d, s, viewModel)
         is Dialog.ZitatDialog -> ZitatFormular(d, s, viewModel)
         is Dialog.BeziehungDialog -> BeziehungFormular(d, s, viewModel)
+        is Dialog.ObjektVerlaufDialog -> AlertDialog(
+            onDismissRequest = viewModel::dialogSchliessen,
+            title = { Text(stringResource(Res.string.menu_history)) },
+            text = {
+                val e = d.eintraege
+                when {
+                    e == null -> CircularProgressIndicator()
+                    e.isEmpty() -> Text(stringResource(Res.string.history_empty))
+                    else -> Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) { e.forEach { VerlaufZeile(it, s, viewModel) } }
+                }
+            },
+            confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.search_close)) } },
+        )
+        is Dialog.ZusammenfuehrenDialog -> ZusammenfuehrenFormular(d, s, viewModel)
         is Dialog.LoeschenDialog -> AlertDialog(
             onDismissRequest = viewModel::dialogSchliessen,
             text = { Text(d.text) },
@@ -391,4 +405,19 @@ private fun BeziehungFormular(d: Dialog.BeziehungDialog, s: Zustand, viewModel: 
 @Composable
 private fun Feld(wert: String, onChange: (String) -> Unit, label: StringResource) {
     OutlinedTextField(wert, onChange, Modifier.fillMaxWidth(), singleLine = true, label = { Text(stringResource(label)) })
+}
+
+// ── Zusammenfuehren ──────────────────────────────────────────────────
+
+@Composable
+private fun ZusammenfuehrenFormular(d: Dialog.ZusammenfuehrenDialog, s: Zustand, viewModel: GwViewModel) {
+    Formular(Res.string.merge_title, s, viewModel, speichernAktiv = d.geht != null && d.geht.xref != d.bleibt.xref,
+        onSpeichern = { viewModel.zusammenfuehren(d) }) {
+        PersonRow(d.bleibt, label = stringResource(Res.string.merge_keeps), selected = true)
+        if (d.geht != null) {
+            PersonRow(d.geht, label = stringResource(Res.string.merge_goes))
+            OutlinedButton(onClick = { viewModel.zusammenfuehrenTauschen(d) }) { Text(stringResource(Res.string.merge_swap)) }
+        }
+        PersonSuche(s, viewModel, d.geht) { viewModel.zusammenfuehrenWahl(d, it) }
+    }
 }

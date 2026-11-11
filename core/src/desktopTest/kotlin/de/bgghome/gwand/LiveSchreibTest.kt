@@ -101,4 +101,36 @@ class LiveSchreibTest {
             for (h in personen) runCatching { client.loeschen("people", h) }
         }
     }
+
+    @Test
+    fun zusammenfuehrenVerlaufRueckgaengig() = runBlocking {
+        val pass = File(System.getProperty("user.home"), ".config/gwand/editor-pass")
+        if (!pass.exists()) return@runBlocking
+        val client = GwClient(Speicher(), "gwAnd-Test")
+        Thread.sleep(1500) // Anmeldesperre des Servers: hoechstens etwa eine Anmeldung je Sekunde
+        try { client.anmelden("http://192.168.178.73:8096", "editor", pass.readText().trim()) } catch (e: Exception) { return@runBlocking }
+        val b = Bearbeiten(client)
+        val a = b.personAnlegen(NeuePerson("Doppel", "Testperson", 1, Schreibhilfe.datum(DateForm(DateQualifier.EXACT, DatePart("", 0, "1900")))))
+        val zwei = b.personAnlegen(NeuePerson("Doppel", "Testperson", 1, Schreibhilfe.datum(DateForm(DateQualifier.ABOUT, DatePart("", 0, "1900")))))
+        try {
+            client.zusammenfuehren(a, zwei)
+            assertFailsWith<Exception> { client.roh("people", zwei) }
+            val geburten = (client.roh("people", a)["event_ref_list"] as JsonArray).size
+            assertEquals(2, geburten, "beide Geburten liegen jetzt bei der bleibenden Person")
+
+            // Verlauf: Rufname aendern, dann genau diese Aenderung zuruecknehmen
+            b.personAendern(a, null, "Doppel", "Testperson", "Dop", 1)
+            val letzte = client.objektVerlauf("Person", a).maxBy { it.transaktion }
+            assertTrue(client.rueckgaengigPruefen(letzte.transaktion).ohneKonflikt)
+            client.rueckgaengig(letzte.transaktion)?.let { assertTrue(client.warten(it).fertig) }
+            assertEquals("", client.roh("people", a)["primary_name"]!!.jsonObject["call"]!!.jsonPrimitive.content)
+            assertTrue(client.verlauf(1, 5).eintraege.isNotEmpty())
+        } finally {
+            for (h in listOf(a, zwei)) runCatching {
+                val r = client.roh("people", h)
+                (r["event_ref_list"] as? JsonArray).orEmpty().forEach { runCatching { client.loeschen("events", it.jsonObject["ref"]!!.jsonPrimitive.content) } }
+                client.loeschen("people", h)
+            }
+        }
+    }
 }

@@ -106,7 +106,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
                 }
             }
         }
-        if (s.detail != null || (s.profil != null && !profilDaneben)) {
+        if (s.gesichter != null || s.detail != null || (s.profil != null && !profilDaneben)) {
             SnackbarHost(snackbar, Modifier.align(androidx.compose.ui.Alignment.BottomCenter).navigationBarsPadding().padding(16.dp))
         }
     }

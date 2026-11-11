@@ -447,3 +447,37 @@ data class Aufgabe(val state: String? = null, val status: String? = null, val in
         return runCatching { GrampsJson.decodeFromString(kotlinx.serialization.serializer<String>(), r) }.getOrDefault(r)
     }
 }
+
+@Serializable
+data class Nutzer(val name: String = "", @SerialName("full_name") val vollerName: String = "")
+
+@Serializable
+data class Verbindung(val id: Int = 0, val timestamp: Double = 0.0, val user: Nutzer = Nutzer())
+
+/** Eine Aenderung an einem Objekt: 0 angelegt, 1 geaendert, 2 geloescht. */
+@Serializable
+data class Aenderung(
+    @SerialName("obj_class") val klasse: String = "",
+    @SerialName("trans_type") val art: Int = 1,
+    @SerialName("obj_handle") val handle: String = "",
+    val timestamp: Double = 0.0,
+    val connection: Verbindung = Verbindung(),
+    @SerialName("transaction_id") val transaktion: Int = 0,
+)
+
+/** Ein Vorgang im Aenderungsverlauf des Baums. */
+@Serializable
+data class Vorgang(
+    val id: Int = 0,
+    val description: String = "",
+    val timestamp: Double = 0.0,
+    val undo: Boolean = false,
+    val connection: Verbindung = Verbindung(),
+    val changes: List<Aenderung> = emptyList(),
+)
+
+@Serializable
+data class RueckgaengigPruefung(
+    @SerialName("can_undo_without_force") val ohneKonflikt: Boolean = false,
+    @SerialName("conflicts_count") val konflikte: Int = 0,
+)

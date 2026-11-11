@@ -598,6 +598,11 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
 
     fun nachschlagen(art: Nachschlagart, suche: String) {
         nachschlagJob?.cancel()
+        if (art == Nachschlagart.Verlauf) {
+            zustand.update { it.copy(nachschlagart = art, nachschlagSuche = "", detail = null) }
+            verlaufLaden()
+            return
+        }
         zustand.update { it.copy(nachschlagart = art, nachschlagSuche = suche, nachschlagLaedt = true, detail = null) }
         nachschlagJob = viewModelScope.launch(sicher) {
             delay(if (suche.isBlank()) 0 else 350)
@@ -623,6 +628,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                 Nachschlagart.Quellen -> client.quellen(suche, seite).let { r ->
                     zustand.update { if (!passt(it)) it else it.copy(quellenListe = (if (seite == 1) emptyList() else it.quellenListe) + r.eintraege, nachschlagGesamt = r.gesamt, nachschlagNaechste = r.naechste, nachschlagLaedt = false) }
                 }
+                Nachschlagart.Verlauf -> {}
                 Nachschlagart.Archive -> client.archive(suche, seite).let { r ->
                     zustand.update { if (!passt(it)) it else it.copy(archive = (if (seite == 1) emptyList() else it.archive) + r.eintraege, nachschlagGesamt = r.gesamt, nachschlagNaechste = r.naechste, nachschlagLaedt = false) }
                 }
