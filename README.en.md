@@ -44,6 +44,8 @@ The screenshots show the fictional demo tree "Falkenrath" from `testdaten/` (Ger
 A Gramps Web server with API 3.0 or later and an account on it. Face and text recognition, reports and the assistant
 depend on what the server has enabled. Android 8.0 or later.
 
+Sign-in uses user name and password. Sign-in via OIDC (single sign-on) is planned for version 1.1.
+
 ## Privacy
 
 The app only talks to the server you enter and loads map tiles from OpenStreetMap. It does not use Google

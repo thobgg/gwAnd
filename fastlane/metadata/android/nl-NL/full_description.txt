@@ -18,7 +18,7 @@ Functies:
 
 De app respecteert de rol van je account: gasten kunnen alleen kijken, leden en redacteuren mogen meer.
 
-Vereisten: een Gramps Web-server met API 3.0 of nieuwer en een account daarop. Gezichts- en tekstherkenning, rapporten en de assistent hangen af van wat de server heeft ingeschakeld.
+Vereisten: een Gramps Web-server met API 3.0 of nieuwer en een account daarop. Gezichts- en tekstherkenning, rapporten en de assistent hangen af van wat de server heeft ingeschakeld. Aanmelden met gebruikersnaam en wachtwoord; OIDC is gepland voor 1.1.
 
 Privacy: de app praat alleen met de server die je invult en laadt kaarttegels van OpenStreetMap. Op het apparaat staan serveradres, gebruikersnaam, het aanmeldtoken en een leescache, nooit het wachtwoord. De app maakt geen cloudback-up en gebruikt geen analyse- of Google-diensten.
 

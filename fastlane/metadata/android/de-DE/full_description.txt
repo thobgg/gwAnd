@@ -18,7 +18,7 @@ Funktionen:
 
 Die App beachtet die Rolle deines Kontos: Gäste sehen nur, Mitglieder und Bearbeiter dürfen mehr.
 
-Voraussetzungen: ein Gramps-Web-Server ab API 3.0 und ein Konto darauf. Gesichts- und Texterkennung, Berichte und der Assistent hängen davon ab, was der Server eingeschaltet hat.
+Voraussetzungen: ein Gramps-Web-Server ab API 3.0 und ein Konto darauf. Gesichts- und Texterkennung, Berichte und der Assistent hängen davon ab, was der Server eingeschaltet hat. Anmeldung mit Benutzername und Passwort; OIDC ist für 1.1 geplant.
 
 Datenschutz: Die App spricht nur mit dem Server, den du einträgst, und lädt Kartenkacheln von OpenStreetMap. Auf dem Gerät liegen Serveradresse, Benutzername, das Anmelde-Token und ein Lesezwischenspeicher, nie das Passwort. Die App sichert nichts in die Cloud und nutzt weder Analyse- noch Google-Dienste.
 

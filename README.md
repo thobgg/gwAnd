@@ -44,6 +44,8 @@ Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
 Ein Gramps-Web-Server ab API 3.0 und ein Konto darauf. Gesichts- und Texterkennung, Berichte und der Assistent
 hängen davon ab, was der Server eingeschaltet hat. Android 8.0 oder neuer.
 
+Die Anmeldung läuft mit Benutzername und Passwort. Anmeldung über OIDC (zentraler Anmeldedienst) ist für Version 1.1 geplant.
+
 ## Datenschutz
 
 Die App spricht nur mit dem eingetragenen Server und lädt Kartenkacheln von OpenStreetMap. Google-Dienste nutzt sie
