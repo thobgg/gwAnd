@@ -88,9 +88,10 @@ fun BaumSeite(s: Zustand, viewModel: GwViewModel, ansicht: BaumAnsicht, kompakt:
                 onToggleFullscreen = { viewModel.baumVollbild(!s.baumVollbild) },
                 onPerson = { viewModel.profilOeffnen(it.xref) },
                 onPlus = { viewModel.verwandterDialog(it) },
-                onExpand = { _, _ -> viewModel.mehrVorfahren() },
+                onExpand = { _, xref -> viewModel.vorfahrenAufklappen(xref) },
                 onMakeRoot = viewModel::inDieMitte,
-                onExpandDown = { viewModel.mehrNachkommen() },
+                onExpandDown = viewModel::nachkommenAufklappen,
+                onCollapse = viewModel::nachkommenZuklappen,
                 ansicht = ansicht,
                 showFullscreen = true,
             )

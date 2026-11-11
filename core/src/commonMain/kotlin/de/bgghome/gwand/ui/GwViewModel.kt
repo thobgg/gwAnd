@@ -97,6 +97,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     internal val sicher = CoroutineExceptionHandler { _, e -> zustand.update { it.copy(meldung = e.message ?: e::class.simpleName) } }
 
     private var baumJob: Job? = null
+    /** Alle geladenen Vorfahren der aktuellen Mitte (roh): astweises Aufklappen legt neue dazu und baut die Ahnentafel neu. */
+    private var vorfahrenRoh: List<GrampsPerson> = emptyList()
     private var sucheJob: Job? = null
     private var profilJob: Job? = null
     private var nachschlagJob: Job? = null
@@ -282,6 +284,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                     val vorfahren = vorfahrenA.await()
                     Triple(vorfahren, bau.ahnentafel(handle, vorfahren), bau.nachkommen(wurzel, unten, partnerA.await(), heiratenA.await()))
                 }
+                vorfahrenRoh = vorfahren
                 zustand.update { if (it.wurzel == handle) it.copy(ahnentafel = tafel, nachkommen = baum) else it }
                 if (s.zeigeGeschwister) {
                     val geschwister = geschwisterLaden(tafel, vorfahren, s.zeigeCousins)
@@ -377,16 +380,59 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         zustand.update { it.copy(zeigeCousinPartner = an) }
     }
 
-    /** Weiter nach oben: drei Generationen mehr (hoechstens acht). */
-    fun mehrVorfahren() {
-        zustand.update { it.copy(ahnenGenerationen = minOf(8, it.ahnenGenerationen + 3)) }
-        neuLaden()
+    /**
+     * Weiter nach oben, nur dieser Ast: drei Generationen ueber [xref] nachladen, zu den vorhandenen Vorfahren legen und die
+     * Ahnentafel neu aufbauen (die Nummern ergeben sich dabei von selbst). Die neue Reihe bekommt ihre Geschwister.
+     */
+    fun vorfahrenAufklappen(xref: String) {
+        val wurzel = zustand.value.wurzel ?: return
+        viewModelScope.launch(sicher) {
+            try {
+                val p = client.personenNachHandle(listOf(xref)).firstOrNull() ?: return@launch
+                val neu = client.vorfahren(p.grampsId, AST_AHNEN)
+                if (zustand.value.wurzel != wurzel) return@launch
+                vorfahrenRoh = (vorfahrenRoh + neu).distinctBy { it.handle }
+                val tafel = bau.ahnentafel(wurzel, vorfahrenRoh)
+                zustand.update { if (it.wurzel == wurzel) it.copy(ahnentafel = tafel) else it }
+                val s = zustand.value
+                if (s.zeigeGeschwister) {
+                    val geschwister = geschwisterLaden(tafel, vorfahrenRoh, s.zeigeCousins)
+                    zustand.update { if (it.wurzel == wurzel) it.copy(geschwister = geschwister) else it }
+                }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                fehlschlag(e)
+            }
+        }
     }
 
-    /** Weiter nach unten: zwei Generationen mehr (hoechstens sechs). */
-    fun mehrNachkommen() {
-        zustand.update { it.copy(nachkommenGenerationen = minOf(6, it.nachkommenGenerationen + 2)) }
-        neuLaden()
+    /** Weiter nach unten, nur dieser Ast: zwei Generationen unter [xref] nachladen und an ihrer Stelle einhaengen. */
+    fun nachkommenAufklappen(xref: String) {
+        val wurzel = zustand.value.wurzel ?: return
+        viewModelScope.launch(sicher) {
+            try {
+                val p = client.personenNachHandle(listOf(xref), mitFamilien = true).firstOrNull() ?: return@launch
+                val unten = client.nachkommen(p.grampsId, AST_NACHKOMMEN)
+                val alle = unten + p
+                val partner = client.personenNachHandle(BaumBau.fehlendePartner(alle))
+                val zweig = bau.nachkommen(p, unten, partner, heiraten(BaumBau.familien(alle)))
+                zustand.update { s ->
+                    val d = s.nachkommen
+                    if (s.wurzel != wurzel || d == null) s else s.copy(nachkommen = d.einhaengen(xref, zweig))
+                }
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                fehlschlag(e)
+            }
+        }
+    }
+
+    /** Zuklappen: die nachgeladenen Nachkommen wieder ausblenden; das Aufklapp-Zeichen kommt zurueck. */
+    fun nachkommenZuklappen(xref: String) = zustand.update { s ->
+        val d = s.nachkommen ?: return@update s
+        s.copy(nachkommen = d.zuklappen(xref))
     }
 
     fun zeigeGeschwister(an: Boolean) {
@@ -863,6 +909,9 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     companion object {
         /** Fehlerkennung des Anmeldefensters: Server vor API 3.21 (ohne Code-Tausch). */
         const val OIDC_ALT = "oidc-alt"
+        /** Generationen, die ein Tipp auf das Aufklapp-Zeichen nachlaedt */
+        const val AST_AHNEN = 3
+        const val AST_NACHKOMMEN = 2
         const val REITER_LEBENSLAUF = 0
         const val REITER_FAMILIE = 1
         const val REITER_FOTOS = 2
@@ -879,3 +928,13 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         const val K_ERINNERUNG = "erinnerung"
     }
 }
+
+/** Den aufklappbaren Knoten [xref] durch den nachgeladenen Zweig ersetzen (die Person bleibt, ihre Familien kommen dazu). */
+internal fun de.bgghome.webtrees.nativ.api.DescendantNode.einhaengen(xref: String, zweig: de.bgghome.webtrees.nativ.api.DescendantNode): de.bgghome.webtrees.nativ.api.DescendantNode =
+    if (weitere && person.xref == xref) copy(families = zweig.families, weitere = false, aufgeklappt = true)
+    else copy(families = families.map { f -> f.copy(children = f.children.map { it.einhaengen(xref, zweig) }) })
+
+/** Einen von Hand aufgeklappten Knoten wieder zuklappen: Kinder weg, Aufklapp-Zeichen zurueck, Partner bleiben. */
+internal fun de.bgghome.webtrees.nativ.api.DescendantNode.zuklappen(xref: String): de.bgghome.webtrees.nativ.api.DescendantNode =
+    if (aufgeklappt && person.xref == xref) copy(families = families.map { it.copy(children = emptyList()) }, weitere = true, aufgeklappt = false)
+    else copy(families = families.map { f -> f.copy(children = f.children.map { it.zuklappen(xref) }) })
