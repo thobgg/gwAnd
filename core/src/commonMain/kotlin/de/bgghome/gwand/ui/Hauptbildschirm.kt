@@ -46,6 +46,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.menu_logout
+import de.bgghome.gwand.res.menu_about
 import de.bgghome.gwand.res.offline_banner
 import de.bgghome.gwand.res.menu_export
 import de.bgghome.gwand.res.menu_chat
@@ -173,10 +174,7 @@ private fun Kopfzeile(s: Zustand, viewModel: GwViewModel) {
                     if (s.chatMoeglich) DropdownMenuItem(text = { Text(stringResource(Res.string.menu_chat)) }, onClick = { menue = false; viewModel.chatOeffnen() })
                     HorizontalDivider()
                     DropdownMenuItem(text = { Text(stringResource(Res.string.menu_logout)) }, onClick = { menue = false; viewModel.abmelden() })
-                    DropdownMenuItem(
-                        text = { Text(stringResource(Res.string.more_about, s.version), style = MaterialTheme.typography.bodySmall) },
-                        enabled = false, onClick = {},
-                    )
+                    DropdownMenuItem(text = { Text(stringResource(Res.string.menu_about)) }, onClick = { menue = false; viewModel.ueber() })
                 }
             }
         },

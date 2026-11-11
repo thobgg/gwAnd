@@ -1,0 +1,25 @@
+gwAnd ist eine native Android-App für Gramps Web, die freie Genealogie-Software fürs Web. Sie zeigt und bearbeitet den Stammbaum, der auf deinem Gramps-Web-Server liegt – selbst gehostet oder gemietet. Kein Konto beim Entwickler, kein Abo, keine Werbung.
+
+Funktionen:
+
+* Baum: Sanduhr mit Vorfahren, Partnern und Nachkommen, frei verschieben und zoomen; dazu das Fächerdiagramm über mehrere Generationen. Jede Person mit einem Tipp in den Mittelpunkt holen, Verwandte direkt über das „+“ an der Karte anlegen
+* Profil: das Leben als Zeitleiste mit Heirat und Geburten der Kinder, Familie, Fotos, Quellen, Beziehungen und eine Karte der Lebensstationen
+* Suche über alle Personen, dazu Orte, Quellen, Archive und die letzten Änderungen
+* Bearbeiten: Personen, Ereignisse, Familienereignisse, Eltern, Partner und Kinder anlegen und ändern; Zitate und Beziehungen hinzufügen. Gleichzeitige Änderungen anderer werden erkannt, statt sie zu überschreiben
+* Fotos: aufnehmen oder auswählen und an eine Person hängen, Hauptbild festlegen, Fotoübersicht des ganzen Baums mit Betrachter
+* Gesichter: die Gesichtserkennung des Servers schlägt Rahmen vor, ein Tipp ordnet die Person zu; eigene Rahmen ziehen geht auch
+* Texterkennung: Dokumentfotos vom Server lesen lassen
+* Verlauf: wer hat wann was geändert, einzelne Vorgänge rückgängig machen; doppelte Personen zusammenführen
+* Verwandtschaft zwischen zwei Personen, Berichte als PDF und Export (z. B. GEDCOM) über den Server
+* Jahrestage: anstehende Geburtstage, Hochzeitstage und Todestage, auf Wunsch mit täglicher Erinnerung
+* KI-Assistent, wenn dein Server ihn anbietet
+* Lesen ohne Netz: zuletzt Angesehenes bleibt verfügbar
+* Kompakt am Handy, zweispaltig am Tablet; Deutsch, Englisch, Französisch, Niederländisch und Spanisch
+
+Die App beachtet die Rolle deines Kontos: Gäste sehen nur, Mitglieder und Bearbeiter dürfen mehr.
+
+Voraussetzungen: ein Gramps-Web-Server ab API 3.0 und ein Konto darauf. Gesichts- und Texterkennung, Berichte und der Assistent hängen davon ab, was der Server eingeschaltet hat.
+
+Datenschutz: Die App spricht nur mit dem Server, den du einträgst. Auf dem Gerät liegen Serveradresse, Benutzername und das Anmelde-Token – nie das Passwort – sowie ein Lesezwischenspeicher. Kein Cloud-Backup, keine Analyse, keine Werbung, keine Google-Dienste. Die Karte lädt ihre Kacheln von OpenStreetMap.
+
+gwAnd ist kein offizielles Projekt von Gramps oder Gramps Web.

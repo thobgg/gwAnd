@@ -9,8 +9,52 @@ object Typnamen {
 
     fun fuer(sprache: String): Map<String, String> = when (sprache) {
         "de" -> DE
+        "fr" -> FR
+        "nl" -> NL
+        "es" -> ES
         else -> emptyMap()
     }
+
+    // Franzoesisch, Niederlaendisch, Spanisch: die haeufigen Arten (Ereignisse, Orte, Archive, Familien); seltene bleiben englisch.
+    private val FR = mapOf(
+        "Unknown" to "Inconnu", "Birth" to "Naissance", "Death" to "Décès", "Baptism" to "Baptême", "Christening" to "Baptême (enfant)",
+        "Burial" to "Inhumation", "Cremation" to "Crémation", "Marriage" to "Mariage", "Engagement" to "Fiançailles", "Divorce" to "Divorce",
+        "Marriage Banns" to "Bans de mariage", "Marriage Contract" to "Contrat de mariage", "Occupation" to "Profession", "Residence" to "Résidence",
+        "Confirmation" to "Confirmation", "First Communion" to "Première communion", "Education" to "Éducation", "Graduation" to "Diplôme",
+        "Military Service" to "Service militaire", "Emigration" to "Émigration", "Immigration" to "Immigration", "Census" to "Recensement",
+        "Religion" to "Religion", "Will" to "Testament", "Probate" to "Homologation", "Property" to "Propriété", "Retirement" to "Retraite",
+        "Adopted" to "Adopté", "Stillbirth" to "Mort-né", "Naturalization" to "Naturalisation", "Nobility Title" to "Titre de noblesse",
+        "Country" to "Pays", "State" to "État", "County" to "Comté", "City" to "Ville", "Parish" to "Paroisse", "Village" to "Village",
+        "Hamlet" to "Hameau", "Farm" to "Ferme", "Building" to "Bâtiment", "Street" to "Rue", "Municipality" to "Commune", "District" to "District",
+        "Library" to "Bibliothèque", "Cemetery" to "Cimetière", "Church" to "Église", "Archive" to "Archives", "Collection" to "Collection",
+        "Married" to "Mariés", "Unmarried" to "Non mariés", "Civil Union" to "Union civile",
+    )
+    private val NL = mapOf(
+        "Unknown" to "Onbekend", "Birth" to "Geboorte", "Death" to "Overlijden", "Baptism" to "Doop", "Christening" to "Kinderdoop",
+        "Burial" to "Begrafenis", "Cremation" to "Crematie", "Marriage" to "Huwelijk", "Engagement" to "Verloving", "Divorce" to "Scheiding",
+        "Marriage Banns" to "Ondertrouw", "Marriage Contract" to "Huwelijkscontract", "Occupation" to "Beroep", "Residence" to "Woonplaats",
+        "Confirmation" to "Vormsel", "First Communion" to "Eerste communie", "Education" to "Opleiding", "Graduation" to "Diploma",
+        "Military Service" to "Militaire dienst", "Emigration" to "Emigratie", "Immigration" to "Immigratie", "Census" to "Volkstelling",
+        "Religion" to "Religie", "Will" to "Testament", "Probate" to "Boedel", "Property" to "Bezit", "Retirement" to "Pensioen",
+        "Adopted" to "Geadopteerd", "Stillbirth" to "Doodgeboren", "Naturalization" to "Naturalisatie", "Nobility Title" to "Adellijke titel",
+        "Country" to "Land", "State" to "Staat", "County" to "Graafschap", "City" to "Stad", "Parish" to "Parochie", "Village" to "Dorp",
+        "Hamlet" to "Gehucht", "Farm" to "Boerderij", "Building" to "Gebouw", "Street" to "Straat", "Municipality" to "Gemeente", "District" to "District",
+        "Library" to "Bibliotheek", "Cemetery" to "Begraafplaats", "Church" to "Kerk", "Archive" to "Archief", "Collection" to "Collectie",
+        "Married" to "Gehuwd", "Unmarried" to "Ongehuwd", "Civil Union" to "Geregistreerd partnerschap",
+    )
+    private val ES = mapOf(
+        "Unknown" to "Desconocido", "Birth" to "Nacimiento", "Death" to "Defunción", "Baptism" to "Bautismo", "Christening" to "Bautizo",
+        "Burial" to "Entierro", "Cremation" to "Cremación", "Marriage" to "Matrimonio", "Engagement" to "Compromiso", "Divorce" to "Divorcio",
+        "Marriage Banns" to "Amonestaciones", "Marriage Contract" to "Contrato matrimonial", "Occupation" to "Ocupación", "Residence" to "Residencia",
+        "Confirmation" to "Confirmación", "First Communion" to "Primera comunión", "Education" to "Educación", "Graduation" to "Graduación",
+        "Military Service" to "Servicio militar", "Emigration" to "Emigración", "Immigration" to "Inmigración", "Census" to "Censo",
+        "Religion" to "Religión", "Will" to "Testamento", "Probate" to "Validación de testamento", "Property" to "Propiedad", "Retirement" to "Jubilación",
+        "Adopted" to "Adoptado", "Stillbirth" to "Nacido muerto", "Naturalization" to "Naturalización", "Nobility Title" to "Título nobiliario",
+        "Country" to "País", "State" to "Estado", "County" to "Condado", "City" to "Ciudad", "Parish" to "Parroquia", "Village" to "Pueblo",
+        "Hamlet" to "Aldea", "Farm" to "Granja", "Building" to "Edificio", "Street" to "Calle", "Municipality" to "Municipio", "District" to "Distrito",
+        "Library" to "Biblioteca", "Cemetery" to "Cementerio", "Church" to "Iglesia", "Archive" to "Archivo", "Collection" to "Colección",
+        "Married" to "Casados", "Unmarried" to "No casados", "Civil Union" to "Unión civil",
+    )
 
     /** Objektklassen fuer den Verlauf ("Family" -> "Familie"). */
     fun klasse(klasse: String, sprache: String): String = if (sprache == "de") KLASSEN_DE[klasse] ?: klasse else when (klasse) {

@@ -119,6 +119,19 @@ fun BearbeitenDialoge(s: Zustand, viewModel: GwViewModel) {
             },
             confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.cancel)) } },
         )
+        Dialog.UeberDialog -> AlertDialog(
+            onDismissRequest = viewModel::dialogSchliessen,
+            title = { Text(stringResource(Res.string.more_about, s.version)) },
+            text = {
+                Column(Modifier.heightIn(max = 480.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(stringResource(Res.string.about_text), style = MaterialTheme.typography.bodyMedium)
+                    Text(stringResource(Res.string.about_privacy), style = MaterialTheme.typography.bodyMedium)
+                    Text(stringResource(Res.string.about_source), Modifier.clickable { viewModel.oeffnen(QUELLCODE) },
+                        color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.bodyMedium)
+                }
+            },
+            confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.search_close)) } },
+        )
         is Dialog.ExportDialog -> AlertDialog(
             onDismissRequest = viewModel::dialogSchliessen,
             title = { Text(stringResource(Res.string.export_title)) },

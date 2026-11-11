@@ -9,6 +9,11 @@ import kotlinx.coroutines.launch
  * Was Gramps zusaetzlich kann: Faecher, Verwandtschaftsweg, Berichte, Export, DNA-Treffer, KI-Assistent.
  */
 
+fun GwViewModel.ueber() = zustand.update { it.copy(dialog = Dialog.UeberDialog) }
+
+/** Adresse des Quellcodes (Fehlermeldungen, Lizenz). */
+const val QUELLCODE = "https://github.com/thobgg/gwAnd"
+
 fun GwViewModel.baumArt(art: BaumArt) = zustand.update { it.copy(baumArt = art) }
 
 // ── Verwandtschaft ───────────────────────────────────────────────────

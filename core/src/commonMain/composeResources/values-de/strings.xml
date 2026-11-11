@@ -218,4 +218,8 @@
     <string name="chat_hint">Frage zum Stammbaum</string>
     <string name="chat_send">Senden</string>
     <string name="offline_banner">Offline – zuletzt geladener Stand. Änderungen brauchen eine Verbindung.</string>
+    <string name="menu_about">Über gwAnd</string>
+    <string name="about_text">gwAnd ist eine freie App für Gramps Web unter der Lizenz GPL-3.0. Sie ist kein offizielles Projekt von Gramps oder Gramps Web.</string>
+    <string name="about_privacy">Datenschutz: gwAnd spricht nur mit dem Gramps-Web-Server, bei dem du dich anmeldest, und lädt Kartenkacheln von OpenStreetMap. Kein Tracking, keine Werbung, keine Analyse. Das Passwort wird nicht gespeichert, nur ein Anmelde-Token. Was die App geladen hat, liegt für die Offline-Nutzung in ihrem privaten Speicher und wird beim Abmelden gelöscht.</string>
+    <string name="about_source">Quellcode und Fehlermeldungen</string>
 </resources>

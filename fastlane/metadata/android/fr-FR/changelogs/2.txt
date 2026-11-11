@@ -1,0 +1,1 @@
+Première version : arbre et éventail, profil, recherche, édition, photos, visages, reconnaissance de texte, historique avec annulation, fusion, rapports et export, anniversaires, lecture hors ligne.

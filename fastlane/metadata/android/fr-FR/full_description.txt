@@ -1,0 +1,25 @@
+gwAnd est une application Android native pour Gramps Web, le logiciel libre de généalogie pour le web. Elle affiche et modifie l'arbre de votre serveur Gramps Web – auto-hébergé ou hébergé. Pas de compte chez le développeur, pas d'abonnement, pas de publicité.
+
+Fonctions :
+
+* Arbre : sablier avec ascendants, conjoints et descendants, déplacement et zoom libres ; plus un éventail sur plusieurs générations. Un toucher place une personne au centre, le « + » d'une carte ajoute des proches
+* Profil : la vie sous forme de chronologie avec mariage et naissances des enfants, famille, photos, sources, relations et carte des lieux de vie
+* Recherche parmi toutes les personnes, ainsi que lieux, sources, dépôts et dernières modifications
+* Édition : créer et modifier personnes, événements, événements familiaux, parents, conjoints et enfants ; ajouter citations et relations. Les modifications simultanées d'autres utilisateurs sont détectées au lieu d'être écrasées
+* Photos : prendre ou choisir une photo et l'attacher à une personne, définir l'image principale, vue d'ensemble des photos de l'arbre avec visionneuse
+* Visages : la détection du serveur propose des cadres, un toucher attribue la personne ; on peut aussi tracer ses propres cadres
+* Reconnaissance de texte : faire lire les photos de documents par le serveur
+* Historique : qui a modifié quoi et quand, annuler une transaction ; fusionner des doublons
+* Lien de parenté entre deux personnes, rapports PDF et export (p. ex. GEDCOM) via le serveur
+* Anniversaires : naissances, mariages et décès à venir, avec rappel quotidien si souhaité
+* Assistant IA, si votre serveur le propose
+* Lecture hors ligne : les données consultées récemment restent disponibles
+* Compacte sur téléphone, deux colonnes sur tablette ; français, anglais, allemand, néerlandais et espagnol
+
+L'application respecte le rôle de votre compte : les invités consultent, les membres et éditeurs peuvent davantage.
+
+Prérequis : un serveur Gramps Web avec l'API 3.0 ou plus récente et un compte. Reconnaissance des visages et du texte, rapports et assistant dépendent de ce que le serveur a activé.
+
+Vie privée : l'application ne communique qu'avec le serveur que vous indiquez. Sur l'appareil sont enregistrés l'adresse du serveur, le nom d'utilisateur et le jeton de connexion – jamais le mot de passe – ainsi qu'un cache de lecture. Pas de sauvegarde cloud, pas d'analyse, pas de publicité, pas de services Google. La carte charge ses tuiles depuis OpenStreetMap.
+
+gwAnd n'est pas un projet officiel de Gramps ou de Gramps Web.

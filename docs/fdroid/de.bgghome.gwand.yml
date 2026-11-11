@@ -1,0 +1,30 @@
+Categories:
+  - Science & Education
+License: GPL-3.0-or-later
+AuthorName: thobgg
+SourceCode: https://github.com/thobgg/gwAnd
+IssueTracker: https://github.com/thobgg/gwAnd/issues
+Changelog: https://github.com/thobgg/gwAnd/releases
+
+AutoName: gwAnd
+
+RepoType: git
+Repo: https://github.com/thobgg/gwAnd.git
+Binaries: https://github.com/thobgg/gwAnd/releases/download/v%v/gwAnd-v%v.apk
+
+Builds:
+  - versionName: '1.0'
+    versionCode: 2
+    commit: v1.0
+    subdir: app
+    submodules: true
+    gradle:
+      - yes
+
+AllowedAPKSigningKeys: 93a5862d9c0f15e28b8ab649fbfa9969a9556e46e2500a66d4b557f350440255
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags ^v[0-9]+\.[0-9]+(\.[0-9]+)?$
+UpdateCheckData: gradle.properties|gwand.versionCode=(\d+)|.|gwand.versionName=(.+)
+CurrentVersion: '1.0'
+CurrentVersionCode: 2

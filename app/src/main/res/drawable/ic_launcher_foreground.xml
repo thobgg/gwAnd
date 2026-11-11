@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Vorlaeufiges Symbol: drei verbundene Kaesten (Eltern oben, Kind unten), weiss auf Gramps-Braun. -->
+<!-- Symbol: Faecher mit drei Generationen, vaeterlich blau links, muetterlich rosa rechts, auf Gramps-Braun. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
-    <path android:strokeColor="#FFFFFF" android:strokeWidth="3" android:fillColor="#00000000"
-        android:pathData="M42,43 L42,51 L66,51 L66,43 M54,51 L54,60" />
-    <path android:fillColor="#FFFFFF" android:pathData="M31,33 h22 v12 h-22 z M55,33 h22 v12 h-22 z" />
-    <path android:fillColor="#FFFFFF" android:pathData="M43,60 h22 v12 h-22 z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M54.00,66.00 L43.00,66.00 A11,11 0 0,1 65.00,66.00 Z" />
+    <path android:fillColor="#90CAF9" android:pathData="M32.01,65.42 A22,22 0 0,1 53.42,44.01 L53.65,52.50 A13.5,13.5 0 0,0 40.50,65.65 Z" />
+    <path android:fillColor="#F8BBD0" android:pathData="M54.58,44.01 A22,22 0 0,1 75.99,65.42 L67.50,65.65 A13.5,13.5 0 0,0 54.35,52.50 Z" />
+    <path android:fillColor="#90CAF9" android:pathData="M21.01,65.14 A33,33 0 0,1 30.06,43.28 L36.23,49.14 A24.5,24.5 0 0,0 29.51,65.36 Z" />
+    <path android:fillColor="#90CAF9" android:pathData="M31.28,42.06 A33,33 0 0,1 53.14,33.01 L53.36,41.51 A24.5,24.5 0 0,0 37.14,48.23 Z" />
+    <path android:fillColor="#F8BBD0" android:pathData="M54.86,33.01 A33,33 0 0,1 76.72,42.06 L70.86,48.23 A24.5,24.5 0 0,0 54.64,41.51 Z" />
+    <path android:fillColor="#F8BBD0" android:pathData="M77.94,43.28 A33,33 0 0,1 86.99,65.14 L78.49,65.36 A24.5,24.5 0 0,0 71.77,49.14 Z" />
 </vector>

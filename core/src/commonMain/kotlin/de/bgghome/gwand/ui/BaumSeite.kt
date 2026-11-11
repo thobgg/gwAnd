@@ -10,6 +10,7 @@ import androidx.compose.material3.SingleChoiceSegmentedButtonRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
@@ -55,7 +56,8 @@ fun BaumSeite(s: Zustand, viewModel: GwViewModel, ansicht: BaumAnsicht, kompakt:
             )
         }
         val arten = listOf(BaumArt.Sanduhr to Res.string.tree_hourglass, BaumArt.Faecher to Res.string.tree_fan)
-        SingleChoiceSegmentedButtonRow(Modifier.padding(12.dp).width(240.dp)) {
+        // Unten links, neben den runden Knoepfen der Baumansicht: oben wuerde er Karten verdecken
+        SingleChoiceSegmentedButtonRow(Modifier.align(Alignment.BottomStart).padding(start = 12.dp, bottom = 20.dp).width(220.dp)) {
             arten.forEachIndexed { i, (art, text) ->
                 SegmentedButton(selected = s.baumArt == art, onClick = { viewModel.baumArt(art) }, shape = SegmentedButtonDefaults.itemShape(i, arten.size)) {
                     Text(stringResource(text), maxLines = 1)

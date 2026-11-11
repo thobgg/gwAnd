@@ -41,6 +41,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Debug mit dem Release-Schluessel signieren: Wechsel zwischen Debug und Release ohne Neuinstallation
+            if (keystorePropsFile.exists()) signingConfig = signingConfigs.getByName("release")
+        }
         release {
             isMinifyEnabled = true
             vcsInfo { include = false }

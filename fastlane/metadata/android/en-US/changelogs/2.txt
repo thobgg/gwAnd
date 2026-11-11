@@ -1,0 +1,1 @@
+First release: tree and fan chart, profile, search, editing, photos, faces, text recognition, history with undo, merge, reports and export, anniversaries, offline reading.

@@ -236,6 +236,8 @@ sealed interface Dialog {
 
     data class ExportDialog(val laeuft: String? = null) : Dialog
 
+    data object UeberDialog : Dialog
+
     data class DnaDialog(val name: String, val treffer: List<Pair<Person?, de.bgghome.gwand.api.DnaTreffer>>? = null) : Dialog
 
     /** Zusammenfuehren: [bleibt] ist die Person im Profil, [geht] die gewaehlte zweite. */

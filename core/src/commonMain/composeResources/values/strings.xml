@@ -219,4 +219,8 @@
     <string name="chat_hint">Ask about the family tree</string>
     <string name="chat_send">Send</string>
     <string name="offline_banner">Offline – showing the last loaded data. Changes need a connection.</string>
+    <string name="menu_about">About gwAnd</string>
+    <string name="about_text">gwAnd is a free app for Gramps Web, licensed under GPL-3.0. It is not an official project of Gramps or Gramps Web.</string>
+    <string name="about_privacy">Privacy: gwAnd talks only to the Gramps Web server you sign in to, and loads map tiles from OpenStreetMap. No tracking, no advertising, no analytics. Your password is not stored, only a sign-in token. Data the app has loaded is kept in its private storage for offline use and deleted when you sign out.</string>
+    <string name="about_source">Source code and issues</string>
 </resources>

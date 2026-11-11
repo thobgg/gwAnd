@@ -576,6 +576,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                     it.copy(fotos = (if (seite == 1) emptyList() else it.fotos) + r.eintraege.filter { m -> m.istBild && !m.private },
                         fotosGesamt = r.gesamt, fotosNaechste = r.naechste, fotosLaedt = false)
                 }
+                // Laeuft gerade der Betrachter ueber die Fotos des Baums, bekommt er die neue Seite gleich mit.
+                zustand.value.betrachter?.takeIf { it.source == ViewerSource.Tree }?.let { b -> betrachter(zustand.value.fotos, b.index, ViewerSource.Tree) }
             } catch (e: Exception) {
                 zustand.update { it.copy(fotosLaedt = false) }
                 fehlschlag(e)
@@ -599,7 +601,12 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         zustand.update { it.copy(betrachter = ViewerState(items, index.coerceIn(0, items.lastIndex), quelle)) }
     }
 
-    fun betrachterIndex(i: Int) = zustand.update { s -> s.copy(betrachter = s.betrachter?.copy(index = i)) }
+    fun betrachterIndex(i: Int) {
+        zustand.update { s -> s.copy(betrachter = s.betrachter?.copy(index = i)) }
+        // Kurz vor dem Ende der geladenen Fotos die naechste Seite holen
+        val b = zustand.value.betrachter ?: return
+        if (b.source == ViewerSource.Tree && i >= b.items.size - 3 && zustand.value.fotosNaechste != null) weitereFotos()
+    }
 
     fun betrachterSchliessen() = zustand.update { it.copy(betrachter = null) }
 
