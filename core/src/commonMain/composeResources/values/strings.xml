@@ -228,10 +228,6 @@
     <string name="login_oidc_title">Sign-in with %1$s</string>
     <string name="error_oidc_version">Signing in via a single sign-on provider needs Gramps Web API 3.21 or newer on the server.</string>
     <string name="about_home">Project page</string>
-    <plurals name="tree_generations_n">
-        <item quantity="one">%1$d generation</item>
-        <item quantity="other">%1$d generations</item>
-    </plurals>
     <string name="menu_appearance">Appearance</string>
     <string name="appearance_classic">Classic: bar in the tree's colour</string>
     <string name="appearance_light">Light: like the new Gramps Web</string>

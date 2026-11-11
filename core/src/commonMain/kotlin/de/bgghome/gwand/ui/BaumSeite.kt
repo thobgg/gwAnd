@@ -30,7 +30,7 @@ import de.bgghome.webtrees.nativ.res.action_back
 import de.bgghome.webtrees.nativ.res.tree_ancestors_head
 import de.bgghome.webtrees.nativ.res.tree_descendants_head
 import de.bgghome.webtrees.nativ.res.tree_descendants_none
-import de.bgghome.gwand.res.tree_generations_n
+import de.bgghome.webtrees.nativ.res.tree_generations_n
 import org.jetbrains.compose.resources.pluralStringResource
 import de.bgghome.webtrees.nativ.res.tree_home
 import de.bgghome.webtrees.nativ.res.tree_settings
@@ -193,4 +193,4 @@ private fun Baumansicht(s: Zustand, viewModel: GwViewModel) {
 }
 
 @Composable
-private fun generationenText(n: Int) = pluralStringResource(Res.plurals.tree_generations_n, n, n)
+private fun generationenText(n: Int) = pluralStringResource(WRes.plurals.tree_generations_n, n, n)
