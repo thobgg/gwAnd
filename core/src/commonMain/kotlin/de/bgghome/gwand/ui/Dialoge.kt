@@ -124,10 +124,19 @@ fun BearbeitenDialoge(s: Zustand, viewModel: GwViewModel) {
             title = { Text(stringResource(Res.string.more_about, s.version)) },
             text = {
                 Column(Modifier.heightIn(max = 480.dp).verticalScroll(rememberScrollState()), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                    Text(AUTOR, style = MaterialTheme.typography.titleSmall)
                     Text(stringResource(Res.string.about_text), style = MaterialTheme.typography.bodyMedium)
                     Text(stringResource(Res.string.about_privacy), style = MaterialTheme.typography.bodyMedium)
-                    Text(stringResource(Res.string.about_source), Modifier.clickable { viewModel.oeffnen(QUELLCODE) },
-                        color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.bodyMedium)
+                    Column {
+                        Text(stringResource(Res.string.about_home), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(PROJEKTSEITE.removePrefix("https://").trimEnd('/'), Modifier.clickable { viewModel.oeffnen(PROJEKTSEITE) },
+                            color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.bodyMedium)
+                    }
+                    Column {
+                        Text(stringResource(Res.string.about_source), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        Text(QUELLCODE.removePrefix("https://"), Modifier.clickable { viewModel.oeffnen(QUELLCODE) },
+                            color = MaterialTheme.colorScheme.primary, style = MaterialTheme.typography.bodyMedium)
+                    }
                 }
             },
             confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.search_close)) } },

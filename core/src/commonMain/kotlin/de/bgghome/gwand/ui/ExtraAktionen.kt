@@ -13,6 +13,8 @@ fun GwViewModel.ueber() = zustand.update { it.copy(dialog = Dialog.UeberDialog) 
 
 /** Adresse des Quellcodes (Fehlermeldungen, Lizenz). */
 const val QUELLCODE = "https://github.com/thobgg/gwAnd"
+const val PROJEKTSEITE = "https://gwand.bgg-home.de/"
+const val AUTOR = "© 2026 Thomas Bugge"
 
 fun GwViewModel.baumArt(art: BaumArt) = zustand.update { it.copy(baumArt = art) }
 

@@ -226,4 +226,5 @@
     <string name="login_or">o</string>
     <string name="login_oidc_title">Inicio de sesión con %1$s</string>
     <string name="error_oidc_version">Iniciar sesión mediante un servicio de autenticación requiere Gramps Web API 3.21 o posterior en el servidor.</string>
+    <string name="about_home">Página del proyecto</string>
 </resources>

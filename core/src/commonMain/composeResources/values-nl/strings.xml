@@ -226,4 +226,5 @@
     <string name="login_or">of</string>
     <string name="login_oidc_title">Aanmelden bij %1$s</string>
     <string name="error_oidc_version">Aanmelden via een aanmelddienst vereist Gramps Web API 3.21 of nieuwer op de server.</string>
+    <string name="about_home">Projectpagina</string>
 </resources>

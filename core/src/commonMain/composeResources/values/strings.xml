@@ -227,4 +227,5 @@
     <string name="login_or">or</string>
     <string name="login_oidc_title">Sign-in with %1$s</string>
     <string name="error_oidc_version">Signing in via a single sign-on provider needs Gramps Web API 3.21 or newer on the server.</string>
+    <string name="about_home">Project page</string>
 </resources>

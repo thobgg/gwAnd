@@ -55,6 +55,8 @@ class LiveSchreibTest {
 
             // Ereignis anlegen, aendern, Konflikt bei veraltetem Stand
             val stand = roh["change"]!!.jsonPrimitive.content.toLong()
+            // Der Server fuehrt `change` nur sekundengenau: ohne Pause faellt die Aenderung in dieselbe Sekunde
+            Thread.sleep(1100)
             val e = b.ereignisAnlegen(p, stand, "Baptism", Schreibhilfe.datum(DateForm(DateQualifier.EXACT, DatePart("20", 3, "1985"))), null, "")
             assertFailsWith<Konflikt> { b.personAendern(p, stand, "Gwand", "Testperson", "Gwa", 1) }
             roh = client.roh("people", p)
