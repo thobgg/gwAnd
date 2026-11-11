@@ -36,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.graphics.graphicsLayer
@@ -138,7 +139,7 @@ private fun Seite(d: Dokument, i: Int, breite: Int, onZoom: (Boolean) -> Unit) {
     var faktor by remember { mutableFloatStateOf(1f) }
     var versatz by remember { mutableStateOf(Offset.Zero) }
     Box(
-        Modifier.fillMaxWidth().aspectRatio(d.verhaeltnis[i]).padding(bottom = 4.dp).background(androidx.compose.ui.graphics.Color.White)
+        Modifier.fillMaxWidth().aspectRatio(d.verhaeltnis[i]).padding(bottom = 4.dp).clipToBounds().background(androidx.compose.ui.graphics.Color.White)
             .pointerInput(i) {
                 detectTapGestures(onDoubleTap = {
                     if (faktor > 1f) { faktor = 1f; versatz = Offset.Zero; onZoom(false) } else { faktor = 2.5f; onZoom(true) }
