@@ -100,6 +100,14 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         get() = ablage.getString(K_BENUTZER, "").orEmpty()
         private set(value) = ablage.putString(K_BENUTZER, value)
 
+    /** Zuletzt ueber OIDC angemeldet: der Benutzername stammt dann vom Anbieter und gehoert nicht ins Anmeldefeld. */
+    var perOidc: Boolean
+        get() = ablage.getBoolean(K_OIDC, false)
+        private set(value) = ablage.putBoolean(K_OIDC, value)
+
+    /** Vorschlag fuer das Feld Benutzername der Anmeldemaske. */
+    val namensvorschlag: String get() = if (perOidc) "" else benutzername
+
     private var refresh: String?
         get() = ablage.getString(K_REFRESH, null)
         set(value) = ablage.putString(K_REFRESH, value)
@@ -158,6 +166,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         access = token.access
         refresh = token.refresh
         benutzername = name
+        perOidc = false
     }
 
     /**
@@ -191,6 +200,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         access = token.access
         refresh = token.refresh
         benutzername = ich().name
+        perOidc = true
     }
 
     /** Mit dem gespeicherten Refresh-Token ein frisches Access-Token holen (App-Start). */
@@ -594,6 +604,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         private const val K_BASIS = "basisUrl"
         private const val K_BENUTZER = "benutzer"
         private const val K_REFRESH = "refreshToken"
+        private const val K_OIDC = "perOidc"
         /** Interner Kopf: diese Anfrage ohne Access-Token senden (Anmeldung, Erneuern). Geht nie ans Netz. */
         private const val KEIN_TOKEN = "X-Gwand-Ohne-Token"
         private val JSON_TYP = "application/json".toMediaType()

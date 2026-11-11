@@ -82,7 +82,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
 
     internal val zustand = MutableStateFlow(
         Zustand(
-            adresse = client.basisUrl, benutzername = client.benutzername, version = plattform.versionName,
+            adresse = client.basisUrl, benutzername = client.namensvorschlag, version = plattform.versionName,
             zeigeGeschwister = ablage.getBoolean(K_GESCHWISTER, true), zeigeCousins = ablage.getBoolean(K_COUSINS, true),
             kannErinnern = plattform.kannErinnern, erinnerung = ablage.getBoolean(K_ERINNERUNG, false),
         ),
@@ -217,7 +217,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         client.abmelden()
         plattform.anmeldedatenVergessen()
         baumJob?.cancel(); profilJob?.cancel()
-        zustand.update { Zustand(bildschirm = Bildschirm.Anmeldung, adresse = client.basisUrl, benutzername = client.benutzername, version = plattform.versionName) }
+        zustand.update { Zustand(bildschirm = Bildschirm.Anmeldung, adresse = client.basisUrl, benutzername = client.namensvorschlag, version = plattform.versionName) }
         oidcPruefen(client.basisUrl)
     }
 
@@ -751,7 +751,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     internal suspend fun fehlschlag(e: Exception) {
         if (e is AnmeldungAbgelaufen) {
             client.abmelden()
-            zustand.update { Zustand(bildschirm = Bildschirm.Anmeldung, adresse = client.basisUrl, benutzername = client.benutzername, fehler = getString(Res.string.error_expired), version = plattform.versionName) }
+            zustand.update { Zustand(bildschirm = Bildschirm.Anmeldung, adresse = client.basisUrl, benutzername = client.namensvorschlag, fehler = getString(Res.string.error_expired), version = plattform.versionName) }
             return
         }
         meldung(text(e))
