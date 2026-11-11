@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Klartext (http://) fuer selbst gehostete Server im Heimnetz. Android kennt keine Adressbereiche, darum hier
+     allgemein erlaubt - die App laesst http:// selbst nur zu privaten Adressen zu (GwClient, Heimnetz). -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true" />
+</network-security-config>

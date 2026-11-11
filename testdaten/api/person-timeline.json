@@ -1,0 +1,303 @@
+[
+  {
+    "age": "0 Tage",
+    "date": "1985-03-14",
+    "description": "",
+    "gramps_id": "E0000",
+    "handle": "1051e1fd789820304330abfc5212",
+    "label": "Geburt",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "2 Monate",
+    "date": "1985-06-02",
+    "description": "",
+    "gramps_id": "E0001",
+    "handle": "1051e1fd78b730594a8c77b625a0",
+    "label": "Kindtaufe",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Christening"
+  },
+  {
+    "age": "2 Jahre",
+    "date": "1987-09-02",
+    "description": "",
+    "gramps_id": "E0004",
+    "handle": "1051e1fd78ec7383446a1b5ac144",
+    "label": "Geburt (Ehefrau)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1987-09-02",
+        "place": "Bremen, Deutschland",
+        "place_name": "Bremen, Deutschland",
+        "summary": "Geburt - Sandvoss, Mira",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0002",
+      "handle": "1051e1fd78ea45d88eafd260dda2",
+      "name_display": "Sandvoss, Mira",
+      "name_given": "Mira",
+      "name_suffix": "",
+      "name_surname": "Sandvoss",
+      "relationship": "Ehefrau",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Bremen, Deutschland",
+      "gramps_id": "P0001",
+      "handle": "1051e1fd78f15bab67df3524c424",
+      "lat": 53.0793,
+      "long": 8.8017,
+      "name": "Bremen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "3 Jahre",
+    "date": "1988-07-30",
+    "description": "",
+    "gramps_id": "E0008",
+    "handle": "1051e1fd7925450016b838805b34",
+    "label": "Geburt (Schwester)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1988-07-30",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Lena",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0005",
+      "handle": "1051e1fd79234600d1108999a49",
+      "name_display": "Falkenrath, Lena",
+      "name_given": "Lena",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Schwester",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "30 Jahre",
+    "date": "2015-06-18",
+    "description": "civil",
+    "gramps_id": "E2336",
+    "handle": "1051e1fdf5f4694c020cd3564ed",
+    "label": "Heirat",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "32 Jahre",
+    "date": "2017-05-09",
+    "description": "",
+    "gramps_id": "E0006",
+    "handle": "1051e1fd78ff7c3cdf4bb3a98324",
+    "label": "Geburt (Sohn)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "2017-05-09",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Emil",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0003",
+      "handle": "1051e1fd78fd25969c8283f9a7e8",
+      "name_display": "Falkenrath, Emil",
+      "name_given": "Emil",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Sohn",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "32 Jahre",
+    "date": "2017-10-03",
+    "description": "civil",
+    "gramps_id": "E2337",
+    "handle": "1051e1fdf60916ddece8d8d9f684",
+    "label": "Heirat (Schwester)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "29 Jahre",
+      "birth": {
+        "date": "1988-07-30",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Lena",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0005",
+      "handle": "1051e1fd79234600d1108999a49",
+      "name_display": "Falkenrath, Lena",
+      "name_given": "Lena",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Schwester",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Bremen, Deutschland",
+      "gramps_id": "P0001",
+      "handle": "1051e1fd78f15bab67df3524c424",
+      "lat": 53.0793,
+      "long": 8.8017,
+      "name": "Bremen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "35 Jahre",
+    "date": "2020-11-23",
+    "description": "",
+    "gramps_id": "E0007",
+    "handle": "1051e1fd79138d48348d504d048",
+    "label": "Geburt (Tochter)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "2020-11-23",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Ida",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0004",
+      "handle": "1051e1fd79113b7b0b1d1afd2e59",
+      "name_display": "Falkenrath, Ida",
+      "name_given": "Ida",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Tochter",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  }
+]

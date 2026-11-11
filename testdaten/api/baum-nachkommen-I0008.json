@@ -1,0 +1,271 @@
+[
+  {
+    "change": 1794386988,
+    "extended": {
+      "families": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "0A17AD566A3E5D8A8799975FF728DFD89FA1"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd78fd25969c8283f9a7e8"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd79113b7b0b1d1afd2e59"
+            }
+          ],
+          "citation_list": [],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf5f4694c020cd3564ed",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd7896bb447616685e8e7",
+          "gramps_id": "F0001",
+          "handle": "1051e1fd78e07bd25b7228b8533c",
+          "lds_ord_list": [],
+          "media_list": [],
+          "mother_handle": "1051e1fd78ea45d88eafd260dda2",
+          "note_list": [],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        }
+      ]
+    },
+    "family_list": [
+      "1051e1fd78e07bd25b7228b8533c"
+    ],
+    "gender": 1,
+    "gramps_id": "I0001",
+    "handle": "1051e1fd7896bb447616685e8e7",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd78d842ae4faf12795e46"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "1985-03-14",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Jonas",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0001",
+      "handle": "1051e1fd7896bb447616685e8e7",
+      "name_display": "Falkenrath, Jonas",
+      "name_given": "Jonas",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "sex": "M"
+    }
+  },
+  {
+    "change": 1794386988,
+    "extended": {
+      "families": []
+    },
+    "family_list": [],
+    "gender": 1,
+    "gramps_id": "I0003",
+    "handle": "1051e1fd78fd25969c8283f9a7e8",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd78e07bd25b7228b8533c"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "2017-05-09",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Emil",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0003",
+      "handle": "1051e1fd78fd25969c8283f9a7e8",
+      "name_display": "Falkenrath, Emil",
+      "name_given": "Emil",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "sex": "M"
+    }
+  },
+  {
+    "change": 1794386988,
+    "extended": {
+      "families": []
+    },
+    "family_list": [],
+    "gender": 0,
+    "gramps_id": "I0004",
+    "handle": "1051e1fd79113b7b0b1d1afd2e59",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd78e07bd25b7228b8533c"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "2020-11-23",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Ida",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0004",
+      "handle": "1051e1fd79113b7b0b1d1afd2e59",
+      "name_display": "Falkenrath, Ida",
+      "name_given": "Ida",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "sex": "F"
+    }
+  },
+  {
+    "change": 1794386988,
+    "extended": {
+      "families": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "E6BD44E429C750D693C45470CC0F79BA0A03"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd794dc038e559ea646b4"
+            }
+          ],
+          "citation_list": [],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf60916ddece8d8d9f684",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd793a668d47e839384e7b",
+          "gramps_id": "F0002",
+          "handle": "1051e1fd793531916f5694233e71",
+          "lds_ord_list": [],
+          "media_list": [],
+          "mother_handle": "1051e1fd79234600d1108999a49",
+          "note_list": [
+            "1051e1fdf61668cdc8ebb6e94ee6"
+          ],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        }
+      ]
+    },
+    "family_list": [
+      "1051e1fd793531916f5694233e71"
+    ],
+    "gender": 0,
+    "gramps_id": "I0005",
+    "handle": "1051e1fd79234600d1108999a49",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd78d842ae4faf12795e46"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "1988-07-30",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Lena",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0005",
+      "handle": "1051e1fd79234600d1108999a49",
+      "name_display": "Falkenrath, Lena",
+      "name_given": "Lena",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "sex": "F"
+    }
+  },
+  {
+    "change": 1794386988,
+    "extended": {
+      "families": []
+    },
+    "family_list": [],
+    "gender": 0,
+    "gramps_id": "I0007",
+    "handle": "1051e1fd794dc038e559ea646b4",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd793531916f5694233e71"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "2019-04-04",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Geburt - Wolniak, Nele",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0007",
+      "handle": "1051e1fd794dc038e559ea646b4",
+      "name_display": "Wolniak, Nele",
+      "name_given": "Nele",
+      "name_suffix": "",
+      "name_surname": "Wolniak",
+      "sex": "F"
+    }
+  }
+]

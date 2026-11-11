@@ -1,0 +1,46 @@
+{
+  "alt_loc": [],
+  "alt_names": [],
+  "change": 1794386991,
+  "citation_list": [],
+  "code": "",
+  "extended": {
+    "citations": [],
+    "media": [],
+    "notes": [],
+    "places": [],
+    "tags": []
+  },
+  "gramps_id": "P0000",
+  "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+  "lat": "N52.3759",
+  "long": "E9.7320",
+  "media_list": [],
+  "name": {
+    "date": {
+      "calendar": 0,
+      "dateval": [
+        0,
+        0,
+        0,
+        false
+      ],
+      "format": null,
+      "modifier": 0,
+      "newyear": 0,
+      "quality": 0,
+      "sortval": 0,
+      "text": "",
+      "year": 0
+    },
+    "lang": "",
+    "value": "Hannover, Niedersachsen, Deutschland"
+  },
+  "note_list": [],
+  "place_type": "Unknown",
+  "placeref_list": [],
+  "private": false,
+  "tag_list": [],
+  "title": "Hannover, Niedersachsen, Deutschland",
+  "urls": []
+}

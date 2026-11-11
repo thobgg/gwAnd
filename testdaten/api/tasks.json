@@ -1,0 +1,101 @@
+[
+  {
+    "created_at": "2026-11-11T08:58:52.976483",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "71cb921c-c523-455c-b709-83f26a934fd2",
+    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
+    "user_name": "admin"
+  },
+  {
+    "created_at": "2026-11-11T08:49:53.242254",
+    "name": "gramps_webapi.api.tasks.search_reindex_incremental",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "e7e7bbee-aee5-4087-b0c7-938e030b295c",
+    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
+    "user_name": "admin"
+  },
+  {
+    "created_at": "2026-11-11T08:49:53.193325",
+    "name": "gramps_webapi.api.tasks.update_media_usage_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "6df9c606-b6cb-43a9-abef-5147af76fb80",
+    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
+    "user_name": "admin"
+  },
+  {
+    "created_at": "2026-11-11T08:49:43.788456",
+    "name": "gramps_webapi.api.tasks.import_file",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ea93b1a8-131c-4806-a6e3-1eec7bb6fb90",
+    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
+    "user_name": "admin"
+  },
+  {
+    "created_at": "2026-11-11T08:49:35.559314",
+    "name": "gramps_webapi.api.tasks.import_file",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "714c94ed-f57e-42d1-a55b-526c737cecee",
+    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
+    "user_name": "admin"
+  },
+  {
+    "created_at": "2026-11-11T08:48:56.462940",
+    "name": "gramps_webapi.api.tasks.search_reindex_full",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "2dbe522a-6433-4f89-8f90-0561e3db64bc",
+    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
+    "user_name": "admin"
+  },
+  {
+    "created_at": "2026-11-11T08:48:56.127739",
+    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "4cf35c19-42ab-4b80-a859-6a8fd772d747",
+    "user_id": null,
+    "user_name": null
+  },
+  {
+    "created_at": "2026-11-11T08:48:56.099539",
+    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "b20c4d2f-3abe-4fa6-8d07-cdf6d865db8b",
+    "user_id": null,
+    "user_name": null
+  },
+  {
+    "created_at": "2026-11-11T08:48:56.071772",
+    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "a83ebba6-8b7f-43bd-a985-0eed302b71e6",
+    "user_id": null,
+    "user_name": null
+  },
+  {
+    "created_at": "2026-11-11T08:48:56.040299",
+    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "6fb6f018-41ab-41a0-878c-9f12c313e742",
+    "user_id": null,
+    "user_name": null
+  },
+  {
+    "created_at": "2026-11-11T08:48:55.988275",
+    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "8c40adf6-71da-481a-8750-9413f3cf4d2e",
+    "user_id": null,
+    "user_name": null
+  }
+]

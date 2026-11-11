@@ -1,0 +1,17 @@
+[
+  {
+    "enabled": true,
+    "id": "9ab847f3-7f35-4504-8bfb-d384b817b3fe",
+    "min_role_ai": null,
+    "name": "Falkenrath",
+    "quota_media": null,
+    "quota_people": null,
+    "usage_media": 6939449,
+    "usage_people": 493
+  },
+  {
+    "enabled": true,
+    "id": "f234f3c1-0c33-418c-9a46-bc998be0c919",
+    "name": "Falkenrath"
+  }
+]

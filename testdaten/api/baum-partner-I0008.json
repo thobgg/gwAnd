@@ -1,0 +1,94 @@
+[
+  {
+    "change": 1794386988,
+    "family_list": [
+      "1051e1fd78e07bd25b7228b8533c"
+    ],
+    "gender": 0,
+    "gramps_id": "I0002",
+    "handle": "1051e1fd78ea45d88eafd260dda2",
+    "media_list": [],
+    "parent_family_list": [],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "1987-09-02",
+        "place": "Bremen, Deutschland",
+        "place_name": "Bremen, Deutschland",
+        "summary": "Geburt - Sandvoss, Mira",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0002",
+      "handle": "1051e1fd78ea45d88eafd260dda2",
+      "name_display": "Sandvoss, Mira",
+      "name_given": "Mira",
+      "name_suffix": "",
+      "name_surname": "Sandvoss",
+      "sex": "F"
+    }
+  },
+  {
+    "change": 1794386988,
+    "family_list": [
+      "1051e1fd793531916f5694233e71"
+    ],
+    "gender": 1,
+    "gramps_id": "I0006",
+    "handle": "1051e1fd793a668d47e839384e7b",
+    "media_list": [],
+    "parent_family_list": [],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "1986-01-11",
+        "place": "Bremen, Deutschland",
+        "place_name": "Bremen, Deutschland",
+        "summary": "Geburt - Wolniak, Tomasz",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0006",
+      "handle": "1051e1fd793a668d47e839384e7b",
+      "name_display": "Wolniak, Tomasz",
+      "name_given": "Tomasz",
+      "name_suffix": "",
+      "name_surname": "Wolniak",
+      "sex": "M"
+    }
+  },
+  {
+    "change": 1794386988,
+    "family_list": [
+      "1051e1fd78d842ae4faf12795e46"
+    ],
+    "gender": 0,
+    "gramps_id": "I0009",
+    "handle": "1051e1fd7a054ed6f85116883ae8",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd7a1b73173276d2455b98"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "1958-01-21",
+        "place": "Lüneburg, Niedersachsen, Deutschland",
+        "place_name": "Lüneburg, Niedersachsen, Deutschland",
+        "summary": "Geburt - Ilgner, Karin",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0009",
+      "handle": "1051e1fd7a054ed6f85116883ae8",
+      "name_display": "Ilgner, Karin",
+      "name_given": "Karin",
+      "name_suffix": "",
+      "name_surname": "Ilgner",
+      "sex": "F"
+    }
+  }
+]

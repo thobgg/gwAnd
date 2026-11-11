@@ -1,0 +1,1069 @@
+{
+  "address_list": [],
+  "alternate_names": [],
+  "attribute_list": [
+    {
+      "citation_list": [],
+      "note_list": [],
+      "private": false,
+      "type": "_UID",
+      "value": "12396EBF1ED85C5C98EDE0E0CA479DAEC772"
+    }
+  ],
+  "backlinks": {
+    "family": [
+      "1051e1fd78e07bd25b7228b8533c",
+      "1051e1fd78d842ae4faf12795e46"
+    ]
+  },
+  "birth_ref_index": 0,
+  "change": 1794386988,
+  "citation_list": [],
+  "death_ref_index": -1,
+  "event_ref_list": [
+    {
+      "attribute_list": [],
+      "citation_list": [],
+      "note_list": [],
+      "private": false,
+      "ref": "1051e1fd789820304330abfc5212",
+      "role": "Primary"
+    },
+    {
+      "attribute_list": [],
+      "citation_list": [],
+      "note_list": [],
+      "private": false,
+      "ref": "1051e1fd78b730594a8c77b625a0",
+      "role": "Primary"
+    },
+    {
+      "attribute_list": [],
+      "citation_list": [],
+      "note_list": [],
+      "private": false,
+      "ref": "1051e1fd78cb7137634c2ecf7f1e",
+      "role": "Primary"
+    },
+    {
+      "attribute_list": [],
+      "citation_list": [],
+      "note_list": [],
+      "private": false,
+      "ref": "1051e1fd78d43b8deacfdcd3beef",
+      "role": "Primary"
+    }
+  ],
+  "extended": {
+    "backlinks": {
+      "family": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "0A17AD566A3E5D8A8799975FF728DFD89FA1"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd78fd25969c8283f9a7e8"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd79113b7b0b1d1afd2e59"
+            }
+          ],
+          "citation_list": [],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf5f4694c020cd3564ed",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd7896bb447616685e8e7",
+          "gramps_id": "F0001",
+          "handle": "1051e1fd78e07bd25b7228b8533c",
+          "lds_ord_list": [],
+          "media_list": [],
+          "mother_handle": "1051e1fd78ea45d88eafd260dda2",
+          "note_list": [],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        },
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "3AD4587E689054ECA706EA054F924301DD56"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd7896bb447616685e8e7"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd79234600d1108999a49"
+            }
+          ],
+          "citation_list": [],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf61d3f13759c0c150a82",
+              "role": "Family"
+            },
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf62d1ab03a2f94e4ed8c",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd79e51ca886c7f74dcb01",
+          "gramps_id": "F0003",
+          "handle": "1051e1fd78d842ae4faf12795e46",
+          "lds_ord_list": [],
+          "media_list": [],
+          "mother_handle": "1051e1fd7a054ed6f85116883ae8",
+          "note_list": [
+            "1051e1fdf6402b1ed14982bd8cd2"
+          ],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        }
+      ]
+    },
+    "citations": [],
+    "events": [
+      {
+        "attribute_list": [],
+        "change": 1794386988,
+        "citation_list": [
+          "1051e1fd78a77ebc7baa1b56d0de"
+        ],
+        "date": {
+          "calendar": 0,
+          "dateval": [
+            14,
+            3,
+            1985,
+            false
+          ],
+          "format": null,
+          "modifier": 0,
+          "newyear": 0,
+          "quality": 0,
+          "sortval": 2446139,
+          "text": "14 MAR 1985",
+          "year": 1985
+        },
+        "description": "",
+        "gramps_id": "E0000",
+        "handle": "1051e1fd789820304330abfc5212",
+        "media_list": [],
+        "note_list": [],
+        "place": "1051e1fd78ad4e817fe5d8a7bf93",
+        "private": false,
+        "tag_list": [],
+        "type": "Birth"
+      },
+      {
+        "attribute_list": [
+          {
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "type": "Witness",
+            "value": "Martin Hoppe, Bauingenieur, Hannover"
+          }
+        ],
+        "change": 1794386988,
+        "citation_list": [
+          "1051e1fd78c1a32787e9db69e67"
+        ],
+        "date": {
+          "calendar": 0,
+          "dateval": [
+            2,
+            6,
+            1985,
+            false
+          ],
+          "format": null,
+          "modifier": 0,
+          "newyear": 0,
+          "quality": 0,
+          "sortval": 2446219,
+          "text": "2 JUN 1985",
+          "year": 1985
+        },
+        "description": "",
+        "gramps_id": "E0001",
+        "handle": "1051e1fd78b730594a8c77b625a0",
+        "media_list": [],
+        "note_list": [],
+        "place": "1051e1fd78ad4e817fe5d8a7bf93",
+        "private": false,
+        "tag_list": [],
+        "type": "Christening"
+      },
+      {
+        "attribute_list": [],
+        "change": 1794386988,
+        "citation_list": [],
+        "date": {
+          "calendar": 0,
+          "dateval": [
+            0,
+            0,
+            0,
+            false
+          ],
+          "format": null,
+          "modifier": 0,
+          "newyear": 0,
+          "quality": 0,
+          "sortval": 0,
+          "text": "",
+          "year": 0
+        },
+        "description": "Leibniz Universität Hannover, Diplom 2010",
+        "gramps_id": "E0002",
+        "handle": "1051e1fd78cb7137634c2ecf7f1e",
+        "media_list": [],
+        "note_list": [],
+        "place": "1051e1fd78ad4e817fe5d8a7bf93",
+        "private": false,
+        "tag_list": [],
+        "type": "Education"
+      },
+      {
+        "attribute_list": [],
+        "change": 1794386988,
+        "citation_list": [],
+        "date": {
+          "calendar": 0,
+          "dateval": [
+            0,
+            0,
+            0,
+            false
+          ],
+          "format": null,
+          "modifier": 0,
+          "newyear": 0,
+          "quality": 0,
+          "sortval": 0,
+          "text": "",
+          "year": 0
+        },
+        "description": "Bauingenieur",
+        "gramps_id": "E0003",
+        "handle": "1051e1fd78d43b8deacfdcd3beef",
+        "media_list": [],
+        "note_list": [],
+        "place": "",
+        "private": false,
+        "tag_list": [],
+        "type": "Occupation"
+      }
+    ],
+    "families": [
+      {
+        "attribute_list": [
+          {
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "type": "_UID",
+            "value": "0A17AD566A3E5D8A8799975FF728DFD89FA1"
+          }
+        ],
+        "change": 1794386988,
+        "child_ref_list": [
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd78fd25969c8283f9a7e8"
+          },
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd79113b7b0b1d1afd2e59"
+          }
+        ],
+        "citation_list": [],
+        "complete": 0,
+        "event_ref_list": [
+          {
+            "attribute_list": [],
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fdf5f4694c020cd3564ed",
+            "role": "Family"
+          }
+        ],
+        "father_handle": "1051e1fd7896bb447616685e8e7",
+        "gramps_id": "F0001",
+        "handle": "1051e1fd78e07bd25b7228b8533c",
+        "lds_ord_list": [],
+        "media_list": [],
+        "mother_handle": "1051e1fd78ea45d88eafd260dda2",
+        "note_list": [],
+        "private": false,
+        "tag_list": [],
+        "type": "Married"
+      }
+    ],
+    "media": [],
+    "notes": [
+      {
+        "change": 1794386988,
+        "format": 0,
+        "gramps_id": "N0001",
+        "handle": "1051e1fd78e2342f32b507142518",
+        "private": false,
+        "tag_list": [],
+        "text": {
+          "string": "Records not imported into INDI (individual) Gramps ID I0001:\n\nLine ignored as not understood                                      Line    44: 2 _ASSO @I10@\nSkipped subordinate line                                            Line    45: 3 RELA godparent\nSkipped subordinate line                                            Line    46: 3 NOTE Schwester des Vaters\n",
+          "tags": [
+            {
+              "name": "fontface",
+              "ranges": [
+                [
+                  0,
+                  361
+                ]
+              ],
+              "value": "Monospace"
+            }
+          ]
+        },
+        "type": "GEDCOM import"
+      }
+    ],
+    "parent_families": [
+      {
+        "attribute_list": [
+          {
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "type": "_UID",
+            "value": "3AD4587E689054ECA706EA054F924301DD56"
+          }
+        ],
+        "change": 1794386988,
+        "child_ref_list": [
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd7896bb447616685e8e7"
+          },
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd79234600d1108999a49"
+          }
+        ],
+        "citation_list": [],
+        "complete": 0,
+        "event_ref_list": [
+          {
+            "attribute_list": [],
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fdf61d3f13759c0c150a82",
+            "role": "Family"
+          },
+          {
+            "attribute_list": [],
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fdf62d1ab03a2f94e4ed8c",
+            "role": "Family"
+          }
+        ],
+        "father_handle": "1051e1fd79e51ca886c7f74dcb01",
+        "gramps_id": "F0003",
+        "handle": "1051e1fd78d842ae4faf12795e46",
+        "lds_ord_list": [],
+        "media_list": [],
+        "mother_handle": "1051e1fd7a054ed6f85116883ae8",
+        "note_list": [
+          "1051e1fdf6402b1ed14982bd8cd2"
+        ],
+        "private": false,
+        "tag_list": [],
+        "type": "Married"
+      }
+    ],
+    "people": [],
+    "primary_parent_family": {
+      "attribute_list": [
+        {
+          "citation_list": [],
+          "note_list": [],
+          "private": false,
+          "type": "_UID",
+          "value": "3AD4587E689054ECA706EA054F924301DD56"
+        }
+      ],
+      "change": 1794386988,
+      "child_ref_list": [
+        {
+          "citation_list": [],
+          "frel": "Birth",
+          "mrel": "Birth",
+          "note_list": [],
+          "private": false,
+          "ref": "1051e1fd7896bb447616685e8e7"
+        },
+        {
+          "citation_list": [],
+          "frel": "Birth",
+          "mrel": "Birth",
+          "note_list": [],
+          "private": false,
+          "ref": "1051e1fd79234600d1108999a49"
+        }
+      ],
+      "citation_list": [],
+      "complete": 0,
+      "event_ref_list": [
+        {
+          "attribute_list": [],
+          "citation_list": [],
+          "note_list": [],
+          "private": false,
+          "ref": "1051e1fdf61d3f13759c0c150a82",
+          "role": "Family"
+        },
+        {
+          "attribute_list": [],
+          "citation_list": [],
+          "note_list": [],
+          "private": false,
+          "ref": "1051e1fdf62d1ab03a2f94e4ed8c",
+          "role": "Family"
+        }
+      ],
+      "father_handle": "1051e1fd79e51ca886c7f74dcb01",
+      "gramps_id": "F0003",
+      "handle": "1051e1fd78d842ae4faf12795e46",
+      "lds_ord_list": [],
+      "media_list": [],
+      "mother_handle": "1051e1fd7a054ed6f85116883ae8",
+      "note_list": [
+        "1051e1fdf6402b1ed14982bd8cd2"
+      ],
+      "private": false,
+      "tag_list": [],
+      "type": "Married"
+    },
+    "tags": []
+  },
+  "family_list": [
+    "1051e1fd78e07bd25b7228b8533c"
+  ],
+  "gender": 1,
+  "gramps_id": "I0001",
+  "handle": "1051e1fd7896bb447616685e8e7",
+  "lds_ord_list": [],
+  "media_list": [],
+  "note_list": [
+    "1051e1fd78e2342f32b507142518"
+  ],
+  "parent_family_list": [
+    "1051e1fd78d842ae4faf12795e46"
+  ],
+  "person_ref_list": [],
+  "primary_name": {
+    "call": "",
+    "citation_list": [],
+    "date": {
+      "calendar": 0,
+      "dateval": [
+        0,
+        0,
+        0,
+        false
+      ],
+      "format": null,
+      "modifier": 0,
+      "newyear": 0,
+      "quality": 0,
+      "sortval": 0,
+      "text": "",
+      "year": 0
+    },
+    "display_as": 0,
+    "famnick": "",
+    "first_name": "Jonas",
+    "group_as": "",
+    "nick": "",
+    "note_list": [],
+    "private": false,
+    "sort_as": 0,
+    "suffix": "",
+    "surname_list": [
+      {
+        "connector": "",
+        "origintype": "",
+        "prefix": "",
+        "primary": true,
+        "surname": "Falkenrath"
+      }
+    ],
+    "title": "",
+    "type": "Birth Name"
+  },
+  "private": false,
+  "profile": {
+    "addresses": [],
+    "birth": {
+      "age": "0 Tage",
+      "citations": 1,
+      "confidence": 4,
+      "date": "1985-03-14",
+      "place": "Hannover, Niedersachsen, Deutschland",
+      "place_name": "Hannover, Niedersachsen, Deutschland",
+      "summary": "Geburt - Falkenrath, Jonas",
+      "type": "Geburt"
+    },
+    "death": {},
+    "events": [
+      {
+        "age": "0 Tage",
+        "citations": 1,
+        "confidence": 4,
+        "date": "1985-03-14",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "role": "Primär",
+        "summary": "Geburt - Falkenrath, Jonas",
+        "type": "Geburt"
+      },
+      {
+        "age": "2 Monate, 19 Tage",
+        "citations": 1,
+        "confidence": 4,
+        "date": "1985-06-02",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "role": "Primär",
+        "summary": "Kindtaufe - Falkenrath, Jonas",
+        "type": "Kindtaufe"
+      },
+      {
+        "age": "unbekannt",
+        "citations": 0,
+        "confidence": 0,
+        "date": "",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "role": "Primär",
+        "summary": "Bildung - Falkenrath, Jonas",
+        "type": "Bildung"
+      },
+      {
+        "age": "unbekannt",
+        "citations": 0,
+        "confidence": 0,
+        "date": "",
+        "place": "",
+        "place_name": "",
+        "role": "Primär",
+        "summary": "Beruf - Falkenrath, Jonas",
+        "type": "Beruf"
+      }
+    ],
+    "families": [
+      {
+        "children": [
+          {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "2017-05-09",
+              "place": "Hannover, Niedersachsen, Deutschland",
+              "place_name": "Hannover, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Emil",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0003",
+            "handle": "1051e1fd78fd25969c8283f9a7e8",
+            "name_display": "Falkenrath, Emil",
+            "name_given": "Emil",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "2020-11-23",
+              "place": "Hannover, Niedersachsen, Deutschland",
+              "place_name": "Hannover, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Ida",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0004",
+            "handle": "1051e1fd79113b7b0b1d1afd2e59",
+            "name_display": "Falkenrath, Ida",
+            "name_given": "Ida",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "F"
+          }
+        ],
+        "divorce": {},
+        "events": [
+          {
+            "citations": 0,
+            "confidence": 0,
+            "date": "2015-06-18",
+            "place": "Hannover, Niedersachsen, Deutschland",
+            "place_name": "Hannover, Niedersachsen, Deutschland",
+            "span": "0 Tage",
+            "summary": "Heirat - Falkenrath, Jonas und Sandvoss, Mira",
+            "type": "Heirat"
+          }
+        ],
+        "family_surname": "Falkenrath",
+        "father": {
+          "addresses": [],
+          "birth": {
+            "age": "0 Tage",
+            "citations": 1,
+            "confidence": 4,
+            "date": "1985-03-14",
+            "place": "Hannover, Niedersachsen, Deutschland",
+            "place_name": "Hannover, Niedersachsen, Deutschland",
+            "summary": "Geburt - Falkenrath, Jonas",
+            "type": "Geburt"
+          },
+          "death": {},
+          "gramps_id": "I0001",
+          "handle": "1051e1fd7896bb447616685e8e7",
+          "name_display": "Falkenrath, Jonas",
+          "name_given": "Jonas",
+          "name_suffix": "",
+          "name_surname": "Falkenrath",
+          "sex": "M"
+        },
+        "gramps_id": "F0001",
+        "handle": "1051e1fd78e07bd25b7228b8533c",
+        "marriage": {
+          "citations": 0,
+          "confidence": 0,
+          "date": "2015-06-18",
+          "place": "Hannover, Niedersachsen, Deutschland",
+          "place_name": "Hannover, Niedersachsen, Deutschland",
+          "span": "0 Tage",
+          "summary": "Heirat - Falkenrath, Jonas und Sandvoss, Mira",
+          "type": "Heirat"
+        },
+        "mother": {
+          "addresses": [],
+          "birth": {
+            "age": "0 Tage",
+            "citations": 0,
+            "confidence": 0,
+            "date": "1987-09-02",
+            "place": "Bremen, Deutschland",
+            "place_name": "Bremen, Deutschland",
+            "summary": "Geburt - Sandvoss, Mira",
+            "type": "Geburt"
+          },
+          "death": {},
+          "gramps_id": "I0002",
+          "handle": "1051e1fd78ea45d88eafd260dda2",
+          "name_display": "Sandvoss, Mira",
+          "name_given": "Mira",
+          "name_suffix": "",
+          "name_surname": "Sandvoss",
+          "sex": "F"
+        },
+        "relationship": "Verheiratet"
+      }
+    ],
+    "gramps_id": "I0001",
+    "handle": "1051e1fd7896bb447616685e8e7",
+    "name_display": "Falkenrath, Jonas",
+    "name_given": "Jonas",
+    "name_suffix": "",
+    "name_surname": "Falkenrath",
+    "other_parent_families": [],
+    "primary_parent_family": {
+      "children": [
+        {
+          "addresses": [],
+          "birth": {
+            "age": "0 Tage",
+            "citations": 1,
+            "confidence": 4,
+            "date": "1985-03-14",
+            "place": "Hannover, Niedersachsen, Deutschland",
+            "place_name": "Hannover, Niedersachsen, Deutschland",
+            "summary": "Geburt - Falkenrath, Jonas",
+            "type": "Geburt"
+          },
+          "death": {},
+          "gramps_id": "I0001",
+          "handle": "1051e1fd7896bb447616685e8e7",
+          "name_display": "Falkenrath, Jonas",
+          "name_given": "Jonas",
+          "name_suffix": "",
+          "name_surname": "Falkenrath",
+          "sex": "M"
+        },
+        {
+          "addresses": [],
+          "birth": {
+            "age": "0 Tage",
+            "citations": 0,
+            "confidence": 0,
+            "date": "1988-07-30",
+            "place": "Hannover, Niedersachsen, Deutschland",
+            "place_name": "Hannover, Niedersachsen, Deutschland",
+            "summary": "Geburt - Falkenrath, Lena",
+            "type": "Geburt"
+          },
+          "death": {},
+          "gramps_id": "I0005",
+          "handle": "1051e1fd79234600d1108999a49",
+          "name_display": "Falkenrath, Lena",
+          "name_given": "Lena",
+          "name_suffix": "",
+          "name_surname": "Falkenrath",
+          "sex": "F"
+        }
+      ],
+      "divorce": {},
+      "events": [
+        {
+          "citations": 1,
+          "confidence": 4,
+          "date": "1983-05-12",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "span": "0 Tage",
+          "summary": "Heirat - Falkenrath, Bernd und Ilgner, Karin",
+          "type": "Heirat"
+        },
+        {
+          "citations": 1,
+          "confidence": 4,
+          "date": "1983-05-13",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "span": "1 Tage",
+          "summary": "Heirat - Falkenrath, Bernd und Ilgner, Karin",
+          "type": "Heirat"
+        }
+      ],
+      "family_surname": "Falkenrath",
+      "father": {
+        "addresses": [],
+        "birth": {
+          "age": "0 Tage",
+          "citations": 1,
+          "confidence": 4,
+          "date": "1955-11-03",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "summary": "Geburt - Falkenrath, Bernd",
+          "type": "Geburt"
+        },
+        "death": {},
+        "gramps_id": "I0008",
+        "handle": "1051e1fd79e51ca886c7f74dcb01",
+        "name_display": "Falkenrath, Bernd",
+        "name_given": "Bernd",
+        "name_suffix": "",
+        "name_surname": "Falkenrath",
+        "sex": "M"
+      },
+      "gramps_id": "F0003",
+      "handle": "1051e1fd78d842ae4faf12795e46",
+      "marriage": {
+        "citations": 1,
+        "confidence": 4,
+        "date": "1983-05-12",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "span": "0 Tage",
+        "summary": "Heirat - Falkenrath, Bernd und Ilgner, Karin",
+        "type": "Heirat"
+      },
+      "mother": {
+        "addresses": [],
+        "birth": {
+          "age": "0 Tage",
+          "citations": 1,
+          "confidence": 4,
+          "date": "1958-01-21",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "summary": "Geburt - Ilgner, Karin",
+          "type": "Geburt"
+        },
+        "death": {},
+        "gramps_id": "I0009",
+        "handle": "1051e1fd7a054ed6f85116883ae8",
+        "name_display": "Ilgner, Karin",
+        "name_given": "Karin",
+        "name_suffix": "",
+        "name_surname": "Ilgner",
+        "sex": "F"
+      },
+      "relationship": "Verheiratet"
+    },
+    "references": {
+      "family": [
+        {
+          "children": [
+            {
+              "addresses": [],
+              "birth": {
+                "date": "2017-05-09",
+                "place": "Hannover, Niedersachsen, Deutschland",
+                "place_name": "Hannover, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Emil",
+                "type": "Geburt"
+              },
+              "death": {},
+              "gramps_id": "I0003",
+              "handle": "1051e1fd78fd25969c8283f9a7e8",
+              "name_display": "Falkenrath, Emil",
+              "name_given": "Emil",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "M"
+            },
+            {
+              "addresses": [],
+              "birth": {
+                "date": "2020-11-23",
+                "place": "Hannover, Niedersachsen, Deutschland",
+                "place_name": "Hannover, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Ida",
+                "type": "Geburt"
+              },
+              "death": {},
+              "gramps_id": "I0004",
+              "handle": "1051e1fd79113b7b0b1d1afd2e59",
+              "name_display": "Falkenrath, Ida",
+              "name_given": "Ida",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "F"
+            }
+          ],
+          "divorce": {},
+          "family_surname": "Falkenrath",
+          "father": {
+            "addresses": [],
+            "birth": {
+              "date": "1985-03-14",
+              "place": "Hannover, Niedersachsen, Deutschland",
+              "place_name": "Hannover, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Jonas",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0001",
+            "handle": "1051e1fd7896bb447616685e8e7",
+            "name_display": "Falkenrath, Jonas",
+            "name_given": "Jonas",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          "gramps_id": "F0001",
+          "handle": "1051e1fd78e07bd25b7228b8533c",
+          "marriage": {
+            "date": "2015-06-18",
+            "place": "Hannover, Niedersachsen, Deutschland",
+            "place_name": "Hannover, Niedersachsen, Deutschland",
+            "summary": "Heirat - Falkenrath, Jonas und Sandvoss, Mira",
+            "type": "Heirat"
+          },
+          "mother": {
+            "addresses": [],
+            "birth": {
+              "date": "1987-09-02",
+              "place": "Bremen, Deutschland",
+              "place_name": "Bremen, Deutschland",
+              "summary": "Geburt - Sandvoss, Mira",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0002",
+            "handle": "1051e1fd78ea45d88eafd260dda2",
+            "name_display": "Sandvoss, Mira",
+            "name_given": "Mira",
+            "name_suffix": "",
+            "name_surname": "Sandvoss",
+            "sex": "F"
+          },
+          "relationship": "Verheiratet"
+        },
+        {
+          "children": [
+            {
+              "addresses": [],
+              "birth": {
+                "date": "1985-03-14",
+                "place": "Hannover, Niedersachsen, Deutschland",
+                "place_name": "Hannover, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Jonas",
+                "type": "Geburt"
+              },
+              "death": {},
+              "gramps_id": "I0001",
+              "handle": "1051e1fd7896bb447616685e8e7",
+              "name_display": "Falkenrath, Jonas",
+              "name_given": "Jonas",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "M"
+            },
+            {
+              "addresses": [],
+              "birth": {
+                "date": "1988-07-30",
+                "place": "Hannover, Niedersachsen, Deutschland",
+                "place_name": "Hannover, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Lena",
+                "type": "Geburt"
+              },
+              "death": {},
+              "gramps_id": "I0005",
+              "handle": "1051e1fd79234600d1108999a49",
+              "name_display": "Falkenrath, Lena",
+              "name_given": "Lena",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "F"
+            }
+          ],
+          "divorce": {},
+          "family_surname": "Falkenrath",
+          "father": {
+            "addresses": [],
+            "birth": {
+              "date": "1955-11-03",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Bernd",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0008",
+            "handle": "1051e1fd79e51ca886c7f74dcb01",
+            "name_display": "Falkenrath, Bernd",
+            "name_given": "Bernd",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          "gramps_id": "F0003",
+          "handle": "1051e1fd78d842ae4faf12795e46",
+          "marriage": {
+            "date": "1983-05-12",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "summary": "Heirat - Falkenrath, Bernd und Ilgner, Karin",
+            "type": "Heirat"
+          },
+          "mother": {
+            "addresses": [],
+            "birth": {
+              "date": "1958-01-21",
+              "place": "Lüneburg, Niedersachsen, Deutschland",
+              "place_name": "Lüneburg, Niedersachsen, Deutschland",
+              "summary": "Geburt - Ilgner, Karin",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0009",
+            "handle": "1051e1fd7a054ed6f85116883ae8",
+            "name_display": "Ilgner, Karin",
+            "name_given": "Karin",
+            "name_suffix": "",
+            "name_surname": "Ilgner",
+            "sex": "F"
+          },
+          "relationship": "Verheiratet"
+        }
+      ]
+    },
+    "sex": "M"
+  },
+  "tag_list": [],
+  "urls": []
+}

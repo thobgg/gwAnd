@@ -1,0 +1,164 @@
+{
+  "attribute_list": [],
+  "change": 1794386988,
+  "citation_list": [
+    "1051e1fd78a77ebc7baa1b56d0de"
+  ],
+  "date": {
+    "calendar": 0,
+    "dateval": [
+      14,
+      3,
+      1985,
+      false
+    ],
+    "format": null,
+    "modifier": 0,
+    "newyear": 0,
+    "quality": 0,
+    "sortval": 2446139,
+    "text": "14 MAR 1985",
+    "year": 1985
+  },
+  "description": "",
+  "extended": {
+    "citations": [
+      {
+        "attribute_list": [],
+        "change": 1794386988,
+        "confidence": 4,
+        "date": {
+          "calendar": 0,
+          "dateval": [
+            0,
+            0,
+            0,
+            false
+          ],
+          "format": null,
+          "modifier": 0,
+          "newyear": 0,
+          "quality": 0,
+          "sortval": 0,
+          "text": "",
+          "year": 0
+        },
+        "gramps_id": "C0000",
+        "handle": "1051e1fd78a77ebc7baa1b56d0de",
+        "media_list": [],
+        "note_list": [],
+        "page": "Geburtsurkunde Jonas Falkenrath, 1985",
+        "private": false,
+        "source_handle": "1051e1fd78a141e66a943068f1f8",
+        "tag_list": []
+      }
+    ],
+    "media": [],
+    "notes": [],
+    "place": {
+      "alt_loc": [],
+      "alt_names": [],
+      "change": 1794386991,
+      "citation_list": [],
+      "code": "",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": "N52.3759",
+      "long": "E9.7320",
+      "media_list": [],
+      "name": {
+        "date": {
+          "calendar": 0,
+          "dateval": [
+            0,
+            0,
+            0,
+            false
+          ],
+          "format": null,
+          "modifier": 0,
+          "newyear": 0,
+          "quality": 0,
+          "sortval": 0,
+          "text": "",
+          "year": 0
+        },
+        "lang": "",
+        "value": "Hannover, Niedersachsen, Deutschland"
+      },
+      "note_list": [],
+      "place_type": "Unknown",
+      "placeref_list": [],
+      "private": false,
+      "tag_list": [],
+      "title": "Hannover, Niedersachsen, Deutschland",
+      "urls": []
+    },
+    "tags": []
+  },
+  "gramps_id": "E0000",
+  "handle": "1051e1fd789820304330abfc5212",
+  "media_list": [],
+  "note_list": [],
+  "place": "1051e1fd78ad4e817fe5d8a7bf93",
+  "private": false,
+  "profile": {
+    "citations": 1,
+    "confidence": 4,
+    "date": "1985-03-14",
+    "participants": {
+      "families": [],
+      "people": [
+        {
+          "person": {
+            "addresses": [],
+            "birth": {
+              "date": "1985-03-14",
+              "place": "Hannover, Niedersachsen, Deutschland",
+              "place_name": "Hannover, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Jonas",
+              "type": "Geburt"
+            },
+            "death": {},
+            "gramps_id": "I0001",
+            "handle": "1051e1fd7896bb447616685e8e7",
+            "name_display": "Falkenrath, Jonas",
+            "name_given": "Jonas",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          "role": "Primär"
+        }
+      ]
+    },
+    "place": "Hannover, Niedersachsen, Deutschland",
+    "place_name": "Hannover, Niedersachsen, Deutschland",
+    "references": {
+      "person": [
+        {
+          "addresses": [],
+          "birth": {
+            "date": "1985-03-14",
+            "place": "Hannover, Niedersachsen, Deutschland",
+            "place_name": "Hannover, Niedersachsen, Deutschland",
+            "summary": "Geburt - Falkenrath, Jonas",
+            "type": "Geburt"
+          },
+          "death": {},
+          "gramps_id": "I0001",
+          "handle": "1051e1fd7896bb447616685e8e7",
+          "name_display": "Falkenrath, Jonas",
+          "name_given": "Jonas",
+          "name_suffix": "",
+          "name_surname": "Falkenrath",
+          "sex": "M"
+        }
+      ]
+    },
+    "summary": "Geburt - Falkenrath, Jonas",
+    "type": "Geburt"
+  },
+  "tag_list": [],
+  "type": "Birth"
+}

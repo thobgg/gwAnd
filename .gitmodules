@@ -1,0 +1,3 @@
+[submodule "app4webtrees"]
+	path = app4webtrees
+	url = https://github.com/thobgg/app4webtrees.git

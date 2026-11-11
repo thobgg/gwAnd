@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Vorlaeufiges Symbol: drei verbundene Kaesten (Eltern oben, Kind unten), weiss auf Gramps-Braun. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp" android:height="108dp" android:viewportWidth="108" android:viewportHeight="108">
+    <path android:strokeColor="#FFFFFF" android:strokeWidth="3" android:fillColor="#00000000"
+        android:pathData="M42,43 L42,51 L66,51 L66,43 M54,51 L54,60" />
+    <path android:fillColor="#FFFFFF" android:pathData="M31,33 h22 v12 h-22 z M55,33 h22 v12 h-22 z" />
+    <path android:fillColor="#FFFFFF" android:pathData="M43,60 h22 v12 h-22 z" />
+</vector>

@@ -1,0 +1,71 @@
+[
+  {
+    "id": 1,
+    "connection": {
+      "id": 1,
+      "timestamp": 1794386992.7106183,
+      "user": {
+        "name": "admin",
+        "full_name": "Admin"
+      }
+    },
+    "description": "GEDCOM import",
+    "first": null,
+    "last": null,
+    "undo": false,
+    "timestamp": 1794386992.381851,
+    "changes": []
+  },
+  {
+    "id": 2,
+    "connection": {
+      "id": 2,
+      "timestamp": 1794387532.8823605,
+      "user": {
+        "name": "admin",
+        "full_name": "Admin"
+      }
+    },
+    "description": "New Event",
+    "first": 1,
+    "last": 1,
+    "undo": false,
+    "timestamp": 1794387532.937644,
+    "changes": [
+      {
+        "id": 1,
+        "obj_class": "Event",
+        "trans_type": 0,
+        "obj_handle": "1051e2509a4525a22bf9e8485f7a",
+        "ref_handle": null,
+        "timestamp": 1794387532.9249413
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "connection": {
+      "id": 3,
+      "timestamp": 1794387533.0950346,
+      "user": {
+        "name": "admin",
+        "full_name": "Admin"
+      }
+    },
+    "description": "Delete Event",
+    "first": 1,
+    "last": 1,
+    "undo": false,
+    "timestamp": 1794387533.1319304,
+    "changes": [
+      {
+        "id": 1,
+        "obj_class": "Event",
+        "trans_type": 2,
+        "obj_handle": "1051e2509a4525a22bf9e8485f7a",
+        "ref_handle": null,
+        "timestamp": 1794387533.1151786
+      }
+    ]
+  }
+]

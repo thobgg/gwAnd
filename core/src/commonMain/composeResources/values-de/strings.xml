@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_subtitle">für Gramps Web</string>
+    <string name="login_server">Serveradresse</string>
+    <string name="login_server_hint">z. B. https://gramps.example.org</string>
+    <string name="login_user">Benutzername</string>
+    <string name="login_password">Passwort</string>
+    <string name="login_button">Anmelden</string>
+    <string name="login_note">Das Passwort wird nicht gespeichert. Die App merkt sich nur ein Anmelde-Token.</string>
+    <string name="menu_search">Suchen</string>
+    <string name="menu_more">Mehr</string>
+    <string name="menu_start_person">Als Startperson festlegen</string>
+    <string name="menu_reload">Neu laden</string>
+    <string name="menu_logout">Abmelden</string>
+    <string name="person_center">In die Mitte</string>
+    <string name="person_born">Geboren</string>
+    <string name="person_died">Gestorben</string>
+    <string name="search_hint">Name suchen</string>
+    <string name="search_count">%1$d Personen</string>
+    <string name="search_close">Schließen</string>
+    <string name="start_person_saved">Startperson gespeichert</string>
+    <string name="no_start_person">Noch keine Startperson. Wähle eine über die Suche.</string>
+    <string name="error_login">Anmeldung fehlgeschlagen: %1$s</string>
+    <string name="error_expired">Die Anmeldung ist abgelaufen. Bitte neu anmelden.</string>
+    <string name="error_cleartext">http:// ist nur im Heimnetz erlaubt. Bitte https:// verwenden.</string>
+    <string name="error_network">Keine Verbindung zum Server: %1$s</string>
+    <string name="error_api">Der Server meldet einen Fehler (%1$d): %2$s</string>
+    <string name="error_version">Auf diesem Server läuft Gramps Web API %1$s. gwAnd braucht Version 3.</string>
+</resources>

@@ -1,0 +1,23 @@
+# Android / Gradle
+*.iml
+.gradle/
+.idea/
+.kotlin/
+local.properties
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Signierung - nie committen
+keystore.properties
+*.jks
+
+# Python
+__pycache__/
+
+# Eigene Notizen und Werkzeuge - bleiben auf der Platte, gehoeren nicht ins oeffentliche Repo
+tools/
+/*.md
+!/README.md
+!/README.en.md

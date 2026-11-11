@@ -1,0 +1,131 @@
+{
+  "database": {
+    "actual_schema": 21,
+    "id": "9ab847f3-7f35-4504-8bfb-d384b817b3fe",
+    "name": "Falkenrath",
+    "schema": "21.0.0",
+    "type": "sqlite",
+    "version": "3.46.1"
+  },
+  "default_person": null,
+  "deprecations": [],
+  "gramps": {
+    "version": "6.0.8"
+  },
+  "gramps_object_query_language": {
+    "version": "0.5.8"
+  },
+  "gramps_ql": {
+    "version": "0.5.0"
+  },
+  "gramps_webapi": {
+    "schema": "3.25.2",
+    "version": "3.25.2"
+  },
+  "locale": {
+    "description": "English (USA)",
+    "incomplete_translation": false,
+    "lang": "en_US",
+    "language": "en"
+  },
+  "object_counts": {
+    "citations": 1416,
+    "events": 2507,
+    "families": 155,
+    "media": 142,
+    "notes": 710,
+    "people": 493,
+    "places": 35,
+    "repositories": 40,
+    "sources": 205,
+    "tags": 0
+  },
+  "researcher": {
+    "addr": "",
+    "city": "",
+    "country": "",
+    "county": "",
+    "email": "admin@example.org",
+    "locality": "",
+    "name": "",
+    "phone": "",
+    "postal": "",
+    "state": "",
+    "street": ""
+  },
+  "search": {
+    "building": false,
+    "sifts": {
+      "count": 5703,
+      "version": "3.25.2"
+    }
+  },
+  "server": {
+    "backups": false,
+    "chat": false,
+    "email": false,
+    "face_detection": true,
+    "max_thumbnail_file_bytes": 52428800,
+    "multi_tree": false,
+    "ocr": true,
+    "ocr_languages": [
+      "ara",
+      "bre",
+      "bul",
+      "cat",
+      "ces",
+      "chi_sim",
+      "chi_tra",
+      "dan",
+      "deu",
+      "ell",
+      "eng",
+      "epo",
+      "fin",
+      "fra",
+      "gle",
+      "heb",
+      "hrv",
+      "hun",
+      "ind",
+      "isl",
+      "ita",
+      "jpn",
+      "kor",
+      "lav",
+      "lit",
+      "mkd",
+      "nld",
+      "nor",
+      "pol",
+      "por",
+      "ron",
+      "rus",
+      "slk",
+      "slv",
+      "spa",
+      "sqi",
+      "srp",
+      "swe",
+      "tam",
+      "tur",
+      "ukr",
+      "vie"
+    ],
+    "rate_limit_media_archive": [
+      {
+        "amount": 1,
+        "window_seconds": 3600
+      }
+    ],
+    "semantic_search": false,
+    "task_queue": true,
+    "thumbnails": {
+      "pdf": true,
+      "video": true
+    }
+  },
+  "yclade": {
+    "version": "0.7.0"
+  }
+}

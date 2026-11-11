@@ -1,0 +1,100 @@
+[
+  {
+    "change": 1794386988,
+    "extended": {
+      "families": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "3AD4587E689054ECA706EA054F924301DD56"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd7896bb447616685e8e7"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd79234600d1108999a49"
+            }
+          ],
+          "citation_list": [],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf61d3f13759c0c150a82",
+              "role": "Family"
+            },
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf62d1ab03a2f94e4ed8c",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd79e51ca886c7f74dcb01",
+          "gramps_id": "F0003",
+          "handle": "1051e1fd78d842ae4faf12795e46",
+          "lds_ord_list": [],
+          "media_list": [],
+          "mother_handle": "1051e1fd7a054ed6f85116883ae8",
+          "note_list": [
+            "1051e1fdf6402b1ed14982bd8cd2"
+          ],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        }
+      ]
+    },
+    "family_list": [
+      "1051e1fd78d842ae4faf12795e46"
+    ],
+    "gender": 1,
+    "gramps_id": "I0008",
+    "handle": "1051e1fd79e51ca886c7f74dcb01",
+    "media_list": [],
+    "parent_family_list": [
+      "1051e1fd79fb1f06c646881fa361"
+    ],
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "date": "1955-11-03",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Bernd",
+        "type": "Geburt"
+      },
+      "death": {},
+      "gramps_id": "I0008",
+      "handle": "1051e1fd79e51ca886c7f74dcb01",
+      "name_display": "Falkenrath, Bernd",
+      "name_given": "Bernd",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "sex": "M"
+    }
+  }
+]
