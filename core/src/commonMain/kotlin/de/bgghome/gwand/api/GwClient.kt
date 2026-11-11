@@ -301,13 +301,18 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
     suspend fun zeitleiste(handle: String): List<ZeitleistenEintrag> =
         holen("/people/$handle/timeline", ListSerializer(ZeitleistenEintrag.serializer()), mapOf("locale" to sprache))
 
-    /** Ereignisse an den Tagen [tage] (Monat to Tag) mit Teilnehmern, fuer die Jahrestage. */
+    /**
+     * Ereignisse an bestimmten Tagen (Monat, Tag), jedes Jahr. Je Monat eine Abfrage mit der Datumsmaske "Stern/Monat/Stern":
+     * die Suchsprache GQL prueft jedes Ereignis einzeln und brauchte fuer 14 Tage ueber eine Minute, die Maske eine Sekunde.
+     */
     suspend fun ereignisseAnTagen(tage: List<Pair<Int, Int>>): List<Ereignis> {
         if (tage.isEmpty()) return emptyList()
-        val gql = tage.joinToString(" or ") { (m, t) -> "(date.dateval[1] = $m and date.dateval[0] = $t)" }
-        return holen("/events/", ListSerializer(Ereignis.serializer()), mapOf(
-            "gql" to gql, "profile" to "all", "keys" to "handle,gramps_id,type,date,private,profile", "locale" to sprache,
-        ))
+        val gesucht = tage.toSet()
+        return tage.map { it.first }.distinct().flatMap { monat ->
+            holen("/events/", ListSerializer(Ereignis.serializer()), mapOf(
+                "dates" to "*/$monat/*", "profile" to "all", "keys" to "handle,gramps_id,type,date,private,profile", "locale" to sprache,
+            ))
+        }.filter { (it.date.monat to it.date.tag) in gesucht }.distinctBy { it.handle }
     }
 
     suspend fun zuletztGeaendert(anzahl: Int = 10): List<GrampsPerson> = holen(

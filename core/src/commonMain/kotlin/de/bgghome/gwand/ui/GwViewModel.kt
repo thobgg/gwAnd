@@ -85,6 +85,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
             adresse = client.basisUrl, benutzername = client.namensvorschlag, version = plattform.versionName,
             zeigeGeschwister = ablage.getBoolean(K_GESCHWISTER, true), zeigeCousins = ablage.getBoolean(K_COUSINS, true),
             zeigeCousinPartner = ablage.getBoolean(K_COUSINPARTNER, true),
+            nurLebende = ablage.getBoolean(K_NURLEBENDE, false),
             darstellung = Darstellung.entries.firstOrNull { it.name == ablage.getString(K_DARSTELLUNG, null) } ?: Darstellung.Klassisch,
             ahnenGenerationen = (ablage.getString(K_AHNEN, null)?.toIntOrNull() ?: 4).coerceIn(2, 6), nachkommenGenerationen = (ablage.getString(K_NACHKOMMEN, null)?.toIntOrNull() ?: 2).coerceIn(0, 4),
             kannErinnern = plattform.kannErinnern, erinnerung = ablage.getBoolean(K_ERINNERUNG, false),
@@ -364,6 +365,11 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         neuLaden()
         startseiteLaden()
         zustand.value.profil?.handle?.let { profilOeffnen(it) }
+    }
+
+    fun nurLebende(an: Boolean) {
+        ablage.putBoolean(K_NURLEBENDE, an)
+        zustand.update { it.copy(nurLebende = an) }
     }
 
     fun zeigeCousinPartner(an: Boolean) {
@@ -867,6 +873,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         private const val K_COUSINS = "zeigeCousins"
         private const val K_COUSINPARTNER = "zeigeCousinPartner"
         private const val K_DARSTELLUNG = "darstellung"
+        private const val K_NURLEBENDE = "jahrestageNurLebende"
         private const val K_AHNEN = "ahnenGenerationen"
         private const val K_NACHKOMMEN = "nachkommenGenerationen"
         const val K_ERINNERUNG = "erinnerung"

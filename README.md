@@ -16,17 +16,17 @@ Kein offizielles Projekt von Gramps oder Gramps Web.
 
 ## Funktionen
 
-- **Baum:** Sanduhr mit Vorfahren, Partnern und Nachkommen, frei verschieben und zoomen; Fächerdiagramm über mehrere Generationen. Verwandte direkt über das „+“ an der Karte anlegen.
+- **Baum:** Sanduhr mit Vorfahren, Partnern und Nachkommen, frei verschieben und zoomen; Fächerdiagramm über mehrere Generationen. Generationen wählbar, Vollbild, zurück zur vorigen Mittelperson. Verwandte direkt über das „+“ an der Karte anlegen.
 - **Profil:** Zeitleiste mit Heirat und Geburten der Kinder, Familie, Fotos, Quellen, Beziehungen, Karte der Lebensstationen.
 - **Suche** über alle Personen, dazu Orte, Quellen, Archive und die letzten Änderungen.
 - **Bearbeiten:** Personen, Ereignisse, Familienereignisse, Eltern, Partner, Kinder, Zitate und Beziehungen. Hat jemand anderes denselben Datensatz inzwischen geändert, merkt die App das.
-- **Fotos:** aufnehmen oder auswählen, an Personen hängen, Hauptbild festlegen; Fotoübersicht mit Betrachter.
+- **Fotos und Dokumente:** aufnehmen oder auswählen, an Personen hängen, Hauptbild festlegen; Fotoübersicht mit Betrachter, PDFs im eigenen Betrachter.
 - **Gesichter:** die Gesichtserkennung des Servers schlägt Rahmen vor, ein Tipp ordnet die Person zu.
 - **Texterkennung** für Dokumentfotos über den Server.
 - **Verlauf** mit Rückgängig, **Zusammenführen** doppelter Personen.
 - **Verwandtschaft** zwischen zwei Personen, **Berichte** (PDF) und **Export** (z. B. GEDCOM).
 - **Jahrestage** mit täglicher Erinnerung, **KI-Assistent** (wenn der Server ihn anbietet), **Lesen ohne Netz**.
-- Handy und Tablet; Deutsch, Englisch, Französisch, Niederländisch, Spanisch.
+- Handy und Tablet; Deutsch, Englisch, Französisch, Niederländisch, Spanisch, in der App umschaltbar; Kopfbalken klassisch oder hell.
 
 Die App beachtet die Rolle des Kontos (Gast bis Besitzer).
 
@@ -38,6 +38,18 @@ Die App beachtet die Rolle des Kontos (Gast bis Besitzer).
 </p>
 
 Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
+
+## Neu in Version 1.2
+
+Generationen wählen und Vollbild im Baum, PDFs und andere Dokumente bei den Fotos mit eigenem PDF-Betrachter,
+Sprache und Darstellung (klassisch oder hell) im Menü, Jahrestage über 14 Tage mit dem Filter „Nur Lebende“.
+
+<p>
+<img src="docs/screenshots/9-generationen.png" width="24%" alt="Generationen wählen">
+<img src="docs/screenshots/12-pdf.png" width="24%" alt="PDF-Betrachter">
+<img src="docs/screenshots/10-jahrestage.png" width="24%" alt="Jahrestage">
+<img src="docs/screenshots/13-hell.png" width="24%" alt="Helle Darstellung">
+</p>
 
 ## Voraussetzungen
 

@@ -131,7 +131,9 @@ data class Zustand(
 
     // Start
     val jahrestage: List<Jahrestag> = emptyList(),
-    val jahrestageTage: Int = 7,
+    val jahrestageTage: Int = 14,
+    /** Jahrestage nur von Lebenden (Geburtstage, Hochzeitstage) */
+    val nurLebende: Boolean = false,
     val zuletztGesehen: List<Person> = emptyList(),
     val lesezeichen: List<Person> = emptyList(),
     val zuletztGeaendert: List<Person> = emptyList(),

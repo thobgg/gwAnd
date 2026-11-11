@@ -48,6 +48,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import de.bgghome.gwand.res.Res
+import de.bgghome.webtrees.nativ.res.Res as WRes
+import de.bgghome.webtrees.nativ.res.anniv_in_days
+import de.bgghome.webtrees.nativ.res.anniv_living_only
+import de.bgghome.webtrees.nativ.res.anniv_today
+import de.bgghome.webtrees.nativ.res.anniv_tomorrow
 import de.bgghome.gwand.res.home_anniversaries
 import de.bgghome.gwand.res.new_person
 import de.bgghome.gwand.res.home_anniversaries_none
@@ -76,15 +81,25 @@ import java.time.LocalDate
 fun Startseite(s: Zustand, viewModel: GwViewModel) {
     val heute = LocalDate.now()
     LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(bottom = 24.dp)) {
-        abschnitt(Res.string.home_anniversaries)
-        if (s.jahrestage.isEmpty()) {
+        // Ueberschrift mit Filter "Nur Lebende" (wie in wtAnd)
+        item(key = "jahrestage-kopf") {
+            Row(Modifier.fillMaxWidth().padding(start = 16.dp, end = 12.dp, top = 12.dp), verticalAlignment = Alignment.CenterVertically) {
+                Text(stringResource(Res.string.home_anniversaries), Modifier.weight(1f), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.SemiBold)
+                androidx.compose.material3.FilterChip(
+                    selected = s.nurLebende, onClick = { viewModel.nurLebende(!s.nurLebende) },
+                    label = { Text(stringResource(WRes.string.anniv_living_only)) },
+                )
+            }
+        }
+        val jahrestage = if (s.nurLebende) s.jahrestage.filter { it.lebend } else s.jahrestage
+        if (jahrestage.isEmpty()) {
             item {
                 if (s.startLaedt) Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(Modifier.size(24.dp)) }
                 else Text(stringResource(Res.string.home_anniversaries_none, s.jahrestageTage), Modifier.padding(horizontal = 16.dp),
                     style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             }
         }
-        items(s.jahrestage, key = { j -> j.typ + j.personen.joinToString { it.xref } + j.monat + j.tag }) { j ->
+        items(jahrestage, key = { j -> j.typ + j.personen.joinToString { it.xref } + j.monat + j.tag }) { j ->
             val istHeute = j.monat == heute.monthValue && j.tag == heute.dayOfMonth
             Card(
                 Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 4.dp).clickable { viewModel.profilOeffnen(j.personen.first().xref) },
@@ -96,7 +111,11 @@ fun Startseite(s: Zustand, viewModel: GwViewModel) {
                     }
                     Column(Modifier.weight(1f).padding(start = 12.dp)) {
                         Text(j.personen.joinToString(" & ") { it.name }, style = MaterialTheme.typography.bodyLarge, maxLines = 2, overflow = TextOverflow.Ellipsis)
-                        val wann = if (istHeute) stringResource(Res.string.home_today) else "%02d.%02d.".format(j.tag, j.monat)
+                        val wann = when (val n = tageBis(heute, j.monat, j.tag)) {
+                            0 -> stringResource(WRes.string.anniv_today)
+                            1 -> stringResource(WRes.string.anniv_tomorrow)
+                            else -> stringResource(WRes.string.anniv_in_days, n) + " · %02d.%02d.".format(j.tag, j.monat)
+                        }
                         val lebend = if (j.lebend) " · " + stringResource(Res.string.home_living) else ""
                         Text("${j.art} · $wann$lebend", style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
@@ -230,3 +249,11 @@ fun BildMitMenue(
 /** Kurzes Kennzeichen der Dateiart fuer Dokumente: PDF, DOCX, MP3 … */
 fun dateiArt(m: de.bgghome.gwand.api.Medium): String =
     if (m.istPdf) "PDF" else m.dateiname.substringAfterLast('.', "").uppercase().take(5).ifBlank { m.mime.substringAfter('/').uppercase().take(5) }
+
+/** Tage bis zum naechsten (Monat, Tag) ab [heute]; der 29. Februar zaehlt in Nicht-Schaltjahren als 28. */
+fun tageBis(heute: LocalDate, monat: Int, tag: Int): Int {
+    fun am(jahr: Int) = LocalDate.of(jahr, monat, minOf(tag, java.time.YearMonth.of(jahr, monat).lengthOfMonth()))
+    val dieses = am(heute.year)
+    val ziel = if (dieses.isBefore(heute)) am(heute.year + 1) else dieses
+    return java.time.temporal.ChronoUnit.DAYS.between(heute, ziel).toInt()
+}
