@@ -1,6 +1,8 @@
 package de.bgghome.gwand.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -44,6 +46,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.menu_logout
+import de.bgghome.gwand.res.offline_banner
 import de.bgghome.gwand.res.menu_export
 import de.bgghome.gwand.res.menu_chat
 import de.bgghome.gwand.res.menu_more
@@ -92,7 +95,11 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
                 bottomBar = { UntereLeiste(s.bereich, viewModel::bereich) },
                 snackbarHost = { SnackbarHost(snackbar) },
             ) { innen ->
-                Box(Modifier.fillMaxSize().padding(innen)) {
+                androidx.compose.foundation.layout.Column(Modifier.fillMaxSize().padding(innen)) {
+                if (s.offline) Text(stringResource(Res.string.offline_banner), Modifier.fillMaxWidth()
+                    .background(MaterialTheme.colorScheme.tertiaryContainer).padding(horizontal = 16.dp, vertical = 6.dp),
+                    style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onTertiaryContainer)
+                Box(Modifier.fillMaxSize()) {
                     when (s.bereich) {
                         Bereich.Start -> Startseite(s, viewModel)
                         Bereich.Personen -> PersonenSeite(s, viewModel)
@@ -106,6 +113,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
                             }
                         } else BaumSeite(s, viewModel, ansicht, kompakt = !breit)
                     }
+                }
                 }
             }
         }

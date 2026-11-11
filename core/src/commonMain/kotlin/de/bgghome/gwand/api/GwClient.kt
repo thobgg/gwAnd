@@ -46,7 +46,49 @@ class KlartextAusserhalb : IOException("http:// nur im Heimnetz")
  * wiederholt die Anfrage. Derselbe OkHttp-Client ([http]) laedt auch die Bilder: Er haengt das Token an jede Anfrage
  * an den eigenen Server, sonst an nichts.
  */
-class GwClient(private val ablage: Ablage, val userAgent: String) {
+class GwClient(private val ablage: Ablage, val userAgent: String, private val cacheOrdner: java.io.File? = null) {
+
+    /**
+     * Offline-Lesecache: jede erfolgreiche Leseabfrage landet als Datei im privaten Cache der App, je Server und Konto.
+     * Ohne Netz liefert [sendenMitKopf] die zuletzt geladene Antwort und meldet ueber [offline], dass es Altstand ist.
+     * Schreiben geht ohne Netz nicht; beim Abmelden wird der Cache geloescht (er enthaelt Daten lebender Personen).
+     */
+    var offline: (Boolean) -> Unit = {}
+
+    /** Nur fuer Tests: wirkt wie ein fehlendes Netz. */
+    internal var netzGesperrt = false
+
+    private fun cacheDatei(adresse: HttpUrl): java.io.File? {
+        val ordner = cacheOrdner ?: return null
+        val schluessel = "$benutzername|" + adresse.newBuilder().removeAllQueryParameters("jwt").build().toString()
+        val hash = java.security.MessageDigest.getInstance("SHA-256").digest(schluessel.toByteArray()).joinToString("") { "%02x".format(it) }
+        return java.io.File(ordner, "api/${hash.take(2)}/$hash")
+    }
+
+    private fun cacheSchreiben(adresse: HttpUrl, gesamt: Int?, text: String) {
+        val f = cacheDatei(adresse) ?: return
+        runCatching {
+            f.parentFile?.mkdirs()
+            f.writeText("${gesamt ?: -1}\n$text")
+            if (Math.random() < 0.02) cacheAufraeumen()
+        }
+    }
+
+    private fun cacheLesen(adresse: HttpUrl): Pair<Int?, String>? {
+        val f = cacheDatei(adresse)?.takeIf { it.exists() } ?: return null
+        val inhalt = runCatching { f.readText() }.getOrNull() ?: return null
+        val gesamt = inhalt.substringBefore('\n').toIntOrNull()?.takeIf { it >= 0 }
+        return gesamt to inhalt.substringAfter('\n')
+    }
+
+    /** Hoechstens 100 MB: die aeltesten Eintraege gehen zuerst. */
+    private fun cacheAufraeumen() {
+        val dateien = java.io.File(cacheOrdner ?: return, "api").walkTopDown().filter { it.isFile }.sortedBy { it.lastModified() }.toList()
+        var summe = dateien.sumOf { it.length() }
+        for (f in dateien) { if (summe <= 100L * 1024 * 1024) break; summe -= f.length(); f.delete() }
+    }
+
+    fun cacheLeeren() { cacheOrdner?.let { java.io.File(it, "api").deleteRecursively() } }
 
     @Volatile private var access: String? = null
 
@@ -75,6 +117,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
 
     private fun mitToken(chain: Interceptor.Chain): Response {
         val anfrage = chain.request()
+        if (netzGesperrt) throw IOException("Netz gesperrt (Test)")
         if (anfrage.url.scheme == "http" && !Heimnetz.hostAufgeloest(anfrage.url.host)) throw KlartextAusserhalb()
         val eigen = anfrage.url.host == eigenerHost
         val ohneToken = anfrage.header(KEIN_TOKEN) != null
@@ -123,6 +166,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
     fun abmelden() {
         access = null
         refresh = null
+        cacheLeeren()
     }
 
     // ── Lesen ────────────────────────────────────────────────────────
@@ -488,10 +532,22 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
     private suspend fun <T> senden(anfrage: Request, s: KSerializer<T>): T = sendenMitKopf(anfrage, s).second
 
     private suspend fun <T> sendenMitKopf(anfrage: Request, s: KSerializer<T>): Pair<Int?, T> = withContext(Dispatchers.IO) {
-        http.newCall(anfrage.newBuilder().header("Accept", "application/json").build()).execute().use { a ->
-            val text = a.body?.string().orEmpty()
-            if (!a.isSuccessful) throw ApiFehler(a.code, meldung(text))
-            a.header("X-Total-Count")?.toIntOrNull() to GrampsJson.decodeFromString(s, text)
+        val lesen = anfrage.method == "GET"
+        try {
+            http.newCall(anfrage.newBuilder().header("Accept", "application/json").build()).execute().use { a ->
+                val text = a.body?.string().orEmpty()
+                if (!a.isSuccessful) throw ApiFehler(a.code, meldung(text))
+                val gesamt = a.header("X-Total-Count")?.toIntOrNull()
+                val ergebnis = gesamt to GrampsJson.decodeFromString(s, text)
+                if (lesen) { cacheSchreiben(anfrage.url, gesamt, text); offline(false) }
+                ergebnis
+            }
+        } catch (e: IOException) {
+            // Nur echte Netzfehler fallen auf den Cache zurueck - keine Antworten des Servers, keine abgelaufene Anmeldung.
+            if (!lesen || e is ApiFehler || e is AnmeldungAbgelaufen || e is KlartextAusserhalb) throw e
+            val (gesamt, text) = cacheLesen(anfrage.url) ?: throw e
+            offline(true)
+            gesamt to GrampsJson.decodeFromString(s, text)
         }
     }
 

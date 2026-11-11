@@ -100,6 +100,8 @@ data class Zustand(
     val nachkommen: DescendantNode? = null,
     val geschwister: Map<String, List<Sibling>> = emptyMap(),
     val baumArt: BaumArt = BaumArt.Sanduhr,
+    /** Kein Netz: die App zeigt den zuletzt geladenen Stand. */
+    val offline: Boolean = false,
     val chatMoeglich: Boolean = false,
     val chat: Chat? = null,
     val zeigeGeschwister: Boolean = true,

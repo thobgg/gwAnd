@@ -25,7 +25,7 @@ class GwApp : Application(), SingletonImageLoader.Factory {
     override fun onCreate() {
         super.onCreate()
         val version = packageManager.getPackageInfo(packageName, 0).versionName.orEmpty()
-        val client = GwClient(AndroidAblage(this, "gwclient"), "gwAnd/$version (Android ${Build.VERSION.RELEASE})")
+        val client = GwClient(AndroidAblage(this, "gwclient"), "gwAnd/$version (Android ${Build.VERSION.RELEASE})", cacheDir)
         client.sprache = Locale.getDefault().language.ifEmpty { "en" }
         // OpenStreetMap verlangt eine ehrliche Kennung der App.
         kachelUserAgent = "gwAnd/$version (Android; https://github.com/thobgg/gwAnd)"

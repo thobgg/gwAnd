@@ -218,4 +218,5 @@
     <string name="dna_cm">%1$s cM in %2$d segments</string>
     <string name="chat_hint">Ask about the family tree</string>
     <string name="chat_send">Send</string>
+    <string name="offline_banner">Offline – showing the last loaded data. Changes need a connection.</string>
 </resources>

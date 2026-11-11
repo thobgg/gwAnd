@@ -148,4 +148,28 @@ class LiveSchreibTest {
         val wege = client.verwandtschaftsWege("1051e1fd7896bb447616685e8e7", "1051e1fd79e51ca886c7f74dcb01")
         assertTrue(wege.isNotEmpty() && wege.first().text.isNotBlank())
     }
+
+    @Test
+    fun offlineLesecache() = runBlocking {
+        val pass = File(System.getProperty("user.home"), ".config/gwand/editor-pass")
+        if (!pass.exists()) return@runBlocking
+        val ordner = kotlin.io.path.createTempDirectory("gwand-cache").toFile()
+        val client = GwClient(Speicher(), "gwAnd-Test", ordner)
+        var offline = false
+        client.offline = { offline = it }
+        Thread.sleep(1500)
+        try { client.anmelden("http://192.168.178.73:8096", "editor", pass.readText().trim()) } catch (e: Exception) { return@runBlocking }
+        val online = client.metadaten()
+        val liste = client.personen("", 1, 5)
+        assertTrue(!offline)
+        client.netzGesperrt = true
+        assertEquals(online.database.name, client.metadaten().database.name, "Metadaten aus dem Cache")
+        assertEquals(liste.gesamt, client.personen("", 1, 5).gesamt, "Gesamtzahl aus dem Cache")
+        assertTrue(offline, "Offline gemeldet")
+        assertFailsWith<java.io.IOException> { client.personen("NieGesuchterName", 1, 5) }
+        assertFailsWith<java.io.IOException> { client.anlegen(listOf(Schreibhilfe.notiz(Schreibhilfe.neuesHandle(), "x"))) }
+        client.abmelden()
+        assertFailsWith<java.io.IOException> { client.metadaten() }
+        ordner.deleteRecursively()
+    }
 }

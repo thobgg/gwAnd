@@ -217,4 +217,5 @@
     <string name="dna_cm">%1$s cM in %2$d Segmenten</string>
     <string name="chat_hint">Frage zum Stammbaum</string>
     <string name="chat_send">Senden</string>
+    <string name="offline_banner">Offline – zuletzt geladener Stand. Änderungen brauchen eine Verbindung.</string>
 </resources>

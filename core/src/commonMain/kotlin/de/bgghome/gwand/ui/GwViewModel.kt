@@ -97,6 +97,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     private var wartenderLink: String? = null
 
     init {
+        client.offline = { aus -> if (zustand.value.offline != aus) zustand.update { it.copy(offline = aus) } }
         start()
     }
 
@@ -109,7 +110,13 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         }
         viewModelScope.launch(sicher) {
             try {
-                client.fortsetzen()
+                try {
+                    client.fortsetzen()
+                } catch (e: IOException) {
+                    // Ohne Netz trotzdem starten, mit dem zuletzt geladenen Stand; eine abgelaufene Anmeldung zaehlt nicht dazu.
+                    if (e is AnmeldungAbgelaufen || e is ApiFehler) throw e
+                    zustand.update { it.copy(offline = true) }
+                }
                 nachAnmeldung()
             } catch (e: Exception) {
                 zustand.update { it.copy(bildschirm = Bildschirm.Anmeldung, fehler = text(e)) }
