@@ -56,7 +56,9 @@ fun OidcAnmeldung(f: OidcFenster, viewModel: GwViewModel) {
  * Ist [url] der Ruecksprung nach `…/oidc/complete`? Dann Code bzw. Fehler daraus, sonst null.
  * Ohne Code und ohne Fehler ist es ein Server vor API 3.21, der die Token noch ueber Cookies weitergab.
  */
-fun oidcRuecksprung(url: String): Pair<String?, String?>? {
+fun oidcRuecksprung(url: String, hosts: Set<String>? = null): Pair<String?, String?>? {
+    // Nur der eigene Server darf den Code liefern; sonst koennte eine fremde Seite einen eigenen Code unterschieben.
+    if (hosts != null && hostVon(url) !in hosts) return null
     val ohneFragment = url.substringBefore('#')
     val pfad = ohneFragment.substringBefore('?').trimEnd('/')
     if (!pfad.endsWith("/oidc/complete")) return null
@@ -67,4 +69,18 @@ fun oidcRuecksprung(url: String): Pair<String?, String?>? {
     w["code"]?.takeIf { it.isNotBlank() }?.let { return it to null }
     w["error"]?.takeIf { it.isNotBlank() }?.let { return null to it }
     return null to GwViewModel.OIDC_ALT
+}
+
+/** Fehlerkennung: Anmeldeseite ohne Verschluesselung ausserhalb des Heimnetzes. */
+const val OIDC_KLARTEXT = "oidc-klartext"
+
+private fun hostVon(url: String): String = runCatching { java.net.URI(url).host.orEmpty().lowercase() }.getOrDefault("")
+
+/** Hosts, von denen der Ruecksprung kommen darf: der Server der Startadresse (BASE_URL, meist auch FRONTEND_URL). */
+fun oidcRuecksprungHosts(startUrl: String): Set<String> = setOf(hostVon(startUrl)) - ""
+
+/** http:// nur zum eigenen Server oder zu Adressen im Heimnetz (IP-Literal oder lokaler Name, ohne DNS). */
+fun oidcKlartextErlaubt(url: String, hosts: Set<String>): Boolean {
+    val h = hostVon(url)
+    return h in hosts || de.bgghome.webtrees.nativ.api.Heimnetz.host(h)
 }

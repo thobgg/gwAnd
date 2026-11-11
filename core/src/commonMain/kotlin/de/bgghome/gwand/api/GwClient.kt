@@ -115,7 +115,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
     /** Gibt es eine gespeicherte Anmeldung, mit der die App ohne Passwort starten kann? */
     val hatAnmeldung: Boolean get() = basisUrl.isNotEmpty() && !refresh.isNullOrEmpty()
 
-    private val eigenerHost: String? get() = basisUrl.toHttpUrlOrNull()?.host
+    private val eigenerServer: HttpUrl? get() = basisUrl.toHttpUrlOrNull()
 
     val http: OkHttpClient = OkHttpClient.Builder()
         .connectTimeout(20, TimeUnit.SECONDS)
@@ -127,7 +127,8 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         val anfrage = chain.request()
         if (netzGesperrt) throw IOException("Netz gesperrt (Test)")
         if (anfrage.url.scheme == "http" && !Heimnetz.hostAufgeloest(anfrage.url.host)) throw KlartextAusserhalb()
-        val eigen = anfrage.url.host == eigenerHost
+        // Token nur an den eigenen Server: gleiches Schema, gleicher Host, gleicher Port
+        val eigen = eigenerServer?.let { anfrage.url.scheme == it.scheme && anfrage.url.host == it.host && anfrage.url.port == it.port } == true
         val ohneToken = anfrage.header(KEIN_TOKEN) != null
         val gebaut = anfrage.newBuilder().removeHeader(KEIN_TOKEN).header("User-Agent", userAgent).apply {
             if (eigen && !ohneToken) access?.let { header("Authorization", "Bearer $it") }

@@ -20,8 +20,14 @@ import androidx.compose.ui.viewinterop.AndroidView
 actual fun OidcWebseite(url: String, ergebnis: (code: String?, fehler: String?) -> Unit, modifier: Modifier) {
     val melden = rememberUpdatedState(ergebnis)
     val erledigt = remember { booleanArrayOf(false) }
+    val erlaubt = remember(url) { oidcRuecksprungHosts(url) }
     fun pruefen(u: String): Boolean {
-        val r = oidcRuecksprung(u) ?: return false
+        // Klartext nur im Heimnetz: Zugangsdaten fuer den Anmeldedienst nie unverschluesselt uebers Internet
+        if (u.startsWith("http://", true) && !oidcKlartextErlaubt(u, erlaubt)) {
+            if (!erledigt[0]) { erledigt[0] = true; melden.value(null, OIDC_KLARTEXT) }
+            return true
+        }
+        val r = oidcRuecksprung(u, erlaubt) ?: return false
         if (!erledigt[0]) { erledigt[0] = true; melden.value(r.first, r.second) }
         return true
     }
@@ -30,6 +36,9 @@ actual fun OidcWebseite(url: String, ergebnis: (code: String?, fehler: String?) 
             WebView(ctx).apply {
                 settings.javaScriptEnabled = true
                 settings.domStorageEnabled = true
+                // Fremde Seiten (Anmeldedienst) sollen weder Dateien noch Inhalte der App erreichen
+                settings.allowFileAccess = false
+                settings.allowContentAccess = false
                 webViewClient = object : WebViewClient() {
                     // Umleitungen des Servers kommen hier an, samt Fragment: abfangen, nicht laden
                     override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean =

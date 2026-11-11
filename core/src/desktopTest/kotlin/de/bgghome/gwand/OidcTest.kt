@@ -3,7 +3,9 @@ package de.bgghome.gwand
 import de.bgghome.gwand.api.GrampsJson
 import de.bgghome.gwand.api.OidcKonfig
 import de.bgghome.gwand.ui.GwViewModel
+import de.bgghome.gwand.ui.oidcKlartextErlaubt
 import de.bgghome.gwand.ui.oidcRuecksprung
+import de.bgghome.gwand.ui.oidcRuecksprungHosts
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
@@ -43,5 +45,20 @@ class OidcTest {
         assertEquals("Authelia", k.providers.single().name)
         assertEquals(false, k.nurOidc)
         assertEquals(false, GrampsJson.decodeFromString(OidcKonfig.serializer(), """{"enabled": false}""").enabled)
+    }
+
+    @Test
+    fun ruecksprungNurVomEigenenServer() {
+        val hosts = oidcRuecksprungHosts("https://gramps.example.org/api/oidc/login/?provider=custom")
+        assertEquals("c" to null, oidcRuecksprung("https://gramps.example.org/oidc/complete#code=c", hosts))
+        assertNull(oidcRuecksprung("https://boese.example.com/oidc/complete#code=c", hosts))
+    }
+
+    @Test
+    fun klartextNurImHeimnetz() {
+        val hosts = oidcRuecksprungHosts("http://192.168.178.73:8096/api/oidc/login/?provider=custom")
+        assertTrue(oidcKlartextErlaubt("http://192.168.178.73:5556/dex/auth", hosts))
+        assertTrue(oidcKlartextErlaubt("http://192.168.178.73:8096/oidc/complete#code=x", hosts))
+        assertEquals(false, oidcKlartextErlaubt("http://idp.example.com/login", hosts))
     }
 }

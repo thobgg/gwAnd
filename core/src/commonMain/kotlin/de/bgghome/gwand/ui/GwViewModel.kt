@@ -181,7 +181,11 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                 }
             }
             fehler != null -> viewModelScope.launch(sicher) {
-                val grund = if (fehler == OIDC_ALT) getString(Res.string.error_oidc_version) else fehler
+                val grund = when (fehler) {
+                    OIDC_ALT -> getString(Res.string.error_oidc_version)
+                    OIDC_KLARTEXT -> getString(Res.string.error_cleartext)
+                    else -> fehler
+                }
                 zustand.update { it.copy(fehler = getString(Res.string.error_login, grund)) }
             }
         }
@@ -661,7 +665,10 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
 
     fun betrachterSchliessen() = zustand.update { it.copy(betrachter = null) }
 
-    fun oeffnen(url: String) = plattform.oeffnen(url)
+    /** Adressen aus den Daten (z. B. Archiv-Links) nur als http(s) an andere Apps geben. */
+    fun oeffnen(url: String) {
+        if (url.startsWith("https://", true) || url.startsWith("http://", true)) plattform.oeffnen(url)
+    }
 
     // ── Mehr: Orte, Quellen, Archive ─────────────────────────────────
 
