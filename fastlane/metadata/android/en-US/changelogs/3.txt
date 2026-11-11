@@ -1,0 +1,1 @@
+Security hardening: the sign-in token only goes to your own server, stricter checks for OIDC sign-in, no transfer of app data when switching devices. The About dialog shows author, project page and source code.

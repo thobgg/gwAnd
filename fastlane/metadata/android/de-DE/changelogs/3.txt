@@ -1,0 +1,1 @@
+Sicherheit verbessert: Anmelde-Token geht nur an den eigenen Server, OIDC-Anmeldung strenger geprüft, keine Übertragung der App-Daten beim Gerätewechsel. Der Dialog „Über gwAnd“ nennt Autor, Projektseite und Quellcode.

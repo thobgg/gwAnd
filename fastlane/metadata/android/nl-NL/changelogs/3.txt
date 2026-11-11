@@ -1,0 +1,1 @@
+Beveiliging verbeterd: het aanmeldtoken gaat alleen naar je eigen server, strengere controles bij aanmelden via OIDC, geen overdracht van app-gegevens bij een nieuw toestel. Het venster „Over gwAnd” toont auteur, projectpagina en broncode.

@@ -1,0 +1,1 @@
+Sécurité renforcée : le jeton de connexion n’est envoyé qu’à votre serveur, contrôles plus stricts pour la connexion OIDC, aucun transfert des données de l’application lors d’un changement d’appareil. La boîte « À propos » indique l’auteur, la page du projet et le code source.

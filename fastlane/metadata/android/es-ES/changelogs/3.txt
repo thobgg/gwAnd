@@ -1,0 +1,1 @@
+Seguridad reforzada: el token de sesión solo va a tu propio servidor, controles más estrictos en el inicio de sesión OIDC, sin transferencia de datos de la app al cambiar de dispositivo. El diálogo «Acerca de» muestra autor, página del proyecto y código fuente.
