@@ -165,4 +165,18 @@
     <string name="add_event_family">Familienereignis hinzufügen</string>
     <string name="search_person">Person suchen</string>
     <string name="date_invalid">Das Datum ist unvollständig.</string>
+    <string name="faces_title">Gesichter</string>
+    <string name="faces_draw">Rahmen ziehen</string>
+    <string name="faces_draw_hint">Einen Rahmen um ein Gesicht ziehen.</string>
+    <string name="faces_hint">%1$d Gesichter erkannt. Antippen, um eine Person zuzuordnen.</string>
+    <string name="faces_count">%1$d Personen markiert.</string>
+    <string name="faces_remove">Rahmen entfernen</string>
+    <string name="faces_assign">Wer ist das?</string>
+    <string name="faces_on_photo">hängt an diesem Bild</string>
+    <string name="ocr_title">Erkannter Text</string>
+    <string name="ocr_running">Text wird erkannt …</string>
+    <string name="ocr_empty">Kein Text gefunden.</string>
+    <string name="ocr_save">Als Abschrift speichern</string>
+    <string name="photo_faces">Gesichter</string>
+    <string name="photo_ocr">Text erkennen</string>
 </resources>

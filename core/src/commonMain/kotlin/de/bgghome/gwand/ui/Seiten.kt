@@ -1,6 +1,7 @@
 package de.bgghome.gwand.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -34,6 +35,8 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,6 +57,8 @@ import de.bgghome.gwand.res.home_seen
 import de.bgghome.gwand.res.home_today
 import de.bgghome.gwand.res.home_years
 import de.bgghome.gwand.res.photos_count
+import de.bgghome.gwand.res.photo_faces
+import de.bgghome.gwand.res.photo_ocr
 import de.bgghome.gwand.res.search_count
 import de.bgghome.gwand.res.search_hint
 import de.bgghome.webtrees.nativ.api.Person
@@ -150,7 +155,8 @@ fun PersonenSeite(s: Zustand, viewModel: GwViewModel) {
             if (s.sucheLaedt) item { Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(Modifier.size(24.dp)) } }
         }
     }
-    if (s.darfBearbeiten) {
+    // Neue Personen duerfen schon Beitragende anlegen (Rolle 2); alles Weitere aendert Vorhandenes und braucht Editor.
+    if (s.konto?.darfAnlegen == true) {
         androidx.compose.material3.ExtendedFloatingActionButton(
             onClick = viewModel::neuePerson, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
             icon = { Icon(Icons.Default.Add, null) },
@@ -173,10 +179,32 @@ fun FotoSeite(s: Zustand, viewModel: GwViewModel) {
             horizontalArrangement = Arrangement.spacedBy(4.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             itemsIndexed(s.fotos, key = { _, m -> m.handle }) { i, m ->
                 if (i >= s.fotos.size - 12) LaunchedEffect(s.fotos.size) { viewModel.weitereFotos() }
-                AsyncImage(
-                    model = viewModel.vorschau(m), contentDescription = m.desc, contentScale = ContentScale.Crop,
-                    modifier = Modifier.aspectRatio(1f).clip(RoundedCornerShape(6.dp)).clickable { viewModel.fotoOeffnen(i) },
+                BildMitMenue(
+                    url = viewModel.vorschau(m), beschreibung = m.desc, onClick = { viewModel.fotoOeffnen(i) },
+                    aktionen = listOf(
+                        Res.string.photo_faces to { viewModel.gesichterOeffnen(m.handle, m.desc) },
+                        Res.string.photo_ocr to { viewModel.textErkennen(m) },
+                    ),
                 )
+            }
+        }
+    }
+}
+
+/** Quadratisches Vorschaubild; Tipp oeffnet, langer Druck zeigt ein Menue mit [aktionen]. */
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+@Composable
+fun BildMitMenue(url: String, beschreibung: String?, onClick: () -> Unit, aktionen: List<Pair<org.jetbrains.compose.resources.StringResource, () -> Unit>>, ausschnitt: Modifier = Modifier) {
+    var offen by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
+    Box {
+        AsyncImage(
+            model = url, contentDescription = beschreibung, contentScale = ContentScale.Crop,
+            modifier = ausschnitt.aspectRatio(1f).clip(RoundedCornerShape(6.dp))
+                .combinedClickable(onClick = onClick, onLongClick = if (aktionen.isEmpty()) null else { { offen = true } }),
+        )
+        androidx.compose.material3.DropdownMenu(offen, onDismissRequest = { offen = false }) {
+            aktionen.forEach { (text, aktion) ->
+                androidx.compose.material3.DropdownMenuItem(text = { Text(stringResource(text)) }, onClick = { offen = false; aktion() })
             }
         }
     }

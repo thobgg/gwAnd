@@ -361,6 +361,23 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
             ?.let { (it["handle"] as? JsonPrimitive)?.content } ?: throw ApiFehler(500, "kein Medienobjekt angelegt")
     }
 
+    /** Vom Server erkannte Gesichter eines Bildes: je links, oben, rechts, unten in Prozent. */
+    suspend fun gesichter(medium: String): List<List<Double>> =
+        holen("/media/$medium/face_detection", ListSerializer(ListSerializer(kotlinx.serialization.serializer<Double>())))
+
+    /** Personen, die auf ein Bild verweisen, mit ihren Medienverweisen (fuer die Ausschnitte). */
+    suspend fun personenMitBild(medium: String): List<GrampsPerson> =
+        personenNachHandle(verweiseAuf("media", medium)["person"].orEmpty())
+
+    /** Texterkennung eines Bildes starten (Hintergrundaufgabe); Ergebnis: Aufgaben-ID. */
+    suspend fun texterkennungStarten(medium: String, sprache: String): String {
+        val antwort = senden(Request.Builder().url(url("/media/$medium/ocr", mapOf("lang" to sprache, "format" to "string")))
+            .post(ByteArray(0).toRequestBody(null)).build(), JsonObject.serializer())
+        return ((antwort["task"] as? JsonObject)?.get("id") as? JsonPrimitive)?.content ?: throw ApiFehler(500, "keine Aufgabe")
+    }
+
+    suspend fun aufgabe(id: String): Aufgabe = holen("/tasks/$id", Aufgabe.serializer())
+
     suspend fun ereignisTypen(): List<String> = holen("/types/default/event_types", ListSerializer(kotlinx.serialization.serializer<String>()))
 
     // ── Technik ──────────────────────────────────────────────────────

@@ -66,6 +66,9 @@ import de.bgghome.gwand.res.delete
 import de.bgghome.gwand.res.edit_person
 import de.bgghome.gwand.res.move_down
 import de.bgghome.gwand.res.move_up
+import de.bgghome.gwand.res.make_primary_photo
+import de.bgghome.gwand.res.photo_faces
+import de.bgghome.gwand.res.photo_ocr
 import de.bgghome.gwand.res.rel_child
 import de.bgghome.gwand.res.unlink
 import de.bgghome.gwand.res.age_at
@@ -371,11 +374,13 @@ private fun Fotos(person: GrampsPerson, viewModel: GwViewModel, bearbeitbar: Boo
     LazyVerticalGrid(GridCells.Adaptive(110.dp), Modifier.fillMaxSize(), contentPadding = PaddingValues(8.dp),
         horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         itemsIndexed(verweise) { i, v ->
-            AsyncImage(
-                model = viewModel.bildUrl(v.ref, v.rect), contentDescription = medien[v.ref]?.desc, contentScale = ContentScale.Crop,
-                modifier = Modifier.aspectRatio(1f).clip(RoundedCornerShape(8.dp)).combinedClickable(
-                    onClick = { viewModel.profilFotos(i) },
-                    onLongClick = if (bearbeitbar && i > 0) { { viewModel.alsHauptbild(v.ref) } } else null,
+            val m = medien[v.ref]
+            BildMitMenue(
+                url = viewModel.bildUrl(v.ref, v.rect), beschreibung = m?.desc, onClick = { viewModel.profilFotos(i) },
+                aktionen = listOfNotNull(
+                    if (bearbeitbar && i > 0) Res.string.make_primary_photo to { viewModel.alsHauptbild(v.ref) } else null,
+                    Res.string.photo_faces to { viewModel.gesichterOeffnen(v.ref, m?.desc.orEmpty()) },
+                    Res.string.photo_ocr to { viewModel.textErkennen(v.ref, m?.desc.orEmpty()) },
                 ),
             )
         }

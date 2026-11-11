@@ -136,10 +136,41 @@ data class Zustand(
     val ortVorschlaege: List<Ort> = emptyList(),
     val personVorschlaege: List<Person> = emptyList(),
     val quellVorschlaege: List<Quelle> = emptyList(),
+
+    // Gesichter und Texterkennung an einem Bild
+    val gesichter: Gesichter? = null,
+    val texterkennung: Texterkennung? = null,
 ) {
     /** Bearbeiten erst ab Editor: Beitragende duerfen nur anlegen, und fast jede Ergaenzung aendert vorhandene Datensaetze. */
     val darfBearbeiten: Boolean get() = konto?.darfBearbeiten == true
 }
+
+/** Ein Gesicht (Ausschnitt) in Prozent des Bildes: links, oben, rechts, unten. */
+data class Rahmen(val l: Double, val o: Double, val r: Double, val u: Double) {
+    val ganzzahlig: List<Int> get() = listOf(l, o, r, u).map { Math.round(it).toInt().coerceIn(0, 100) }
+    fun enthaelt(x: Double, y: Double) = x in l..r && y in o..u
+    /** Ueberdeckung zweier Rahmen (Schnitt durch Vereinigung), um erkannte Gesichter bei schon zugeordneten wegzulassen. */
+    fun ueberdeckung(b: Rahmen): Double {
+        val sl = maxOf(l, b.l); val so = maxOf(o, b.o); val sr = minOf(r, b.r); val su = minOf(u, b.u)
+        val schnitt = maxOf(0.0, sr - sl) * maxOf(0.0, su - so)
+        val vereinigung = (r - l) * (u - o) + (b.r - b.l) * (b.u - b.o) - schnitt
+        return if (vereinigung <= 0) 0.0 else schnitt / vereinigung
+    }
+}
+
+/** Gesichter-Ansicht eines Bildes: wer schon einen Ausschnitt hat, wer nur am Bild haengt, was der Server erkennt. */
+data class Gesichter(
+    val medium: String,
+    val titel: String,
+    val bild: String,
+    val zugeordnet: List<Pair<Person, Rahmen>> = emptyList(),
+    val ohneRahmen: List<Person> = emptyList(),
+    val erkannt: List<Rahmen> = emptyList(),
+    val laedt: Boolean = true,
+)
+
+/** Ergebnis der Texterkennung eines Bildes; [text] null = laeuft noch. */
+data class Texterkennung(val medium: String, val titel: String, val text: String? = null, val fehler: String? = null)
 
 /** Offener Bearbeiten-Dialog; die Eingaben selbst haelt das Formular, hier steht nur der Ausgangsstand. */
 sealed interface Dialog {

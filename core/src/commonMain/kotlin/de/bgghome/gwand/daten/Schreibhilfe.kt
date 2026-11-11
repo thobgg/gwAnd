@@ -154,6 +154,18 @@ object Schreibhilfe {
         put("confidence", vertrauen.coerceIn(0, 4))
     }
 
+    fun notiz(handle: String, text: String, typ: String = "General"): JsonObject = buildJsonObject {
+        put("_class", "Note")
+        put("handle", handle)
+        put("type", typ)
+        put("text", buildJsonObject { put("_class", "StyledText"); put("string", text); put("tags", JsonArray(emptyList())) })
+    }
+
+    fun notizAn(obj: JsonObject, notiz: String): JsonObject {
+        val alt = obj.liste("note_list").mapNotNull { (it as? JsonPrimitive)?.content }
+        return if (notiz in alt) obj else obj.mit("note_list", JsonArray((alt + notiz).map { JsonPrimitive(it) }))
+    }
+
     private fun kindverweis(kind: String): JsonObject = buildJsonObject {
         put("_class", "ChildRef")
         put("ref", kind)
@@ -252,6 +264,25 @@ object Schreibhilfe {
             put("rect", JsonArray((rect ?: emptyList()).map { JsonPrimitive(it) }))
         }
         return obj.mit("media_list", JsonArray(if (vorn) listOf(verweis) + alt else alt + verweis))
+    }
+
+    /**
+     * Ausschnitt (Gesicht) einer Person in einem Bild setzen: Haengt die Person schon am Bild, bekommt dieser Verweis
+     * den Ausschnitt (Stelle und Zitate bleiben), sonst kommt ein neuer Verweis ans Ende.
+     */
+    fun ausschnittSetzen(obj: JsonObject, medium: String, rect: List<Int>): JsonObject {
+        val liste = obj.liste("media_list")
+        val r = JsonArray(rect.map { JsonPrimitive(it.coerceIn(0, 100)) })
+        val i = liste.indexOfFirst { it.ref() == medium }
+        return if (i >= 0) {
+            obj.mit("media_list", JsonArray(liste.mapIndexed { j, v -> if (j == i) (v as JsonObject).mit("rect", r) else v }))
+        } else medienverweis(obj, medium, vorn = liste.isEmpty(), rect = rect)
+    }
+
+    /** Ausschnitt entfernen: der Verweis bleibt, zeigt dann das ganze Bild. */
+    fun ausschnittEntfernen(obj: JsonObject, medium: String): JsonObject {
+        val liste = obj.liste("media_list")
+        return obj.mit("media_list", JsonArray(liste.map { v -> if (v.ref() == medium) (v as JsonObject).mit("rect", JsonArray(emptyList())) else v }))
     }
 
     /** Vorhandenen Medienverweis an die erste Stelle (Hauptbild). */

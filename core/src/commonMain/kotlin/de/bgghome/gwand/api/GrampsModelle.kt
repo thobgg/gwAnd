@@ -435,3 +435,15 @@ data class Familienzeile(val handle: String = "", val profile: FamilienProfil? =
 
 @Serializable
 data class Ereigniszitate(val handle: String = "", @SerialName("citation_list") val zitate: List<String> = emptyList())
+
+/** Stand einer Hintergrundaufgabe (`/tasks/<id>`); das Ergebnis kommt als JSON-Text. */
+@Serializable
+data class Aufgabe(val state: String? = null, val status: String? = null, val info: String = "", val result: kotlinx.serialization.json.JsonElement? = null) {
+    val fertig: Boolean get() = state == "SUCCESS" || status == "succeeded"
+    val fehlgeschlagen: Boolean get() = state == "FAILURE" || status == "failed"
+    /** Das Ergebnis ist ein JSON-kodierter Text ("\"Zeile 1\nZeile 2\""); einmal auspacken. */
+    val ergebnis: String? get() {
+        val r = (result as? kotlinx.serialization.json.JsonPrimitive)?.content ?: return null
+        return runCatching { GrampsJson.decodeFromString(kotlinx.serialization.serializer<String>(), r) }.getOrDefault(r)
+    }
+}

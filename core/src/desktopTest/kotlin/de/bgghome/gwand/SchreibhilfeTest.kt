@@ -100,4 +100,33 @@ class SchreibhilfeTest {
         assertTrue(Schreibhilfe.neuesHandle() != Schreibhilfe.neuesHandle())
         assertEquals(JsonPrimitive("x"), JsonObject(mapOf("a" to JsonPrimitive("x")))["a"])
     }
+
+    @Test
+    fun ausschnitteUndNotizen() {
+        var p = json("""{"handle":"p","media_list":[{"ref":"a","rect":[],"citation_list":["c"]},{"ref":"g","rect":[]}]}""")
+        p = Schreibhilfe.ausschnittSetzen(p, "g", listOf(10, 20, 30, 140))
+        val g = p["media_list"]!!.jsonArray[1].jsonObject
+        assertEquals(listOf(10, 20, 30, 100), g["rect"]!!.jsonArray.map { it.jsonPrimitive.content.toInt() }, "an Ort und Stelle, auf 0..100 begrenzt")
+        assertEquals("c", p["media_list"]!!.jsonArray[0].jsonObject["citation_list"]!!.jsonArray[0].jsonPrimitive.content)
+        p = Schreibhilfe.ausschnittSetzen(p, "neu", listOf(1, 2, 3, 4))
+        assertEquals(3, p["media_list"]!!.jsonArray.size)
+        p = Schreibhilfe.ausschnittEntfernen(p, "g")
+        assertTrue(p["media_list"]!!.jsonArray[1].jsonObject["rect"]!!.jsonArray.isEmpty())
+        val m = Schreibhilfe.notizAn(Schreibhilfe.notizAn(json("""{"handle":"m","note_list":[]}"""), "n"), "n")
+        assertEquals(1, m["note_list"]!!.jsonArray.size)
+        assertEquals("Abschrift", Schreibhilfe.notiz("n", "Abschrift", "Transcript")["text"]!!.jsonObject["string"]!!.jsonPrimitive.content)
+    }
+
+    @Test
+    fun rahmenUndAufgaben() {
+        val a = de.bgghome.gwand.ui.Rahmen(10.0, 10.0, 20.0, 20.0)
+        assertEquals(1.0, a.ueberdeckung(a), 1e-9)
+        assertEquals(0.0, a.ueberdeckung(de.bgghome.gwand.ui.Rahmen(30.0, 30.0, 40.0, 40.0)), 1e-9)
+        assertTrue(a.enthaelt(15.0, 15.0) && !a.enthaelt(25.0, 15.0))
+        assertEquals(listOf(10, 10, 20, 20), de.bgghome.gwand.ui.Rahmen(9.6, 10.4, 19.5, 20.0).ganzzahlig)
+        val t = de.bgghome.gwand.api.GrampsJson.decodeFromString(de.bgghome.gwand.api.Aufgabe.serializer(),
+            """{"state":"SUCCESS","result":"\"Zeile 1\\nZeile 2\""}""")
+        assertTrue(t.fertig)
+        assertEquals("Zeile 1\nZeile 2", t.ergebnis)
+    }
 }

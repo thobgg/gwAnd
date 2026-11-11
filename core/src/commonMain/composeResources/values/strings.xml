@@ -166,4 +166,18 @@
     <string name="add_event_family">Add family event</string>
     <string name="search_person">Search person</string>
     <string name="date_invalid">The date is incomplete.</string>
+    <string name="faces_title">Faces</string>
+    <string name="faces_draw">Draw a frame</string>
+    <string name="faces_draw_hint">Drag a frame around a face.</string>
+    <string name="faces_hint">%1$d faces found. Tap one to assign a person.</string>
+    <string name="faces_count">%1$d people marked.</string>
+    <string name="faces_remove">Remove frame</string>
+    <string name="faces_assign">Who is this?</string>
+    <string name="faces_on_photo">linked to this photo</string>
+    <string name="ocr_title">Recognised text</string>
+    <string name="ocr_running">Recognising text …</string>
+    <string name="ocr_empty">No text found.</string>
+    <string name="ocr_save">Save as transcript</string>
+    <string name="photo_faces">Faces</string>
+    <string name="photo_ocr">Recognise text</string>
 </resources>

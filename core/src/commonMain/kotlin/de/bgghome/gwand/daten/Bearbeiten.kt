@@ -182,10 +182,10 @@ class Bearbeiten(private val client: GwClient) {
 
     /** Gesicht bzw. Ausschnitt eines Bildes einer Person zuordnen (Prozent: links, oben, rechts, unten). */
     suspend fun ausschnitt(person: String, medium: String, rect: List<Int>) =
-        client.aendern("people", person) { p ->
-            val vorn = (p["media_list"] as? kotlinx.serialization.json.JsonArray).isNullOrEmpty()
-            Schreibhilfe.medienverweis(p, medium, vorn = vorn, rect = rect)
-        }
+        client.aendern("people", person) { Schreibhilfe.ausschnittSetzen(it, medium, rect) }
+
+    suspend fun ausschnittEntfernen(person: String, medium: String) =
+        client.aendern("people", person) { Schreibhilfe.ausschnittEntfernen(it, medium) }
 
     // ── Quellen und Beziehungen ──────────────────────────────────────
 

@@ -175,6 +175,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun zurueck(): Boolean {
         val s = zustand.value
         when {
+            s.gesichter != null -> zustand.update { it.copy(gesichter = null) }
             s.betrachter != null -> zustand.update { it.copy(betrachter = null) }
             s.detail != null -> zustand.update { it.copy(detail = null) }
             s.profil != null -> profilZurueck()
