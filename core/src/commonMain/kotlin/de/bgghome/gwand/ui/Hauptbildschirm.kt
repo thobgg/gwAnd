@@ -107,6 +107,8 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
         if (s.detail != null || (s.profil != null && !profilDaneben)) SnackbarHost(snackbar, Modifier.padding(16.dp))
     }
 
+    BearbeitenDialoge(s, viewModel)
+
     // Der Betrachter liegt ueber allem.
     s.betrachter?.let { b ->
         PhotoViewer(viewer = b, onIndex = viewModel::betrachterIndex, onClose = viewModel::betrachterSchliessen, onOpenWeb = viewModel::oeffnen)

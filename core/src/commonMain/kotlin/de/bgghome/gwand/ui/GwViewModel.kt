@@ -65,17 +65,17 @@ class GwPlattform(
  * wenn sie noch zum Zustand passen (eine neue Suche verwirft die alte, ein neuer Baum den alten, ein anderes Profil
  * das vorige).
  */
-class GwViewModel(private val plattform: GwPlattform) : ViewModel() {
+class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
 
-    private val client = plattform.client
+    internal val client = plattform.client
     private val ablage = plattform.einstellungen
-    private val anzeige = Anzeige(
+    internal val anzeige = Anzeige(
         bild = { p -> p.medien.firstOrNull { !it.private }?.let { client.bildUrl(it.ref, it.rect) } },
         web = client::webUrl,
     )
     private val bau = BaumBau(anzeige)
 
-    private val zustand = MutableStateFlow(
+    internal val zustand = MutableStateFlow(
         Zustand(
             adresse = client.basisUrl, benutzername = client.benutzername, version = plattform.versionName,
             zeigeGeschwister = ablage.getBoolean(K_GESCHWISTER, true), zeigeCousins = ablage.getBoolean(K_COUSINS, true),
@@ -85,7 +85,7 @@ class GwViewModel(private val plattform: GwPlattform) : ViewModel() {
     val state: StateFlow<Zustand> = zustand
 
     /** Netz fuer alles, was ein Ladevorgang nicht selbst abfaengt: eine Meldung statt eines Absturzes. */
-    private val sicher = CoroutineExceptionHandler { _, e -> zustand.update { it.copy(meldung = e.message ?: e::class.simpleName) } }
+    internal val sicher = CoroutineExceptionHandler { _, e -> zustand.update { it.copy(meldung = e.message ?: e::class.simpleName) } }
 
     private var baumJob: Job? = null
     private var sucheJob: Job? = null
@@ -313,7 +313,7 @@ class GwViewModel(private val plattform: GwPlattform) : ViewModel() {
 
     fun profilSchliessen() = zustand.update { it.copy(profil = null, profilVerlauf = emptyList()) }
 
-    private fun profilLaden(handle: String) {
+    internal fun profilLaden(handle: String) {
         profilJob?.cancel()
         profilJob = viewModelScope.launch(sicher) {
             try {
@@ -640,19 +640,20 @@ class GwViewModel(private val plattform: GwPlattform) : ViewModel() {
 
     private suspend fun typenLaden() {
         val alle = mutableMapOf<String, String>()
-        for (art in listOf("repository_types", "place_types", "note_types", "source_media_types")) {
+        for (art in listOf("repository_types", "place_types", "note_types", "source_media_types", "event_types", "family_relation_types")) {
             runCatching { client.typen(art) }.getOrNull()?.let { alle.putAll(it) }
         }
-        zustand.update { it.copy(typen = alle) }
+        val ereignisTypen = runCatching { client.ereignisTypen() }.getOrDefault(emptyList())
+        zustand.update { it.copy(typen = alle, ereignisTypen = ereignisTypen) }
     }
 
     // ── Meldungen ────────────────────────────────────────────────────
 
     fun meldungGezeigt() = zustand.update { it.copy(meldung = null) }
 
-    private fun meldung(text: String) = zustand.update { it.copy(meldung = text) }
+    internal fun meldung(text: String) = zustand.update { it.copy(meldung = text) }
 
-    private suspend fun fehlschlag(e: Exception) {
+    internal suspend fun fehlschlag(e: Exception) {
         if (e is AnmeldungAbgelaufen) {
             client.abmelden()
             zustand.update { Zustand(bildschirm = Bildschirm.Anmeldung, adresse = client.basisUrl, benutzername = client.benutzername, fehler = getString(Res.string.error_expired), version = plattform.versionName) }

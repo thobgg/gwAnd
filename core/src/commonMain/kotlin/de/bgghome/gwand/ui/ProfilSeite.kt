@@ -1,6 +1,7 @@
 package de.bgghome.gwand.ui
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -21,7 +22,9 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Share
 import androidx.compose.material.icons.filled.Star
@@ -58,6 +61,13 @@ import de.bgghome.gwand.api.GrampsPerson
 import de.bgghome.gwand.api.ZeitleistenEintrag
 import de.bgghome.gwand.daten.Anzeige
 import de.bgghome.gwand.res.Res
+import de.bgghome.gwand.res.add_event_family
+import de.bgghome.gwand.res.delete
+import de.bgghome.gwand.res.edit_person
+import de.bgghome.gwand.res.move_down
+import de.bgghome.gwand.res.move_up
+import de.bgghome.gwand.res.rel_child
+import de.bgghome.gwand.res.unlink
 import de.bgghome.gwand.res.age_at
 import de.bgghome.gwand.res.conf_0
 import de.bgghome.gwand.res.conf_1
@@ -125,6 +135,7 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
                 ),
                 actions = {
                     if (p.person != null) {
+                        if (s.darfBearbeiten) IconButton(onClick = viewModel::personBearbeiten) { Icon(Icons.Default.Edit, stringResource(Res.string.edit_person)) }
                         IconButton(onClick = { viewModel.merken(!p.gemerkt) }) {
                             Icon(
                                 Icons.Default.Star,
@@ -139,6 +150,10 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.profile_tree)) }, onClick = { menue = false; viewModel.inDieMitte(p.handle) })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.menu_start_person)) }, onClick = { menue = false; viewModel.startpersonSetzen(p.handle) })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.profile_browser)) }, onClick = { menue = false; viewModel.imBrowser() })
+                                if (s.darfBearbeiten) DropdownMenuItem(
+                                    text = { Text(stringResource(Res.string.delete), color = MaterialTheme.colorScheme.error) },
+                                    onClick = { menue = false; viewModel.personLoeschen() },
+                                )
                             }
                         }
                     }
@@ -162,12 +177,24 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
             }
             Box(Modifier.fillMaxSize()) {
                 when (p.reiter) {
-                    GwViewModel.REITER_LEBENSLAUF -> Lebenslauf(p.zeitleiste, viewModel)
-                    GwViewModel.REITER_FAMILIE -> Familie(person, p.angehoerige, viewModel)
-                    GwViewModel.REITER_FOTOS -> Fotos(person, viewModel)
+                    GwViewModel.REITER_LEBENSLAUF -> Lebenslauf(p.zeitleiste, viewModel, s.darfBearbeiten)
+                    GwViewModel.REITER_FAMILIE -> Familie(person, p.angehoerige, viewModel, s.darfBearbeiten)
+                    GwViewModel.REITER_FOTOS -> Fotos(person, viewModel, s.darfBearbeiten)
                     GwViewModel.REITER_QUELLEN -> Quellen(p, viewModel)
                     GwViewModel.REITER_NOTIZEN -> Notizen(person)
                     GwViewModel.REITER_KARTE -> Karte(p.zeitleiste)
+                }
+                val plus: (() -> Unit)? = if (!s.darfBearbeiten) null else when (p.reiter) {
+                    GwViewModel.REITER_LEBENSLAUF -> viewModel::neuesEreignis
+                    GwViewModel.REITER_FAMILIE -> { { viewModel.verwandterDialog(angezeigt) } }
+                    GwViewModel.REITER_FOTOS -> viewModel::fotoDialog
+                    GwViewModel.REITER_QUELLEN -> viewModel::zitatDialog
+                    else -> null
+                }
+                if (plus != null) {
+                    androidx.compose.material3.FloatingActionButton(onClick = plus, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp)) {
+                        Icon(Icons.Default.Add, null)
+                    }
                 }
             }
         }
@@ -193,12 +220,13 @@ private fun Kopf(p: Profil, viewModel: GwViewModel) {
 // ── Lebenslauf ───────────────────────────────────────────────────────
 
 @Composable
-private fun Lebenslauf(eintraege: List<ZeitleistenEintrag>, viewModel: GwViewModel) {
+private fun Lebenslauf(eintraege: List<ZeitleistenEintrag>, viewModel: GwViewModel, bearbeitbar: Boolean) {
     LazyColumn(Modifier.fillMaxSize(), contentPadding = PaddingValues(bottom = 24.dp)) {
         items(eintraege) { e ->
             val selbst = e.person.selbst
             val farbe = if (selbst) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
-            Row(Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 10.dp)) {
+            Row(Modifier.fillMaxWidth().clickable(enabled = bearbeitbar && selbst && e.handle.isNotEmpty()) { viewModel.ereignisBearbeiten(e) }
+                .padding(horizontal = 16.dp, vertical = 10.dp)) {
                 Text(
                     Anzeige.jahr(e.date).takeIf { it > 0 }?.toString().orEmpty(),
                     Modifier.width(56.dp), style = MaterialTheme.typography.titleMedium,
@@ -230,7 +258,7 @@ private fun Lebenslauf(eintraege: List<ZeitleistenEintrag>, viewModel: GwViewMod
 // ── Familie ──────────────────────────────────────────────────────────
 
 @Composable
-private fun Familie(person: GrampsPerson, angehoerige: Map<String, de.bgghome.webtrees.nativ.api.Person>, viewModel: GwViewModel) {
+private fun Familie(person: GrampsPerson, angehoerige: Map<String, de.bgghome.webtrees.nativ.api.Person>, viewModel: GwViewModel, bearbeitbar: Boolean) {
     fun zeige(pp: de.bgghome.gwand.api.PersonProfil) = angehoerige[pp.handle] ?: viewModel.anzeigeAus(pp)
     val profil = person.profile ?: return
     val eltern = profil.elternfamilie
@@ -239,7 +267,11 @@ private fun Familie(person: GrampsPerson, angehoerige: Map<String, de.bgghome.we
             val liste = listOfNotNull(eltern.father, eltern.mother).filter { it.vorhanden }
             if (liste.isNotEmpty()) {
                 ueberschrift(Res.string.family_parents)
-                items(liste, key = { "e" + it.handle }) { e -> PersonRow(zeige(e), onClick = { viewModel.profilOeffnen(e.handle) }) }
+                items(liste, key = { "e" + it.handle }) { e ->
+                    PersonRow(zeige(e), onClick = { viewModel.profilOeffnen(e.handle) }, trailing = if (!bearbeitbar) null else {
+                        { ZeilenMenue(listOf(Res.string.unlink to { viewModel.elternteilLoesen(eltern.handle, e.handle) })) }
+                    })
+                }
             }
             val geschwister = eltern.children.filter { it.handle != person.handle && it.vorhanden }
             if (geschwister.isNotEmpty()) {
@@ -252,19 +284,23 @@ private fun Familie(person: GrampsPerson, angehoerige: Map<String, de.bgghome.we
             ueberschrift(Res.string.family_half)
             items(halb, key = { "h" + it.handle }) { h -> PersonRow(zeige(h), onClick = { viewModel.profilOeffnen(h.handle) }) }
         }
-        profil.families.forEachIndexed { i, f -> partnerfamilie(i, f, person.handle, viewModel, ::zeige) }
+        profil.families.forEachIndexed { i, f -> partnerfamilie(i, f, person.handle, viewModel, ::zeige, bearbeitbar) }
         val beziehungen = person.personenverweise.filter { !it.private }
         val personen = person.extended?.people.orEmpty().associateBy { it.handle }
-        if (beziehungen.isNotEmpty()) {
-            ueberschrift(Res.string.family_associations)
+        if (beziehungen.isNotEmpty() || bearbeitbar) {
+            ueberschrift(Res.string.family_associations, if (bearbeitbar) viewModel::beziehungDialog else null)
             items(beziehungen, key = { "b" + it.ref + it.rel }) { b ->
-                personen[b.ref]?.let { pp -> PersonRow(angehoerige[b.ref] ?: viewModel.anzeigeAus(pp), label = b.rel, onClick = { viewModel.profilOeffnen(b.ref) }) }
+                personen[b.ref]?.let { pp ->
+                    PersonRow(angehoerige[b.ref] ?: viewModel.anzeigeAus(pp), label = b.rel, onClick = { viewModel.profilOeffnen(b.ref) }, trailing = if (!bearbeitbar) null else {
+                        { ZeilenMenue(listOf(Res.string.delete to { viewModel.beziehungEntfernen(b.ref, b.rel) })) }
+                    })
+                }
             }
         }
     }
 }
 
-private fun LazyListScope.partnerfamilie(i: Int, f: FamilienProfil, selbst: String, viewModel: GwViewModel, zeige: (de.bgghome.gwand.api.PersonProfil) -> de.bgghome.webtrees.nativ.api.Person) {
+private fun LazyListScope.partnerfamilie(i: Int, f: FamilienProfil, selbst: String, viewModel: GwViewModel, zeige: (de.bgghome.gwand.api.PersonProfil) -> de.bgghome.webtrees.nativ.api.Person, bearbeitbar: Boolean) {
     val partner = listOfNotNull(f.father, f.mother).firstOrNull { it.vorhanden && it.handle != selbst }
     item(key = "f$i") {
         Text(
@@ -272,25 +308,61 @@ private fun LazyListScope.partnerfamilie(i: Int, f: FamilienProfil, selbst: Stri
             Modifier.padding(start = 16.dp, top = 16.dp, bottom = 4.dp), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary,
         )
     }
-    if (partner != null) item(key = "p$i" + partner.handle) { PersonRow(zeige(partner), onClick = { viewModel.profilOeffnen(partner.handle) }) }
+    if (partner != null) item(key = "p$i" + partner.handle) {
+        PersonRow(zeige(partner), onClick = { viewModel.profilOeffnen(partner.handle) }, trailing = if (!bearbeitbar) null else {
+            { ZeilenMenue(listOf(Res.string.unlink to { viewModel.elternteilLoesen(f.handle, partner.handle) })) }
+        })
+    }
     if (f.children.isNotEmpty()) {
         item(key = "k$i") {
             Text(stringResource(Res.string.family_children), Modifier.padding(start = 16.dp, top = 8.dp), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
-        items(f.children.filter { it.vorhanden }, key = { "k$i" + it.handle }) { k -> PersonRow(zeige(k), onClick = { viewModel.profilOeffnen(k.handle) }) }
+        items(f.children.filter { it.vorhanden }, key = { "k$i" + it.handle }) { k ->
+            PersonRow(zeige(k), onClick = { viewModel.profilOeffnen(k.handle) }, trailing = if (!bearbeitbar) null else {
+                {
+                    ZeilenMenue(listOf(
+                        Res.string.move_up to { viewModel.kindVerschieben(f.handle, k.handle, -1) },
+                        Res.string.move_down to { viewModel.kindVerschieben(f.handle, k.handle, 1) },
+                        Res.string.unlink to { viewModel.kindLoesen(f.handle, k.handle) },
+                    ))
+                }
+            })
+        }
+    }
+    if (bearbeitbar) item(key = "plus$i") {
+        Row(Modifier.padding(horizontal = 8.dp)) {
+            androidx.compose.material3.TextButton(onClick = { viewModel.verwandterDialogFuerFamilie(selbst, f.handle) }) { Text("+ " + stringResource(Res.string.rel_child)) }
+            androidx.compose.material3.TextButton(onClick = { viewModel.neuesFamilienereignis(f.handle) }) { Text("+ " + stringResource(Res.string.add_event_family)) }
+        }
     }
 }
 
-private fun LazyListScope.ueberschrift(text: org.jetbrains.compose.resources.StringResource) {
+private fun LazyListScope.ueberschrift(text: org.jetbrains.compose.resources.StringResource, plus: (() -> Unit)? = null) {
     item(key = "u" + text.key) {
-        Text(stringResource(text), Modifier.padding(start = 16.dp, top = 16.dp, bottom = 4.dp), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+        Row(Modifier.fillMaxWidth().padding(start = 16.dp, top = 8.dp), verticalAlignment = Alignment.CenterVertically) {
+            Text(stringResource(text), Modifier.weight(1f).padding(top = 8.dp, bottom = 4.dp), style = MaterialTheme.typography.titleSmall, color = MaterialTheme.colorScheme.primary)
+            if (plus != null) IconButton(onClick = plus) { Icon(Icons.Default.Add, null, tint = MaterialTheme.colorScheme.primary) }
+        }
+    }
+}
+
+/** Drei Punkte am Zeilenende mit den Aktionen der Zeile. */
+@Composable
+private fun ZeilenMenue(aktionen: List<Pair<org.jetbrains.compose.resources.StringResource, () -> Unit>>) {
+    var offen by remember { mutableStateOf(false) }
+    Box {
+        IconButton(onClick = { offen = true }) { Icon(Icons.Default.MoreVert, null) }
+        DropdownMenu(offen, onDismissRequest = { offen = false }) {
+            aktionen.forEach { (text, aktion) -> DropdownMenuItem(text = { Text(stringResource(text)) }, onClick = { offen = false; aktion() }) }
+        }
     }
 }
 
 // ── Fotos ────────────────────────────────────────────────────────────
 
 @Composable
-private fun Fotos(person: GrampsPerson, viewModel: GwViewModel) {
+@OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
+private fun Fotos(person: GrampsPerson, viewModel: GwViewModel, bearbeitbar: Boolean) {
     val medien = person.extended?.media.orEmpty().associateBy { it.handle }
     val verweise = person.medien.filter { !it.private && medien[it.ref]?.istBild == true }
     if (verweise.isEmpty()) { Leer(Res.string.none_photos); return }
@@ -299,7 +371,10 @@ private fun Fotos(person: GrampsPerson, viewModel: GwViewModel) {
         itemsIndexed(verweise) { i, v ->
             AsyncImage(
                 model = viewModel.bildUrl(v.ref, v.rect), contentDescription = medien[v.ref]?.desc, contentScale = ContentScale.Crop,
-                modifier = Modifier.aspectRatio(1f).clip(RoundedCornerShape(8.dp)).clickable { viewModel.profilFotos(i) },
+                modifier = Modifier.aspectRatio(1f).clip(RoundedCornerShape(8.dp)).combinedClickable(
+                    onClick = { viewModel.profilFotos(i) },
+                    onLongClick = if (bearbeitbar && i > 0) { { viewModel.alsHauptbild(v.ref) } } else null,
+                ),
             )
         }
     }

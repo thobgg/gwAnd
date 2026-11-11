@@ -13,6 +13,8 @@ import de.bgghome.webtrees.nativ.api.Pedigree
 import de.bgghome.webtrees.nativ.api.Person
 import de.bgghome.webtrees.nativ.ui.ViewerState
 import de.bgghome.webtrees.nativ.ui.tree.Sibling
+import de.bgghome.webtrees.nativ.data.DateForm
+import de.bgghome.gwand.daten.Verwandtschaftsart
 
 enum class Bildschirm { Laden, Anmeldung, Haupt }
 
@@ -126,4 +128,50 @@ data class Zustand(
     val nachschlagLaedt: Boolean = false,
     val detail: Detail? = null,
     val typen: Map<String, String> = emptyMap(),
-)
+
+    // Bearbeiten
+    val ereignisTypen: List<String> = emptyList(),
+    val dialog: Dialog? = null,
+    val speichert: Boolean = false,
+    val ortVorschlaege: List<Ort> = emptyList(),
+    val personVorschlaege: List<Person> = emptyList(),
+    val quellVorschlaege: List<Quelle> = emptyList(),
+) {
+    /** Bearbeiten erst ab Editor: Beitragende duerfen nur anlegen, und fast jede Ergaenzung aendert vorhandene Datensaetze. */
+    val darfBearbeiten: Boolean get() = konto?.darfBearbeiten == true
+}
+
+/** Offener Bearbeiten-Dialog; die Eingaben selbst haelt das Formular, hier steht nur der Ausgangsstand. */
+sealed interface Dialog {
+    /** [handle] null = neue Person */
+    data class PersonDialog(val handle: String?, val vorname: String = "", val nachname: String = "", val rufname: String = "", val geschlecht: Int = 2, val stand: Long? = null) : Dialog
+
+    /**
+     * Ereignis einer Person ([person]) oder Familie ([familie]); [ereignis] null = neues Ereignis.
+     * [datum] null heisst: das vorhandene Datum laesst sich nicht als Eingabe darstellen ([datumText]) und bleibt.
+     */
+    data class EreignisDialog(
+        val person: String?,
+        val familie: String?,
+        val ereignis: String?,
+        val typ: String,
+        val datum: DateForm?,
+        val datumText: String,
+        val ort: String?,
+        val ortName: String,
+        val beschreibung: String,
+        val stand: Long?,
+        val personStand: Long?,
+    ) : Dialog
+
+    data class VerwandterDialog(val zu: String, val zuName: String, val geschlechtZu: Int, val art: Verwandtschaftsart?, val familie: String? = null) : Dialog
+
+    /** Zitat an die Person oder eines ihrer Ereignisse: (art, handle) to Beschriftung */
+    data class ZitatDialog(val ziele: List<Pair<Pair<String, String>, String>>) : Dialog
+
+    data class BeziehungDialog(val person: String) : Dialog
+
+    data class FotoDialog(val person: String) : Dialog
+
+    data class LoeschenDialog(val text: String, val aktion: suspend () -> Unit) : Dialog
+}

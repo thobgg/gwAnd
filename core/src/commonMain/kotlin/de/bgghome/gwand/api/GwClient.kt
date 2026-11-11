@@ -29,6 +29,12 @@ class ApiFehler(val status: Int, val text: String) : IOException("HTTP $status: 
 /** Die Anmeldung gilt nicht mehr (Refresh-Token abgelaufen oder widerrufen). */
 class AnmeldungAbgelaufen : IOException("Anmeldung abgelaufen")
 
+/** Der Datensatz wurde seit dem Laden von jemand anderem geaendert; gespeichert wurde nichts. */
+class Konflikt : IOException("Inzwischen geaendert")
+
+/** Ein vom Server angelegtes Objekt: Handle, Klasse ("Person", "Event" …) und vergebene Gramps-ID. */
+data class Angelegt(val handle: String, val klasse: String, val grampsId: String)
+
 /** http:// zu einem Server ausserhalb des Heimnetzes. */
 class KlartextAusserhalb : IOException("http:// nur im Heimnetz")
 
@@ -297,6 +303,65 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
 
     /** Adresse der Person in Gramps Web (zum Teilen und fuer "Im Browser oeffnen"). */
     fun webUrl(grampsId: String): String = "$basisUrl/person/$grampsId"
+
+    // ── Schreiben ────────────────────────────────────────────────────
+    //
+    // Neue Objekte gehen gebuendelt an /objects/ (ein Vorgang; der Server vergibt Gramps-IDs und traegt bei neuen
+    // Familien die Verweise in den Personen nach). Aenderungen holen das Objekt frisch, pruefen den Aenderungszeitpunkt
+    // gegen den Stand beim Oeffnen des Dialogs und schicken das ganze Objekt zurueck - nur die geaenderten Felder sind
+    // anders, alles Uebrige bleibt, wie der Server es geliefert hat.
+
+    /** Ein Objekt in der Form, die PUT zurueckerwartet (ohne profile/extend). [art] ist der Pfad: people, events … */
+    suspend fun roh(art: String, handle: String): JsonObject = holen("/$art/$handle", JsonObject.serializer())
+
+    /**
+     * Objekt aendern: frisch holen, [stand] (Feld `change` beim Oeffnen) pruefen, [aendern] anwenden, zuruecksenden.
+     * @throws Konflikt wenn jemand anderes das Objekt inzwischen geaendert hat
+     */
+    suspend fun aendern(art: String, handle: String, stand: Long? = null, aendern: (JsonObject) -> JsonObject): JsonObject {
+        val alt = roh(art, handle)
+        if (stand != null && (alt["change"] as? JsonPrimitive)?.content?.toLongOrNull() != stand) throw Konflikt()
+        val neu = aendern(alt)
+        if (neu == alt) return alt
+        senden(Request.Builder().url(url("/$art/$handle")).put(neu.toString().toRequestBody(JSON_TYP)).build(), kotlinx.serialization.json.JsonElement.serializer())
+        return neu
+    }
+
+    /** Mehrere neue Objekte in einem Vorgang; Handles vergibt der Client ([neuesHandle]), damit sie sich verweisen koennen. */
+    suspend fun anlegen(objekte: List<JsonObject>): List<Angelegt> {
+        if (objekte.isEmpty()) return emptyList()
+        val antwort = senden(Request.Builder().url(url("/objects/")).post(JsonArray(objekte).toString().toRequestBody(JSON_TYP)).build(), JsonArray.serializer())
+        return antwort.mapNotNull { e ->
+            val o = e as? JsonObject ?: return@mapNotNull null
+            if ((o["type"] as? JsonPrimitive)?.content != "add") return@mapNotNull null
+            val neu = o["new"] as? JsonObject
+            Angelegt(
+                handle = (o["handle"] as? JsonPrimitive)?.content.orEmpty(),
+                klasse = (o["_class"] as? JsonPrimitive)?.content.orEmpty(),
+                grampsId = (neu?.get("gramps_id") as? JsonPrimitive)?.content.orEmpty(),
+            )
+        }
+    }
+
+    suspend fun loeschen(art: String, handle: String) {
+        senden(Request.Builder().url(url("/$art/$handle")).delete().build(), kotlinx.serialization.json.JsonElement.serializer())
+    }
+
+    /** Wer auf ein Objekt verweist (Klasse to Handles). */
+    suspend fun verweiseAuf(art: String, handle: String): Map<String, List<String>> {
+        val o = holen("/$art/$handle", JsonObject.serializer(), mapOf("backlinks" to "true", "keys" to "backlinks"))
+        val b = o["backlinks"] as? JsonObject ?: return emptyMap()
+        return b.mapValues { (_, v) -> (v as? JsonArray).orEmpty().mapNotNull { (it as? JsonPrimitive)?.content } }
+    }
+
+    /** Bild hochladen; der Server legt dafuer ein Medienobjekt an. Ergebnis: dessen Handle. */
+    suspend fun hochladen(daten: ByteArray, mime: String): String {
+        val antwort = senden(Request.Builder().url(url("/media/")).post(daten.toRequestBody(mime.toMediaType())).build(), JsonArray.serializer())
+        return antwort.mapNotNull { it as? JsonObject }.firstOrNull { (it["_class"] as? JsonPrimitive)?.content == "Media" }
+            ?.let { (it["handle"] as? JsonPrimitive)?.content } ?: throw ApiFehler(500, "kein Medienobjekt angelegt")
+    }
+
+    suspend fun ereignisTypen(): List<String> = holen("/types/default/event_types", ListSerializer(kotlinx.serialization.serializer<String>()))
 
     // ── Technik ──────────────────────────────────────────────────────
 

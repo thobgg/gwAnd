@@ -22,6 +22,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -44,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
 import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.home_anniversaries
+import de.bgghome.gwand.res.new_person
 import de.bgghome.gwand.res.home_anniversaries_none
 import de.bgghome.gwand.res.home_bookmarks
 import de.bgghome.gwand.res.home_changed
@@ -131,6 +133,7 @@ private fun LazyListScope.personenAbschnitt(titel: StringResource, personen: Lis
 
 @Composable
 fun PersonenSeite(s: Zustand, viewModel: GwViewModel) {
+    Box(Modifier.fillMaxSize()) {
     Column(Modifier.fillMaxSize()) {
         OutlinedTextField(
             s.suche, viewModel::suchen, Modifier.fillMaxWidth().padding(horizontal = 16.dp, vertical = 8.dp), singleLine = true,
@@ -146,6 +149,14 @@ fun PersonenSeite(s: Zustand, viewModel: GwViewModel) {
             }
             if (s.sucheLaedt) item { Box(Modifier.fillMaxWidth().padding(16.dp), contentAlignment = Alignment.Center) { CircularProgressIndicator(Modifier.size(24.dp)) } }
         }
+    }
+    if (s.darfBearbeiten) {
+        androidx.compose.material3.ExtendedFloatingActionButton(
+            onClick = viewModel::neuePerson, modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
+            icon = { Icon(Icons.Default.Add, null) },
+            text = { Text(stringResource(Res.string.new_person)) },
+        )
+    }
     }
 }
 

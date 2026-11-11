@@ -13,11 +13,11 @@ import de.bgghome.webtrees.nativ.ui.tree.TreeLayout
 @Composable
 fun BaumSeite(s: Zustand, viewModel: GwViewModel, ansicht: BaumAnsicht, kompakt: Boolean) {
     if (s.wurzel == null) return
-    val layout = remember(s.ahnentafel, s.nachkommen, s.geschwister, s.zeigeCousins) {
+    val layout = remember(s.ahnentafel, s.nachkommen, s.geschwister, s.zeigeCousins, s.darfBearbeiten) {
         val oben = s.ahnentafel
         val unten = s.nachkommen
         if (oben != null && unten != null) {
-            TreeLayout.build(oben, unten, canEdit = false, siblings = s.geschwister, cousins = s.zeigeCousins, cousinSpouses = s.zeigeCousins)
+            TreeLayout.build(oben, unten, canEdit = s.darfBearbeiten, siblings = s.geschwister, cousins = s.zeigeCousins, cousinSpouses = s.zeigeCousins)
         } else null
     }
     FamilyTreeView(
@@ -28,7 +28,7 @@ fun BaumSeite(s: Zustand, viewModel: GwViewModel, ansicht: BaumAnsicht, kompakt:
         compact = kompakt,
         onToggleFullscreen = {},
         onPerson = { viewModel.profilOeffnen(it.xref) },
-        onPlus = {},
+        onPlus = { viewModel.verwandterDialog(it) },
         onExpand = { _, _ -> viewModel.mehrVorfahren() },
         onMakeRoot = viewModel::inDieMitte,
         onExpandDown = { viewModel.mehrNachkommen() },
