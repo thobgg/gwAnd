@@ -60,6 +60,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.app_name
+import de.bgghome.gwand.res.login_oidc
+import de.bgghome.gwand.res.login_or
 import de.bgghome.gwand.res.app_subtitle
 import de.bgghome.gwand.res.login_button
 import de.bgghome.gwand.res.login_note
@@ -104,6 +106,7 @@ fun GwRoot(viewModel: GwViewModel) {
 
 @Composable
 fun AnmeldeBildschirm(s: Zustand, viewModel: GwViewModel) {
+    s.oidcFenster?.let { OidcAnmeldung(it, viewModel); return }
     var adresse by rememberSaveable { mutableStateOf(s.adresse) }
     var name by rememberSaveable { mutableStateOf(s.benutzername) }
     var passwort by remember { mutableStateOf("") }
@@ -118,17 +121,18 @@ fun AnmeldeBildschirm(s: Zustand, viewModel: GwViewModel) {
             Text(stringResource(Res.string.app_subtitle), style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
             Spacer(Modifier.height(8.dp))
             OutlinedTextField(
-                adresse, { adresse = it }, Modifier.fillMaxWidth(), singleLine = true,
+                adresse, { adresse = it; viewModel.oidcPruefen(it) }, Modifier.fillMaxWidth(), singleLine = true,
                 label = { Text(stringResource(Res.string.login_server)) },
                 placeholder = { Text(stringResource(Res.string.login_server_hint)) },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Uri, imeAction = ImeAction.Next),
             )
-            OutlinedTextField(
+            val nurOidc = s.oidc?.nurOidc == true
+            if (!nurOidc) OutlinedTextField(
                 name, { name = it }, Modifier.fillMaxWidth(), singleLine = true,
                 label = { Text(stringResource(Res.string.login_user)) },
                 keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
             )
-            OutlinedTextField(
+            if (!nurOidc) OutlinedTextField(
                 passwort, { passwort = it }, Modifier.fillMaxWidth(), singleLine = true,
                 label = { Text(stringResource(Res.string.login_password)) },
                 visualTransformation = PasswordVisualTransformation(),
@@ -136,10 +140,25 @@ fun AnmeldeBildschirm(s: Zustand, viewModel: GwViewModel) {
                 keyboardActions = androidx.compose.foundation.text.KeyboardActions(onGo = { senden() }),
             )
             s.fehler?.let { Text(it, color = MaterialTheme.colorScheme.error, style = MaterialTheme.typography.bodyMedium) }
-            Button(onClick = { senden() }, enabled = !s.beschaeftigt, modifier = Modifier.fillMaxWidth().height(48.dp)) {
+            if (!nurOidc) Button(onClick = { senden() }, enabled = !s.beschaeftigt, modifier = Modifier.fillMaxWidth().height(48.dp)) {
                 if (s.beschaeftigt) CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp) else Text(stringResource(Res.string.login_button))
             }
-            Text(stringResource(Res.string.login_note), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+            s.oidc?.let { k ->
+                if (!nurOidc) Text(
+                    stringResource(Res.string.login_or), Modifier.fillMaxWidth(), textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                    style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+                k.providers.forEach { a ->
+                    OutlinedButton(
+                        onClick = { viewModel.oidcStarten(adresse, a) }, enabled = !s.beschaeftigt && adresse.isNotBlank(),
+                        modifier = Modifier.fillMaxWidth().height(48.dp),
+                    ) {
+                        if (s.beschaeftigt && nurOidc) CircularProgressIndicator(Modifier.size(20.dp), strokeWidth = 2.dp)
+                        else Text(stringResource(Res.string.login_oidc, a.name.ifBlank { a.id }))
+                    }
+                }
+            }
+            if (!nurOidc) Text(stringResource(Res.string.login_note), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
         }
     }
 }

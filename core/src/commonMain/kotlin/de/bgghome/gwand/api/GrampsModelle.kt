@@ -20,6 +20,17 @@ data class Token(
     @SerialName("refresh_token") val refresh: String? = null,
 )
 
+/** Anmeldung ueber OIDC (`/oidc/config/`): die Anbieter des Servers und ob die Passwort-Anmeldung abgeschaltet ist. */
+@Serializable
+data class OidcKonfig(
+    val enabled: Boolean = false,
+    val providers: List<OidcAnbieter> = emptyList(),
+    @SerialName("disable_local_auth") val nurOidc: Boolean = false,
+)
+
+@Serializable
+data class OidcAnbieter(val id: String, val name: String = "", @SerialName("login_url") val loginUrl: String = "")
+
 @Serializable
 data class Versionsangabe(val version: String = "", val schema: String = "")
 

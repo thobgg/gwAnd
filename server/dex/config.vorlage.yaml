@@ -1,0 +1,23 @@
+# Dex als Test-Anmeldedienst (OIDC) fuer gwAnd. Nur im Heimnetz, nur zum Testen.
+# Auf der NAS liegt die echte Datei config.yaml: dort steht statt HASH der bcrypt-Hash des Testpassworts
+# (lokal in ~/.config/gwand/oidctest-pass). Das Client-Geheimnis kommt aus der Umgebung (.env, OIDC_SECRET).
+issuer: http://192.168.178.73:5556/dex
+storage:
+  type: memory
+web:
+  http: 0.0.0.0:5556
+oauth2:
+  skipApprovalScreen: true
+enablePasswordDB: true
+staticClients:
+  - id: grampsweb
+    name: Gramps Web
+    secretEnv: OIDC_SECRET
+    redirectURIs:
+      - http://192.168.178.73:8096/api/oidc/callback/custom
+staticPasswords:
+  - email: oidctest@example.org
+    hash: "HASH"
+    username: oidctest
+    preferredUsername: oidctest
+    userID: 7d0e5a52-5b0b-4f5e-9a51-0c3f1e9c2d11

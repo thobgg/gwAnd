@@ -84,6 +84,10 @@ data class Zustand(
     val meldung: String? = null,
     val adresse: String = "",
     val benutzername: String = "",
+    /** Anmeldung ueber OIDC: was der Server unter [adresse] anbietet (null: noch nicht gefragt oder kein OIDC). */
+    val oidc: de.bgghome.gwand.api.OidcKonfig? = null,
+    /** Offenes Anmeldefenster eines Anbieters: Startadresse und Name. */
+    val oidcFenster: OidcFenster? = null,
     val konto: Benutzer? = null,
     val baumName: String = "",
     val farben: Baumfarben = Baumfarben(),
@@ -243,3 +247,5 @@ sealed interface Dialog {
     /** Zusammenfuehren: [bleibt] ist die Person im Profil, [geht] die gewaehlte zweite. */
     data class ZusammenfuehrenDialog(val bleibt: Person, val geht: Person? = null) : Dialog
 }
+
+data class OidcFenster(val url: String, val anbieter: String)

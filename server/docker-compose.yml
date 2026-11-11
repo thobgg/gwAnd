@@ -16,6 +16,14 @@ services:
       GRAMPSWEB_CELERY_CONFIG__broker_url: "redis://grampsweb_redis:6379/0"
       GRAMPSWEB_CELERY_CONFIG__result_backend: "redis://grampsweb_redis:6379/0"
       GRAMPSWEB_RATELIMIT_STORAGE_URI: "redis://grampsweb_redis:6379/1"
+      # OIDC-Test mit Dex (Dienst grampsweb_dex); Geheimnis aus .env neben dieser Datei (OIDC_SECRET=...)
+      GRAMPSWEB_OIDC_ENABLED: "true"
+      GRAMPSWEB_OIDC_ISSUER: "http://192.168.178.73:5556/dex"
+      GRAMPSWEB_OIDC_CLIENT_ID: "grampsweb"
+      GRAMPSWEB_OIDC_CLIENT_SECRET: "${OIDC_SECRET}"
+      GRAMPSWEB_OIDC_NAME: "Dex (Test)"
+      # Dex laeuft im Heimnetz ohne HTTPS
+      AUTHLIB_INSECURE_TRANSPORT: "1"
     depends_on:
       - grampsweb_redis
     volumes:
@@ -41,3 +49,16 @@ services:
     image: docker.io/valkey/valkey:8-alpine
     container_name: grampsweb_redis
     restart: unless-stopped
+
+  # Test-Anmeldedienst fuer OIDC (Konfiguration ./dex/config.yaml, siehe dex/config.vorlage.yaml im Repo)
+  grampsweb_dex:
+    image: ghcr.io/dexidp/dex:v2.41.1
+    container_name: grampsweb_dex
+    restart: unless-stopped
+    ports:
+      - "5556:5556"
+    environment:
+      OIDC_SECRET: "${OIDC_SECRET}"
+    volumes:
+      - ./dex/config.yaml:/etc/dex/config.yaml:ro
+    command: ["dex", "serve", "/etc/dex/config.yaml"]

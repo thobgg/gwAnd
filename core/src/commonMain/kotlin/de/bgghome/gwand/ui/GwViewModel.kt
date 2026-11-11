@@ -16,6 +16,7 @@ import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.bookmark_added
 import de.bgghome.gwand.res.bookmark_removed
 import de.bgghome.gwand.res.error_api
+import de.bgghome.gwand.res.error_oidc_version
 import de.bgghome.gwand.res.error_cleartext
 import de.bgghome.gwand.res.error_expired
 import de.bgghome.gwand.res.error_login
@@ -60,6 +61,8 @@ class GwPlattform(
     val erinnerungSetzen: (Boolean) -> Unit = {},
     /** Datei (Export, Bericht) oeffnen oder mit anderen Apps teilen. */
     val dateiOeffnen: (datei: de.bgghome.gwand.api.Datei, teilen: Boolean) -> Unit = { _, _ -> },
+    /** Beim Abmelden: Sitzungen des OIDC-Anmeldefensters (Cookies) loeschen. */
+    val anmeldedatenVergessen: () -> Unit = {},
 )
 
 /**
@@ -106,6 +109,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     private fun start() {
         if (!client.hatAnmeldung) {
             zustand.update { it.copy(bildschirm = Bildschirm.Anmeldung) }
+            oidcPruefen(client.basisUrl)
             return
         }
         viewModelScope.launch(sicher) {
@@ -120,6 +124,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                 nachAnmeldung()
             } catch (e: Exception) {
                 zustand.update { it.copy(bildschirm = Bildschirm.Anmeldung, fehler = text(e)) }
+                oidcPruefen(client.basisUrl)
             }
         }
     }
@@ -134,6 +139,50 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
             } catch (e: Exception) {
                 val grund = text(e)
                 zustand.update { it.copy(beschaeftigt = false, fehler = getString(Res.string.error_login, grund)) }
+            }
+        }
+    }
+
+    private var oidcJob: Job? = null
+
+    /** Nach einer Eingabe der Serveradresse (kurz verzoegert) nachsehen, ob der Server OIDC anbietet. */
+    fun oidcPruefen(adresse: String) {
+        oidcJob?.cancel()
+        if (adresse.isBlank()) { zustand.update { it.copy(oidc = null) }; return }
+        oidcJob = viewModelScope.launch {
+            kotlinx.coroutines.delay(600)
+            val k = runCatching { client.oidcKonfig(adresse) }.getOrNull()?.takeIf { it.enabled && it.providers.isNotEmpty() }
+            zustand.update { it.copy(oidc = k) }
+        }
+    }
+
+    fun oidcStarten(adresse: String, anbieter: de.bgghome.gwand.api.OidcAnbieter) {
+        if (zustand.value.beschaeftigt) return
+        zustand.update {
+            it.copy(fehler = null, adresse = adresse, oidcFenster = OidcFenster(client.oidcStartUrl(adresse, anbieter), anbieter.name.ifBlank { anbieter.id }))
+        }
+    }
+
+    /** Ergebnis des Anmeldefensters: ein Code zum Eintauschen, ein Fehler oder (beides null) abgebrochen. */
+    fun oidcErgebnis(code: String?, fehler: String?) {
+        val adresse = zustand.value.adresse
+        zustand.update { it.copy(oidcFenster = null) }
+        when {
+            code != null -> {
+                zustand.update { it.copy(beschaeftigt = true, fehler = null) }
+                viewModelScope.launch(sicher) {
+                    try {
+                        client.oidcAnmelden(adresse, code)
+                        zustand.update { it.copy(benutzername = client.benutzername) }
+                        nachAnmeldung()
+                    } catch (e: Exception) {
+                        zustand.update { it.copy(beschaeftigt = false, fehler = getString(Res.string.error_login, text(e))) }
+                    }
+                }
+            }
+            fehler != null -> viewModelScope.launch(sicher) {
+                val grund = if (fehler == OIDC_ALT) getString(Res.string.error_oidc_version) else fehler
+                zustand.update { it.copy(fehler = getString(Res.string.error_login, grund)) }
             }
         }
     }
@@ -166,8 +215,10 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
 
     fun abmelden() {
         client.abmelden()
+        plattform.anmeldedatenVergessen()
         baumJob?.cancel(); profilJob?.cancel()
         zustand.update { Zustand(bildschirm = Bildschirm.Anmeldung, adresse = client.basisUrl, benutzername = client.benutzername, version = plattform.versionName) }
+        oidcPruefen(client.basisUrl)
     }
 
     fun bereich(b: Bereich) {
@@ -718,6 +769,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     private fun schluessel(name: String) = "$name|${client.basisUrl}|${client.benutzername}"
 
     companion object {
+        /** Fehlerkennung des Anmeldefensters: Server vor API 3.21 (ohne Code-Tausch). */
+        const val OIDC_ALT = "oidc-alt"
         const val REITER_LEBENSLAUF = 0
         const val REITER_FAMILIE = 1
         const val REITER_FOTOS = 2

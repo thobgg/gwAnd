@@ -51,6 +51,10 @@ class GwApp : Application(), SingletonImageLoader.Factory {
                 absicht.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
                 runCatching { startActivity(Intent.createChooser(absicht, datei.name).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
             },
+            anmeldedatenVergessen = {
+                // Sitzung beim OIDC-Anbieter aus dem Anmeldefenster: beim Abmelden mitloeschen
+                runCatching { android.webkit.CookieManager.getInstance().removeAllCookies(null) }
+            },
             kannErinnern = true,
             erinnerungSetzen = { an ->
                 if (an) berechtigungAnfragen?.invoke()

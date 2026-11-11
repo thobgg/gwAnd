@@ -222,4 +222,8 @@
     <string name="about_text">gwAnd is een vrije app voor Gramps Web onder de licentie GPL-3.0. Het is geen officieel project van Gramps of Gramps Web.</string>
     <string name="about_privacy">Privacy: gwAnd communiceert alleen met de Gramps Web-server waarbij u zich aanmeldt en laadt kaarttegels van OpenStreetMap. Geen tracking, geen reclame, geen analyse. Het wachtwoord wordt niet opgeslagen, alleen een aanmeldtoken. Geladen gegevens blijven voor offline gebruik in de privéopslag van de app en worden bij het afmelden verwijderd.</string>
     <string name="about_source">Broncode en meldingen</string>
+    <string name="login_oidc">Aanmelden met %1$s</string>
+    <string name="login_or">of</string>
+    <string name="login_oidc_title">Aanmelden bij %1$s</string>
+    <string name="error_oidc_version">Aanmelden via een aanmelddienst vereist Gramps Web API 3.21 of nieuwer op de server.</string>
 </resources>

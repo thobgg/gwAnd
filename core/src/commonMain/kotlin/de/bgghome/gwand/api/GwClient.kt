@@ -160,6 +160,39 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         benutzername = name
     }
 
+    /**
+     * Anbieter fuer die Anmeldung ueber OIDC. Server ohne OIDC (oder vor API 3.4) liefern `enabled = false` bzw. 404;
+     * beides heisst: nur Passwort.
+     */
+    suspend fun oidcKonfig(adresse: String): OidcKonfig {
+        val basis = normalisieren(adresse).toHttpUrlOrNull() ?: return OidcKonfig()
+        val u = basis.newBuilder().addPathSegments("api/oidc/config/").build()
+        return try {
+            senden(Request.Builder().url(u).header(KEIN_TOKEN, "1").get().build(), OidcKonfig.serializer())
+        } catch (e: ApiFehler) {
+            OidcKonfig()
+        }
+    }
+
+    /** Adresse, unter der die Anmeldung bei [anbieter] beginnt (die Seite des Anbieters oeffnet sich danach). */
+    fun oidcStartUrl(adresse: String, anbieter: OidcAnbieter): String =
+        anbieter.loginUrl.takeIf { it.startsWith("http") }
+            ?: (normalisieren(adresse) + "/api/oidc/login/?provider=" + java.net.URLEncoder.encode(anbieter.id, "UTF-8"))
+
+    /**
+     * Nach der Anmeldung beim Anbieter leitet der Server auf `…/oidc/complete#code=…` um. Den Code (einmalig, kurz
+     * gueltig) gegen Access- und Refresh-Token tauschen; ab API 3.21.
+     */
+    suspend fun oidcAnmelden(adresse: String, code: String) {
+        basisUrl = normalisieren(adresse)
+        val rumpf = buildJsonObject { put("code", code) }.toString()
+        val token = senden(Request.Builder().url(url("/oidc/tokens/")).header(KEIN_TOKEN, "1")
+            .post(rumpf.toRequestBody(JSON_TYP)).build(), Token.serializer())
+        access = token.access
+        refresh = token.refresh
+        benutzername = ich().name
+    }
+
     /** Mit dem gespeicherten Refresh-Token ein frisches Access-Token holen (App-Start). */
     suspend fun fortsetzen() = withContext(Dispatchers.IO) { erneuernBlockierend() }
 

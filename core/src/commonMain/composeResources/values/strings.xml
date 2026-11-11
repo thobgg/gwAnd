@@ -223,4 +223,8 @@
     <string name="about_text">gwAnd is a free app for Gramps Web, licensed under GPL-3.0. It is not an official project of Gramps or Gramps Web.</string>
     <string name="about_privacy">Privacy: gwAnd talks only to the Gramps Web server you sign in to, and loads map tiles from OpenStreetMap. No tracking, no advertising, no analytics. Your password is not stored, only a sign-in token. Data the app has loaded is kept in its private storage for offline use and deleted when you sign out.</string>
     <string name="about_source">Source code and issues</string>
+    <string name="login_oidc">Sign in with %1$s</string>
+    <string name="login_or">or</string>
+    <string name="login_oidc_title">Sign-in with %1$s</string>
+    <string name="error_oidc_version">Signing in via a single sign-on provider needs Gramps Web API 3.21 or newer on the server.</string>
 </resources>

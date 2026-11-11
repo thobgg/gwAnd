@@ -222,4 +222,8 @@
     <string name="about_text">gwAnd est une application libre pour Gramps Web, sous licence GPL-3.0. Ce n’est pas un projet officiel de Gramps ou Gramps Web.</string>
     <string name="about_privacy">Confidentialité : gwAnd communique uniquement avec le serveur Gramps Web auquel vous vous connectez et charge les tuiles de carte depuis OpenStreetMap. Aucun suivi, aucune publicité, aucune analyse. Le mot de passe n’est pas enregistré, seulement un jeton. Les données chargées restent dans le stockage privé de l’application pour l’usage hors ligne et sont supprimées à la déconnexion.</string>
     <string name="about_source">Code source et signalements</string>
+    <string name="login_oidc">Se connecter avec %1$s</string>
+    <string name="login_or">ou</string>
+    <string name="login_oidc_title">Connexion avec %1$s</string>
+    <string name="error_oidc_version">La connexion via un service d’authentification nécessite Gramps Web API 3.21 ou plus récent sur le serveur.</string>
 </resources>
