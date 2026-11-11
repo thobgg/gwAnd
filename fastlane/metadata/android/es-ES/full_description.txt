@@ -18,7 +18,7 @@ Funciones:
 
 La aplicación respeta el rol de tu cuenta: los invitados solo ven, los miembros y editores pueden hacer más.
 
-Requisitos: un servidor Gramps Web con API 3.0 o posterior y una cuenta en él. El reconocimiento de caras y texto, los informes y el asistente dependen de lo que el servidor tenga activado. Inicio de sesión con usuario y contraseña; OIDC está previsto para la 1.1.
+Requisitos: un servidor Gramps Web con API 3.0 o posterior y una cuenta en él. El reconocimiento de caras y texto, los informes y el asistente dependen de lo que el servidor tenga activado. Inicio de sesión con usuario y contraseña o mediante OIDC (API 3.21 o posterior).
 
 Privacidad: la aplicación solo habla con el servidor que indiques y carga las teselas del mapa desde OpenStreetMap. En el dispositivo se guardan la dirección del servidor, el nombre de usuario, el token de sesión y una caché de lectura, nunca la contraseña. La aplicación no guarda nada en la nube y no usa servicios de análisis ni de Google.
 

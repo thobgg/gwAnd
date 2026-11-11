@@ -1,1 +1,1 @@
-Première version : arbre et éventail, profil, recherche, édition, photos, visages, reconnaissance de texte, historique avec annulation, fusion, rapports et export, anniversaires, lecture hors ligne.
+Première version : arbre et éventail, profil, recherche, édition, photos, visages, reconnaissance de texte, historique avec annulation, fusion, rapports et export, anniversaires, lecture hors ligne, connexion aussi via OIDC.

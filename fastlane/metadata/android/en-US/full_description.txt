@@ -18,7 +18,7 @@ Features:
 
 The app respects your account's role: guests can only view, members and editors can do more.
 
-Requirements: a Gramps Web server with API 3.0 or later and an account on it. Face and text recognition, reports and the assistant depend on what the server has enabled. Sign-in with user name and password; OIDC is planned for 1.1.
+Requirements: a Gramps Web server with API 3.0 or later and an account on it. Face and text recognition, reports and the assistant depend on what the server has enabled. Sign-in with user name and password or via OIDC (API 3.21 or newer).
 
 Privacy: the app only talks to the server you enter and loads map tiles from OpenStreetMap. Stored on the device are the server address, user name, the sign-in token and a read cache, never the password. The app backs up nothing to the cloud and uses neither analytics nor Google services.
 

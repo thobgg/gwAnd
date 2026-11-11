@@ -44,7 +44,7 @@ Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
 Ein Gramps-Web-Server ab API 3.0 und ein Konto darauf. Gesichts- und Texterkennung, Berichte und der Assistent
 hängen davon ab, was der Server eingeschaltet hat. Android 8.0 oder neuer.
 
-Die Anmeldung läuft mit Benutzername und Passwort. Anmeldung über OIDC (zentraler Anmeldedienst) ist für Version 1.1 geplant.
+Anmeldung mit Benutzername und Passwort oder über OIDC (zentraler Anmeldedienst wie Authentik oder Keycloak, Server ab API 3.21).
 
 ## Datenschutz
 

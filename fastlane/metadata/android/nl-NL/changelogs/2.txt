@@ -1,1 +1,1 @@
-Eerste uitgave: boom en waaier, profiel, zoeken, bewerken, foto's, gezichten, tekstherkenning, geschiedenis met ongedaan maken, samenvoegen, rapporten en export, jubilea, offline lezen.
+Eerste uitgave: boom en waaier, profiel, zoeken, bewerken, foto's, gezichten, tekstherkenning, geschiedenis met ongedaan maken, samenvoegen, rapporten en export, jubilea, offline lezen, aanmelden ook via OIDC.

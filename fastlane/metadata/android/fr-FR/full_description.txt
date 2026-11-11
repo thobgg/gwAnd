@@ -18,7 +18,7 @@ Fonctions :
 
 L'application respecte le rôle de votre compte : les invités consultent, les membres et éditeurs peuvent davantage.
 
-Prérequis : un serveur Gramps Web avec l'API 3.0 ou plus récente et un compte. Reconnaissance des visages et du texte, rapports et assistant dépendent de ce que le serveur a activé. Connexion par nom d'utilisateur et mot de passe ; OIDC est prévu pour la 1.1.
+Prérequis : un serveur Gramps Web avec l'API 3.0 ou plus récente et un compte. Reconnaissance des visages et du texte, rapports et assistant dépendent de ce que le serveur a activé. Connexion par nom d'utilisateur et mot de passe ou via OIDC (API 3.21 ou plus récente).
 
 Vie privée : l'application ne communique qu'avec le serveur que vous indiquez et charge les tuiles de carte depuis OpenStreetMap. Sur l'appareil sont enregistrés l'adresse du serveur, le nom d'utilisateur, le jeton de connexion et un cache de lecture, jamais le mot de passe. L'application ne sauvegarde rien dans le cloud et n'utilise ni outils d'analyse ni services Google.
 

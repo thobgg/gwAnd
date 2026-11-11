@@ -1,1 +1,1 @@
-Primera versión: árbol y abanico, perfil, búsqueda, edición, fotos, caras, reconocimiento de texto, historial con deshacer, fusión, informes y exportación, aniversarios, lectura sin conexión.
+Primera versión: árbol y abanico, perfil, búsqueda, edición, fotos, caras, reconocimiento de texto, historial con deshacer, fusión, informes y exportación, aniversarios, lectura sin conexión, inicio de sesión también mediante OIDC.

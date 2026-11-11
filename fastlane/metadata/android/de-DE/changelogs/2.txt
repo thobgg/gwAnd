@@ -1,1 +1,1 @@
-Erste Ausgabe: Baum und Fächer, Profil, Suche, Bearbeiten, Fotos, Gesichter, Texterkennung, Verlauf mit Rückgängig, Zusammenführen, Berichte und Export, Jahrestage, Lesen ohne Netz.
+Erste Ausgabe: Baum und Fächer, Profil, Suche, Bearbeiten, Fotos, Gesichter, Texterkennung, Verlauf mit Rückgängig, Zusammenführen, Berichte und Export, Jahrestage, Lesen ohne Netz, Anmeldung auch über OIDC.
