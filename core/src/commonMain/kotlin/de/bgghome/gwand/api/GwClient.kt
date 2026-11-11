@@ -543,6 +543,14 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         }
     }
 
+    /** Die Datei eines Mediums (Dokument, PDF …) mit dem Anmelde-Token laden. */
+    suspend fun mediumLaden(m: Medium): Datei = withContext(Dispatchers.IO) {
+        http.newCall(Request.Builder().url(url("/media/${m.handle}/file")).get().build()).execute().use { a ->
+            if (!a.isSuccessful) throw ApiFehler(a.code, m.dateiname)
+            Datei(m.dateiname, m.mime.ifBlank { a.header("Content-Type")?.substringBefore(';') ?: "application/octet-stream" }, a.body!!.bytes())
+        }
+    }
+
     suspend fun dnaTreffer(person: String): List<DnaTreffer> =
         holen("/people/$person/dna/matches", ListSerializer(DnaTreffer.serializer()), mapOf("locale" to sprache))
 

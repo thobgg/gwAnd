@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -181,10 +182,11 @@ fun FotoSeite(s: Zustand, viewModel: GwViewModel) {
                 if (i >= s.fotos.size - 12) LaunchedEffect(s.fotos.size) { viewModel.weitereFotos() }
                 BildMitMenue(
                     url = viewModel.vorschau(m), beschreibung = m.desc, onClick = { viewModel.fotoOeffnen(i) },
-                    aktionen = listOf(
+                    aktionen = if (!m.istBild) emptyList() else listOf(
                         Res.string.photo_faces to { viewModel.gesichterOeffnen(m.handle, m.desc) },
                         Res.string.photo_ocr to { viewModel.textErkennen(m) },
                     ),
+                    art = if (m.istBild) null else dateiArt(m), vorschau = m.hatVorschau,
                 )
             }
         }
@@ -194,14 +196,29 @@ fun FotoSeite(s: Zustand, viewModel: GwViewModel) {
 /** Quadratisches Vorschaubild; Tipp oeffnet, langer Druck zeigt ein Menue mit [aktionen]. */
 @OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
 @Composable
-fun BildMitMenue(url: String, beschreibung: String?, onClick: () -> Unit, aktionen: List<Pair<org.jetbrains.compose.resources.StringResource, () -> Unit>>, ausschnitt: Modifier = Modifier) {
+fun BildMitMenue(
+    url: String, beschreibung: String?, onClick: () -> Unit, aktionen: List<Pair<org.jetbrains.compose.resources.StringResource, () -> Unit>>,
+    ausschnitt: Modifier = Modifier,
+    /** Kennzeichen fuer Dokumente ("PDF", "DOCX" …); null bei Bildern. */
+    art: String? = null,
+    /** false: der Server hat kein Vorschaubild (z. B. Word-Datei) - dann Kennzeichen und Name statt Bild. */
+    vorschau: Boolean = true,
+) {
     var offen by androidx.compose.runtime.remember { androidx.compose.runtime.mutableStateOf(false) }
     Box {
-        AsyncImage(
-            model = url, contentDescription = beschreibung, contentScale = ContentScale.Crop,
-            modifier = ausschnitt.aspectRatio(1f).clip(RoundedCornerShape(6.dp))
-                .combinedClickable(onClick = onClick, onLongClick = if (aktionen.isEmpty()) null else { { offen = true } }),
-        )
+        val form = ausschnitt.aspectRatio(1f).clip(RoundedCornerShape(6.dp))
+            .combinedClickable(onClick = onClick, onLongClick = if (aktionen.isEmpty()) null else { { offen = true } })
+        if (vorschau) AsyncImage(model = url, contentDescription = beschreibung, contentScale = ContentScale.Crop, modifier = form)
+        else Box(form.background(MaterialTheme.colorScheme.surfaceVariant).padding(8.dp), contentAlignment = Alignment.Center) {
+            Text(beschreibung.orEmpty(), style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                maxLines = 4, overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis)
+        }
+        // Kennzeichen unten links: zeigt, dass es ein Dokument ist und kein Foto
+        art?.let {
+            Text(it, Modifier.align(Alignment.BottomStart).padding(4.dp).clip(RoundedCornerShape(4.dp))
+                .background(MaterialTheme.colorScheme.primary).padding(horizontal = 5.dp, vertical = 1.dp),
+                style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.onPrimary)
+        }
         androidx.compose.material3.DropdownMenu(offen, onDismissRequest = { offen = false }) {
             aktionen.forEach { (text, aktion) ->
                 androidx.compose.material3.DropdownMenuItem(text = { Text(stringResource(text)) }, onClick = { offen = false; aktion() })
@@ -209,3 +226,7 @@ fun BildMitMenue(url: String, beschreibung: String?, onClick: () -> Unit, aktion
         }
     }
 }
+
+/** Kurzes Kennzeichen der Dateiart fuer Dokumente: PDF, DOCX, MP3 … */
+fun dateiArt(m: de.bgghome.gwand.api.Medium): String =
+    if (m.istPdf) "PDF" else m.dateiname.substringAfterLast('.', "").uppercase().take(5).ifBlank { m.mime.substringAfter('/').uppercase().take(5) }

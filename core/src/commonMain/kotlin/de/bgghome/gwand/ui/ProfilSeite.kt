@@ -376,19 +376,22 @@ private fun ZeilenMenue(aktionen: List<Pair<org.jetbrains.compose.resources.Stri
 @OptIn(androidx.compose.foundation.ExperimentalFoundationApi::class)
 private fun Fotos(person: GrampsPerson, viewModel: GwViewModel, bearbeitbar: Boolean) {
     val medien = person.extended?.media.orEmpty().associateBy { it.handle }
-    val verweise = person.medien.filter { !it.private && medien[it.ref]?.istBild == true }
+    val verweise = person.medien.filter { !it.private && medien[it.ref] != null }
     if (verweise.isEmpty()) { Leer(Res.string.none_photos); return }
     LazyVerticalGrid(GridCells.Adaptive(110.dp), Modifier.fillMaxSize(), contentPadding = PaddingValues(8.dp),
         horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
         itemsIndexed(verweise) { i, v ->
             val m = medien[v.ref]
+            val bild = m?.istBild == true
             BildMitMenue(
-                url = viewModel.bildUrl(v.ref, v.rect), beschreibung = m?.desc, onClick = { viewModel.profilFotos(i) },
-                aktionen = listOfNotNull(
+                url = viewModel.bildUrl(v.ref, if (bild) v.rect else null), beschreibung = m?.desc, onClick = { viewModel.profilFotos(i) },
+                aktionen = if (!bild) emptyList() else listOfNotNull(
                     if (bearbeitbar && i > 0) Res.string.make_primary_photo to { viewModel.alsHauptbild(v.ref) } else null,
                     Res.string.photo_faces to { viewModel.gesichterOeffnen(v.ref, m?.desc.orEmpty()) },
                     Res.string.photo_ocr to { viewModel.textErkennen(v.ref, m?.desc.orEmpty()) },
                 ),
+                art = m?.takeIf { !it.istBild }?.let { dateiArt(it) },
+                vorschau = m?.hatVorschau != false,
             )
         }
     }

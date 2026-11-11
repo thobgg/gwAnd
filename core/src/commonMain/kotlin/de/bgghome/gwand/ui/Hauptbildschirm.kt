@@ -84,7 +84,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
     LaunchedEffect(s.meldung) {
         s.meldung?.let { snackbar.showSnackbar(it); viewModel.meldungGezeigt() }
     }
-    BackHandler(enabled = s.chat != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum || s.baumVollbild || s.wurzelVerlauf.isNotEmpty()) {
+    BackHandler(enabled = s.pdf != null || s.chat != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum || s.baumVollbild || s.wurzelVerlauf.isNotEmpty()) {
         viewModel.zurueck()
     }
     val ansicht = remember { BaumAnsicht() }
@@ -149,6 +149,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
     s.betrachter?.let { b ->
         PhotoViewer(viewer = b, onIndex = viewModel::betrachterIndex, onClose = viewModel::betrachterSchliessen, onOpenWeb = viewModel::oeffnen)
     }
+    s.pdf?.let { PdfAnsicht(it, onClose = viewModel::pdfSchliessen) }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)

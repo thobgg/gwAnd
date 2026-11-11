@@ -199,6 +199,11 @@ data class Medium(
     val profile: MedienProfil? = null,
 ) {
     val istBild: Boolean get() = mime.startsWith("image/")
+    val istPdf: Boolean get() = mime == "application/pdf"
+    /** Fuer Bilder und PDFs erzeugt der Server ein Vorschaubild (bei PDFs die erste Seite). */
+    val hatVorschau: Boolean get() = istBild || istPdf
+    /** Dateiname fuer Anzeige und Weitergabe. */
+    val dateiname: String get() = path.substringAfterLast('/').ifBlank { desc.ifBlank { grampsId } }
 }
 
 @Serializable

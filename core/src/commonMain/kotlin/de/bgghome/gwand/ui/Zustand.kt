@@ -117,6 +117,8 @@ data class Zustand(
     /** Baum ohne Kopfzeile und untere Leiste */
     val baumVollbild: Boolean = false,
     val darstellung: Darstellung = Darstellung.Klassisch,
+    /** Offenes PDF im eigenen Betrachter (Datei null: wird noch geladen) */
+    val pdf: PdfAnzeige? = null,
     /** Offener Dialog des Kopfmenues: Darstellung oder Sprache */
     val einstellungDialog: EinstellungDialog? = null,
     val kannErinnern: Boolean = false,
@@ -260,3 +262,5 @@ sealed interface Dialog {
 data class OidcFenster(val url: String, val anbieter: String)
 
 enum class EinstellungDialog { Darstellung, Sprache }
+
+class PdfAnzeige(val titel: String, val datei: de.bgghome.gwand.api.Datei? = null)

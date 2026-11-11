@@ -245,6 +245,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         when {
             s.chat != null -> zustand.update { it.copy(chat = null) }
             s.gesichter != null -> zustand.update { it.copy(gesichter = null) }
+            s.pdf != null -> zustand.update { it.copy(pdf = null) }
             s.betrachter != null -> zustand.update { it.copy(betrachter = null) }
             s.detail != null -> zustand.update { it.copy(detail = null) }
             s.profil != null -> profilZurueck()
@@ -257,7 +258,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         return true
     }
 
-    fun kannZurueck(): Boolean = zustand.value.let { it.betrachter != null || it.detail != null || it.profil != null || it.ausgewaehlt != null || it.bereich != Bereich.Baum || it.baumVollbild || it.wurzelVerlauf.isNotEmpty() }
+    fun kannZurueck(): Boolean = zustand.value.let { it.pdf != null || it.betrachter != null || it.detail != null || it.profil != null || it.ausgewaehlt != null || it.bereich != Bereich.Baum || it.baumVollbild || it.wurzelVerlauf.isNotEmpty() }
 
     // ── Baum ─────────────────────────────────────────────────────────
 
@@ -555,8 +556,10 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun profilFotos(index: Int) {
         val p = zustand.value.profil?.person ?: return
         val medien = p.extended?.media.orEmpty().associateBy { it.handle }
-        val eintraege = p.medien.filter { !it.private }.mapNotNull { medien[it.ref] }.filter { it.istBild }
-        betrachter(eintraege, index, ViewerSource.Profile)
+        val alle = p.medien.filter { !it.private }.mapNotNull { medien[it.ref] }
+        val m = alle.getOrNull(index) ?: return
+        if (!m.istBild) { dokumentOeffnen(m); return }
+        betrachter(alle.filter { it.istBild }, alle.take(index).count { it.istBild }, ViewerSource.Profile)
     }
 
     /** Fuer Familienlisten und Teilnehmer: Anzeigeform aus der aufbereiteten Person. */
@@ -681,11 +684,11 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
             try {
                 val r = client.medien(seite)
                 zustand.update {
-                    it.copy(fotos = (if (seite == 1) emptyList() else it.fotos) + r.eintraege.filter { m -> m.istBild && !m.private },
+                    it.copy(fotos = (if (seite == 1) emptyList() else it.fotos) + r.eintraege.filter { m -> !m.private },
                         fotosGesamt = r.gesamt, fotosNaechste = r.naechste, fotosLaedt = false)
                 }
                 // Laeuft gerade der Betrachter ueber die Fotos des Baums, bekommt er die neue Seite gleich mit.
-                zustand.value.betrachter?.takeIf { it.source == ViewerSource.Tree }?.let { b -> betrachter(zustand.value.fotos, b.index, ViewerSource.Tree) }
+                zustand.value.betrachter?.takeIf { it.source == ViewerSource.Tree }?.let { b -> betrachter(zustand.value.fotos.filter { it.istBild }, b.index, ViewerSource.Tree) }
             } catch (e: Exception) {
                 zustand.update { it.copy(fotosLaedt = false) }
                 fehlschlag(e)
@@ -693,7 +696,30 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         }
     }
 
-    fun fotoOeffnen(index: Int) = betrachter(zustand.value.fotos, index, ViewerSource.Tree)
+    /** Eintrag der Fotouebersicht: Bilder im Betrachter (der nur Bilder kennt), alles andere als Dokument. */
+    fun fotoOeffnen(index: Int) {
+        val alle = zustand.value.fotos
+        val m = alle.getOrNull(index) ?: return
+        if (m.istBild) betrachter(alle.filter { it.istBild }, alle.take(index).count { it.istBild }, ViewerSource.Tree) else dokumentOeffnen(m)
+    }
+
+    /** PDFs im eigenen Betrachter, andere Dateien in der passenden App des Geraets. */
+    fun dokumentOeffnen(m: Medium) {
+        val titel = m.desc.ifBlank { m.dateiname }
+        if (m.istPdf) zustand.update { it.copy(pdf = PdfAnzeige(titel)) }
+        viewModelScope.launch(sicher) {
+            try {
+                val datei = client.mediumLaden(m)
+                if (m.istPdf) zustand.update { s -> if (s.pdf?.titel == titel) s.copy(pdf = PdfAnzeige(titel, datei)) else s }
+                else plattform.dateiOeffnen(datei, false)
+            } catch (e: Exception) {
+                zustand.update { it.copy(pdf = null) }
+                fehlschlag(e)
+            }
+        }
+    }
+
+    fun pdfSchliessen() = zustand.update { it.copy(pdf = null) }
 
     fun vorschau(m: Medium, groesse: Int = 300): String = client.bildUrl(m.handle, null, groesse)
 
