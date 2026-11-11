@@ -227,4 +227,8 @@
     <string name="login_oidc_title">Anmeldung bei %1$s</string>
     <string name="error_oidc_version">Für die Anmeldung über einen Anmeldedienst braucht der Server Gramps Web API 3.21 oder neuer.</string>
     <string name="about_home">Projektseite</string>
+    <plurals name="tree_generations_n">
+        <item quantity="one">%1$d Generation</item>
+        <item quantity="other">%1$d Generationen</item>
+    </plurals>
 </resources>

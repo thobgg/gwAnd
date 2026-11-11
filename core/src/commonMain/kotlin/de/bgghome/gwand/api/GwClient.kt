@@ -249,9 +249,10 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
     )
 
     /** Nachkommen ohne die Mittelperson ueber [generationen] Generationen, jede mit ihren Partnerfamilien. */
-    suspend fun nachkommen(grampsId: String, generationen: Int): List<GrampsPerson> = holen(
+    // Anders als bei den Vorfahren zaehlt die Regel die Person selbst nicht mit: N=1 sind die Kinder.
+    suspend fun nachkommen(grampsId: String, generationen: Int): List<GrampsPerson> = if (generationen <= 0) emptyList() else holen(
         "/people/", ListSerializer(GrampsPerson.serializer()), mapOf(
-            "rules" to regel("IsLessThanNthGenerationDescendantOf", grampsId, "${generationen + 1}"),
+            "rules" to regel("IsLessThanNthGenerationDescendantOf", grampsId, "$generationen"),
             "profile" to "self", "extend" to "family_list", "keys" to "$LISTE_FELDER,extended", "locale" to sprache,
         ),
     )

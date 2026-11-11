@@ -227,4 +227,8 @@
     <string name="login_oidc_title">Connexion avec %1$s</string>
     <string name="error_oidc_version">La connexion via un service d’authentification nécessite Gramps Web API 3.21 ou plus récent sur le serveur.</string>
     <string name="about_home">Page du projet</string>
+    <plurals name="tree_generations_n">
+        <item quantity="one">%1$d génération</item>
+        <item quantity="other">%1$d générations</item>
+    </plurals>
 </resources>

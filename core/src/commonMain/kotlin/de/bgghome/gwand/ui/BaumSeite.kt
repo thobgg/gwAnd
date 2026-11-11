@@ -30,7 +30,8 @@ import de.bgghome.webtrees.nativ.res.action_back
 import de.bgghome.webtrees.nativ.res.tree_ancestors_head
 import de.bgghome.webtrees.nativ.res.tree_descendants_head
 import de.bgghome.webtrees.nativ.res.tree_descendants_none
-import de.bgghome.webtrees.nativ.res.tree_generations
+import de.bgghome.gwand.res.tree_generations_n
+import org.jetbrains.compose.resources.pluralStringResource
 import de.bgghome.webtrees.nativ.res.tree_home
 import de.bgghome.webtrees.nativ.res.tree_settings
 import de.bgghome.webtrees.nativ.res.tree_show_cousin_spouses
@@ -131,14 +132,14 @@ private fun Generationen(s: Zustand, viewModel: GwViewModel, kurz: Boolean) {
     var offen by remember { mutableStateOf(false) }
     Box {
         TextButton(onClick = { offen = true }) {
-            Text(if (kurz) "${s.ahnenGenerationen}" else stringResource(WRes.string.tree_generations, s.ahnenGenerationen), maxLines = 1, softWrap = false)
+            Text(if (kurz) "${s.ahnenGenerationen}" else generationenText(s.ahnenGenerationen), maxLines = 1, softWrap = false)
             Icon(Icons.Default.ArrowDropDown, null)
         }
         DropdownMenu(offen, onDismissRequest = { offen = false }) {
             Ueberschrift(stringResource(WRes.string.tree_ancestors_head))
             (2..6).forEach { n ->
                 DropdownMenuItem(
-                    text = { Text(stringResource(WRes.string.tree_generations, n)) },
+                    text = { Text(generationenText(n)) },
                     leadingIcon = { RadioButton(s.ahnenGenerationen == n, onClick = null) },
                     onClick = { offen = false; viewModel.generationen(ahnen = n) },
                 )
@@ -148,7 +149,7 @@ private fun Generationen(s: Zustand, viewModel: GwViewModel, kurz: Boolean) {
                 Ueberschrift(stringResource(WRes.string.tree_descendants_head))
                 (0..4).forEach { n ->
                     DropdownMenuItem(
-                        text = { Text(if (n == 0) stringResource(WRes.string.tree_descendants_none) else stringResource(WRes.string.tree_generations, n)) },
+                        text = { Text(if (n == 0) stringResource(WRes.string.tree_descendants_none) else generationenText(n)) },
                         leadingIcon = { RadioButton(s.nachkommenGenerationen == n, onClick = null) },
                         onClick = { offen = false; viewModel.generationen(nachkommen = n) },
                     )
@@ -190,3 +191,6 @@ private fun Baumansicht(s: Zustand, viewModel: GwViewModel) {
         }
     }
 }
+
+@Composable
+private fun generationenText(n: Int) = pluralStringResource(Res.plurals.tree_generations_n, n, n)
