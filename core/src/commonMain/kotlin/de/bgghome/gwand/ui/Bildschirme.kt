@@ -84,6 +84,7 @@ import de.bgghome.webtrees.nativ.ui.Avatar
 import de.bgghome.webtrees.nativ.ui.tree.BaumAnsicht
 import de.bgghome.webtrees.nativ.ui.tree.FamilyTreeView
 import de.bgghome.webtrees.nativ.ui.tree.TreeLayout
+import org.jetbrains.compose.resources.pluralStringResource
 import org.jetbrains.compose.resources.stringResource
 
 /** Wurzel der Oberflaeche: Theme in den Farben des Baums, dann der passende Bildschirm. */
@@ -252,7 +253,7 @@ private fun SuchBlatt(s: Zustand, viewModel: GwViewModel) {
                 leadingIcon = { Icon(Icons.Default.Search, null) },
             )
             Text(
-                stringResource(Res.string.search_count, s.trefferGesamt),
+                pluralStringResource(Res.plurals.search_count, s.trefferGesamt, s.trefferGesamt),
                 Modifier.padding(vertical = 8.dp), style = MaterialTheme.typography.labelMedium, color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         }

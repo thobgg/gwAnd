@@ -16,7 +16,10 @@
     <string name="person_born">Geboren</string>
     <string name="person_died">Gestorben</string>
     <string name="search_hint">Name suchen</string>
-    <string name="search_count">%1$d Personen</string>
+    <plurals name="search_count">
+        <item quantity="one">%1$d Person</item>
+        <item quantity="other">%1$d Personen</item>
+    </plurals>
     <string name="search_close">Schließen</string>
     <string name="start_person_saved">Startperson gespeichert</string>
     <string name="no_start_person">Noch keine Startperson. Wähle eine über die Suche.</string>
