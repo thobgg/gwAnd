@@ -1,6 +1,7 @@
 package de.bgghome.gwand.daten
 
 import de.bgghome.gwand.api.GrampsPerson
+import de.bgghome.gwand.api.PersonProfil
 import de.bgghome.gwand.api.ProfilEreignis
 import de.bgghome.webtrees.nativ.api.DateJson
 import de.bgghome.webtrees.nativ.api.EventJson
@@ -18,6 +19,9 @@ class Anzeige(
     private val bild: (GrampsPerson) -> String? = { null },
     private val web: (String) -> String = { "" },
 ) {
+
+    /** Person aus der aufbereiteten Form allein (Jahrestage, Familienlisten) - ohne Bild, das kennt nur die volle Person. */
+    fun ausProfil(profil: PersonProfil): Person = person(GrampsPerson(handle = profil.handle, grampsId = profil.grampsId, profile = profil))
 
     fun person(p: GrampsPerson): Person {
         val profil = p.profile

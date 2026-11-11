@@ -21,6 +21,16 @@ Server http://192.168.178.73:8096, Konto admin.
 | baum-vorfahren-I0008 | 200 | 31 |
 | baum-nachkommen-I0008 | 200 | 5 |
 | baum-partner-I0008 | 200 | 3 |
+| profil-I0021 | 200 | 1 |
+| timeline-I0021 | 200 | 22 |
+| quellen | 200 | 205 |
+| archive | 200 | 40 |
+| zitate | 200 | 1416 |
+| notizen | 200 | 710 |
+| orte | 200 | 35 |
+| medien-voll | 200 | 142 |
+| jahrestage | 200 | 13 |
+| zuletzt-geaendert | 200 | 493 |
 | bookmarks | 200 |  |
 | transaktionen-verlauf | 200 | 3 |
 | notizen-typen | 200 |  |

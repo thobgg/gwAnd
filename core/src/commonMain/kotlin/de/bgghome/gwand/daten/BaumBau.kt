@@ -4,6 +4,7 @@ import de.bgghome.gwand.api.GrampsPerson
 import de.bgghome.webtrees.nativ.api.Ancestor
 import de.bgghome.webtrees.nativ.api.DescendantFamily
 import de.bgghome.webtrees.nativ.api.DescendantNode
+import de.bgghome.webtrees.nativ.api.EventJson
 import de.bgghome.webtrees.nativ.api.Pedigree
 
 /**
@@ -24,7 +25,7 @@ class BaumBau(private val anzeige: Anzeige) {
         while (warteschlange.isNotEmpty()) {
             val (n, handle) = warteschlange.removeFirst()
             val p = nachHandle[handle] ?: continue
-            val eltern = p.extended?.elternfamilie
+            val eltern = p.extended?.elternfamilie?.takeIf { it.handle.isNotEmpty() }
             ahnen += Ancestor(n = n, person = anzeige.person(p), hasParents = eltern != null && (eltern.vater != null || eltern.mutter != null))
             tiefe = maxOf(tiefe, generation(n))
             eltern?.vater?.let { warteschlange += 2 * n to it }
@@ -38,7 +39,12 @@ class BaumBau(private val anzeige: Anzeige) {
      * @param nachkommen Ergebnis von [de.bgghome.gwand.api.GwClient.nachkommen], je mit Partnerfamilien
      * @param partner die Partner aller beteiligten Familien, soweit sie nicht selbst Nachkommen sind
      */
-    fun nachkommen(wurzel: GrampsPerson, nachkommen: List<GrampsPerson>, partner: List<GrampsPerson>): DescendantNode {
+    fun nachkommen(
+        wurzel: GrampsPerson,
+        nachkommen: List<GrampsPerson>,
+        partner: List<GrampsPerson>,
+        heiraten: Map<String, EventJson> = emptyMap(),
+    ): DescendantNode {
         val nachHandle = (nachkommen + wurzel).associateBy { it.handle }
         val partnerNachHandle = partner.associateBy { it.handle } + nachHandle
         fun knoten(p: GrampsPerson, besucht: Set<String>): DescendantNode {
@@ -51,6 +57,7 @@ class BaumBau(private val anzeige: Anzeige) {
                 DescendantFamily(
                     xref = f.handle,
                     spouse = f.partnerVon(p.handle)?.let { partnerNachHandle[it] }?.let { anzeige.person(it) },
+                    marriage = heiraten[f.handle],
                     children = kinder,
                 )
             }
@@ -60,6 +67,9 @@ class BaumBau(private val anzeige: Anzeige) {
     }
 
     companion object {
+        /** Alle Familien der Nachkommen und der Mittelperson (fuer die Heiratsdaten). */
+        fun familien(personen: List<GrampsPerson>): Set<String> = personen.flatMap { p -> p.extended?.families.orEmpty().map { it.handle } }.toSet()
+
         /** Partner aller Familien von [personen], die nicht selbst in [personen] stehen - die muss der Client nachladen. */
         fun fehlendePartner(personen: List<GrampsPerson>): Set<String> {
             val bekannt = personen.map { it.handle }.toSet()

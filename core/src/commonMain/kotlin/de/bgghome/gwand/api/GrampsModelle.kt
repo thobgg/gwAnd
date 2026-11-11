@@ -76,6 +76,11 @@ data class ProfilEreignis(
     val type: String = "",
     val summary: String = "",
     val age: String = "",
+    /** Rolle der Person am Ereignis, uebersetzt ("Primär", "Pate" …); nur in `profile.events`. */
+    val role: String = "",
+    /** Zahl der Zitate und hoechster Vertrauensgrad (0 sehr gering … 4 sehr hoch). */
+    val citations: Int = 0,
+    val confidence: Int = 0,
 ) {
     val leer: Boolean get() = date.isBlank() && place.isBlank() && type.isBlank()
 }
@@ -92,25 +97,283 @@ data class PersonProfil(
     val sex: String = "U",
     val birth: ProfilEreignis = ProfilEreignis(),
     val death: ProfilEreignis = ProfilEreignis(),
+    /** Nur mit `profile=all`: alle Ereignisse, Partnerfamilien, Elternfamilie und weitere Elternfamilien. */
+    val events: List<ProfilEreignis> = emptyList(),
+    val families: List<FamilienProfil> = emptyList(),
+    @SerialName("primary_parent_family") val elternfamilie: FamilienProfil? = null,
+    @SerialName("other_parent_families") val weitereElternfamilien: List<FamilienProfil> = emptyList(),
+) {
+    /** Leere Objekte (`{}`) stehen fuer "nicht vorhanden", etwa ein fehlender Vater. */
+    val vorhanden: Boolean get() = handle.isNotEmpty()
+}
+
+/** Eine Familie in der aufbereiteten Form: Eltern, Kinder, Heirat, Art der Beziehung (uebersetzt). */
+@Serializable
+data class FamilienProfil(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val father: PersonProfil? = null,
+    val mother: PersonProfil? = null,
+    val children: List<PersonProfil> = emptyList(),
+    val marriage: ProfilEreignis = ProfilEreignis(),
+    val divorce: ProfilEreignis = ProfilEreignis(),
+    val relationship: String = "",
+    val events: List<ProfilEreignis> = emptyList(),
+)
+
+/** Eine Zeile der Zeitleiste (`/people/<h>/timeline`): eigene Ereignisse und solche der Angehoerigen. */
+@Serializable
+data class ZeitleistenEintrag(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val date: String = "",
+    val age: String = "",
+    val label: String = "",
+    val type: String = "",
+    val role: String = "",
+    val description: String = "",
+    val person: ZeitleistenPerson = ZeitleistenPerson(),
+    val place: OrtKurz? = null,
 )
 
 @Serializable
+data class ZeitleistenPerson(
+    /** "self" fuer die Person selbst, sonst die Verwandtschaft ("Bruder", "Tochter" …). */
+    val relationship: String = "",
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    @SerialName("name_given") val vorname: String = "",
+    @SerialName("name_surname") val nachname: String = "",
+    @SerialName("name_display") val anzeigename: String = "",
+    val sex: String = "U",
+) {
+    val selbst: Boolean get() = relationship == "self" || relationship.isEmpty()
+}
+
+/** Ort in Kurzform, wie Zeitleiste und Profile ihn mitliefern; Koordinaten als Zahlen. */
+@Serializable
+data class OrtKurz(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val name: String = "",
+    @SerialName("display_name") val anzeigename: String = "",
+    val lat: Double? = null,
+    val long: Double? = null,
+    val type: String = "",
+)
+
+@Serializable
+data class Personenverweis(val ref: String = "", val rel: String = "", val private: Boolean = false)
+
+@Serializable
+data class Text(val string: String = "")
+
+@Serializable
+data class Notiz(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val text: Text = Text(),
+    val type: String = "",
+    val private: Boolean = false,
+)
+
+@Serializable
+data class Medium(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val desc: String = "",
+    val mime: String = "",
+    val path: String = "",
+    val private: Boolean = false,
+    val profile: MedienProfil? = null,
+) {
+    val istBild: Boolean get() = mime.startsWith("image/")
+}
+
+@Serializable
+data class MedienProfil(val date: String = "", val references: Verweise = Verweise())
+
+/** Wer auf ein Objekt verweist, in aufbereiteter Form (`profile.references`). */
+@Serializable
+data class Verweise(
+    val person: List<PersonProfil> = emptyList(),
+    val event: List<ProfilEreignis> = emptyList(),
+    val family: List<FamilienProfil> = emptyList(),
+    val citation: List<ZitatProfil> = emptyList(),
+)
+
+@Serializable
+data class QuelleKurz(
+    val title: String = "",
+    val author: String = "",
+    val pubinfo: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+)
+
+@Serializable
+data class ZitatProfil(
+    @SerialName("gramps_id") val grampsId: String = "",
+    val page: String = "",
+    val date: String = "",
+    val source: QuelleKurz = QuelleKurz(),
+)
+
+@Serializable
+data class Zitat(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val page: String = "",
+    val confidence: Int = 0,
+    @SerialName("source_handle") val quelle: String = "",
+    val private: Boolean = false,
+    val profile: ZitatProfil? = null,
+)
+
+@Serializable
+data class Archivverweis(
+    val ref: String = "",
+    @SerialName("call_number") val signatur: String = "",
+    @SerialName("media_type") val medienart: String = "",
+)
+
+@Serializable
+data class QuelleErweitert(
+    val repositories: List<Archiv> = emptyList(),
+    val notes: List<Notiz> = emptyList(),
+    val media: List<Medium> = emptyList(),
+)
+
+@Serializable
+data class Quelle(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val title: String = "",
+    val author: String = "",
+    val pubinfo: String = "",
+    val abbrev: String = "",
+    val private: Boolean = false,
+    @SerialName("reporef_list") val archivverweise: List<Archivverweis> = emptyList(),
+    val profile: QuelleProfil? = null,
+    val extended: QuelleErweitert? = null,
+)
+
+@Serializable
+data class QuelleProfil(val references: Verweise = Verweise())
+
+@Serializable
+data class Adresse(
+    val street: String = "",
+    val locality: String = "",
+    val city: String = "",
+    val postal: String = "",
+    val state: String = "",
+    val country: String = "",
+    val phone: String = "",
+) {
+    val text: String get() = listOf(street, locality, listOf(postal, city).filter { it.isNotBlank() }.joinToString(" "), state, country)
+        .filter { it.isNotBlank() }.joinToString(", ")
+}
+
+@Serializable
+data class Netzadresse(val path: String = "", val desc: String = "")
+
+@Serializable
+data class Archiv(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val name: String = "",
+    val type: String = "",
+    @SerialName("address_list") val adressen: List<Adresse> = emptyList(),
+    val urls: List<Netzadresse> = emptyList(),
+    val private: Boolean = false,
+    val backlinks: Map<String, List<String>> = emptyMap(),
+)
+
+@Serializable
+data class Ortsname(val value: String = "")
+
+@Serializable
+data class OrtProfil(
+    val name: String = "",
+    val lat: Double? = null,
+    val long: Double? = null,
+    @SerialName("parent_places") val uebergeordnet: List<OrtKurz> = emptyList(),
+    val references: Verweise = Verweise(),
+)
+
+@Serializable
+data class Ort(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val title: String = "",
+    val name: Ortsname = Ortsname(),
+    @SerialName("place_type") val art: String = "",
+    val private: Boolean = false,
+    val profile: OrtProfil? = null,
+) {
+    val anzeigename: String get() = profile?.name?.ifBlank { null } ?: title.ifBlank { name.value }
+}
+
+@Serializable
+data class Teilnehmer(val person: PersonProfil = PersonProfil(), val role: String = "")
+
+@Serializable
+data class Familienteilnehmer(val family: FamilienProfil = FamilienProfil(), val role: String = "")
+
+@Serializable
+data class Teilnehmende(val people: List<Teilnehmer> = emptyList(), val families: List<Familienteilnehmer> = emptyList())
+
+@Serializable
+data class EreignisProfil(
+    val date: String = "",
+    val type: String = "",
+    val place: String = "",
+    val participants: Teilnehmende = Teilnehmende(),
+)
+
+@Serializable
+data class GrampsDatum(
+    val dateval: List<kotlinx.serialization.json.JsonElement> = emptyList(),
+    val year: Int = 0,
+    val modifier: Int = 0,
+    val quality: Int = 0,
+) {
+    val tag: Int get() = (dateval.getOrNull(0) as? kotlinx.serialization.json.JsonPrimitive)?.content?.toIntOrNull() ?: 0
+    val monat: Int get() = (dateval.getOrNull(1) as? kotlinx.serialization.json.JsonPrimitive)?.content?.toIntOrNull() ?: 0
+}
+
+/** Ein Ereignis mit Teilnehmern (fuer Jahrestage). `type` ist der englische Grundname ("Birth"). */
+@Serializable
+data class Ereignis(
+    val handle: String = "",
+    @SerialName("gramps_id") val grampsId: String = "",
+    val type: String = "",
+    val date: GrampsDatum = GrampsDatum(),
+    val private: Boolean = false,
+    val profile: EreignisProfil? = null,
+)
+
+/** Lesezeichen des eigenen Kontos, je Objektart die Handles. */
+@Serializable
+data class Lesezeichen(val people: List<String> = emptyList(), val families: List<String> = emptyList())
+
+@Serializable
 data class Medienverweis(
-    val ref: String,
+    val ref: String = "",
     /** Bildausschnitt in Prozent: links, oben, rechts, unten. Null oder [0,0,100,100] = ganzes Bild. */
     val rect: List<Int>? = null,
     val private: Boolean = false,
 )
 
 @Serializable
-data class Kindverweis(val ref: String, val frel: String = "", val mrel: String = "", val private: Boolean = false)
+data class Kindverweis(val ref: String = "", val frel: String = "", val mrel: String = "", val private: Boolean = false)
 
 @Serializable
-data class Ereignisverweis(val ref: String, val role: String = "", val private: Boolean = false)
+data class Ereignisverweis(val ref: String = "", val role: String = "", val private: Boolean = false)
 
 @Serializable
 data class Familie(
-    val handle: String,
+    val handle: String = "",
     @SerialName("gramps_id") val grampsId: String = "",
     @SerialName("father_handle") val vater: String? = null,
     @SerialName("mother_handle") val mutter: String? = null,
@@ -130,12 +393,17 @@ data class Familie(
 data class PersonErweitert(
     @SerialName("primary_parent_family") val elternfamilie: Familie? = null,
     val families: List<Familie> = emptyList(),
+    val media: List<Medium> = emptyList(),
+    val notes: List<Notiz> = emptyList(),
+    val citations: List<Zitat> = emptyList(),
+    /** Personen aus `person_ref_list` (Paten, Zeugen, Freunde …). */
+    val people: List<GrampsPerson> = emptyList(),
 )
 
 /** Eine Person, wie die API sie liefert; welche Felder gefuellt sind, haengt von `keys`, `profile` und `extend` ab. */
 @Serializable
 data class GrampsPerson(
-    val handle: String,
+    val handle: String = "",
     @SerialName("gramps_id") val grampsId: String = "",
     /** 0 weiblich, 1 maennlich, 2 unbekannt (Gramps). */
     val gender: Int = 2,
@@ -144,6 +412,7 @@ data class GrampsPerson(
     @SerialName("parent_family_list") val elternfamilien: List<String> = emptyList(),
     @SerialName("family_list") val familien: List<String> = emptyList(),
     @SerialName("event_ref_list") val ereignisse: List<Ereignisverweis> = emptyList(),
+    @SerialName("person_ref_list") val personenverweise: List<Personenverweis> = emptyList(),
     val change: Long = 0,
     val profile: PersonProfil? = null,
     val extended: PersonErweitert? = null,
@@ -160,3 +429,9 @@ data class Verwandtschaft(
 data class Seite<T>(val eintraege: List<T>, val seite: Int, val groesse: Int, val gesamt: Int) {
     val naechste: Int? get() = if (seite * groesse < gesamt) seite + 1 else null
 }
+
+@Serializable
+data class Familienzeile(val handle: String = "", val profile: FamilienProfil? = null)
+
+@Serializable
+data class Ereigniszitate(val handle: String = "", @SerialName("citation_list") val zitate: List<String> = emptyList())

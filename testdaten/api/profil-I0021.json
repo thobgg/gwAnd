@@ -1,0 +1,1790 @@
+[
+  {
+    "address_list": [],
+    "alternate_names": [],
+    "attribute_list": [
+      {
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "type": "_UID",
+        "value": "A0C25150507C553689215541587EB5456A23"
+      }
+    ],
+    "backlinks": {
+      "family": [
+        "1051e1fd7b62543f46057110d282",
+        "1051e1fd7e7b4c5b8fd36debb1e2"
+      ]
+    },
+    "birth_ref_index": 0,
+    "change": 1794386988,
+    "citation_list": [],
+    "death_ref_index": 5,
+    "event_ref_list": [
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e3d25ae2dacfef7f94e",
+        "role": "Primary"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e451a17bb6f29c3c48",
+        "role": "Primary"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e546b275e6011886a5",
+        "role": "Primary"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e5d6f45d61328d619ae",
+        "role": "Primary"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e622936e5ee7479068c",
+        "role": "Primary"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e6774f3d7841bdbbd0f",
+        "role": "Primary"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "ref": "1051e1fd7e7074bdb821b627a72b",
+        "role": "Primary"
+      }
+    ],
+    "extended": {
+      "backlinks": {
+        "family": [
+          {
+            "attribute_list": [
+              {
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "type": "_UID",
+                "value": "C90C3F2C2D5857E3BC0902B8F067D1A54B36"
+              }
+            ],
+            "change": 1794386988,
+            "child_ref_list": [
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd7ec1400244dd4648ff1d"
+              },
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd7b1f1e70d2e3149fd79d"
+              },
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd7f101448e3224bb4ca0a"
+              }
+            ],
+            "citation_list": [
+              "1051e1fdf6f975fcab29593c6e79"
+            ],
+            "complete": 0,
+            "event_ref_list": [
+              {
+                "attribute_list": [],
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fdf6ce4b81c78292e5d8ed",
+                "role": "Family"
+              },
+              {
+                "attribute_list": [],
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fdf6e719259605516a1e81",
+                "role": "Family"
+              }
+            ],
+            "father_handle": "1051e1fd7e3bc69dc9a81de82e5",
+            "gramps_id": "F0008",
+            "handle": "1051e1fd7b62543f46057110d282",
+            "lds_ord_list": [],
+            "media_list": [
+              {
+                "attribute_list": [],
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "rect": [],
+                "ref": "1051e1fdf6de34fc2f52d1a64c2d"
+              },
+              {
+                "attribute_list": [],
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "rect": [],
+                "ref": "1051e1fd7e7a3a3d9a6ddfecfe9d"
+              }
+            ],
+            "mother_handle": "1051e1fd7e8b13b97dd9f0dca006",
+            "note_list": [
+              "1051e1fdf7039def4b239e1809e"
+            ],
+            "private": false,
+            "tag_list": [],
+            "type": "Married"
+          },
+          {
+            "attribute_list": [
+              {
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "type": "_UID",
+                "value": "DCDC53A3262A5AD1B5A1D97BAE1AC4F554F7"
+              }
+            ],
+            "change": 1794386988,
+            "child_ref_list": [
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd84ab2b12d4057ac0ba6a"
+              },
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd7e3bc69dc9a81de82e5"
+              },
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd81a31ff9d17d7aee3d09"
+              },
+              {
+                "citation_list": [],
+                "frel": "Birth",
+                "mrel": "Birth",
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fd81e563f1ac72e4019c46"
+              }
+            ],
+            "citation_list": [],
+            "complete": 0,
+            "event_ref_list": [
+              {
+                "attribute_list": [],
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fdf7c87be8fec6291013a6",
+                "role": "Family"
+              },
+              {
+                "attribute_list": [],
+                "citation_list": [],
+                "note_list": [],
+                "private": false,
+                "ref": "1051e1fdf7db417347e0ccb11651",
+                "role": "Family"
+              }
+            ],
+            "father_handle": "1051e1fd84067ef1e09f9ad949d6",
+            "gramps_id": "F0015",
+            "handle": "1051e1fd7e7b4c5b8fd36debb1e2",
+            "lds_ord_list": [],
+            "media_list": [],
+            "mother_handle": "1051e1fd846a3076d9edab7cee01",
+            "note_list": [
+              "1051e1fdf7f43fe13f96dccbc247"
+            ],
+            "private": false,
+            "tag_list": [],
+            "type": "Married"
+          }
+        ]
+      },
+      "citations": [],
+      "events": [
+        {
+          "attribute_list": [],
+          "change": 1794386988,
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              26,
+              4,
+              1897,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 2414041,
+            "text": "26 APR 1897",
+            "year": 1897
+          },
+          "description": "",
+          "gramps_id": "E0127",
+          "handle": "1051e1fd7e3d25ae2dacfef7f94e",
+          "media_list": [],
+          "note_list": [],
+          "place": "1051e1fd796a393a1d184a244ba3",
+          "private": false,
+          "tag_list": [],
+          "type": "Birth"
+        },
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "Witness",
+              "value": "Friedrich Plate, Anbauer zu Celle"
+            }
+          ],
+          "change": 1794386988,
+          "citation_list": [
+            "1051e1fd7e4d3d528e1f308ccddd"
+          ],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              1,
+              5,
+              1897,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 2414046,
+            "text": "1 MAY 1897",
+            "year": 1897
+          },
+          "description": "",
+          "gramps_id": "E0128",
+          "handle": "1051e1fd7e451a17bb6f29c3c48",
+          "media_list": [],
+          "note_list": [],
+          "place": "1051e1fd796a393a1d184a244ba3",
+          "private": false,
+          "tag_list": [],
+          "type": "Christening"
+        },
+        {
+          "attribute_list": [],
+          "change": 1794386988,
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              0,
+              0,
+              1916,
+              false,
+              0,
+              0,
+              1918,
+              false
+            ],
+            "format": null,
+            "modifier": 5,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 2420864,
+            "text": "FROM 1916 TO 1918",
+            "year": 1916
+          },
+          "description": "Kriegsdienst im Infanterie-Regiment 77",
+          "gramps_id": "E0129",
+          "handle": "1051e1fd7e546b275e6011886a5",
+          "media_list": [],
+          "note_list": [],
+          "place": "1051e1fd7e59136a6d7afb7e65ea",
+          "private": false,
+          "tag_list": [],
+          "type": "Militärdienst"
+        },
+        {
+          "attribute_list": [],
+          "change": 1794386988,
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              0,
+              0,
+              0,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 0,
+            "text": "",
+            "year": 0
+          },
+          "description": "Tischler",
+          "gramps_id": "E0130",
+          "handle": "1051e1fd7e5d6f45d61328d619ae",
+          "media_list": [],
+          "note_list": [],
+          "place": "",
+          "private": false,
+          "tag_list": [],
+          "type": "Occupation"
+        },
+        {
+          "attribute_list": [],
+          "change": 1794386988,
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              0,
+              0,
+              0,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 0,
+            "text": "",
+            "year": 0
+          },
+          "description": "evangelisch-lutherisch",
+          "gramps_id": "E0131",
+          "handle": "1051e1fd7e622936e5ee7479068c",
+          "media_list": [],
+          "note_list": [],
+          "place": "",
+          "private": false,
+          "tag_list": [],
+          "type": "Religion"
+        },
+        {
+          "attribute_list": [],
+          "change": 1794386988,
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              9,
+              1,
+              1969,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 2440231,
+            "text": "9 JAN 1969",
+            "year": 1969
+          },
+          "description": "",
+          "gramps_id": "E0132",
+          "handle": "1051e1fd7e6774f3d7841bdbbd0f",
+          "media_list": [],
+          "note_list": [],
+          "place": "1051e1fd796a393a1d184a244ba3",
+          "private": false,
+          "tag_list": [],
+          "type": "Death"
+        },
+        {
+          "attribute_list": [],
+          "change": 1794386988,
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              14,
+              1,
+              1969,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 2440236,
+            "text": "14 JAN 1969",
+            "year": 1969
+          },
+          "description": "",
+          "gramps_id": "E0133",
+          "handle": "1051e1fd7e7074bdb821b627a72b",
+          "media_list": [],
+          "note_list": [],
+          "place": "1051e1fd796a393a1d184a244ba3",
+          "private": false,
+          "tag_list": [],
+          "type": "Burial"
+        }
+      ],
+      "families": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "C90C3F2C2D5857E3BC0902B8F067D1A54B36"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd7ec1400244dd4648ff1d"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd7b1f1e70d2e3149fd79d"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd7f101448e3224bb4ca0a"
+            }
+          ],
+          "citation_list": [
+            "1051e1fdf6f975fcab29593c6e79"
+          ],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf6ce4b81c78292e5d8ed",
+              "role": "Family"
+            },
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf6e719259605516a1e81",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd7e3bc69dc9a81de82e5",
+          "gramps_id": "F0008",
+          "handle": "1051e1fd7b62543f46057110d282",
+          "lds_ord_list": [],
+          "media_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "rect": [],
+              "ref": "1051e1fdf6de34fc2f52d1a64c2d"
+            },
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "rect": [],
+              "ref": "1051e1fd7e7a3a3d9a6ddfecfe9d"
+            }
+          ],
+          "mother_handle": "1051e1fd7e8b13b97dd9f0dca006",
+          "note_list": [
+            "1051e1fdf7039def4b239e1809e"
+          ],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        }
+      ],
+      "media": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "Media-Type",
+              "value": "Photo"
+            }
+          ],
+          "change": 1794386991,
+          "checksum": "",
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              0,
+              0,
+              0,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 0,
+            "text": "",
+            "year": 0
+          },
+          "desc": "Heinrich Falkenrath, Portrait",
+          "gramps_id": "M1",
+          "handle": "1051e1fd7e79207462af74c39f99",
+          "mime": "image/jpeg",
+          "note_list": [
+            "1051e1fe0fff74104750c27cb28"
+          ],
+          "path": "portrait-i21.jpg",
+          "private": false,
+          "tag_list": []
+        },
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "Media-Type",
+              "value": "Photo"
+            }
+          ],
+          "change": 1794386992,
+          "checksum": "",
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              0,
+              0,
+              0,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 0,
+            "text": "",
+            "year": 0
+          },
+          "desc": "Die Tischlerei Am Heiligen Kreuz, um 1960",
+          "gramps_id": "M134",
+          "handle": "1051e1fd7e79443a72171a11b106",
+          "mime": "image/jpeg",
+          "note_list": [
+            "1051e1fe141227bf4cac2577484a"
+          ],
+          "path": "tischlerei.jpg",
+          "private": false,
+          "tag_list": []
+        },
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "Media-Type",
+              "value": "Photo"
+            }
+          ],
+          "change": 1794386992,
+          "checksum": "",
+          "citation_list": [],
+          "date": {
+            "calendar": 0,
+            "dateval": [
+              0,
+              0,
+              0,
+              false
+            ],
+            "format": null,
+            "modifier": 0,
+            "newyear": 0,
+            "quality": 0,
+            "sortval": 0,
+            "text": "",
+            "year": 0
+          },
+          "desc": "Hochzeit von Heinrich und Anna, 1924",
+          "gramps_id": "M135",
+          "handle": "1051e1fd7e7a3a3d9a6ddfecfe9d",
+          "mime": "image/jpeg",
+          "note_list": [
+            "1051e1fe141a5a6f0a9d34b5d586",
+            "1051e1fe141d2aba1cdf37b47d44"
+          ],
+          "path": "hochzeit-1924.jpg",
+          "private": false,
+          "tag_list": []
+        }
+      ],
+      "notes": [
+        {
+          "change": 1794386988,
+          "format": 0,
+          "gramps_id": "N0010",
+          "handle": "1051e1fd7e833c165eef0613fc97",
+          "private": false,
+          "tag_list": [],
+          "text": {
+            "string": "Records not imported into INDI (individual) Gramps ID I0021:\n\nLine ignored as not understood                                      Line   899: 2 _ASSO @I62@\nSkipped subordinate line                                            Line   900: 3 RELA godparent\nLine ignored as not understood                                      Line   901: 2 _ASSO @I65@\nSkipped subordinate line                                            Line   902: 3 RELA godparent\nSkipped subordinate line                                            Line   903: 3 NOTE Pate in Abwesenheit (lebt seit 1888 in Milwaukee); bei der Taufe vertreten.\nSkipped subordinate line                                            Line   904: 3 SOUR @S81@\nSkipped subordinate line                                            Line   905: 4 PAGE Taufe 1897/77\nSkipped subordinate line                                            Line   906: 4 QUAY 3\nSkipped subordinate line                                            Line   939: 2 DESC Dienstzeit im Infanterie-Regiment 77 aus dem Militärpass übertragen.\nSkipped subordinate line                                            Line   940: 2 _CAT Militär\nSkipped subordinate line                                            Line   941: 2 _PRTY 4\nSkipped subordinate line                                            Line   942: 2 TYPE 0\nSkipped subordinate line                                            Line   943: 2 STAT completed\nSkipped subordinate line                                            Line   944: 2 DATE 2026-09-12\nSkipped subordinate line                                            Line   945: 2 _CDATE 3 OCT 2026\nSkipped subordinate line                                            Line   946: 2 DATA Dienstzeit 1914–1918 übertragen, Ereignis Kriegsdienst ergänzt.\nSkipped subordinate line                                            Line   947: 2 REPO @R1@\n",
+            "tags": [
+              {
+                "name": "fontface",
+                "ranges": [
+                  [
+                    0,
+                    1858
+                  ]
+                ],
+                "value": "Monospace"
+              }
+            ]
+          },
+          "type": "GEDCOM import"
+        }
+      ],
+      "parent_families": [
+        {
+          "attribute_list": [
+            {
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "type": "_UID",
+              "value": "DCDC53A3262A5AD1B5A1D97BAE1AC4F554F7"
+            }
+          ],
+          "change": 1794386988,
+          "child_ref_list": [
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd84ab2b12d4057ac0ba6a"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd7e3bc69dc9a81de82e5"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd81a31ff9d17d7aee3d09"
+            },
+            {
+              "citation_list": [],
+              "frel": "Birth",
+              "mrel": "Birth",
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fd81e563f1ac72e4019c46"
+            }
+          ],
+          "citation_list": [],
+          "complete": 0,
+          "event_ref_list": [
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf7c87be8fec6291013a6",
+              "role": "Family"
+            },
+            {
+              "attribute_list": [],
+              "citation_list": [],
+              "note_list": [],
+              "private": false,
+              "ref": "1051e1fdf7db417347e0ccb11651",
+              "role": "Family"
+            }
+          ],
+          "father_handle": "1051e1fd84067ef1e09f9ad949d6",
+          "gramps_id": "F0015",
+          "handle": "1051e1fd7e7b4c5b8fd36debb1e2",
+          "lds_ord_list": [],
+          "media_list": [],
+          "mother_handle": "1051e1fd846a3076d9edab7cee01",
+          "note_list": [
+            "1051e1fdf7f43fe13f96dccbc247"
+          ],
+          "private": false,
+          "tag_list": [],
+          "type": "Married"
+        }
+      ],
+      "people": [],
+      "primary_parent_family": {
+        "attribute_list": [
+          {
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "type": "_UID",
+            "value": "DCDC53A3262A5AD1B5A1D97BAE1AC4F554F7"
+          }
+        ],
+        "change": 1794386988,
+        "child_ref_list": [
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd84ab2b12d4057ac0ba6a"
+          },
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd7e3bc69dc9a81de82e5"
+          },
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd81a31ff9d17d7aee3d09"
+          },
+          {
+            "citation_list": [],
+            "frel": "Birth",
+            "mrel": "Birth",
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fd81e563f1ac72e4019c46"
+          }
+        ],
+        "citation_list": [],
+        "complete": 0,
+        "event_ref_list": [
+          {
+            "attribute_list": [],
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fdf7c87be8fec6291013a6",
+            "role": "Family"
+          },
+          {
+            "attribute_list": [],
+            "citation_list": [],
+            "note_list": [],
+            "private": false,
+            "ref": "1051e1fdf7db417347e0ccb11651",
+            "role": "Family"
+          }
+        ],
+        "father_handle": "1051e1fd84067ef1e09f9ad949d6",
+        "gramps_id": "F0015",
+        "handle": "1051e1fd7e7b4c5b8fd36debb1e2",
+        "lds_ord_list": [],
+        "media_list": [],
+        "mother_handle": "1051e1fd846a3076d9edab7cee01",
+        "note_list": [
+          "1051e1fdf7f43fe13f96dccbc247"
+        ],
+        "private": false,
+        "tag_list": [],
+        "type": "Married"
+      },
+      "tags": []
+    },
+    "family_list": [
+      "1051e1fd7b62543f46057110d282"
+    ],
+    "gender": 1,
+    "gramps_id": "I0021",
+    "handle": "1051e1fd7e3bc69dc9a81de82e5",
+    "lds_ord_list": [],
+    "media_list": [
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "rect": [],
+        "ref": "1051e1fd7e79207462af74c39f99"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "rect": [],
+        "ref": "1051e1fd7e79443a72171a11b106"
+      },
+      {
+        "attribute_list": [],
+        "citation_list": [],
+        "note_list": [],
+        "private": false,
+        "rect": [],
+        "ref": "1051e1fd7e7a3a3d9a6ddfecfe9d"
+      }
+    ],
+    "note_list": [
+      "1051e1fd7e833c165eef0613fc97"
+    ],
+    "parent_family_list": [
+      "1051e1fd7e7b4c5b8fd36debb1e2"
+    ],
+    "person_ref_list": [],
+    "primary_name": {
+      "call": "",
+      "citation_list": [],
+      "date": {
+        "calendar": 0,
+        "dateval": [
+          0,
+          0,
+          0,
+          false
+        ],
+        "format": null,
+        "modifier": 0,
+        "newyear": 0,
+        "quality": 0,
+        "sortval": 0,
+        "text": "",
+        "year": 0
+      },
+      "display_as": 0,
+      "famnick": "",
+      "first_name": "Heinrich",
+      "group_as": "",
+      "nick": "",
+      "note_list": [],
+      "private": false,
+      "sort_as": 0,
+      "suffix": "",
+      "surname_list": [
+        {
+          "connector": "",
+          "origintype": "",
+          "prefix": "",
+          "primary": true,
+          "surname": "Falkenrath"
+        }
+      ],
+      "title": "",
+      "type": "Birth Name"
+    },
+    "private": false,
+    "profile": {
+      "addresses": [],
+      "birth": {
+        "age": "0 Tage",
+        "citations": 0,
+        "confidence": 0,
+        "date": "1897-04-26",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Heinrich",
+        "type": "Geburt"
+      },
+      "death": {
+        "age": "71 Jahre, 8 Monate, 13 Tage",
+        "citations": 0,
+        "confidence": 0,
+        "date": "1969-01-09",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Heinrich",
+        "type": "Tod"
+      },
+      "events": [
+        {
+          "age": "0 Tage",
+          "citations": 0,
+          "confidence": 0,
+          "date": "1897-04-26",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "role": "Primär",
+          "summary": "Geburt - Falkenrath, Heinrich",
+          "type": "Geburt"
+        },
+        {
+          "age": "5 Tage",
+          "citations": 1,
+          "confidence": 4,
+          "date": "1897-05-01",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "role": "Primär",
+          "summary": "Kindtaufe - Falkenrath, Heinrich",
+          "type": "Kindtaufe"
+        },
+        {
+          "age": "zwischen 18 Jahre, 8 Monate, 5 Tage und 21 Jahre, 8 Monate, 5 Tage",
+          "citations": 0,
+          "confidence": 0,
+          "date": "von 1916 bis 1918",
+          "place": "Langemark, Westflandern, Belgien",
+          "place_name": "Langemark, Westflandern, Belgien",
+          "role": "Primär",
+          "summary": "Militärdienst - Falkenrath, Heinrich",
+          "type": "Militärdienst"
+        },
+        {
+          "age": "unbekannt",
+          "citations": 0,
+          "confidence": 0,
+          "date": "",
+          "place": "",
+          "place_name": "",
+          "role": "Primär",
+          "summary": "Beruf - Falkenrath, Heinrich",
+          "type": "Beruf"
+        },
+        {
+          "age": "unbekannt",
+          "citations": 0,
+          "confidence": 0,
+          "date": "",
+          "place": "",
+          "place_name": "",
+          "role": "Primär",
+          "summary": "Religion - Falkenrath, Heinrich",
+          "type": "Religion"
+        },
+        {
+          "age": "71 Jahre, 8 Monate, 13 Tage",
+          "citations": 0,
+          "confidence": 0,
+          "date": "1969-01-09",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "role": "Primär",
+          "summary": "Tod - Falkenrath, Heinrich",
+          "type": "Tod"
+        },
+        {
+          "age": "71 Jahre, 8 Monate, 18 Tage",
+          "citations": 0,
+          "confidence": 0,
+          "date": "1969-01-14",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "role": "Primär",
+          "summary": "Beerdigung - Falkenrath, Heinrich",
+          "type": "Beerdigung"
+        }
+      ],
+      "families": [
+        {
+          "children": [
+            {
+              "addresses": [],
+              "birth": {
+                "age": "0 Tage",
+                "citations": 0,
+                "confidence": 0,
+                "date": "1925-01-06",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Elfriede",
+                "type": "Geburt"
+              },
+              "death": {
+                "age": "85 Jahre, 1 Monate, 8 Tage",
+                "citations": 0,
+                "confidence": 0,
+                "date": "2010-02-14",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Tod - Falkenrath, Elfriede",
+                "type": "Tod"
+              },
+              "gramps_id": "I0023",
+              "handle": "1051e1fd7ec1400244dd4648ff1d",
+              "name_display": "Falkenrath, Elfriede",
+              "name_given": "Elfriede",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "F"
+            },
+            {
+              "addresses": [],
+              "birth": {
+                "age": "0 Tage",
+                "citations": 2,
+                "confidence": 4,
+                "date": "1928-02-08",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Wilhelm",
+                "type": "Geburt"
+              },
+              "death": {
+                "age": "75 Jahre, 8 Monate, 9 Tage",
+                "citations": 1,
+                "confidence": 4,
+                "date": "2003-10-17",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Tod - Falkenrath, Wilhelm",
+                "type": "Tod"
+              },
+              "gramps_id": "I0015",
+              "handle": "1051e1fd7b1f1e70d2e3149fd79d",
+              "name_display": "Falkenrath, Wilhelm",
+              "name_given": "Wilhelm",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "M"
+            },
+            {
+              "addresses": [],
+              "birth": {
+                "age": "0 Tage",
+                "citations": 0,
+                "confidence": 0,
+                "date": "1930-03-22",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Otto",
+                "type": "Geburt"
+              },
+              "death": {
+                "age": "78 Jahre, 5 Monate, 12 Tage",
+                "citations": 0,
+                "confidence": 0,
+                "date": "2008-09-03",
+                "place": "Milwaukee, Wisconsin, USA",
+                "place_name": "Milwaukee, Wisconsin, USA",
+                "summary": "Tod - Falkenrath, Otto",
+                "type": "Tod"
+              },
+              "gramps_id": "I0025",
+              "handle": "1051e1fd7f101448e3224bb4ca0a",
+              "name_display": "Falkenrath, Otto",
+              "name_given": "Otto",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "M"
+            }
+          ],
+          "divorce": {},
+          "events": [
+            {
+              "citations": 2,
+              "confidence": 4,
+              "date": "1924-05-17",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "span": "0 Tage",
+              "summary": "Heirat - Falkenrath, Heinrich und Rosskamp, Anna",
+              "type": "Heirat"
+            },
+            {
+              "citations": 1,
+              "confidence": 4,
+              "date": "1924-05-17",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "span": "0 Tage",
+              "summary": "Heirat - Falkenrath, Heinrich und Rosskamp, Anna",
+              "type": "Heirat"
+            }
+          ],
+          "family_surname": "Falkenrath",
+          "father": {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1897-04-26",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Heinrich",
+              "type": "Geburt"
+            },
+            "death": {
+              "age": "71 Jahre, 8 Monate, 13 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1969-01-09",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Tod - Falkenrath, Heinrich",
+              "type": "Tod"
+            },
+            "gramps_id": "I0021",
+            "handle": "1051e1fd7e3bc69dc9a81de82e5",
+            "name_display": "Falkenrath, Heinrich",
+            "name_given": "Heinrich",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          "gramps_id": "F0008",
+          "handle": "1051e1fd7b62543f46057110d282",
+          "marriage": {
+            "citations": 2,
+            "confidence": 4,
+            "date": "1924-05-17",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "span": "0 Tage",
+            "summary": "Heirat - Falkenrath, Heinrich und Rosskamp, Anna",
+            "type": "Heirat"
+          },
+          "mother": {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1901-08-13",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Rosskamp, Anna",
+              "type": "Geburt"
+            },
+            "death": {
+              "age": "84 Jahre, 3 Monate, 17 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1985-11-30",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Tod - Rosskamp, Anna",
+              "type": "Tod"
+            },
+            "gramps_id": "I0022",
+            "handle": "1051e1fd7e8b13b97dd9f0dca006",
+            "name_display": "Rosskamp, Anna",
+            "name_given": "Anna",
+            "name_suffix": "",
+            "name_surname": "Rosskamp",
+            "sex": "F"
+          },
+          "relationship": "Verheiratet"
+        }
+      ],
+      "gramps_id": "I0021",
+      "handle": "1051e1fd7e3bc69dc9a81de82e5",
+      "name_display": "Falkenrath, Heinrich",
+      "name_given": "Heinrich",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "other_parent_families": [],
+      "primary_parent_family": {
+        "children": [
+          {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1894-09-27",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Marie",
+              "type": "Geburt"
+            },
+            "death": {
+              "age": "80 Jahre, 7 Monate, 6 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1975-05-03",
+              "place": "Hannover, Niedersachsen, Deutschland",
+              "place_name": "Hannover, Niedersachsen, Deutschland",
+              "summary": "Tod - Falkenrath, Marie",
+              "type": "Tod"
+            },
+            "gramps_id": "I0041",
+            "handle": "1051e1fd84ab2b12d4057ac0ba6a",
+            "name_display": "Falkenrath, Marie",
+            "name_given": "Marie",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "F"
+          },
+          {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1897-04-26",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Heinrich",
+              "type": "Geburt"
+            },
+            "death": {
+              "age": "71 Jahre, 8 Monate, 13 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1969-01-09",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Tod - Falkenrath, Heinrich",
+              "type": "Tod"
+            },
+            "gramps_id": "I0021",
+            "handle": "1051e1fd7e3bc69dc9a81de82e5",
+            "name_display": "Falkenrath, Heinrich",
+            "name_given": "Heinrich",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1899-07-03",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Wilhelm",
+              "type": "Geburt"
+            },
+            "death": {
+              "age": "19 Jahre, 3 Monate, 24 Tage",
+              "citations": 1,
+              "confidence": 3,
+              "date": "1918-10-27",
+              "place": "Cambrai, Nord, Frankreich",
+              "place_name": "Cambrai, Nord, Frankreich",
+              "summary": "Tod - Falkenrath, Wilhelm",
+              "type": "Tod"
+            },
+            "gramps_id": "I0070",
+            "handle": "1051e1fd81a31ff9d17d7aee3d09",
+            "name_display": "Falkenrath, Wilhelm",
+            "name_given": "Wilhelm",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "M"
+          },
+          {
+            "addresses": [],
+            "birth": {
+              "age": "0 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1902-02-14",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Geburt - Falkenrath, Martha",
+              "type": "Geburt"
+            },
+            "death": {
+              "age": "86 Jahre, 7 Monate, 16 Tage",
+              "citations": 0,
+              "confidence": 0,
+              "date": "1988-09-30",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Tod - Falkenrath, Martha",
+              "type": "Tod"
+            },
+            "gramps_id": "I0071",
+            "handle": "1051e1fd81e563f1ac72e4019c46",
+            "name_display": "Falkenrath, Martha",
+            "name_given": "Martha",
+            "name_suffix": "",
+            "name_surname": "Falkenrath",
+            "sex": "F"
+          }
+        ],
+        "divorce": {},
+        "events": [
+          {
+            "citations": 1,
+            "confidence": 4,
+            "date": "1893-09-14",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "span": "0 Tage",
+            "summary": "Heirat - Falkenrath, Carl und Wichmann, Dorothea",
+            "type": "Heirat"
+          },
+          {
+            "citations": 1,
+            "confidence": 4,
+            "date": "1893-09-15",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "span": "1 Tage",
+            "summary": "Heirat - Falkenrath, Carl und Wichmann, Dorothea",
+            "type": "Heirat"
+          }
+        ],
+        "family_surname": "Falkenrath",
+        "father": {
+          "addresses": [],
+          "birth": {
+            "age": "0 Tage",
+            "citations": 1,
+            "confidence": 3,
+            "date": "1866-11-19",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "summary": "Geburt - Falkenrath, Carl",
+            "type": "Geburt"
+          },
+          "death": {
+            "age": "71 Jahre, 3 Monate, 15 Tage",
+            "citations": 0,
+            "confidence": 0,
+            "date": "1938-03-04",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "summary": "Tod - Falkenrath, Carl",
+            "type": "Tod"
+          },
+          "gramps_id": "I0039",
+          "handle": "1051e1fd84067ef1e09f9ad949d6",
+          "name_display": "Falkenrath, Carl",
+          "name_given": "Carl",
+          "name_suffix": "",
+          "name_surname": "Falkenrath",
+          "sex": "M"
+        },
+        "gramps_id": "F0015",
+        "handle": "1051e1fd7e7b4c5b8fd36debb1e2",
+        "marriage": {
+          "citations": 1,
+          "confidence": 4,
+          "date": "1893-09-14",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "span": "0 Tage",
+          "summary": "Heirat - Falkenrath, Carl und Wichmann, Dorothea",
+          "type": "Heirat"
+        },
+        "mother": {
+          "addresses": [],
+          "birth": {
+            "age": "0 Tage",
+            "citations": 1,
+            "confidence": 3,
+            "date": "1870-06-08",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "summary": "Geburt - Wichmann, Dorothea",
+            "type": "Geburt"
+          },
+          "death": {
+            "age": "79 Jahre, 6 Monate, 7 Tage",
+            "citations": 0,
+            "confidence": 0,
+            "date": "1949-12-15",
+            "place": "Celle, Niedersachsen, Deutschland",
+            "place_name": "Celle, Niedersachsen, Deutschland",
+            "summary": "Tod - Wichmann, Dorothea",
+            "type": "Tod"
+          },
+          "gramps_id": "I0040",
+          "handle": "1051e1fd846a3076d9edab7cee01",
+          "name_display": "Wichmann, Dorothea",
+          "name_given": "Dorothea",
+          "name_suffix": "",
+          "name_surname": "Wichmann",
+          "sex": "F"
+        },
+        "relationship": "Verheiratet"
+      },
+      "references": {
+        "family": [
+          {
+            "children": [
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1925-01-06",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Elfriede",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "2010-02-14",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Tod - Falkenrath, Elfriede",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0023",
+                "handle": "1051e1fd7ec1400244dd4648ff1d",
+                "name_display": "Falkenrath, Elfriede",
+                "name_given": "Elfriede",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "F"
+              },
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1928-02-08",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Wilhelm",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "2003-10-17",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Tod - Falkenrath, Wilhelm",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0015",
+                "handle": "1051e1fd7b1f1e70d2e3149fd79d",
+                "name_display": "Falkenrath, Wilhelm",
+                "name_given": "Wilhelm",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "M"
+              },
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1930-03-22",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Otto",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "2008-09-03",
+                  "place": "Milwaukee, Wisconsin, USA",
+                  "place_name": "Milwaukee, Wisconsin, USA",
+                  "summary": "Tod - Falkenrath, Otto",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0025",
+                "handle": "1051e1fd7f101448e3224bb4ca0a",
+                "name_display": "Falkenrath, Otto",
+                "name_given": "Otto",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "M"
+              }
+            ],
+            "divorce": {},
+            "family_surname": "Falkenrath",
+            "father": {
+              "addresses": [],
+              "birth": {
+                "date": "1897-04-26",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Heinrich",
+                "type": "Geburt"
+              },
+              "death": {
+                "date": "1969-01-09",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Tod - Falkenrath, Heinrich",
+                "type": "Tod"
+              },
+              "gramps_id": "I0021",
+              "handle": "1051e1fd7e3bc69dc9a81de82e5",
+              "name_display": "Falkenrath, Heinrich",
+              "name_given": "Heinrich",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "M"
+            },
+            "gramps_id": "F0008",
+            "handle": "1051e1fd7b62543f46057110d282",
+            "marriage": {
+              "date": "1924-05-17",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Heirat - Falkenrath, Heinrich und Rosskamp, Anna",
+              "type": "Heirat"
+            },
+            "mother": {
+              "addresses": [],
+              "birth": {
+                "date": "1901-08-13",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Rosskamp, Anna",
+                "type": "Geburt"
+              },
+              "death": {
+                "date": "1985-11-30",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Tod - Rosskamp, Anna",
+                "type": "Tod"
+              },
+              "gramps_id": "I0022",
+              "handle": "1051e1fd7e8b13b97dd9f0dca006",
+              "name_display": "Rosskamp, Anna",
+              "name_given": "Anna",
+              "name_suffix": "",
+              "name_surname": "Rosskamp",
+              "sex": "F"
+            },
+            "relationship": "Verheiratet"
+          },
+          {
+            "children": [
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1894-09-27",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Marie",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "1975-05-03",
+                  "place": "Hannover, Niedersachsen, Deutschland",
+                  "place_name": "Hannover, Niedersachsen, Deutschland",
+                  "summary": "Tod - Falkenrath, Marie",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0041",
+                "handle": "1051e1fd84ab2b12d4057ac0ba6a",
+                "name_display": "Falkenrath, Marie",
+                "name_given": "Marie",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "F"
+              },
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1897-04-26",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Heinrich",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "1969-01-09",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Tod - Falkenrath, Heinrich",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0021",
+                "handle": "1051e1fd7e3bc69dc9a81de82e5",
+                "name_display": "Falkenrath, Heinrich",
+                "name_given": "Heinrich",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "M"
+              },
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1899-07-03",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Wilhelm",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "1918-10-27",
+                  "place": "Cambrai, Nord, Frankreich",
+                  "place_name": "Cambrai, Nord, Frankreich",
+                  "summary": "Tod - Falkenrath, Wilhelm",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0070",
+                "handle": "1051e1fd81a31ff9d17d7aee3d09",
+                "name_display": "Falkenrath, Wilhelm",
+                "name_given": "Wilhelm",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "M"
+              },
+              {
+                "addresses": [],
+                "birth": {
+                  "date": "1902-02-14",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Geburt - Falkenrath, Martha",
+                  "type": "Geburt"
+                },
+                "death": {
+                  "date": "1988-09-30",
+                  "place": "Celle, Niedersachsen, Deutschland",
+                  "place_name": "Celle, Niedersachsen, Deutschland",
+                  "summary": "Tod - Falkenrath, Martha",
+                  "type": "Tod"
+                },
+                "gramps_id": "I0071",
+                "handle": "1051e1fd81e563f1ac72e4019c46",
+                "name_display": "Falkenrath, Martha",
+                "name_given": "Martha",
+                "name_suffix": "",
+                "name_surname": "Falkenrath",
+                "sex": "F"
+              }
+            ],
+            "divorce": {},
+            "family_surname": "Falkenrath",
+            "father": {
+              "addresses": [],
+              "birth": {
+                "date": "1866-11-19",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Falkenrath, Carl",
+                "type": "Geburt"
+              },
+              "death": {
+                "date": "1938-03-04",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Tod - Falkenrath, Carl",
+                "type": "Tod"
+              },
+              "gramps_id": "I0039",
+              "handle": "1051e1fd84067ef1e09f9ad949d6",
+              "name_display": "Falkenrath, Carl",
+              "name_given": "Carl",
+              "name_suffix": "",
+              "name_surname": "Falkenrath",
+              "sex": "M"
+            },
+            "gramps_id": "F0015",
+            "handle": "1051e1fd7e7b4c5b8fd36debb1e2",
+            "marriage": {
+              "date": "1893-09-14",
+              "place": "Celle, Niedersachsen, Deutschland",
+              "place_name": "Celle, Niedersachsen, Deutschland",
+              "summary": "Heirat - Falkenrath, Carl und Wichmann, Dorothea",
+              "type": "Heirat"
+            },
+            "mother": {
+              "addresses": [],
+              "birth": {
+                "date": "1870-06-08",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Geburt - Wichmann, Dorothea",
+                "type": "Geburt"
+              },
+              "death": {
+                "date": "1949-12-15",
+                "place": "Celle, Niedersachsen, Deutschland",
+                "place_name": "Celle, Niedersachsen, Deutschland",
+                "summary": "Tod - Wichmann, Dorothea",
+                "type": "Tod"
+              },
+              "gramps_id": "I0040",
+              "handle": "1051e1fd846a3076d9edab7cee01",
+              "name_display": "Wichmann, Dorothea",
+              "name_given": "Dorothea",
+              "name_suffix": "",
+              "name_surname": "Wichmann",
+              "sex": "F"
+            },
+            "relationship": "Verheiratet"
+          }
+        ]
+      },
+      "sex": "M"
+    },
+    "tag_list": [],
+    "urls": []
+  }
+]

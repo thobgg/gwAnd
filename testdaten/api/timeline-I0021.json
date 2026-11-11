@@ -1,0 +1,941 @@
+[
+  {
+    "age": "0 Tage",
+    "date": "1897-04-26",
+    "description": "",
+    "gramps_id": "E0127",
+    "handle": "1051e1fd7e3d25ae2dacfef7f94e",
+    "label": "Geburt",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "5 Tage",
+    "date": "1897-05-01",
+    "description": "",
+    "gramps_id": "E0128",
+    "handle": "1051e1fd7e451a17bb6f29c3c48",
+    "label": "Kindtaufe",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Christening"
+  },
+  {
+    "age": "2 Jahre",
+    "date": "1899-07-03",
+    "description": "",
+    "gramps_id": "E0205",
+    "handle": "1051e1fd81a43ea4fd2b3896a85d",
+    "label": "Geburt (Bruder)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1899-07-03",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Wilhelm",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1918-10-27",
+        "place": "Cambrai, Nord, Frankreich",
+        "place_name": "Cambrai, Nord, Frankreich",
+        "summary": "Tod - Falkenrath, Wilhelm",
+        "type": "Tod"
+      },
+      "gramps_id": "I0070",
+      "handle": "1051e1fd81a31ff9d17d7aee3d09",
+      "name_display": "Falkenrath, Wilhelm",
+      "name_given": "Wilhelm",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Bruder",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "4 Jahre",
+    "date": "1901-08-13",
+    "description": "",
+    "gramps_id": "E0134",
+    "handle": "1051e1fd7e8c1614d0625f946ff0",
+    "label": "Geburt (Ehefrau)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1901-08-13",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Rosskamp, Anna",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1985-11-30",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Rosskamp, Anna",
+        "type": "Tod"
+      },
+      "gramps_id": "I0022",
+      "handle": "1051e1fd7e8b13b97dd9f0dca006",
+      "name_display": "Rosskamp, Anna",
+      "name_given": "Anna",
+      "name_suffix": "",
+      "name_surname": "Rosskamp",
+      "relationship": "Ehefrau",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "4 Jahre",
+    "date": "1902-02-14",
+    "description": "",
+    "gramps_id": "E0211",
+    "handle": "1051e1fd81e73cef3c5f13bf64fc",
+    "label": "Geburt (Schwester)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1902-02-14",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Martha",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1988-09-30",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Martha",
+        "type": "Tod"
+      },
+      "gramps_id": "I0071",
+      "handle": "1051e1fd81e563f1ac72e4019c46",
+      "name_display": "Falkenrath, Martha",
+      "name_given": "Martha",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Schwester",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "zwischen 18 Jahre und 21 Jahre",
+    "date": "von 1916 bis 1918",
+    "description": "Kriegsdienst im Infanterie-Regiment 77",
+    "gramps_id": "E0129",
+    "handle": "1051e1fd7e546b275e6011886a5",
+    "label": "Militärdienst",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Langemark, Westflandern, Belgien",
+      "gramps_id": "P0006",
+      "handle": "1051e1fd7e59136a6d7afb7e65ea",
+      "lat": 50.913,
+      "long": 2.92,
+      "name": "Langemark, Westflandern, Belgien",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Militärdienst"
+  },
+  {
+    "age": "21 Jahre",
+    "date": "1918-10-27",
+    "description": "",
+    "gramps_id": "E0210",
+    "handle": "1051e1fd81cb252150670c6e8451",
+    "label": "Tod (Bruder)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "19 Jahre",
+      "birth": {
+        "date": "1899-07-03",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Wilhelm",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1918-10-27",
+        "place": "Cambrai, Nord, Frankreich",
+        "place_name": "Cambrai, Nord, Frankreich",
+        "summary": "Tod - Falkenrath, Wilhelm",
+        "type": "Tod"
+      },
+      "gramps_id": "I0070",
+      "handle": "1051e1fd81a31ff9d17d7aee3d09",
+      "name_display": "Falkenrath, Wilhelm",
+      "name_given": "Wilhelm",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Bruder",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Cambrai, Nord, Frankreich",
+      "gramps_id": "P0008",
+      "handle": "1051e1fd81bf3dd7d15d6c6a1a24",
+      "lat": 50.1758,
+      "long": 3.2346,
+      "name": "Cambrai, Nord, Frankreich",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Death"
+  },
+  {
+    "age": "21 Jahre",
+    "date": "1919-03-27",
+    "description": "civil",
+    "gramps_id": "E2377",
+    "handle": "1051e1fdf99447dd7a8d509a1509",
+    "label": "Heirat (Schwester)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "24 Jahre",
+      "birth": {
+        "date": "1894-09-27",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Marie",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1975-05-03",
+        "place": "Hannover, Niedersachsen, Deutschland",
+        "place_name": "Hannover, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Marie",
+        "type": "Tod"
+      },
+      "gramps_id": "I0041",
+      "handle": "1051e1fd84ab2b12d4057ac0ba6a",
+      "name_display": "Falkenrath, Marie",
+      "name_given": "Marie",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Schwester",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Hannover, Niedersachsen, Deutschland",
+      "gramps_id": "P0000",
+      "handle": "1051e1fd78ad4e817fe5d8a7bf93",
+      "lat": 52.3759,
+      "long": 9.732,
+      "name": "Hannover, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "27 Jahre",
+    "date": "1924-05-17",
+    "description": "civil",
+    "gramps_id": "E2347",
+    "handle": "1051e1fdf6ce4b81c78292e5d8ed",
+    "label": "Heirat",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "27 Jahre",
+    "date": "1924-05-17",
+    "description": "religious",
+    "gramps_id": "E2348",
+    "handle": "1051e1fdf6e719259605516a1e81",
+    "label": "Heirat",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "27 Jahre",
+    "date": "1925-01-06",
+    "description": "",
+    "gramps_id": "E0138",
+    "handle": "1051e1fd7ec329d38d93af030098",
+    "label": "Geburt (Tochter)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1925-01-06",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Elfriede",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2010-02-14",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Elfriede",
+        "type": "Tod"
+      },
+      "gramps_id": "I0023",
+      "handle": "1051e1fd7ec1400244dd4648ff1d",
+      "name_display": "Falkenrath, Elfriede",
+      "name_given": "Elfriede",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Tochter",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "29 Jahre",
+    "date": "1926-07-03",
+    "description": "civil",
+    "gramps_id": "E2375",
+    "handle": "1051e1fdf96c28ce639731ec8f6b",
+    "label": "Heirat (Schwester)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "24 Jahre",
+      "birth": {
+        "date": "1902-02-14",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Martha",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1988-09-30",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Martha",
+        "type": "Tod"
+      },
+      "gramps_id": "I0071",
+      "handle": "1051e1fd81e563f1ac72e4019c46",
+      "name_display": "Falkenrath, Martha",
+      "name_given": "Martha",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Schwester",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "30 Jahre",
+    "date": "1928-02-08",
+    "description": "",
+    "gramps_id": "E0051",
+    "handle": "1051e1fd7b2124e39728a872f971",
+    "label": "Geburt (Sohn)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1928-02-08",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Wilhelm",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2003-10-17",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Wilhelm",
+        "type": "Tod"
+      },
+      "gramps_id": "I0015",
+      "handle": "1051e1fd7b1f1e70d2e3149fd79d",
+      "name_display": "Falkenrath, Wilhelm",
+      "name_given": "Wilhelm",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Sohn",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "32 Jahre",
+    "date": "1930-03-22",
+    "description": "",
+    "gramps_id": "E0147",
+    "handle": "1051e1fd7f121bec58d470377c04",
+    "label": "Geburt (Sohn)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "0 Tage",
+      "birth": {
+        "date": "1930-03-22",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Otto",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2008-09-03",
+        "place": "Milwaukee, Wisconsin, USA",
+        "place_name": "Milwaukee, Wisconsin, USA",
+        "summary": "Tod - Falkenrath, Otto",
+        "type": "Tod"
+      },
+      "gramps_id": "I0025",
+      "handle": "1051e1fd7f101448e3224bb4ca0a",
+      "name_display": "Falkenrath, Otto",
+      "name_given": "Otto",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Sohn",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Birth"
+  },
+  {
+    "age": "40 Jahre",
+    "date": "1938-03-04",
+    "description": "",
+    "gramps_id": "E0266",
+    "handle": "1051e1fd84491865b0b6ebc6086f",
+    "label": "Tod (Vater)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "71 Jahre",
+      "birth": {
+        "date": "1866-11-19",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Carl",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1938-03-04",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Carl",
+        "type": "Tod"
+      },
+      "gramps_id": "I0039",
+      "handle": "1051e1fd84067ef1e09f9ad949d6",
+      "name_display": "Falkenrath, Carl",
+      "name_given": "Carl",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Vater",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Death"
+  },
+  {
+    "age": "45 Jahre",
+    "date": "1942-12-05",
+    "description": "civil",
+    "gramps_id": "E2349",
+    "handle": "1051e1fdf70b4dec28ccabb6df9a",
+    "label": "Heirat (Tochter)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "17 Jahre",
+      "birth": {
+        "date": "1925-01-06",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Elfriede",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2010-02-14",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Elfriede",
+        "type": "Tod"
+      },
+      "gramps_id": "I0023",
+      "handle": "1051e1fd7ec1400244dd4648ff1d",
+      "name_display": "Falkenrath, Elfriede",
+      "name_given": "Elfriede",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Tochter",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "52 Jahre",
+    "date": "1949-12-15",
+    "description": "",
+    "gramps_id": "E0271",
+    "handle": "1051e1fd848c1dddfcd5190d868b",
+    "label": "Tod (Mutter)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "79 Jahre",
+      "birth": {
+        "date": "1870-06-08",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Wichmann, Dorothea",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "1949-12-15",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Wichmann, Dorothea",
+        "type": "Tod"
+      },
+      "gramps_id": "I0040",
+      "handle": "1051e1fd846a3076d9edab7cee01",
+      "name_display": "Wichmann, Dorothea",
+      "name_given": "Dorothea",
+      "name_suffix": "",
+      "name_surname": "Wichmann",
+      "relationship": "Mutter",
+      "sex": "F"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Death"
+  },
+  {
+    "age": "53 Jahre",
+    "date": "1950-10-07",
+    "description": "civil",
+    "gramps_id": "E2342",
+    "handle": "1051e1fdf66342be06008cff9ecc",
+    "label": "Heirat (Sohn)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "22 Jahre",
+      "birth": {
+        "date": "1928-02-08",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Wilhelm",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2003-10-17",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Wilhelm",
+        "type": "Tod"
+      },
+      "gramps_id": "I0015",
+      "handle": "1051e1fd7b1f1e70d2e3149fd79d",
+      "name_display": "Falkenrath, Wilhelm",
+      "name_given": "Wilhelm",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Sohn",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "56 Jahre",
+    "date": "1954-04-24",
+    "description": "civil",
+    "gramps_id": "E2343",
+    "handle": "1051e1fdf6786d09c3a92075f158",
+    "label": "Heirat (Sohn)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "26 Jahre",
+      "birth": {
+        "date": "1928-02-08",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Wilhelm",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2003-10-17",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Tod - Falkenrath, Wilhelm",
+        "type": "Tod"
+      },
+      "gramps_id": "I0015",
+      "handle": "1051e1fd7b1f1e70d2e3149fd79d",
+      "name_display": "Falkenrath, Wilhelm",
+      "name_given": "Wilhelm",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Sohn",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Uelzen, Niedersachsen, Deutschland",
+      "gramps_id": "P0005",
+      "handle": "1051e1fd7a545ebfd54fa51da8ed",
+      "lat": 52.9657,
+      "long": 10.5611,
+      "name": "Uelzen, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "59 Jahre",
+    "date": "1956-06-11",
+    "description": "",
+    "gramps_id": "E2350",
+    "handle": "1051e1fdf72b4b0b1d4ebbc0a3cb",
+    "label": "Heirat (Sohn)",
+    "media": [],
+    "person": {
+      "addresses": [],
+      "age": "26 Jahre",
+      "birth": {
+        "date": "1930-03-22",
+        "place": "Celle, Niedersachsen, Deutschland",
+        "place_name": "Celle, Niedersachsen, Deutschland",
+        "summary": "Geburt - Falkenrath, Otto",
+        "type": "Geburt"
+      },
+      "death": {
+        "date": "2008-09-03",
+        "place": "Milwaukee, Wisconsin, USA",
+        "place_name": "Milwaukee, Wisconsin, USA",
+        "summary": "Tod - Falkenrath, Otto",
+        "type": "Tod"
+      },
+      "gramps_id": "I0025",
+      "handle": "1051e1fd7f101448e3224bb4ca0a",
+      "name_display": "Falkenrath, Otto",
+      "name_given": "Otto",
+      "name_suffix": "",
+      "name_surname": "Falkenrath",
+      "relationship": "Sohn",
+      "sex": "M"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Milwaukee, Wisconsin, USA",
+      "gramps_id": "P0004",
+      "handle": "1051e1fd79c371a81550d0073f5e",
+      "lat": 43.0389,
+      "long": -87.9065,
+      "name": "Milwaukee, Wisconsin, USA",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Familie",
+    "type": "Marriage"
+  },
+  {
+    "age": "71 Jahre",
+    "date": "1969-01-09",
+    "description": "",
+    "gramps_id": "E0132",
+    "handle": "1051e1fd7e6774f3d7841bdbbd0f",
+    "label": "Tod",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Death"
+  },
+  {
+    "age": "71 Jahre",
+    "date": "1969-01-14",
+    "description": "",
+    "gramps_id": "E0133",
+    "handle": "1051e1fd7e7074bdb821b627a72b",
+    "label": "Beerdigung",
+    "media": [],
+    "person": {
+      "relationship": "self"
+    },
+    "place": {
+      "alternate_names": [],
+      "alternate_place_names": [],
+      "direct_parent_places": [],
+      "display_name": "Celle, Niedersachsen, Deutschland",
+      "gramps_id": "P0002",
+      "handle": "1051e1fd796a393a1d184a244ba3",
+      "lat": 52.6226,
+      "long": 10.0815,
+      "name": "Celle, Niedersachsen, Deutschland",
+      "parent_places": [],
+      "type": "Unbekannt"
+    },
+    "role": "Primär",
+    "type": "Burial"
+  }
+]

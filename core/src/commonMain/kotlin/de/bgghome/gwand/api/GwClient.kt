@@ -183,6 +183,107 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
         mapOf("gramps_id" to grampsId, "profile" to "self", "keys" to LISTE_FELDER, "locale" to sprache),
     ).firstOrNull()
 
+    /** Familien in aufbereiteter Form (Heirat, Eltern, Kinder) nach Handle. */
+    suspend fun familienProfile(handles: Collection<String>): List<FamilienProfil> {
+        if (handles.isEmpty()) return emptyList()
+        return handles.distinct().chunked(40).flatMap { teil ->
+            holen("/families/", ListSerializer(Familienzeile.serializer()), mapOf(
+                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "profile" to "self", "keys" to "handle,profile", "locale" to sprache,
+            )).mapNotNull { it.profile }
+        }
+    }
+
+    /** Ereignisse nach Handle samt ihren Zitaten (fuer den Reiter Quellen im Profil). */
+    suspend fun ereignisZitate(handles: Collection<String>): List<String> {
+        if (handles.isEmpty()) return emptyList()
+        return handles.distinct().chunked(40).flatMap { teil ->
+            holen("/events/", ListSerializer(Ereigniszitate.serializer()), mapOf(
+                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "keys" to "handle,citation_list",
+            )).flatMap { it.zitate }
+        }
+    }
+
+    suspend fun zeitleiste(handle: String): List<ZeitleistenEintrag> =
+        holen("/people/$handle/timeline", ListSerializer(ZeitleistenEintrag.serializer()), mapOf("locale" to sprache))
+
+    /** Ereignisse an den Tagen [tage] (Monat to Tag) mit Teilnehmern, fuer die Jahrestage. */
+    suspend fun ereignisseAnTagen(tage: List<Pair<Int, Int>>): List<Ereignis> {
+        if (tage.isEmpty()) return emptyList()
+        val gql = tage.joinToString(" or ") { (m, t) -> "(date.dateval[1] = $m and date.dateval[0] = $t)" }
+        return holen("/events/", ListSerializer(Ereignis.serializer()), mapOf(
+            "gql" to gql, "profile" to "all", "keys" to "handle,gramps_id,type,date,private,profile", "locale" to sprache,
+        ))
+    }
+
+    suspend fun zuletztGeaendert(anzahl: Int = 10): List<GrampsPerson> = holen(
+        "/people/", ListSerializer(GrampsPerson.serializer()),
+        mapOf("sort" to "-change", "page" to "1", "pagesize" to "$anzahl", "profile" to "self", "keys" to LISTE_FELDER, "locale" to sprache),
+    )
+
+    suspend fun lesezeichen(): List<String> = holen("/bookmarks/people", ListSerializer(kotlinx.serialization.serializer<String>()))
+
+    suspend fun lesezeichenSetzen(handle: String, an: Boolean) = withContext(Dispatchers.IO) {
+        val anfrage = Request.Builder().url(url("/bookmarks/people/$handle")).apply {
+            if (an) put(ByteArray(0).toRequestBody(null)) else delete()
+        }.build()
+        http.newCall(anfrage).execute().use { a -> if (!a.isSuccessful) throw ApiFehler(a.code, meldung(a.body?.string().orEmpty())) }
+    }
+
+    /** Seitenweise Liste einer Objektart; mit [suche] ueber die Abfragesprache (`feld ~ "text"`). */
+    private suspend fun <T> liste(pfad: String, s: KSerializer<T>, seite: Int, groesse: Int, sort: String, suchfeld: String?, suche: String, extra: Map<String, String> = emptyMap()): Seite<T> {
+        val p = mutableMapOf("page" to "$seite", "pagesize" to "$groesse", "sort" to sort, "locale" to sprache) + extra
+        val mitSuche = if (suchfeld != null && suche.isNotBlank()) p + ("gql" to "$suchfeld ~ \"${suche.replace("\"", "")}\"") else p
+        val (gesamt, eintraege) = sendenMitKopf(Request.Builder().url(url(pfad, mitSuche)).get().build(), ListSerializer(s))
+        return Seite(eintraege, seite, groesse, gesamt ?: eintraege.size)
+    }
+
+    suspend fun medien(seite: Int, groesse: Int = 60): Seite<Medium> =
+        liste("/media/", Medium.serializer(), seite, groesse, "-change", null, "", mapOf("keys" to "handle,gramps_id,desc,mime,path,private"))
+
+    suspend fun medium(handle: String): Medium =
+        holen("/media/$handle", Medium.serializer(), mapOf("profile" to "all", "locale" to sprache))
+
+    suspend fun orte(suche: String, seite: Int, groesse: Int = 60): Seite<Ort> =
+        liste("/places/", Ort.serializer(), seite, groesse, "title", "title", suche, mapOf("profile" to "self"))
+
+    suspend fun ort(handle: String): Ort = holen("/places/$handle", Ort.serializer(), mapOf("profile" to "all", "locale" to sprache))
+
+    suspend fun quellen(suche: String, seite: Int, groesse: Int = 60): Seite<Quelle> =
+        liste("/sources/", Quelle.serializer(), seite, groesse, "title", "title", suche)
+
+    suspend fun quelle(handle: String): Quelle =
+        holen("/sources/$handle", Quelle.serializer(), mapOf("profile" to "all", "extend" to "all", "locale" to sprache))
+
+    suspend fun archive(suche: String, seite: Int, groesse: Int = 60): Seite<Archiv> =
+        liste("/repositories/", Archiv.serializer(), seite, groesse, "name", "name", suche)
+
+    suspend fun archiv(handle: String): Archiv =
+        holen("/repositories/$handle", Archiv.serializer(), mapOf("backlinks" to "true", "locale" to sprache))
+
+    suspend fun quellenNachHandle(handles: Collection<String>): List<Quelle> {
+        if (handles.isEmpty()) return emptyList()
+        return handles.distinct().chunked(40).flatMap { teil ->
+            holen("/sources/", ListSerializer(Quelle.serializer()), mapOf("gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "locale" to sprache))
+        }
+    }
+
+    suspend fun zitate(handles: Collection<String>): List<Zitat> {
+        if (handles.isEmpty()) return emptyList()
+        return handles.distinct().chunked(40).flatMap { teil ->
+            holen("/citations/", ListSerializer(Zitat.serializer()), mapOf(
+                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "profile" to "self", "locale" to sprache,
+            ))
+        }
+    }
+
+    /** Uebersetzung der englischen Grundnamen einer Typenliste (`repository_types`, `place_types` …) in die App-Sprache. */
+    suspend fun typen(art: String): Map<String, String> =
+        holen("/types/default/$art/map", JsonObject.serializer(), mapOf("locale" to sprache))
+            .mapNotNull { (k, v) -> (v as? JsonPrimitive)?.content?.let { k to it } }.toMap()
+
+    /** Volles Bild (Datei) eines Mediums; der Bildlader haengt das Token an. */
+    fun dateiUrl(medium: String): String = url("/media/$medium/file").toString()
+
     suspend fun verwandtschaft(von: String, zu: String): Verwandtschaft =
         holen("/relations/$von/$zu", Verwandtschaft.serializer(), mapOf("locale" to sprache))
 
