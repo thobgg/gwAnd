@@ -84,6 +84,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         Zustand(
             adresse = client.basisUrl, benutzername = client.namensvorschlag, version = plattform.versionName,
             zeigeGeschwister = ablage.getBoolean(K_GESCHWISTER, true), zeigeCousins = ablage.getBoolean(K_COUSINS, true),
+            zeigeCousinPartner = ablage.getBoolean(K_COUSINPARTNER, true),
+            ahnenGenerationen = (ablage.getString(K_AHNEN, null)?.toIntOrNull() ?: 4).coerceIn(2, 6), nachkommenGenerationen = (ablage.getString(K_NACHKOMMEN, null)?.toIntOrNull() ?: 2).coerceIn(0, 4),
             kannErinnern = plattform.kannErinnern, erinnerung = ablage.getBoolean(K_ERINNERUNG, false),
         ),
     )
@@ -247,12 +249,14 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
             s.profil != null -> profilZurueck()
             s.ausgewaehlt != null -> zustand.update { it.copy(ausgewaehlt = null) }
             s.bereich != Bereich.Baum -> zustand.update { it.copy(bereich = Bereich.Baum) }
+            s.baumVollbild -> zustand.update { it.copy(baumVollbild = false) }
+            s.wurzelVerlauf.isNotEmpty() -> vorigeMitte()
             else -> return false
         }
         return true
     }
 
-    fun kannZurueck(): Boolean = zustand.value.let { it.betrachter != null || it.detail != null || it.profil != null || it.ausgewaehlt != null || it.bereich != Bereich.Baum }
+    fun kannZurueck(): Boolean = zustand.value.let { it.betrachter != null || it.detail != null || it.profil != null || it.ausgewaehlt != null || it.bereich != Bereich.Baum || it.baumVollbild || it.wurzelVerlauf.isNotEmpty() }
 
     // ── Baum ─────────────────────────────────────────────────────────
 
@@ -313,8 +317,36 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun inDieMitte(person: Person) = inDieMitte(person.xref)
 
     fun inDieMitte(handle: String) {
-        zustand.update { it.copy(ausgewaehlt = null, profil = null, profilVerlauf = emptyList(), bereich = Bereich.Baum) }
+        zustand.update {
+            val verlauf = it.wurzel?.takeIf { w -> w != handle }?.let { w -> (listOf(w) + it.wurzelVerlauf).take(30) } ?: it.wurzelVerlauf
+            it.copy(ausgewaehlt = null, profil = null, profilVerlauf = emptyList(), bereich = Bereich.Baum, wurzelVerlauf = verlauf)
+        }
         baumLaden(handle)
+    }
+
+    /** Zurueck zur vorigen Mittelperson. */
+    fun vorigeMitte() {
+        val vorige = zustand.value.wurzelVerlauf.firstOrNull() ?: return
+        zustand.update { it.copy(wurzelVerlauf = it.wurzelVerlauf.drop(1)) }
+        baumLaden(vorige)
+    }
+
+    /** Zur Startperson; die bisherige Mitte bleibt im Verlauf. */
+    fun zurStartperson() { zustand.value.startperson?.let(::inDieMitte) }
+
+    fun baumVollbild(an: Boolean) = zustand.update { it.copy(baumVollbild = an) }
+
+    /** Vorfahren 2 bis 6, Nachkommen 0 (nur das Paar) bis 4; gemerkt. */
+    fun generationen(ahnen: Int? = null, nachkommen: Int? = null) {
+        ahnen?.let { ablage.putString(K_AHNEN, it.toString()) }
+        nachkommen?.let { ablage.putString(K_NACHKOMMEN, it.toString()) }
+        zustand.update { it.copy(ahnenGenerationen = ahnen ?: it.ahnenGenerationen, nachkommenGenerationen = nachkommen ?: it.nachkommenGenerationen) }
+        neuLaden()
+    }
+
+    fun zeigeCousinPartner(an: Boolean) {
+        ablage.putBoolean(K_COUSINPARTNER, an)
+        zustand.update { it.copy(zeigeCousinPartner = an) }
     }
 
     /** Weiter nach oben: drei Generationen mehr (hoechstens acht). */
@@ -786,6 +818,9 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         const val REITER_KARTE = 5
         private const val K_GESCHWISTER = "zeigeGeschwister"
         private const val K_COUSINS = "zeigeCousins"
+        private const val K_COUSINPARTNER = "zeigeCousinPartner"
+        private const val K_AHNEN = "ahnenGenerationen"
+        private const val K_NACHKOMMEN = "nachkommenGenerationen"
         const val K_ERINNERUNG = "erinnerung"
     }
 }

@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -76,7 +77,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
     LaunchedEffect(s.meldung) {
         s.meldung?.let { snackbar.showSnackbar(it); viewModel.meldungGezeigt() }
     }
-    BackHandler(enabled = s.chat != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum) {
+    BackHandler(enabled = s.chat != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum || s.baumVollbild || s.wurzelVerlauf.isNotEmpty()) {
         viewModel.zurueck()
     }
     val ansicht = remember { BaumAnsicht() }
@@ -91,6 +92,10 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
             // Vollbild-Seiten am Handy: Detail und Profil decken alles ab, mit eigener Kopfzeile und Zurueck.
             s.detail != null -> DetailSeite(s.detail, s, viewModel)
             s.profil != null && !profilDaneben -> ProfilSeite(s.profil, s, viewModel)
+            // Baum im Vollbild: ohne Kopfzeile und untere Leiste
+            s.bereich == Bereich.Baum && s.baumVollbild -> Box(Modifier.fillMaxSize().systemBarsPadding()) {
+                BaumSeite(s, viewModel, ansicht, kompakt = !breit)
+            }
             else -> Scaffold(
                 topBar = { Kopfzeile(s, viewModel) },
                 bottomBar = { UntereLeiste(s.bereich, viewModel::bereich) },
@@ -153,23 +158,14 @@ private fun Kopfzeile(s: Zustand, viewModel: GwViewModel) {
             Box {
                 IconButton(onClick = { menue = true }) { Icon(Icons.Default.MoreVert, stringResource(Res.string.menu_more)) }
                 DropdownMenu(menue, onDismissRequest = { menue = false }) {
-                    DropdownMenuItem(
-                        text = { Text(stringResource(Res.string.setting_siblings)) },
-                        leadingIcon = { Checkbox(s.zeigeGeschwister, onCheckedChange = null) },
-                        onClick = { menue = false; viewModel.zeigeGeschwister(!s.zeigeGeschwister) },
-                    )
-                    DropdownMenuItem(
-                        text = { Text(stringResource(Res.string.setting_cousins)) },
-                        leadingIcon = { Checkbox(s.zeigeCousins, onCheckedChange = null) },
-                        enabled = s.zeigeGeschwister,
-                        onClick = { menue = false; viewModel.zeigeCousins(!s.zeigeCousins) },
-                    )
-                    if (s.kannErinnern) DropdownMenuItem(
-                        text = { Text(stringResource(Res.string.setting_reminder)) },
-                        leadingIcon = { Checkbox(s.erinnerung, onCheckedChange = null) },
-                        onClick = { menue = false; viewModel.erinnerung(!s.erinnerung) },
-                    )
-                    HorizontalDivider()
+                    if (s.kannErinnern) {
+                        DropdownMenuItem(
+                            text = { Text(stringResource(Res.string.setting_reminder)) },
+                            leadingIcon = { Checkbox(s.erinnerung, onCheckedChange = null) },
+                            onClick = { menue = false; viewModel.erinnerung(!s.erinnerung) },
+                        )
+                        HorizontalDivider()
+                    }
                     DropdownMenuItem(text = { Text(stringResource(Res.string.menu_export)) }, onClick = { menue = false; viewModel.exportDialog() })
                     if (s.chatMoeglich) DropdownMenuItem(text = { Text(stringResource(Res.string.menu_chat)) }, onClick = { menue = false; viewModel.chatOeffnen() })
                     HorizontalDivider()

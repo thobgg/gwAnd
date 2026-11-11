@@ -110,6 +110,12 @@ data class Zustand(
     val chat: Chat? = null,
     val zeigeGeschwister: Boolean = true,
     val zeigeCousins: Boolean = true,
+    /** Partner der Cousins (nur wenn Cousins gezeigt werden) */
+    val zeigeCousinPartner: Boolean = true,
+    /** Fruehere Mittelpersonen, die zuletzt oben: Zurueck haengt den Baum wieder dorthin */
+    val wurzelVerlauf: List<String> = emptyList(),
+    /** Baum ohne Kopfzeile und untere Leiste */
+    val baumVollbild: Boolean = false,
     val kannErinnern: Boolean = false,
     val erinnerung: Boolean = false,
     val ausgewaehlt: Person? = null,
