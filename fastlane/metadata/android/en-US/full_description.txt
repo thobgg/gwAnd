@@ -1,11 +1,11 @@
-gwAnd is a native Android app for Gramps Web, the free web-based genealogy software. It shows and edits the family tree on your Gramps Web server – self-hosted or hosted. No account with the developer, no subscription, no ads.
+gwAnd is a native Android app for Gramps Web, the free web-based genealogy software. It shows and edits the family tree on your Gramps Web server, self-hosted or with a hosting provider.
 
 Features:
 
 * Tree: hourglass chart with ancestors, partners and descendants, pan and zoom freely; plus a fan chart across several generations. Bring any person to the centre with one tap, add relatives right from the "+" on a card
 * Profile: the life as a timeline including marriage and births of children, family, photos, sources, associations and a map of places in the person's life
 * Search across all people, plus places, sources, repositories and recent changes
-* Editing: create and change people, events, family events, parents, partners and children; add citations and associations. Concurrent changes by others are detected instead of overwritten
+* Editing: create and change people, events, family events, parents, partners and children; add citations and associations. If someone else has changed the same record in the meantime, the app notices
 * Photos: take or pick a photo and attach it to a person, set the main picture, photo overview of the whole tree with viewer
 * Faces: the server's face detection suggests boxes, one tap assigns the person; drawing your own boxes works too
 * Text recognition: let the server read document photos
@@ -20,6 +20,6 @@ The app respects your account's role: guests can only view, members and editors 
 
 Requirements: a Gramps Web server with API 3.0 or later and an account on it. Face and text recognition, reports and the assistant depend on what the server has enabled.
 
-Privacy: the app only talks to the server you enter. Stored on the device are the server address, user name and the sign-in token – never the password – and a read cache. No cloud backup, no analytics, no ads, no Google services. The map loads its tiles from OpenStreetMap.
+Privacy: the app only talks to the server you enter and loads map tiles from OpenStreetMap. Stored on the device are the server address, user name, the sign-in token and a read cache, never the password. The app backs up nothing to the cloud and uses neither analytics nor Google services.
 
 gwAnd is not an official Gramps or Gramps Web project.

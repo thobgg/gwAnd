@@ -19,7 +19,7 @@ Not an official Gramps or Gramps Web project.
 - **Tree:** hourglass chart with ancestors, partners and descendants, pan and zoom freely; fan chart across several generations. Add relatives right from the "+" on a card.
 - **Profile:** timeline including marriage and births of children, family, photos, sources, associations, map of places.
 - **Search** across all people, plus places, sources, repositories and recent changes.
-- **Editing:** people, events, family events, parents, partners, children, citations and associations. Concurrent changes by others are detected instead of overwritten.
+- **Editing:** people, events, family events, parents, partners, children, citations and associations. If someone else has changed the same record in the meantime, the app notices.
 - **Photos:** take or pick, attach to people, set the main picture; photo overview with viewer.
 - **Faces:** the server's face detection suggests boxes, one tap assigns the person.
 - **Text recognition** for document photos via the server.
@@ -46,7 +46,7 @@ depend on what the server has enabled. Android 8.0 or later.
 
 ## Privacy
 
-The app only talks to the server you enter and loads map tiles from OpenStreetMap. No tracking, no ads, no Google
+The app only talks to the server you enter and loads map tiles from OpenStreetMap. It does not use Google
 services. See the [privacy policy](docs/DATENSCHUTZ.md#english).
 
 ## Layout

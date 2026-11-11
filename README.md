@@ -19,7 +19,7 @@ Kein offizielles Projekt von Gramps oder Gramps Web.
 - **Baum:** Sanduhr mit Vorfahren, Partnern und Nachkommen, frei verschieben und zoomen; Fächerdiagramm über mehrere Generationen. Verwandte direkt über das „+“ an der Karte anlegen.
 - **Profil:** Zeitleiste mit Heirat und Geburten der Kinder, Familie, Fotos, Quellen, Beziehungen, Karte der Lebensstationen.
 - **Suche** über alle Personen, dazu Orte, Quellen, Archive und die letzten Änderungen.
-- **Bearbeiten:** Personen, Ereignisse, Familienereignisse, Eltern, Partner, Kinder, Zitate und Beziehungen. Gleichzeitige Änderungen anderer werden erkannt statt überschrieben.
+- **Bearbeiten:** Personen, Ereignisse, Familienereignisse, Eltern, Partner, Kinder, Zitate und Beziehungen. Hat jemand anderes denselben Datensatz inzwischen geändert, merkt die App das.
 - **Fotos:** aufnehmen oder auswählen, an Personen hängen, Hauptbild festlegen; Fotoübersicht mit Betrachter.
 - **Gesichter:** die Gesichtserkennung des Servers schlägt Rahmen vor, ein Tipp ordnet die Person zu.
 - **Texterkennung** für Dokumentfotos über den Server.
@@ -46,8 +46,8 @@ hängen davon ab, was der Server eingeschaltet hat. Android 8.0 oder neuer.
 
 ## Datenschutz
 
-Die App spricht nur mit dem eingetragenen Server und lädt Kartenkacheln von OpenStreetMap. Kein Tracking, keine
-Werbung, keine Google-Dienste. Siehe [Datenschutzerklärung](docs/DATENSCHUTZ.md).
+Die App spricht nur mit dem eingetragenen Server und lädt Kartenkacheln von OpenStreetMap. Google-Dienste nutzt sie
+nicht. Siehe [Datenschutzerklärung](docs/DATENSCHUTZ.md).
 
 ## Aufbau
 

@@ -1,11 +1,11 @@
-gwAnd es una aplicación Android nativa para Gramps Web, el software libre de genealogía para la web. Muestra y edita el árbol de tu servidor Gramps Web, propio o alojado. Sin cuenta con el desarrollador, sin suscripción, sin publicidad.
+gwAnd es una aplicación Android nativa para Gramps Web, el software libre de genealogía para la web. Muestra y edita el árbol de tu servidor Gramps Web, propio o alojado por un proveedor.
 
 Funciones:
 
 * Árbol: reloj de arena con antepasados, parejas y descendientes, desplazar y ampliar libremente; además un diagrama en abanico de varias generaciones. Un toque pone a una persona en el centro, el «+» de una tarjeta añade parientes
 * Perfil: la vida como cronología con boda y nacimientos de los hijos, familia, fotos, fuentes, relaciones y un mapa de los lugares de su vida
 * Búsqueda en todas las personas, además de lugares, fuentes, archivos y cambios recientes
-* Edición: crear y modificar personas, eventos, eventos familiares, padres, parejas e hijos; añadir citas y relaciones. Los cambios simultáneos de otros se detectan en lugar de sobrescribirse
+* Edición: crear y modificar personas, eventos, eventos familiares, padres, parejas e hijos; añadir citas y relaciones. Si otra persona ha cambiado el mismo registro entretanto, la aplicación lo detecta
 * Fotos: tomar o elegir una foto y asignarla a una persona, fijar la imagen principal, vista de todas las fotos del árbol con visor
 * Caras: la detección del servidor propone marcos, un toque asigna la persona; también puedes dibujar tus propios marcos
 * Reconocimiento de texto: el servidor lee las fotos de documentos
@@ -20,6 +20,6 @@ La aplicación respeta el rol de tu cuenta: los invitados solo ven, los miembros
 
 Requisitos: un servidor Gramps Web con API 3.0 o posterior y una cuenta en él. El reconocimiento de caras y texto, los informes y el asistente dependen de lo que el servidor tenga activado.
 
-Privacidad: la aplicación solo habla con el servidor que indiques. En el dispositivo se guardan la dirección del servidor, el nombre de usuario y el token de sesión – nunca la contraseña – y una caché de lectura. Sin copia en la nube, sin análisis, sin publicidad, sin servicios de Google. El mapa carga sus teselas desde OpenStreetMap.
+Privacidad: la aplicación solo habla con el servidor que indiques y carga las teselas del mapa desde OpenStreetMap. En el dispositivo se guardan la dirección del servidor, el nombre de usuario, el token de sesión y una caché de lectura, nunca la contraseña. La aplicación no guarda nada en la nube y no usa servicios de análisis ni de Google.
 
 gwAnd no es un proyecto oficial de Gramps ni de Gramps Web.

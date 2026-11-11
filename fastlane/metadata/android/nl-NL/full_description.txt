@@ -1,11 +1,11 @@
-gwAnd is een native Android-app voor Gramps Web, de vrije genealogiesoftware voor het web. De app toont en bewerkt de stamboom op je Gramps Web-server – zelf gehost of gehuurd. Geen account bij de ontwikkelaar, geen abonnement, geen reclame.
+gwAnd is een native Android-app voor Gramps Web, de vrije genealogiesoftware voor het web. De app toont en bewerkt de stamboom op je Gramps Web-server, zelf gehost of bij een aanbieder.
 
 Functies:
 
 * Boom: zandloper met voorouders, partners en nakomelingen, vrij verschuiven en zoomen; daarnaast een waaierdiagram over meerdere generaties. Met één tik een persoon in het midden zetten, familieleden direct via de „+” op een kaart toevoegen
 * Profiel: het leven als tijdlijn met huwelijk en geboorten van de kinderen, gezin, foto's, bronnen, relaties en een kaart van de levensplekken
 * Zoeken in alle personen, plus plaatsen, bronnen, archieven en recente wijzigingen
-* Bewerken: personen, gebeurtenissen, gezinsgebeurtenissen, ouders, partners en kinderen aanmaken en wijzigen; citaten en relaties toevoegen. Gelijktijdige wijzigingen van anderen worden herkend in plaats van overschreven
+* Bewerken: personen, gebeurtenissen, gezinsgebeurtenissen, ouders, partners en kinderen aanmaken en wijzigen; citaten en relaties toevoegen. Heeft iemand anders hetzelfde record intussen gewijzigd, dan merkt de app dat
 * Foto's: maken of kiezen en aan een persoon koppelen, hoofdfoto instellen, fotoverzicht van de hele boom met viewer
 * Gezichten: de gezichtsherkenning van de server stelt kaders voor, één tik koppelt de persoon; zelf kaders trekken kan ook
 * Tekstherkenning: documentfoto's door de server laten lezen
@@ -20,6 +20,6 @@ De app respecteert de rol van je account: gasten kunnen alleen kijken, leden en 
 
 Vereisten: een Gramps Web-server met API 3.0 of nieuwer en een account daarop. Gezichts- en tekstherkenning, rapporten en de assistent hangen af van wat de server heeft ingeschakeld.
 
-Privacy: de app praat alleen met de server die je invult. Op het apparaat staan serveradres, gebruikersnaam en het aanmeldtoken – nooit het wachtwoord – en een leescache. Geen cloudback-up, geen analyse, geen reclame, geen Google-diensten. De kaart laadt haar tegels van OpenStreetMap.
+Privacy: de app praat alleen met de server die je invult en laadt kaarttegels van OpenStreetMap. Op het apparaat staan serveradres, gebruikersnaam, het aanmeldtoken en een leescache, nooit het wachtwoord. De app maakt geen cloudback-up en gebruikt geen analyse- of Google-diensten.
 
 gwAnd is geen officieel project van Gramps of Gramps Web.
