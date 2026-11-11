@@ -231,4 +231,7 @@
         <item quantity="one">%1$d generatie</item>
         <item quantity="other">%1$d generaties</item>
     </plurals>
+    <string name="menu_appearance">Weergave</string>
+    <string name="appearance_classic">Klassiek: balk in de kleur van de stamboom</string>
+    <string name="appearance_light">Licht: zoals het nieuwe Gramps Web</string>
 </resources>

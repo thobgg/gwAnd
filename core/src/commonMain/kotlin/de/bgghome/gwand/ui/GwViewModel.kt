@@ -85,6 +85,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
             adresse = client.basisUrl, benutzername = client.namensvorschlag, version = plattform.versionName,
             zeigeGeschwister = ablage.getBoolean(K_GESCHWISTER, true), zeigeCousins = ablage.getBoolean(K_COUSINS, true),
             zeigeCousinPartner = ablage.getBoolean(K_COUSINPARTNER, true),
+            darstellung = Darstellung.entries.firstOrNull { it.name == ablage.getString(K_DARSTELLUNG, null) } ?: Darstellung.Klassisch,
             ahnenGenerationen = (ablage.getString(K_AHNEN, null)?.toIntOrNull() ?: 4).coerceIn(2, 6), nachkommenGenerationen = (ablage.getString(K_NACHKOMMEN, null)?.toIntOrNull() ?: 2).coerceIn(0, 4),
             kannErinnern = plattform.kannErinnern, erinnerung = ablage.getBoolean(K_ERINNERUNG, false),
         ),
@@ -342,6 +343,26 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         nachkommen?.let { ablage.putString(K_NACHKOMMEN, it.toString()) }
         zustand.update { it.copy(ahnenGenerationen = ahnen ?: it.ahnenGenerationen, nachkommenGenerationen = nachkommen ?: it.nachkommenGenerationen) }
         neuLaden()
+    }
+
+    fun einstellungDialog(d: EinstellungDialog?) = zustand.update { it.copy(einstellungDialog = d) }
+
+    fun darstellung(d: Darstellung) {
+        ablage.putString(K_DARSTELLUNG, d.name)
+        zustand.update { it.copy(darstellung = d) }
+    }
+
+    /**
+     * Nach einer neuen Sprachwahl: auch der Server soll Ereignistypen, Verwandtschaft und Alter in dieser Sprache
+     * liefern. Darum die Typen und alles Sichtbare neu laden.
+     */
+    fun spracheGewaehlt() {
+        client.sprache = de.bgghome.webtrees.nativ.Sprache.aktiv
+        if (zustand.value.bildschirm != Bildschirm.Haupt) return
+        viewModelScope.launch(sicher) { typenLaden() }
+        neuLaden()
+        startseiteLaden()
+        zustand.value.profil?.handle?.let { profilOeffnen(it) }
     }
 
     fun zeigeCousinPartner(an: Boolean) {
@@ -819,6 +840,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         private const val K_GESCHWISTER = "zeigeGeschwister"
         private const val K_COUSINS = "zeigeCousins"
         private const val K_COUSINPARTNER = "zeigeCousinPartner"
+        private const val K_DARSTELLUNG = "darstellung"
         private const val K_AHNEN = "ahnenGenerationen"
         private const val K_NACHKOMMEN = "nachkommenGenerationen"
         const val K_ERINNERUNG = "erinnerung"

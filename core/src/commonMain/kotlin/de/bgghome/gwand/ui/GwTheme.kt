@@ -68,3 +68,22 @@ private fun dunkel(f: Baumfarben): androidx.compose.material3.ColorScheme {
 fun GwTheme(farben: Baumfarben = Baumfarben(), dark: Boolean? = null, content: @Composable () -> Unit) {
     MaterialTheme(colorScheme = if (dark ?: isSystemInDarkTheme()) dunkel(farben) else hell(farben), content = content)
 }
+
+/** Darstellung des Kopfbalkens: in der Themenfarbe des Baums (wie bisher) oder hell wie das neue Gramps Web. */
+enum class Darstellung { Klassisch, Hell }
+
+val LocalDarstellung = androidx.compose.runtime.staticCompositionLocalOf { Darstellung.Klassisch }
+
+/** Farben fuer alle Kopfbalken der App, nach der gewaehlten Darstellung. */
+@OptIn(androidx.compose.material3.ExperimentalMaterial3Api::class)
+@Composable
+fun kopfFarben(): androidx.compose.material3.TopAppBarColors {
+    val c = MaterialTheme.colorScheme
+    return if (LocalDarstellung.current == Darstellung.Hell) androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
+        containerColor = c.surface, titleContentColor = c.onSurface,
+        navigationIconContentColor = c.onSurfaceVariant, actionIconContentColor = c.onSurfaceVariant,
+    ) else androidx.compose.material3.TopAppBarDefaults.topAppBarColors(
+        containerColor = c.primary, titleContentColor = c.onPrimary,
+        navigationIconContentColor = c.onPrimary, actionIconContentColor = c.onPrimary,
+    )
+}

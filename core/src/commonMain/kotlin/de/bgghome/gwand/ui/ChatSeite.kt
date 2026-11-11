@@ -57,10 +57,7 @@ fun ChatSeite(c: Chat, viewModel: GwViewModel) {
             TopAppBar(
                 title = { Text(stringResource(Res.string.menu_chat)) },
                 navigationIcon = { IconButton(onClick = viewModel::chatSchliessen) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.profile_back)) } },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary, titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
+                colors = kopfFarben(),
             )
         },
     ) { innen ->

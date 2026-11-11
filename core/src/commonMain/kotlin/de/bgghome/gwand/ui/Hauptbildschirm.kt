@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
@@ -46,6 +47,12 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
+import de.bgghome.gwand.res.menu_appearance
+import de.bgghome.gwand.res.appearance_classic
+import de.bgghome.gwand.res.appearance_light
+import de.bgghome.gwand.res.search_close
+import de.bgghome.webtrees.nativ.res.Res as WRes
+import de.bgghome.webtrees.nativ.res.menu_language
 import de.bgghome.gwand.res.menu_logout
 import de.bgghome.gwand.res.menu_about
 import de.bgghome.gwand.res.offline_banner
@@ -129,6 +136,13 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
     }
 
     BearbeitenDialoge(s, viewModel)
+    when (s.einstellungDialog) {
+        EinstellungDialog.Darstellung -> DarstellungDialog(s.darstellung, viewModel)
+        EinstellungDialog.Sprache -> de.bgghome.webtrees.nativ.ui.SpracheDialog(
+            onDismiss = { viewModel.einstellungDialog(null) }, onChosen = viewModel::spracheGewaehlt,
+        )
+        null -> {}
+    }
     s.texterkennung?.let { TexterkennungDialog(it, s, viewModel) }
 
     // Der Betrachter liegt ueber allem.
@@ -143,11 +157,7 @@ private fun Kopfzeile(s: Zustand, viewModel: GwViewModel) {
     var menue by remember { mutableStateOf(false) }
     TopAppBar(
         title = { Text(s.baumName, maxLines = 1, overflow = TextOverflow.Ellipsis) },
-        colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.primary,
-            titleContentColor = MaterialTheme.colorScheme.onPrimary,
-            actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
-        ),
+        colors = kopfFarben(),
         actions = {
             IconButton(onClick = {
                 when (s.bereich) {
@@ -166,6 +176,9 @@ private fun Kopfzeile(s: Zustand, viewModel: GwViewModel) {
                         )
                         HorizontalDivider()
                     }
+                    DropdownMenuItem(text = { Text(stringResource(Res.string.menu_appearance)) }, onClick = { menue = false; viewModel.einstellungDialog(EinstellungDialog.Darstellung) })
+                    DropdownMenuItem(text = { Text(stringResource(WRes.string.menu_language)) }, onClick = { menue = false; viewModel.einstellungDialog(EinstellungDialog.Sprache) })
+                    HorizontalDivider()
                     DropdownMenuItem(text = { Text(stringResource(Res.string.menu_export)) }, onClick = { menue = false; viewModel.exportDialog() })
                     if (s.chatMoeglich) DropdownMenuItem(text = { Text(stringResource(Res.string.menu_chat)) }, onClick = { menue = false; viewModel.chatOeffnen() })
                     HorizontalDivider()
@@ -222,4 +235,25 @@ private val FotoSymbol: ImageVector by lazy {
             fill = androidx.compose.ui.graphics.SolidColor(androidx.compose.ui.graphics.Color.Black),
         )
     }.build()
+}
+
+/** Darstellung waehlen; wirkt sofort, der Dialog bleibt zum Vergleichen offen. */
+@Composable
+private fun DarstellungDialog(aktuell: Darstellung, viewModel: GwViewModel) {
+    androidx.compose.material3.AlertDialog(
+        onDismissRequest = { viewModel.einstellungDialog(null) },
+        title = { Text(stringResource(Res.string.menu_appearance).trimEnd('…', ' ')) },
+        text = {
+            androidx.compose.foundation.layout.Column {
+                listOf(Darstellung.Klassisch to Res.string.appearance_classic, Darstellung.Hell to Res.string.appearance_light).forEach { (d, text) ->
+                    Row(Modifier.fillMaxWidth().clickable { viewModel.darstellung(d) }.padding(vertical = 6.dp),
+                        verticalAlignment = androidx.compose.ui.Alignment.CenterVertically) {
+                        androidx.compose.material3.RadioButton(aktuell == d, onClick = { viewModel.darstellung(d) })
+                        Text(stringResource(text))
+                    }
+                }
+            }
+        },
+        confirmButton = { androidx.compose.material3.TextButton(onClick = { viewModel.einstellungDialog(null) }) { Text(stringResource(Res.string.search_close)) } },
+    )
 }

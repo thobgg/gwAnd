@@ -141,10 +141,7 @@ fun DetailSeite(d: Detail, s: Zustand, viewModel: GwViewModel) {
             TopAppBar(
                 title = { Text(titel, maxLines = 1, overflow = TextOverflow.Ellipsis) },
                 navigationIcon = { IconButton(onClick = viewModel::detailSchliessen) { Icon(Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.profile_back)) } },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary, titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
+                colors = kopfFarben(),
             )
         },
     ) { innen ->

@@ -94,12 +94,14 @@ import org.jetbrains.compose.resources.stringResource
 fun GwRoot(viewModel: GwViewModel) {
     val s by viewModel.state.collectAsState()
     GwTheme(farben = s.farben) {
+        androidx.compose.runtime.CompositionLocalProvider(LocalDarstellung provides s.darstellung) {
         Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
             when (s.bildschirm) {
                 Bildschirm.Laden -> Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) { CircularProgressIndicator() }
                 Bildschirm.Anmeldung -> AnmeldeBildschirm(s, viewModel)
                 Bildschirm.Haupt -> HauptBildschirm(s, viewModel)
             }
+        }
         }
     }
 }

@@ -116,6 +116,9 @@ data class Zustand(
     val wurzelVerlauf: List<String> = emptyList(),
     /** Baum ohne Kopfzeile und untere Leiste */
     val baumVollbild: Boolean = false,
+    val darstellung: Darstellung = Darstellung.Klassisch,
+    /** Offener Dialog des Kopfmenues: Darstellung oder Sprache */
+    val einstellungDialog: EinstellungDialog? = null,
     val kannErinnern: Boolean = false,
     val erinnerung: Boolean = false,
     val ausgewaehlt: Person? = null,
@@ -255,3 +258,5 @@ sealed interface Dialog {
 }
 
 data class OidcFenster(val url: String, val anbieter: String)
+
+enum class EinstellungDialog { Darstellung, Sprache }

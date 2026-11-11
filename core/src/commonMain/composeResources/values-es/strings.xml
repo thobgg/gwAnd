@@ -231,4 +231,7 @@
         <item quantity="one">%1$d generación</item>
         <item quantity="other">%1$d generaciones</item>
     </plurals>
+    <string name="menu_appearance">Apariencia</string>
+    <string name="appearance_classic">Clásica: barra en el color del árbol</string>
+    <string name="appearance_light">Clara: como el nuevo Gramps Web</string>
 </resources>

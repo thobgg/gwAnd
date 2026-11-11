@@ -30,9 +30,10 @@ class MainActivity : ComponentActivity() {
                 erlaubnis.launch(Manifest.permission.POST_NOTIFICATIONS)
             }
         }
+        de.bgghome.webtrees.nativ.Sprache.anwenden()
         enableEdgeToEdge()
         if (savedInstanceState == null) geteilterText(intent)
-        setContent { GwRoot(viewModel) }
+        setContent { de.bgghome.webtrees.nativ.Sprache.Umgebung { GwRoot(viewModel) } }
     }
 
     override fun onNewIntent(intent: Intent) {

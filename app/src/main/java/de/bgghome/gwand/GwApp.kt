@@ -12,7 +12,6 @@ import de.bgghome.gwand.ui.GwPlattform
 import de.bgghome.gwand.ui.gwBildlader
 import de.bgghome.webtrees.nativ.data.AndroidAblage
 import de.bgghome.webtrees.nativ.ui.karte.kachelUserAgent
-import java.util.Locale
 
 class GwApp : Application(), SingletonImageLoader.Factory {
 
@@ -26,7 +25,9 @@ class GwApp : Application(), SingletonImageLoader.Factory {
         super.onCreate()
         val version = packageManager.getPackageInfo(packageName, 0).versionName.orEmpty()
         val client = GwClient(AndroidAblage(this, "gwclient"), "gwAnd/$version (Android ${Build.VERSION.RELEASE})", cacheDir)
-        client.sprache = Locale.getDefault().language.ifEmpty { "en" }
+        // Sprache der Oberflaeche: wie das System oder im Menue gewaehlt (gemeinsam mit wtAnd); der Server spricht dieselbe
+        de.bgghome.webtrees.nativ.Sprache.start(de.bgghome.webtrees.nativ.data.Settings(AndroidAblage(this, "einstellungen")))
+        client.sprache = de.bgghome.webtrees.nativ.Sprache.aktiv
         // OpenStreetMap verlangt eine ehrliche Kennung der App.
         kachelUserAgent = "gwAnd/$version (Android; https://github.com/thobgg/gwAnd)"
         plattform = GwPlattform(
@@ -67,4 +68,10 @@ class GwApp : Application(), SingletonImageLoader.Factory {
 
     // Vorschaubilder brauchen das Token der Anmeldung.
     override fun newImageLoader(context: PlatformContext): ImageLoader = gwBildlader(context, plattform.client)
+
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // Android setzt die Voreinstellung bei Drehen oder neuer Systemsprache zurueck: die Wahl erneut anlegen
+        de.bgghome.webtrees.nativ.Sprache.anwenden()
+    }
 }

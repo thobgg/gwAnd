@@ -137,10 +137,7 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
                         Icon(if (eingebettet) Icons.Default.Close else Icons.AutoMirrored.Filled.ArrowBack, stringResource(Res.string.profile_back))
                     }
                 },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.primary, titleContentColor = MaterialTheme.colorScheme.onPrimary,
-                    navigationIconContentColor = MaterialTheme.colorScheme.onPrimary, actionIconContentColor = MaterialTheme.colorScheme.onPrimary,
-                ),
+                colors = kopfFarben(),
                 actions = {
                     if (p.person != null) {
                         if (s.darfBearbeiten) IconButton(onClick = viewModel::personBearbeiten) { Icon(Icons.Default.Edit, stringResource(Res.string.edit_person)) }
@@ -148,7 +145,7 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
                             Icon(
                                 Icons.Default.Star,
                                 stringResource(if (p.gemerkt) Res.string.profile_unbookmark else Res.string.profile_bookmark),
-                                tint = if (p.gemerkt) MaterialTheme.colorScheme.onPrimary else MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.45f),
+                                tint = sternFarbe(p.gemerkt),
                             )
                         }
                         IconButton(onClick = viewModel::teilen) { Icon(Icons.Default.Share, stringResource(Res.string.profile_share)) }
@@ -460,5 +457,16 @@ private fun Karte(zeitleiste: List<ZeitleistenEintrag>) {
 private fun Leer(text: org.jetbrains.compose.resources.StringResource) {
     Box(Modifier.fillMaxSize().padding(32.dp), contentAlignment = Alignment.TopCenter) {
         Text(stringResource(text), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+    }
+}
+
+/** Stern im Kopfbalken: gemerkt kraeftig (im hellen Balken in der Themenfarbe), sonst blass in der Balkenschrift. */
+@Composable
+private fun sternFarbe(gemerkt: Boolean): androidx.compose.ui.graphics.Color {
+    val schrift = kopfFarben().actionIconContentColor
+    return when {
+        !gemerkt -> schrift.copy(alpha = 0.45f)
+        LocalDarstellung.current == Darstellung.Hell -> MaterialTheme.colorScheme.primary
+        else -> schrift
     }
 }
