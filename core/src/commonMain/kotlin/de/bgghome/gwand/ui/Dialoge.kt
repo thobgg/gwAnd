@@ -97,6 +97,61 @@ fun BearbeitenDialoge(s: Zustand, viewModel: GwViewModel) {
             confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.search_close)) } },
         )
         is Dialog.ZusammenfuehrenDialog -> ZusammenfuehrenFormular(d, s, viewModel)
+        is Dialog.VerwandtschaftDialog -> VerwandtschaftFenster(d, s, viewModel)
+        is Dialog.BerichtDialog -> AlertDialog(
+            onDismissRequest = viewModel::dialogSchliessen,
+            title = { Text(stringResource(Res.string.report_title)) },
+            text = {
+                val liste = d.berichte
+                Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                    Text(d.person.name, style = MaterialTheme.typography.titleSmall, modifier = Modifier.padding(bottom = 8.dp))
+                    when {
+                        d.laeuft != null -> Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            CircularProgressIndicator(Modifier.size(24.dp)); Text(stringResource(Res.string.report_running))
+                        }
+                        liste == null -> CircularProgressIndicator()
+                        else -> liste.forEach { b ->
+                            Text(s.typen[b.name] ?: b.name, Modifier.fillMaxWidth().clickable { viewModel.berichtErzeugen(d, b) }.padding(vertical = 12.dp),
+                                style = MaterialTheme.typography.bodyLarge)
+                        }
+                    }
+                }
+            },
+            confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.cancel)) } },
+        )
+        is Dialog.ExportDialog -> AlertDialog(
+            onDismissRequest = viewModel::dialogSchliessen,
+            title = { Text(stringResource(Res.string.export_title)) },
+            text = {
+                if (d.laeuft != null) Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                    CircularProgressIndicator(Modifier.size(24.dp)); Text(stringResource(Res.string.export_running))
+                } else Column {
+                    listOf("ged" to Res.string.export_ged, "ged7" to Res.string.export_ged7, "gramps" to Res.string.export_gramps, "csv" to Res.string.export_csv).forEach { (f, t) ->
+                        Text(stringResource(t), Modifier.fillMaxWidth().clickable { viewModel.exportieren(f) }.padding(vertical = 12.dp), style = MaterialTheme.typography.bodyLarge)
+                    }
+                }
+            },
+            confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.cancel)) } },
+        )
+        is Dialog.DnaDialog -> AlertDialog(
+            onDismissRequest = viewModel::dialogSchliessen,
+            title = { Text(stringResource(Res.string.menu_dna)) },
+            text = {
+                val t = d.treffer
+                when {
+                    t == null -> CircularProgressIndicator()
+                    t.isEmpty() -> Text(stringResource(Res.string.dna_none))
+                    else -> Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
+                        t.forEach { (p, m) ->
+                            if (p != null) PersonRow(p, label = m.relation, onClick = { viewModel.dialogSchliessen(); viewModel.profilOeffnen(p.xref) })
+                            Text(stringResource(Res.string.dna_cm, "%.1f".format(m.cM), m.segments.size), Modifier.padding(start = 72.dp, bottom = 8.dp),
+                                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                        }
+                    }
+                }
+            },
+            confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.search_close)) } },
+        )
         is Dialog.LoeschenDialog -> AlertDialog(
             onDismissRequest = viewModel::dialogSchliessen,
             text = { Text(d.text) },
@@ -419,5 +474,32 @@ private fun ZusammenfuehrenFormular(d: Dialog.ZusammenfuehrenDialog, s: Zustand,
             OutlinedButton(onClick = { viewModel.zusammenfuehrenTauschen(d) }) { Text(stringResource(Res.string.merge_swap)) }
         }
         PersonSuche(s, viewModel, d.geht) { viewModel.zusammenfuehrenWahl(d, it) }
+    }
+}
+
+// ── Verwandtschaft ───────────────────────────────────────────────────
+
+@Composable
+private fun VerwandtschaftFenster(d: Dialog.VerwandtschaftDialog, s: Zustand, viewModel: GwViewModel) {
+    Formular(Res.string.menu_relationship, s, viewModel, speichernAktiv = false, onSpeichern = {}) {
+        PersonRow(d.von, selected = true)
+        val zu = d.zu
+        if (zu != null) {
+            PersonRow(zu)
+            val wege = d.wege
+            when {
+                d.laedt || wege == null -> CircularProgressIndicator()
+                wege.isEmpty() -> Text(stringResource(Res.string.rel_none))
+                else -> wege.forEach { (text, vorfahren) ->
+                    Text(text.ifBlank { "–" }, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)
+                    if (vorfahren.isNotEmpty()) {
+                        Text(stringResource(Res.string.rel_common), style = MaterialTheme.typography.labelLarge)
+                        vorfahren.forEach { v -> PersonRow(v, onClick = { viewModel.dialogSchliessen(); viewModel.profilOeffnen(v.xref) }) }
+                    }
+                    HorizontalDivider()
+                }
+            }
+        }
+        PersonSuche(s, viewModel, zu) { viewModel.verwandtschaftBerechnen(d, it) }
     }
 }

@@ -44,6 +44,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.menu_logout
+import de.bgghome.gwand.res.menu_export
+import de.bgghome.gwand.res.menu_chat
 import de.bgghome.gwand.res.menu_more
 import de.bgghome.gwand.res.menu_reload
 import de.bgghome.gwand.res.more_about
@@ -70,7 +72,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
     LaunchedEffect(s.meldung) {
         s.meldung?.let { snackbar.showSnackbar(it); viewModel.meldungGezeigt() }
     }
-    BackHandler(enabled = s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum) {
+    BackHandler(enabled = s.chat != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum) {
         viewModel.zurueck()
     }
     val ansicht = remember { BaumAnsicht() }
@@ -81,6 +83,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
 
         when {
             s.gesichter != null -> GesichterSeite(s.gesichter, s, viewModel)
+            s.chat != null -> ChatSeite(s.chat, viewModel)
             // Vollbild-Seiten am Handy: Detail und Profil decken alles ab, mit eigener Kopfzeile und Zurueck.
             s.detail != null -> DetailSeite(s.detail, s, viewModel)
             s.profil != null && !profilDaneben -> ProfilSeite(s.profil, s, viewModel)
@@ -157,6 +160,9 @@ private fun Kopfzeile(s: Zustand, viewModel: GwViewModel) {
                         leadingIcon = { Checkbox(s.erinnerung, onCheckedChange = null) },
                         onClick = { menue = false; viewModel.erinnerung(!s.erinnerung) },
                     )
+                    HorizontalDivider()
+                    DropdownMenuItem(text = { Text(stringResource(Res.string.menu_export)) }, onClick = { menue = false; viewModel.exportDialog() })
+                    if (s.chatMoeglich) DropdownMenuItem(text = { Text(stringResource(Res.string.menu_chat)) }, onClick = { menue = false; viewModel.chatOeffnen() })
                     HorizontalDivider()
                     DropdownMenuItem(text = { Text(stringResource(Res.string.menu_logout)) }, onClick = { menue = false; viewModel.abmelden() })
                     DropdownMenuItem(

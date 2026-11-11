@@ -196,4 +196,25 @@
     <string name="change_1">geändert</string>
     <string name="change_2">gelöscht</string>
     <string name="history_empty">Noch keine Änderungen.</string>
+    <string name="tree_hourglass">Sanduhr</string>
+    <string name="tree_fan">Fächer</string>
+    <string name="menu_relationship">Verwandtschaft zu …</string>
+    <string name="menu_report">Bericht …</string>
+    <string name="menu_dna">DNA-Treffer</string>
+    <string name="menu_export">Stammbaum exportieren …</string>
+    <string name="menu_chat">KI-Assistent</string>
+    <string name="rel_none">Keine Verwandtschaft gefunden.</string>
+    <string name="rel_common">Gemeinsame Vorfahren</string>
+    <string name="report_title">Bericht erstellen</string>
+    <string name="report_running">Bericht wird erstellt …</string>
+    <string name="export_title">Stammbaum exportieren</string>
+    <string name="export_ged">GEDCOM 5.5.1</string>
+    <string name="export_ged7">GEDCOM 7</string>
+    <string name="export_gramps">Gramps XML</string>
+    <string name="export_csv">CSV-Tabelle</string>
+    <string name="export_running">Wird exportiert …</string>
+    <string name="dna_none">Keine DNA-Treffer.</string>
+    <string name="dna_cm">%1$s cM in %2$d Segmenten</string>
+    <string name="chat_hint">Frage zum Stammbaum</string>
+    <string name="chat_send">Senden</string>
 </resources>

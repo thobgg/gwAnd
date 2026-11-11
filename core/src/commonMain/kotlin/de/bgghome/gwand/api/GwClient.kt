@@ -417,6 +417,56 @@ class GwClient(private val ablage: Ablage, val userAgent: String) {
             kotlinx.serialization.json.JsonElement.serializer())
     }
 
+    // ── Verwandtschaft, Export, Berichte, DNA, Chat ──────────────────
+
+    /** Alle Verwandtschaftswege zwischen zwei Personen (Bezeichnung und gemeinsame Vorfahren). */
+    suspend fun verwandtschaftsWege(von: String, zu: String): List<VerwandtschaftWeg> =
+        holen("/relations/$von/$zu/all", ListSerializer(VerwandtschaftWeg.serializer()), mapOf("locale" to sprache))
+
+    suspend fun berichte(): List<Bericht> = holen("/reports/", ListSerializer(Bericht.serializer()), mapOf("locale" to sprache))
+
+    /** Stammbaum exportieren ([format] z. B. "ged", "ged7", "gramps"); der Server erzeugt die Datei im Hintergrund. */
+    suspend fun export(format: String): Datei = dateiAuftrag(url("/exporters/$format/file"), "stammbaum.$format")
+
+    /** Bericht als PDF fuer eine Person (Gramps-ID). */
+    suspend fun bericht(id: String, grampsId: String, name: String): Datei {
+        val optionen = buildJsonObject { put("off", "pdf"); put("pid", grampsId); put("papers", "A4") }.toString()
+        return dateiAuftrag(url("/reports/$id/file", mapOf("options" to optionen, "locale" to sprache)), "$name.pdf")
+    }
+
+    /** Auftrag abschicken, auf die Hintergrundaufgabe warten, Datei holen. */
+    private suspend fun dateiAuftrag(adresse: HttpUrl, ersatzname: String): Datei {
+        val antwort = senden(Request.Builder().url(adresse).post(ByteArray(0).toRequestBody(null)).build(), JsonObject.serializer())
+        val aufgabe = ((antwort["task"] as? JsonObject)?.get("id") as? JsonPrimitive)?.content
+        val ergebnis = if (aufgabe != null) {
+            val a = warten(aufgabe, 300)
+            if (!a.fertig) throw ApiFehler(500, a.info.ifBlank { "Aufgabe fehlgeschlagen" })
+            GrampsJson.parseToJsonElement(a.ergebnisRoh ?: "{}") as JsonObject
+        } else antwort
+        val pfad = (ergebnis["url"] as? JsonPrimitive)?.content ?: throw ApiFehler(500, "keine Datei")
+        val name = (ergebnis["file_name"] as? JsonPrimitive)?.content ?: ersatzname
+        val basis = basisUrl.toHttpUrlOrNull() ?: throw IOException("Keine Serveradresse")
+        return withContext(Dispatchers.IO) {
+            http.newCall(Request.Builder().url(basis.newBuilder().encodedPath(pfad.substringBefore('?')).build()).get().build()).execute().use { a ->
+                if (!a.isSuccessful) throw ApiFehler(a.code, "Datei")
+                Datei(name, a.header("Content-Type")?.substringBefore(';') ?: "application/octet-stream", a.body!!.bytes())
+            }
+        }
+    }
+
+    suspend fun dnaTreffer(person: String): List<DnaTreffer> =
+        holen("/people/$person/dna/matches", ListSerializer(DnaTreffer.serializer()), mapOf("locale" to sprache))
+
+    /** Frage an den KI-Assistenten des Servers; [verlauf] als (Rolle, Text). Ergebnis: Antworttext. */
+    suspend fun chat(frage: String, verlauf: List<Pair<String, String>>): String {
+        val rumpf = buildJsonObject {
+            put("query", frage)
+            put("history", JsonArray(verlauf.map { (rolle, text) -> buildJsonObject { put("role", rolle); put("message", text) } }))
+        }.toString()
+        val a = senden(Request.Builder().url(url("/chat/")).post(rumpf.toRequestBody(JSON_TYP)).build(), JsonObject.serializer())
+        return (a["response"] as? JsonPrimitive)?.content ?: a.toString()
+    }
+
     suspend fun ereignisTypen(): List<String> = holen("/types/default/event_types", ListSerializer(kotlinx.serialization.serializer<String>()))
 
     // ── Technik ──────────────────────────────────────────────────────

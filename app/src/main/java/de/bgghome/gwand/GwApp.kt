@@ -40,6 +40,17 @@ class GwApp : Application(), SingletonImageLoader.Factory {
             oeffnen = { url ->
                 runCatching { startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
             },
+            dateiOeffnen = { datei, teilen ->
+                // In den Cache schreiben und ueber den FileProvider an eine andere App geben (Ansehen oder Teilen)
+                val ordner = java.io.File(cacheDir, "dateien").apply { mkdirs(); listFiles()?.forEach { it.delete() } }
+                val name = datei.name.replace(Regex("[^A-Za-z0-9._ äöüÄÖÜß–-]"), "_")
+                val f = java.io.File(ordner, name).apply { writeBytes(datei.daten) }
+                val uri = androidx.core.content.FileProvider.getUriForFile(this, "$packageName.files", f)
+                val absicht = if (teilen) Intent(Intent.ACTION_SEND).setType(datei.mime).putExtra(Intent.EXTRA_STREAM, uri)
+                else Intent(Intent.ACTION_VIEW).setDataAndType(uri, datei.mime)
+                absicht.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                runCatching { startActivity(Intent.createChooser(absicht, datei.name).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)) }
+            },
             kannErinnern = true,
             erinnerungSetzen = { an ->
                 if (an) berechtigungAnfragen?.invoke()

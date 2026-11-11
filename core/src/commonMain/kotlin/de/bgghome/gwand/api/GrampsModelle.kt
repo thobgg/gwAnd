@@ -441,6 +441,9 @@ data class Ereigniszitate(val handle: String = "", @SerialName("citation_list") 
 data class Aufgabe(val state: String? = null, val status: String? = null, val info: String = "", val result: kotlinx.serialization.json.JsonElement? = null) {
     val fertig: Boolean get() = state == "SUCCESS" || status == "succeeded"
     val fehlgeschlagen: Boolean get() = state == "FAILURE" || status == "failed"
+    /** Das Ergebnis, wie es kommt (JSON als Text). */
+    val ergebnisRoh: String? get() = (result as? kotlinx.serialization.json.JsonPrimitive)?.content
+
     /** Das Ergebnis ist ein JSON-kodierter Text ("\"Zeile 1\nZeile 2\""); einmal auspacken. */
     val ergebnis: String? get() {
         val r = (result as? kotlinx.serialization.json.JsonPrimitive)?.content ?: return null
@@ -481,3 +484,26 @@ data class RueckgaengigPruefung(
     @SerialName("can_undo_without_force") val ohneKonflikt: Boolean = false,
     @SerialName("conflicts_count") val konflikte: Int = 0,
 )
+
+/** Ein Verwandtschaftsweg zwischen zwei Personen: Bezeichnung und gemeinsame Vorfahren (Handles). */
+@Serializable
+data class VerwandtschaftWeg(
+    @SerialName("relationship_string") val text: String = "",
+    @SerialName("common_ancestors") val gemeinsameVorfahren: List<String> = emptyList(),
+)
+
+@Serializable
+data class DnaSegment(val chromosome: String = "", val start: Long = 0, val stop: Long = 0, val cM: Double = 0.0, @SerialName("SNPs") val snps: Int = 0)
+
+/** Ein DNA-Treffer einer Person: wer (Handle), Verwandtschaft, gemeinsame Segmente. */
+@Serializable
+data class DnaTreffer(val handle: String = "", val relation: String = "", val segments: List<DnaSegment> = emptyList()) {
+    val cM: Double get() = segments.sumOf { it.cM }
+}
+
+/** Ein Bericht des Servers: ID, Name, Kategorie (0 Text, 1 Grafik, 5 Graph). */
+@Serializable
+data class Bericht(val id: String = "", val name: String = "", val category: Int = 0, val description: String = "")
+
+/** Eine fertige Datei vom Server (Export, Bericht). */
+class Datei(val name: String, val mime: String, val daten: ByteArray)

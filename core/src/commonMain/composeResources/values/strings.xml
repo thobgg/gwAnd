@@ -197,4 +197,25 @@
     <string name="change_1">changed</string>
     <string name="change_2">deleted</string>
     <string name="history_empty">No changes yet.</string>
+    <string name="tree_hourglass">Hourglass</string>
+    <string name="tree_fan">Fan</string>
+    <string name="menu_relationship">Relationship to …</string>
+    <string name="menu_report">Report …</string>
+    <string name="menu_dna">DNA matches</string>
+    <string name="menu_export">Export tree …</string>
+    <string name="menu_chat">AI assistant</string>
+    <string name="rel_none">No relationship found.</string>
+    <string name="rel_common">Common ancestors</string>
+    <string name="report_title">Create report</string>
+    <string name="report_running">Creating report …</string>
+    <string name="export_title">Export tree</string>
+    <string name="export_ged">GEDCOM 5.5.1</string>
+    <string name="export_ged7">GEDCOM 7</string>
+    <string name="export_gramps">Gramps XML</string>
+    <string name="export_csv">CSV table</string>
+    <string name="export_running">Exporting …</string>
+    <string name="dna_none">No DNA matches.</string>
+    <string name="dna_cm">%1$s cM in %2$d segments</string>
+    <string name="chat_hint">Ask about the family tree</string>
+    <string name="chat_send">Send</string>
 </resources>

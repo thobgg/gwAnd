@@ -23,6 +23,11 @@ enum class Bereich { Start, Baum, Personen, Fotos, Mehr }
 
 enum class Nachschlagart { Orte, Quellen, Archive, Verlauf }
 
+/** Darstellung des Baums: Sanduhr (Vorfahren und Nachkommen) oder Faecher (Vorfahren im Halbkreis). */
+enum class BaumArt { Sanduhr, Faecher }
+
+data class Chat(val verlauf: List<Pair<String, String>> = emptyList(), val laeuft: Boolean = false)
+
 /** Ein Vorgang im Verlauf, aufbereitet: wer, wann, was (Personen mit Namen). */
 data class Verlaufseintrag(
     val vorgang: Int,
@@ -94,6 +99,9 @@ data class Zustand(
     val ahnentafel: Pedigree? = null,
     val nachkommen: DescendantNode? = null,
     val geschwister: Map<String, List<Sibling>> = emptyMap(),
+    val baumArt: BaumArt = BaumArt.Sanduhr,
+    val chatMoeglich: Boolean = false,
+    val chat: Chat? = null,
     val zeigeGeschwister: Boolean = true,
     val zeigeCousins: Boolean = true,
     val kannErinnern: Boolean = false,
@@ -218,6 +226,15 @@ sealed interface Dialog {
 
     /** Verlauf einer Person im Profil; [eintraege] null = laedt. */
     data class ObjektVerlaufDialog(val titel: String, val eintraege: List<Verlaufseintrag>? = null) : Dialog
+
+    /** Verwandtschaft zwischen [von] und einer gewaehlten Person; [wege] null = noch nicht berechnet. */
+    data class VerwandtschaftDialog(val von: Person, val zu: Person? = null, val wege: List<Pair<String, List<Person>>>? = null, val laedt: Boolean = false) : Dialog
+
+    data class BerichtDialog(val person: Person, val grampsId: String, val berichte: List<de.bgghome.gwand.api.Bericht>? = null, val laeuft: String? = null) : Dialog
+
+    data class ExportDialog(val laeuft: String? = null) : Dialog
+
+    data class DnaDialog(val name: String, val treffer: List<Pair<Person?, de.bgghome.gwand.api.DnaTreffer>>? = null) : Dialog
 
     /** Zusammenfuehren: [bleibt] ist die Person im Profil, [geht] die gewaehlte zweite. */
     data class ZusammenfuehrenDialog(val bleibt: Person, val geht: Person? = null) : Dialog

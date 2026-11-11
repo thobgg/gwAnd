@@ -58,6 +58,8 @@ class GwPlattform(
     /** Taegliche Erinnerung an Jahrestage (Android: WorkManager und Benachrichtigung); der Desktop kann das nicht. */
     val kannErinnern: Boolean = false,
     val erinnerungSetzen: (Boolean) -> Unit = {},
+    /** Datei (Export, Bericht) oeffnen oder mit anderen Apps teilen. */
+    val dateiOeffnen: (datei: de.bgghome.gwand.api.Datei, teilen: Boolean) -> Unit = { _, _ -> },
 )
 
 /**
@@ -143,6 +145,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
             it.copy(
                 bildschirm = Bildschirm.Haupt, beschaeftigt = false, fehler = null, konto = konto,
                 baumName = meta.database.name, farben = farben, adresse = client.basisUrl, startperson = start,
+                chatMoeglich = meta.server.chat,
             )
         }
         viewModelScope.launch(sicher) { typenLaden() }
@@ -175,6 +178,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun zurueck(): Boolean {
         val s = zustand.value
         when {
+            s.chat != null -> zustand.update { it.copy(chat = null) }
             s.gesichter != null -> zustand.update { it.copy(gesichter = null) }
             s.betrachter != null -> zustand.update { it.copy(betrachter = null) }
             s.detail != null -> zustand.update { it.copy(detail = null) }

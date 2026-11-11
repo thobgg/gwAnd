@@ -133,4 +133,19 @@ class LiveSchreibTest {
             }
         }
     }
+
+    @Test
+    fun exportBerichtVerwandtschaft() = runBlocking {
+        val pass = File(System.getProperty("user.home"), ".config/gwand/editor-pass")
+        if (!pass.exists()) return@runBlocking
+        val client = GwClient(Speicher(), "gwAnd-Test")
+        Thread.sleep(1500)
+        try { client.anmelden("http://192.168.178.73:8096", "editor", pass.readText().trim()) } catch (e: Exception) { return@runBlocking }
+        val ged = client.export("ged")
+        assertTrue(String(ged.daten.copyOf(200)).contains("0 HEAD"), "GEDCOM beginnt mit HEAD")
+        val pdf = client.bericht("ancestor_report", "I0001", "Ahnentafel")
+        assertTrue(pdf.name.endsWith(".pdf") && String(pdf.daten.copyOf(5)) == "%PDF-", "Bericht ist ein PDF")
+        val wege = client.verwandtschaftsWege("1051e1fd7896bb447616685e8e7", "1051e1fd79e51ca886c7f74dcb01")
+        assertTrue(wege.isNotEmpty() && wege.first().text.isNotBlank())
+    }
 }
