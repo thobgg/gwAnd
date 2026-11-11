@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -104,7 +105,9 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
                 }
             }
         }
-        if (s.detail != null || (s.profil != null && !profilDaneben)) SnackbarHost(snackbar, Modifier.padding(16.dp))
+        if (s.detail != null || (s.profil != null && !profilDaneben)) {
+            SnackbarHost(snackbar, Modifier.align(androidx.compose.ui.Alignment.BottomCenter).navigationBarsPadding().padding(16.dp))
+        }
     }
 
     BearbeitenDialoge(s, viewModel)

@@ -243,9 +243,11 @@ private fun Lebenslauf(eintraege: List<ZeitleistenEintrag>, viewModel: GwViewMod
                         e.age.takeIf { it.isNotBlank() && selbst && !it.startsWith("0 ") }?.let { stringResource(Res.string.age_at, it) },
                     ).joinToString(" · ")
                     if (datum.isNotBlank()) Text(datum, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                    e.place?.takeIf { it.handle.isNotEmpty() }?.let { o ->
-                        Text(o.anzeigename.ifBlank { o.name }, Modifier.clickable { viewModel.ortOeffnen(o.handle) },
-                            style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.secondary)
+                    e.place?.takeIf { it.anzeigename.isNotBlank() || it.name.isNotBlank() }?.let { o ->
+                        // Mit Handle verlinkt (Ortsseite); undatierte Ereignisse kennen nur den Namen
+                        Text(o.anzeigename.ifBlank { o.name }, Modifier.clickable(enabled = o.handle.isNotEmpty()) { viewModel.ortOeffnen(o.handle) },
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = if (o.handle.isNotEmpty()) MaterialTheme.colorScheme.secondary else MaterialTheme.colorScheme.onSurfaceVariant)
                     }
                     if (e.description.isNotBlank()) Text(e.description, style = MaterialTheme.typography.bodySmall, color = farbe)
                 }

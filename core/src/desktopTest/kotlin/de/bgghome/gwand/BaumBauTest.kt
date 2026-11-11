@@ -71,6 +71,8 @@ class BaumBauTest {
         assertEquals("03.11.1955", Anzeige.anzeigeDatum("1955-11-03"))
         assertEquals("11.1955", Anzeige.anzeigeDatum("1955-11-00"))
         assertEquals("1955", Anzeige.anzeigeDatum("1955-00-00"))
+        assertEquals("um 03.04.1901", Anzeige.anzeigeDatum("um 1901-04-03"))
+        assertEquals("zwischen 1850 und 06.1860", Anzeige.anzeigeDatum("zwischen 1850-00-00 und 1860-06-00"))
         assertEquals(0, BaumBau.generation(1)); assertEquals(1, BaumBau.generation(3)); assertEquals(4, BaumBau.generation(31))
     }
 

@@ -79,14 +79,14 @@ class Anzeige(
         }
 
         /** "1955-11-03" -> "03.11.1955", "1955-11-00" -> "11.1955", "1955-00-00" -> "1955"; sonst unveraendert. */
-        fun anzeigeDatum(iso: String): String {
-            val m = Regex("""^(\d{3,4})-(\d{2})-(\d{2})$""").find(iso.trim()) ?: return iso
-            val (j, mo, t) = m.destructured
-            return when {
-                mo == "00" -> j
-                t == "00" -> "$mo.$j"
-                else -> "$t.$mo.$j"
+        fun anzeigeDatum(iso: String): String =
+            Regex("""(?<!\d)(\d{3,4})-(\d{2})-(\d{2})(?!\d)""").replace(iso.trim()) { m ->
+                val (j, mo, t) = m.destructured
+                when {
+                    mo == "00" -> j
+                    t == "00" -> "$mo.$j"
+                    else -> "$t.$mo.$j"
+                }
             }
-        }
     }
 }

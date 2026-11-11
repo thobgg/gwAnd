@@ -237,15 +237,17 @@ private fun DatumTeile(teil: DatePart, onChange: (DatePart) -> Unit) {
 @Composable
 private fun OrtFeld(text: String, s: Zustand, viewModel: GwViewModel, onText: (String) -> Unit, onOrt: (String, String) -> Unit) {
     var suche by remember { mutableStateOf(false) }
+    // Nach der Wahl den Fokus aus dem Feld nehmen: sonst landet weiteres Tippen im Ortsnamen (und legt einen neuen Ort an).
+    val fokus = androidx.compose.ui.platform.LocalFocusManager.current
     OutlinedTextField(text, { onText(it); suche = true; viewModel.ortVorschlaege(it) }, Modifier.fillMaxWidth(), singleLine = true,
         label = { Text(stringResource(Res.string.field_place)) })
     if (suche && text.isNotBlank()) {
         Column {
             s.ortVorschlaege.take(8).forEach { o ->
-                Text(o.anzeigename, Modifier.fillMaxWidth().clickable { onOrt(o.handle, o.anzeigename); suche = false }.padding(vertical = 10.dp, horizontal = 4.dp))
+                Text(o.anzeigename, Modifier.fillMaxWidth().clickable { onOrt(o.handle, o.anzeigename); suche = false; fokus.clearFocus() }.padding(vertical = 10.dp, horizontal = 4.dp))
             }
             if (s.ortVorschlaege.none { it.anzeigename.equals(text.trim(), ignoreCase = true) }) {
-                Text(stringResource(Res.string.place_new, text.trim()), Modifier.fillMaxWidth().clickable { suche = false }.padding(vertical = 10.dp, horizontal = 4.dp),
+                Text(stringResource(Res.string.place_new, text.trim()), Modifier.fillMaxWidth().clickable { suche = false; fokus.clearFocus() }.padding(vertical = 10.dp, horizontal = 4.dp),
                     color = MaterialTheme.colorScheme.primary)
             }
         }

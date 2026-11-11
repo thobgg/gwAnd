@@ -327,7 +327,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                     val gemerktA = async { runCatching { handle in client.lesezeichen() }.getOrDefault(false) }
                     val person = personA.await()
                     Profil(
-                        handle = handle, person = person, anzeige = anzeige.person(person), zeitleiste = zeitleisteA.await(),
+                        handle = handle, person = person, anzeige = anzeige.person(person), zeitleiste = mitUndatierten(person, zeitleisteA.await()),
                         verwandtschaft = verwandtschaftA.await(), gemerkt = gemerktA.await(), laedt = false,
                     )
                 }
@@ -356,6 +356,27 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         val geladen = runCatching { client.personenNachHandle(handles.toSet() - person.handle) }.getOrNull() ?: return
         val karte = geladen.associate { it.handle to anzeige.person(it) }
         zustand.update { s -> if (s.profil?.handle == person.handle) s.copy(profil = s.profil.copy(angehoerige = karte)) else s }
+    }
+
+    /**
+     * Die Zeitleiste des Servers laesst Ereignisse ohne Datum weg; im Lebenslauf muessen sie trotzdem stehen, sonst
+     * waeren sie weder sichtbar noch bearbeitbar. Sie kommen ans Ende, mit Typ und Ort aus der aufbereiteten Person
+     * (deren Ereignisse stehen in derselben Reihenfolge wie die Ereignisverweise).
+     */
+    private fun mitUndatierten(person: GrampsPerson, zeitleiste: List<de.bgghome.gwand.api.ZeitleistenEintrag>): List<de.bgghome.gwand.api.ZeitleistenEintrag> {
+        val profilEreignisse = person.profile?.events.orEmpty()
+        if (profilEreignisse.size != person.ereignisse.size) return zeitleiste
+        val vorhanden = zeitleiste.map { it.handle }.toSet()
+        val fehlend = person.ereignisse.mapIndexedNotNull { i, ref ->
+            if (ref.ref in vorhanden || ref.private) return@mapIndexedNotNull null
+            val e = profilEreignisse[i]
+            de.bgghome.gwand.api.ZeitleistenEintrag(
+                handle = ref.ref, label = e.type, role = e.role, date = e.date,
+                person = de.bgghome.gwand.api.ZeitleistenPerson(relationship = "self"),
+                place = e.ortsname.ifBlank { e.place }.takeIf { it.isNotBlank() }?.let { de.bgghome.gwand.api.OrtKurz(name = it) },
+            )
+        }
+        return zeitleiste + fehlend
     }
 
     fun profilReiter(reiter: Int) {
@@ -639,10 +660,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun ortAusZeitleiste(handle: String) = ortOeffnen(handle)
 
     private suspend fun typenLaden() {
-        val alle = mutableMapOf<String, String>()
-        for (art in listOf("repository_types", "place_types", "note_types", "source_media_types", "event_types", "family_relation_types")) {
-            runCatching { client.typen(art) }.getOrNull()?.let { alle.putAll(it) }
-        }
+        // Der Server uebersetzt Typlisten nur in seine eigene Sprache; die App bringt die Namen selbst mit.
+        val alle = de.bgghome.gwand.daten.Typnamen.fuer(client.sprache)
         val ereignisTypen = runCatching { client.ereignisTypen() }.getOrDefault(emptyList())
         zustand.update { it.copy(typen = alle, ereignisTypen = ereignisTypen) }
     }

@@ -117,7 +117,9 @@ fun GwViewModel.loeschenBestaetigt(d: Dialog.LoeschenDialog) = speichern { d.akt
 fun GwViewModel.neuesEreignis() {
     val p = zustand.value.profil?.person ?: return
     zustand.update {
-        it.copy(dialog = Dialog.EreignisDialog(p.handle, null, null, "Birth", DateForm(), "", null, "", "", null, p.change))
+        // Voreinstellung: Geburt, wenn sie fehlt, sonst Taufe - die haeufigsten Nachtraege
+        val typ = if (p.profile?.birth?.leer != false) "Birth" else "Baptism"
+        it.copy(dialog = Dialog.EreignisDialog(p.handle, null, null, typ, DateForm(), "", null, "", "", null, p.change))
     }
 }
 
