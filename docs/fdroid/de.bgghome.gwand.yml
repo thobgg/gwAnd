@@ -2,6 +2,7 @@ Categories:
   - Science & Education
 License: GPL-3.0-or-later
 AuthorName: thobgg
+WebSite: https://gwand.bgg-home.de
 SourceCode: https://github.com/thobgg/gwAnd
 IssueTracker: https://github.com/thobgg/gwAnd/issues
 Changelog: https://github.com/thobgg/gwAnd/releases
@@ -13,23 +14,9 @@ Repo: https://github.com/thobgg/gwAnd.git
 Binaries: https://github.com/thobgg/gwAnd/releases/download/v%v/gwAnd-v%v.apk
 
 Builds:
-  - versionName: '1.0'
-    versionCode: 2
-    commit: v1.0
-    subdir: app
-    submodules: true
-    gradle:
-      - yes
-  - versionName: '1.1'
-    versionCode: 3
-    commit: v1.1
-    subdir: app
-    submodules: true
-    gradle:
-      - yes
   - versionName: '1.2'
     versionCode: 4
-    commit: v1.2
+    commit: 713862a6f86b43af16bb4af6c054a6b07d58273e
     subdir: app
     submodules: true
     gradle:
