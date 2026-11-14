@@ -25,6 +25,7 @@ Reproducibility relies on `vcsInfo { include = false }` and `dependenciesInfo { 
 
 Fork `thobgg/fdroiddata` on GitLab, branch `gwand`, one commit „New App: de.bgghome.gwand“, file
 `metadata/de.bgghome.gwand.yml`. Open the MR against `fdroid/fdroiddata` `master`.
+Submitted 14.11.2026 as MR !57359: https://gitlab.com/fdroid/fdroiddata/-/merge_requests/57359
 
 ### Merge request text
 
