@@ -1,0 +1,1 @@
+Boom: afzonderlijke takken uit- en inklappen in plaats van de hele boom opnieuw te laden. Klaar voor Gramps Web API 3.26: zoekopdrachten gebruiken de nieuwe querytaal, oudere servers blijven werken.

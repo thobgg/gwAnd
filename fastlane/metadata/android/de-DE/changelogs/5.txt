@@ -1,0 +1,1 @@
+Baum: einzelne Äste auf- und zuklappen, statt den ganzen Baum neu zu laden. Vorbereitet auf Gramps Web API 3.26: Abfragen über die neue Abfragesprache, ältere Server laufen weiter.

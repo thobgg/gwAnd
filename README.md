@@ -39,6 +39,10 @@ Die App beachtet die Rolle des Kontos (Gast bis Besitzer).
 
 Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
 
+## Neu in Version 1.3
+
+Einzelne Äste im Baum auf- und zuklappen. Vorbereitet auf Gramps Web API 3.26 (Abfragen über `MatchesQuery`).
+
 ## Neu in Version 1.2
 
 Generationen wählen und Vollbild im Baum, PDFs und andere Dokumente bei den Fotos mit eigenem PDF-Betrachter,

@@ -1,0 +1,1 @@
+Arbre : déplier et replier une seule branche au lieu de recharger tout l’arbre. Prêt pour Gramps Web API 3.26 : les requêtes utilisent le nouveau langage, les serveurs plus anciens continuent de fonctionner.

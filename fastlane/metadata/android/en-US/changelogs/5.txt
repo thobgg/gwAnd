@@ -1,0 +1,1 @@
+Tree: expand and collapse single branches instead of reloading the whole tree. Ready for Gramps Web API 3.26: queries use the new query language, older servers keep working.

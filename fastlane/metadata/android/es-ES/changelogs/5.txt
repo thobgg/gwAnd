@@ -1,0 +1,1 @@
+Árbol: desplegar y plegar ramas sueltas en lugar de recargar todo el árbol. Preparado para Gramps Web API 3.26: las consultas usan el nuevo lenguaje, los servidores antiguos siguen funcionando.

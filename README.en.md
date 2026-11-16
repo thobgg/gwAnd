@@ -39,6 +39,10 @@ The app respects the account's role (guest to owner).
 
 The screenshots show the fictional demo tree "Falkenrath" from `testdaten/` (German UI).
 
+## New in version 1.3
+
+Expand and collapse single branches in the tree. Ready for Gramps Web API 3.26 (queries through `MatchesQuery`).
+
 ## New in version 1.2
 
 Choose generations and full screen in the tree, PDFs and other documents with the photos and a built-in PDF viewer,
