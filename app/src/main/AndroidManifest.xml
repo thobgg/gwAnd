@@ -33,6 +33,14 @@
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="https" android:host="gwand.bgg-home.de" android:pathPrefix="/oidc/complete" />
             </intent-filter>
+            <!-- Zweite Adresse fuer den Knopf der Seite "Zurueck zu gwAnd": Browser geben einen Link innerhalb derselben
+                 Adresse nicht an Apps weiter, einen Wechsel auf eine andere bestaetigte Adresse schon. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="bgg-home.de" android:pathPrefix="/gwand/oidc/complete" />
+            </intent-filter>
             <!-- Geteilter Text aus anderen Apps: ein Link auf eine Person des eigenen Servers oeffnet ihr Profil. -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />

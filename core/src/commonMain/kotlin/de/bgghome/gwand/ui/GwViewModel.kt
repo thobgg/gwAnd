@@ -191,7 +191,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
 
     /** Ruecksprung aus dem Systembrowser ueber den App Link (Code oder Fehler in der Adresse). */
     fun oidcAppRuecksprung(url: String) {
-        val (code, fehler) = oidcRuecksprung(url, setOf(APP_HOST)) ?: return
+        val (code, fehler) = oidcRuecksprung(url, APP_HOSTS) ?: return
         val verifier = ablage.getString(K_OIDC_VERIFIER, null)
         val adresse = ablage.getString(K_OIDC_ADRESSE, null)
         ablage.putString(K_OIDC_VERIFIER, null)
@@ -947,8 +947,11 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     companion object {
         /** Fehlerkennung des Anmeldefensters: Server vor API 3.21 (ohne Code-Tausch). */
         const val OIDC_ALT = "oidc-alt"
-        /** Domain des App Links fuer den Ruecksprung aus dem Systembrowser */
-        const val APP_HOST = "gwand.bgg-home.de"
+        /**
+         * Adressen des App Links fuer den Ruecksprung aus dem Systembrowser: gwand.bgg-home.de/oidc/complete (Ruecksprung
+         * des Servers) und bgg-home.de/gwand/oidc/complete (Knopf der Seite "Zurueck zu gwAnd").
+         */
+        val APP_HOSTS = setOf("gwand.bgg-home.de", "bgg-home.de")
         private const val K_OIDC_VERIFIER = "oidcVerifier"
         private const val K_OIDC_ADRESSE = "oidcAdresse"
         /** Generationen, die ein Tipp auf das Aufklapp-Zeichen nachlaedt */

@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
     /** Ruecksprung der Anmeldung aus dem Systembrowser (App Link auf gwand.bgg-home.de/oidc/complete). */
     private fun anmeldeRuecksprung(intent: Intent?) {
         val daten = intent?.data ?: return
-        if (intent.action != Intent.ACTION_VIEW || daten.host != GwViewModel.APP_HOST) return
+        if (intent.action != Intent.ACTION_VIEW || daten.host !in GwViewModel.APP_HOSTS) return
         viewModel.oidcAppRuecksprung(daten.toString())
         // Nicht noch einmal auswerten (z. B. nach dem Drehen)
         intent.data = null
@@ -59,4 +59,5 @@ class MainActivity : ComponentActivity() {
         intent.removeExtra(Intent.EXTRA_TEXT)
         intent.action = null
     }
+
 }
