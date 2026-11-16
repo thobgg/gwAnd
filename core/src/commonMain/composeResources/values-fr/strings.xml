@@ -230,4 +230,7 @@
     <string name="menu_appearance">Apparence</string>
     <string name="appearance_classic">Classique : barre dans la couleur de l’arbre</string>
     <string name="appearance_light">Clair : comme le nouveau Gramps Web</string>
+    <string name="oidc_failed">La connexion auprès du fournisseur a échoué.</string>
+    <string name="oidc_account_not_active">Le compte a été créé mais doit encore être approuvé par un administrateur.</string>
+    <string name="oidc_expired">La connexion a pris trop de temps ou a été commencée ailleurs. Veuillez vous reconnecter.</string>
 </resources>

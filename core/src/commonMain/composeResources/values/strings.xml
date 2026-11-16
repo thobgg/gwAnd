@@ -231,4 +231,7 @@
     <string name="menu_appearance">Appearance</string>
     <string name="appearance_classic">Classic: bar in the tree's colour</string>
     <string name="appearance_light">Light: like the new Gramps Web</string>
+    <string name="oidc_failed">The sign-in at the provider failed.</string>
+    <string name="oidc_account_not_active">The account has been created but still has to be approved by an administrator.</string>
+    <string name="oidc_expired">The sign-in took too long or was started elsewhere. Please sign in again.</string>
 </resources>

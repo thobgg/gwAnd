@@ -32,13 +32,24 @@ class MainActivity : ComponentActivity() {
         }
         de.bgghome.webtrees.nativ.Sprache.anwenden()
         enableEdgeToEdge()
-        if (savedInstanceState == null) geteilterText(intent)
+        if (savedInstanceState == null) { geteilterText(intent); anmeldeRuecksprung(intent) }
         setContent { de.bgghome.webtrees.nativ.Sprache.Umgebung { GwRoot(viewModel) } }
     }
 
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         geteilterText(intent)
+        anmeldeRuecksprung(intent)
+    }
+
+    /** Ruecksprung der Anmeldung aus dem Systembrowser (App Link auf gwand.bgg-home.de/oidc/complete). */
+    private fun anmeldeRuecksprung(intent: Intent?) {
+        val daten = intent?.data ?: return
+        if (intent.action != Intent.ACTION_VIEW || daten.host != GwViewModel.APP_HOST) return
+        viewModel.oidcAppRuecksprung(daten.toString())
+        // Nicht noch einmal auswerten (z. B. nach dem Drehen)
+        intent.data = null
+        intent.action = null
     }
 
     /** Text aus dem Teilen-Menue einer anderen App: ein Link auf eine Person des eigenen Servers oeffnet ihr Profil. */

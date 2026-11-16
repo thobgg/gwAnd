@@ -230,4 +230,7 @@
     <string name="menu_appearance">Weergave</string>
     <string name="appearance_classic">Klassiek: balk in de kleur van de stamboom</string>
     <string name="appearance_light">Licht: zoals het nieuwe Gramps Web</string>
+    <string name="oidc_failed">Aanmelden bij de aanmelddienst is mislukt.</string>
+    <string name="oidc_account_not_active">Het account is aangemaakt, maar moet nog door een beheerder worden goedgekeurd.</string>
+    <string name="oidc_expired">Het aanmelden duurde te lang of is ergens anders begonnen. Meld je opnieuw aan.</string>
 </resources>

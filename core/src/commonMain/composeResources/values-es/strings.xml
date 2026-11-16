@@ -230,4 +230,7 @@
     <string name="menu_appearance">Apariencia</string>
     <string name="appearance_classic">Clásica: barra en el color del árbol</string>
     <string name="appearance_light">Clara: como el nuevo Gramps Web</string>
+    <string name="oidc_failed">El inicio de sesión en el proveedor ha fallado.</string>
+    <string name="oidc_account_not_active">La cuenta se ha creado, pero un administrador aún debe aprobarla.</string>
+    <string name="oidc_expired">El inicio de sesión tardó demasiado o se inició en otro lugar. Vuelve a iniciar sesión.</string>
 </resources>

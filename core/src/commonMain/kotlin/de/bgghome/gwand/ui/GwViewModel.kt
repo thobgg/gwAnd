@@ -17,6 +17,9 @@ import de.bgghome.gwand.res.bookmark_added
 import de.bgghome.gwand.res.bookmark_removed
 import de.bgghome.gwand.res.error_api
 import de.bgghome.gwand.res.error_oidc_version
+import de.bgghome.gwand.res.oidc_account_not_active
+import de.bgghome.gwand.res.oidc_expired
+import de.bgghome.gwand.res.oidc_failed
 import de.bgghome.gwand.res.error_cleartext
 import de.bgghome.gwand.res.error_expired
 import de.bgghome.gwand.res.error_login
@@ -162,15 +165,48 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         }
     }
 
+    /**
+     * Anmeldung ueber einen Anbieter. Kann der Server das Ergebnis an die App schicken, laeuft sie im Systembrowser
+     * (Passwortmanager, Passkeys, auch Google); sonst wie bisher im eingebetteten Anmeldefenster.
+     */
     fun oidcStarten(adresse: String, anbieter: de.bgghome.gwand.api.OidcAnbieter) {
         if (zustand.value.beschaeftigt) return
-        zustand.update {
-            it.copy(fehler = null, adresse = adresse, oidcFenster = OidcFenster(client.oidcStartUrl(adresse, anbieter), anbieter.name.ifBlank { anbieter.id }))
+        val start = client.oidcStartUrl(adresse, anbieter)
+        val name = anbieter.name.ifBlank { anbieter.id }
+        zustand.update { it.copy(fehler = null, adresse = adresse, beschaeftigt = true) }
+        viewModelScope.launch(sicher) {
+            val verifier = de.bgghome.gwand.api.Pkce.verifier()
+            val appStart = client.oidcAppStartUrl(start, de.bgghome.gwand.api.Pkce.challenge(verifier))
+            if (client.oidcAppMoeglich(appStart)) {
+                // Merken, falls Android die App waehrend der Anmeldung im Browser beendet
+                ablage.putString(K_OIDC_VERIFIER, verifier)
+                ablage.putString(K_OIDC_ADRESSE, adresse)
+                zustand.update { it.copy(beschaeftigt = false) }
+                plattform.oeffnen(appStart)
+            } else {
+                zustand.update { it.copy(beschaeftigt = false, oidcFenster = OidcFenster(start, name)) }
+            }
         }
     }
 
+    /** Ruecksprung aus dem Systembrowser ueber den App Link (Code oder Fehler in der Adresse). */
+    fun oidcAppRuecksprung(url: String) {
+        val (code, fehler) = oidcRuecksprung(url, setOf(APP_HOST)) ?: return
+        val verifier = ablage.getString(K_OIDC_VERIFIER, null)
+        val adresse = ablage.getString(K_OIDC_ADRESSE, null)
+        ablage.putString(K_OIDC_VERIFIER, null)
+        ablage.putString(K_OIDC_ADRESSE, null)
+        if (zustand.value.bildschirm == Bildschirm.Haupt) return
+        if (verifier == null || adresse == null) {
+            viewModelScope.launch(sicher) { zustand.update { it.copy(fehler = getString(Res.string.error_login, getString(Res.string.oidc_expired))) } }
+            return
+        }
+        zustand.update { it.copy(adresse = adresse) }
+        oidcErgebnis(code, fehler, verifier)
+    }
+
     /** Ergebnis des Anmeldefensters: ein Code zum Eintauschen, ein Fehler oder (beides null) abgebrochen. */
-    fun oidcErgebnis(code: String?, fehler: String?) {
+    fun oidcErgebnis(code: String?, fehler: String?, verifier: String? = null) {
         val adresse = zustand.value.adresse
         zustand.update { it.copy(oidcFenster = null) }
         when {
@@ -178,7 +214,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                 zustand.update { it.copy(beschaeftigt = true, fehler = null) }
                 viewModelScope.launch(sicher) {
                     try {
-                        client.oidcAnmelden(adresse, code)
+                        client.oidcAnmelden(adresse, code, verifier)
                         zustand.update { it.copy(benutzername = client.benutzername) }
                         nachAnmeldung()
                     } catch (e: Exception) {
@@ -190,6 +226,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                 val grund = when (fehler) {
                     OIDC_ALT -> getString(Res.string.error_oidc_version)
                     OIDC_KLARTEXT -> getString(Res.string.error_cleartext)
+                    "account_not_active" -> getString(Res.string.oidc_account_not_active)
+                    "login_failed" -> getString(Res.string.oidc_failed)
                     else -> fehler
                 }
                 zustand.update { it.copy(fehler = getString(Res.string.error_login, grund)) }
@@ -909,6 +947,10 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     companion object {
         /** Fehlerkennung des Anmeldefensters: Server vor API 3.21 (ohne Code-Tausch). */
         const val OIDC_ALT = "oidc-alt"
+        /** Domain des App Links fuer den Ruecksprung aus dem Systembrowser */
+        const val APP_HOST = "gwand.bgg-home.de"
+        private const val K_OIDC_VERIFIER = "oidcVerifier"
+        private const val K_OIDC_ADRESSE = "oidcAdresse"
         /** Generationen, die ein Tipp auf das Aufklapp-Zeichen nachlaedt */
         const val AST_AHNEN = 3
         const val AST_NACHKOMMEN = 2

@@ -193,15 +193,42 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
      * Nach der Anmeldung beim Anbieter leitet der Server auf `…/oidc/complete#code=…` um. Den Code (einmalig, kurz
      * gueltig) gegen Access- und Refresh-Token tauschen; ab API 3.21.
      */
-    suspend fun oidcAnmelden(adresse: String, code: String) {
+    suspend fun oidcAnmelden(adresse: String, code: String, verifier: String? = null) {
         basisUrl = normalisieren(adresse)
-        val rumpf = buildJsonObject { put("code", code) }.toString()
+        val rumpf = buildJsonObject {
+            put("code", code)
+            // Code fuer die App-Adresse: nur mit dem passenden PKCE-Verifier einloesbar
+            if (verifier != null) put("code_verifier", verifier)
+        }.toString()
         val token = senden(Request.Builder().url(url("/oidc/tokens/")).header(KEIN_TOKEN, "1")
             .post(rumpf.toRequestBody(JSON_TYP)).build(), Token.serializer())
         access = token.access
         refresh = token.refresh
         benutzername = ich().name
         perOidc = true
+    }
+
+    /**
+     * Startadresse fuer die Anmeldung im Systembrowser: das Ergebnis geht an die App-Adresse [APP_RUECKSPRUNG]
+     * (App Link von gwAnd), gebunden an die PKCE-Challenge.
+     */
+    fun oidcAppStartUrl(startUrl: String, challenge: String): String =
+        startUrl.toHttpUrlOrNull()!!.newBuilder()
+            .addQueryParameter("redirect_uri", APP_RUECKSPRUNG)
+            .addQueryParameter("code_challenge", challenge)
+            .addQueryParameter("code_challenge_method", "S256")
+            .build().toString()
+
+    /**
+     * Kann der Server das Ergebnis an die App schicken? Nur dann leitet er beim Start zum Anmeldedienst weiter. Ein
+     * Server ohne diese Funktion lehnt die Parameter ab (422), einer ohne die App-Adresse in seiner Liste mit 400.
+     */
+    suspend fun oidcAppMoeglich(appStartUrl: String): Boolean = withContext(Dispatchers.IO) {
+        runCatching {
+            http.newBuilder().followRedirects(false).followSslRedirects(false).build()
+                .newCall(Request.Builder().url(appStartUrl).header(KEIN_TOKEN, "1").get().build())
+                .execute().use { it.code in 300..399 }
+        }.getOrDefault(false)
     }
 
     /** Mit dem gespeicherten Refresh-Token ein frisches Access-Token holen (App-Start). */
@@ -643,6 +670,8 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         private const val K_BENUTZER = "benutzer"
         private const val K_REFRESH = "refreshToken"
         private const val K_OIDC = "perOidc"
+        /** Ruecksprung der Anmeldung im Systembrowser; die Domain bestaetigt gwAnd per /.well-known/assetlinks.json. */
+        const val APP_RUECKSPRUNG = "https://gwand.bgg-home.de/oidc/complete"
         /** Interner Kopf: diese Anfrage ohne Access-Token senden (Anmeldung, Erneuern). Geht nie ans Netz. */
         private const val KEIN_TOKEN = "X-Gwand-Ohne-Token"
         private val JSON_TYP = "application/json".toMediaType()

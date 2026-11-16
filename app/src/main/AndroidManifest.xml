@@ -25,6 +25,14 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <!-- Ruecksprung der Anmeldung im Systembrowser (OIDC). App Link: die Domain bestaetigt gwAnd ueber
+                 https://gwand.bgg-home.de/.well-known/assetlinks.json, darum kann keine andere App ihn annehmen. -->
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="https" android:host="gwand.bgg-home.de" android:pathPrefix="/oidc/complete" />
+            </intent-filter>
             <!-- Geteilter Text aus anderen Apps: ein Link auf eine Person des eigenen Servers oeffnet ihr Profil. -->
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
