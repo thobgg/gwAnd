@@ -215,7 +215,21 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
 
     // ── Lesen ────────────────────────────────────────────────────────
 
-    suspend fun metadaten(): Metadaten = holen("/metadata/", Metadaten.serializer())
+    suspend fun metadaten(): Metadaten = holen("/metadata/", Metadaten.serializer()).also { apiVersion = it.api.version }
+
+    /** Version der Gramps Web API, sobald [metadaten] einmal geladen wurde (sonst leer). */
+    @Volatile var apiVersion: String = ""
+
+    /**
+     * Abfragen ueber die Regel `MatchesQuery` (GOQL) statt des Parameters `gql`: GOQL gibt es ab API 3.23, `gql` faellt
+     * mit 3.26 weg. Solange die Version unbekannt ist, bleibt es beim alten Weg.
+     */
+    val mitGoql: Boolean get() = versionMindestens(apiVersion, 3, 23)
+
+    /** Filter "eines dieser Objekte" fuer Listenabfragen, je nach Server-Version. */
+    private fun nachHandles(handles: List<String>): Pair<String, String> =
+        if (mitGoql) "rules" to regel("MatchesQuery", "handle in [" + handles.joinToString(",") { "\"$it\"" } + "]")
+        else "gql" to handles.joinToString(" or ") { "handle = \"$it\"" }
 
     suspend fun ich(): Benutzer = holen("/users/-/", Benutzer.serializer())
 
@@ -263,7 +277,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         val ergebnis = mutableListOf<GrampsPerson>()
         for (teil in handles.distinct().chunked(40)) {
             val p = mutableMapOf(
-                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" },
+                nachHandles(teil),
                 "profile" to "self", "keys" to if (mitFamilien) "$LISTE_FELDER,extended" else LISTE_FELDER, "locale" to sprache,
                 "pagesize" to "${teil.size}",
             )
@@ -283,7 +297,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         if (handles.isEmpty()) return emptyList()
         return handles.distinct().chunked(40).flatMap { teil ->
             holen("/families/", ListSerializer(Familienzeile.serializer()), mapOf(
-                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "profile" to "self", "keys" to "handle,profile", "locale" to sprache,
+                nachHandles(teil), "profile" to "self", "keys" to "handle,profile", "locale" to sprache,
             )).mapNotNull { it.profile }
         }
     }
@@ -293,7 +307,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         if (handles.isEmpty()) return emptyList()
         return handles.distinct().chunked(40).flatMap { teil ->
             holen("/events/", ListSerializer(Ereigniszitate.serializer()), mapOf(
-                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "keys" to "handle,citation_list",
+                nachHandles(teil), "keys" to "handle,citation_list",
             )).flatMap { it.zitate }
         }
     }
@@ -329,10 +343,19 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         http.newCall(anfrage).execute().use { a -> if (!a.isSuccessful) throw ApiFehler(a.code, meldung(a.body?.string().orEmpty())) }
     }
 
-    /** Seitenweise Liste einer Objektart; mit [suche] ueber die Abfragesprache (`feld ~ "text"`). */
-    private suspend fun <T> liste(pfad: String, s: KSerializer<T>, seite: Int, groesse: Int, sort: String, suchfeld: String?, suche: String, extra: Map<String, String> = emptyMap()): Seite<T> {
+    /**
+     * Seitenweise Liste einer Objektart; mit [suche] ueber die Abfragesprache des Servers: ab API 3.23 GOQL
+     * (`like(feld, '%text%')`, Feld [goqlFeld]), sonst Gramps QL (`feld ~ "text"`, Feld [suchfeld]).
+     */
+    private suspend fun <T> liste(pfad: String, s: KSerializer<T>, seite: Int, groesse: Int, sort: String, suchfeld: String?, suche: String, extra: Map<String, String> = emptyMap(), goqlFeld: String? = suchfeld): Seite<T> {
         val p = mutableMapOf("page" to "$seite", "pagesize" to "$groesse", "sort" to sort, "locale" to sprache) + extra
-        val mitSuche = if (suchfeld != null && suche.isNotBlank()) p + ("gql" to "$suchfeld ~ \"${suche.replace("\"", "")}\"") else p
+        // Anfuehrungszeichen und Platzhalter aus der Eingabe entfernen: sie gehoeren nicht zum gesuchten Text
+        val text = suche.trim().replace(Regex("[\"'%_\\\\]"), "")
+        val mitSuche = when {
+            suchfeld == null || text.isEmpty() -> p
+            mitGoql -> p + ("rules" to regel("MatchesQuery", "like($goqlFeld, '%$text%')"))
+            else -> p + ("gql" to "$suchfeld ~ \"$text\"")
+        }
         val (gesamt, eintraege) = sendenMitKopf(Request.Builder().url(url(pfad, mitSuche)).get().build(), ListSerializer(s))
         return Seite(eintraege, seite, groesse, gesamt ?: eintraege.size)
     }
@@ -344,7 +367,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         holen("/media/$handle", Medium.serializer(), mapOf("profile" to "all", "locale" to sprache))
 
     suspend fun orte(suche: String, seite: Int, groesse: Int = 60): Seite<Ort> =
-        liste("/places/", Ort.serializer(), seite, groesse, "title", "title", suche, mapOf("profile" to "self"))
+        liste("/places/", Ort.serializer(), seite, groesse, "title", "title", suche, mapOf("profile" to "self"), goqlFeld = "name.value")
 
     suspend fun ort(handle: String): Ort = holen("/places/$handle", Ort.serializer(), mapOf("profile" to "all", "locale" to sprache))
 
@@ -363,7 +386,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
     suspend fun quellenNachHandle(handles: Collection<String>): List<Quelle> {
         if (handles.isEmpty()) return emptyList()
         return handles.distinct().chunked(40).flatMap { teil ->
-            holen("/sources/", ListSerializer(Quelle.serializer()), mapOf("gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "locale" to sprache))
+            holen("/sources/", ListSerializer(Quelle.serializer()), mapOf(nachHandles(teil), "locale" to sprache))
         }
     }
 
@@ -371,7 +394,7 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         if (handles.isEmpty()) return emptyList()
         return handles.distinct().chunked(40).flatMap { teil ->
             holen("/citations/", ListSerializer(Zitat.serializer()), mapOf(
-                "gql" to teil.joinToString(" or ") { "handle = \"$it\"" }, "profile" to "self", "locale" to sprache,
+                nachHandles(teil), "profile" to "self", "locale" to sprache,
             ))
         }
     }
@@ -644,4 +667,12 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
             return u.substringBefore("/api").trimEnd('/')
         }
     }
+}
+
+/** Ist [version] (z. B. "3.25.2" oder "v3.25.2") mindestens [major].[minor]? Unlesbar: nein. */
+fun versionMindestens(version: String, major: Int, minor: Int): Boolean {
+    val teile = version.trim().removePrefix("v").split('.', '-', '+').mapNotNull { it.toIntOrNull() }
+    val ma = teile.getOrNull(0) ?: return false
+    val mi = teile.getOrNull(1) ?: 0
+    return ma > major || (ma == major && mi >= minor)
 }
