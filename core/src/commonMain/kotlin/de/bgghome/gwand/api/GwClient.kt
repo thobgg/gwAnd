@@ -141,20 +141,41 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         return chain.proceed(gebaut.newBuilder().header("Authorization", "Bearer $access").build())
     }
 
+    /**
+     * Neues Access-Token mit dem Refresh-Token holen. Die Anmeldung wird nur verworfen, wenn der Server das Token
+     * ablehnt ([ABGELEHNT]: abgelaufen, ungueltig, widerrufen, Konto weg). Bei 429 (der Server erlaubt eine Erneuerung
+     * je Sekunde) wird nach 1 bis 2 Sekunden wiederholt, wie in der Web-Oberflaeche; andere Fehler (Server startet neu,
+     * Proxy 502/503) gelten als voruebergehend: Token bleibt, die App arbeitet offline weiter.
+     */
     @Synchronized
     private fun erneuernBlockierend() {
-        val r = refresh ?: throw AnmeldungAbgelaufen()
-        val anfrage = Request.Builder().url(url("/token/refresh/"))
-            .header("Authorization", "Bearer $r").header(KEIN_TOKEN, "1")
-            .post(ByteArray(0).toRequestBody(null)).build()
-        http.newCall(anfrage).execute().use { a ->
-            if (!a.isSuccessful) {
-                refresh = null
-                throw AnmeldungAbgelaufen()
+        var wiederholt = 0
+        while (true) {
+            val r = refresh ?: throw AnmeldungAbgelaufen()
+            val anfrage = Request.Builder().url(url("/token/refresh/"))
+                .header("Authorization", "Bearer $r").header(KEIN_TOKEN, "1")
+                .post(ByteArray(0).toRequestBody(null)).build()
+            http.newCall(anfrage).execute().use { a ->
+                when {
+                    a.isSuccessful -> {
+                        access = GrampsJson.decodeFromString(Token.serializer(), a.body!!.string()).access
+                        return
+                    }
+                    a.code in ABGELEHNT -> {
+                        refresh = null
+                        throw AnmeldungAbgelaufen()
+                    }
+                    a.code == 429 && wiederholt < 2 -> Unit
+                    else -> throw IOException("Token-Erneuerung voruebergehend nicht moeglich (HTTP ${a.code})")
+                }
             }
-            access = GrampsJson.decodeFromString(Token.serializer(), a.body!!.string()).access
+            wiederholt++
+            Thread.sleep(warten429())
         }
     }
+
+    /** Nur fuer Tests verkuerzbar: Wartezeit vor einem neuen Versuch nach 429. */
+    internal var warten429: () -> Long = { 1000L + kotlin.random.Random.nextLong(1000L) }
 
     // ── Anmeldung ────────────────────────────────────────────────────
 
@@ -669,6 +690,12 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
         private const val K_BASIS = "basisUrl"
         private const val K_BENUTZER = "benutzer"
         private const val K_REFRESH = "refreshToken"
+        /**
+         * Antworten von `/token/refresh/`, bei denen das Refresh-Token endgueltig nicht mehr gilt: 401 (abgelaufen,
+         * widerrufen, Konto nicht gefunden; flask-jwt-extended), 403 (Passwort geaendert oder Konto gesperrt; Gramps Web
+         * API), 422 (ungueltiges Token; flask-jwt-extended). Die Web-Oberflaeche meldet bei 403 und 422 ab.
+         */
+        private val ABGELEHNT = setOf(401, 403, 422)
         private const val K_OIDC = "perOidc"
         /** Ruecksprung der Anmeldung im Systembrowser; die Domain bestaetigt gwAnd per /.well-known/assetlinks.json. */
         const val APP_RUECKSPRUNG = "https://gwand.bgg-home.de/oidc/complete"
