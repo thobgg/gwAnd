@@ -494,6 +494,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun alsStartperson(person: Person) {
         ablage.putString(schluessel("start"), person.xref)
         zustand.update { it.copy(ausgewaehlt = null, startperson = person.xref) }
+        if (zustand.value.wurzel == null) baumLaden(person.xref)
         viewModelScope.launch(sicher) { meldung(getString(Res.string.start_person_saved)) }
     }
 
@@ -662,6 +663,8 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
     fun startpersonSetzen(handle: String) {
         ablage.putString(schluessel("start"), handle)
         zustand.update { it.copy(startperson = handle) }
+        // Noch kein Baum (Konto oder Stammbaum ohne Startperson): gleich ab der neuen Startperson zeigen
+        if (zustand.value.wurzel == null) baumLaden(handle)
         viewModelScope.launch(sicher) { meldung(getString(Res.string.start_person_saved)) }
     }
 
