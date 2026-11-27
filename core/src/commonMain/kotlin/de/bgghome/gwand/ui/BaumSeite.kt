@@ -48,6 +48,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import de.bgghome.gwand.res.Res
+import de.bgghome.gwand.res.nav_people
+import de.bgghome.gwand.res.no_start_person
 import de.bgghome.gwand.res.tree_fan
 import de.bgghome.gwand.res.tree_hourglass
 import de.bgghome.webtrees.nativ.ui.tree.BaumAnsicht
@@ -61,7 +63,11 @@ import org.jetbrains.compose.resources.stringResource
  */
 @Composable
 fun BaumSeite(s: Zustand, viewModel: GwViewModel, ansicht: BaumAnsicht, kompakt: Boolean) {
-    if (s.wurzel == null) return
+    if (s.wurzel == null) {
+        // Ohne Startperson (Baum auf dem Server ohne Startperson, Konto ohne eigene Wahl) sonst nur eine leere Flaeche
+        if (s.startperson == null) KeineStartperson(viewModel)
+        return
+    }
     val layout = remember(s.ahnentafel, s.nachkommen, s.geschwister, s.zeigeCousins, s.zeigeCousinPartner, s.darfBearbeiten) {
         val oben = s.ahnentafel
         val unten = s.nachkommen
@@ -107,6 +113,20 @@ fun BaumSeite(s: Zustand, viewModel: GwViewModel, ansicht: BaumAnsicht, kompakt:
         }
     }
 }
+}
+
+/** Hinweis statt leerer Flaeche, wenn noch keine Startperson feststeht; der Knopf fuehrt zur Personensuche. */
+@Composable
+private fun KeineStartperson(viewModel: GwViewModel) {
+    Column(Modifier.fillMaxSize().padding(32.dp), verticalArrangement = androidx.compose.foundation.layout.Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(stringResource(Res.string.no_start_person), style = MaterialTheme.typography.bodyLarge,
+            textAlign = androidx.compose.ui.text.style.TextAlign.Center)
+        Spacer(Modifier.padding(8.dp))
+        androidx.compose.material3.Button(onClick = { viewModel.bereich(Bereich.Personen) }) {
+            Text(stringResource(Res.string.nav_people))
+        }
+    }
 }
 
 /** Leiste ueber dem Baum: zurueck zur vorigen Mitte, zur Startperson, Generationen, Baumansicht. */

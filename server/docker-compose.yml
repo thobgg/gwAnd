@@ -24,6 +24,8 @@ services:
       GRAMPSWEB_OIDC_NAME: "Dex (Test)"
       # Dex laeuft im Heimnetz ohne HTTPS
       AUTHLIB_INSECURE_TRANSPORT: "1"
+      # Anmeldung von gwAnd im Systembrowser (ab Gramps Web API 3.26): Ruecksprung per App Link
+      GRAMPSWEB_OIDC_ALLOWED_REDIRECT_URIS: '["https://gwand.bgg-home.de/oidc/complete"]'
     depends_on:
       - grampsweb_redis
     volumes:
