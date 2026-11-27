@@ -23,16 +23,17 @@ Server http://192.168.178.73:8096, Konto admin.
 | baum-partner-I0008 | 200 | 3 |
 | profil-I0021 | 200 | 1 |
 | timeline-I0021 | 200 | 22 |
+| dna-matches | 200 |  |
 | quellen | 200 | 205 |
 | archive | 200 | 40 |
 | zitate | 200 | 1416 |
-| notizen | 200 | 710 |
+| notizen | 200 | 715 |
 | orte | 200 | 35 |
 | medien-voll | 200 | 142 |
 | jahrestage | 200 | 13 |
 | zuletzt-geaendert | 200 | 493 |
 | bookmarks | 200 |  |
-| transaktionen-verlauf | 200 | 3 |
+| transaktionen-verlauf | 200 | 1894 |
 | notizen-typen | 200 |  |
 | ereignis-typen | 200 |  |
 | tasks | 200 |  |
@@ -41,9 +42,9 @@ Server http://192.168.178.73:8096, Konto admin.
 
 ## Befunde zu den offenen Fragen
 
-- API-Version laut metadata: `{"schema": "3.25.2", "version": "3.25.2"}`
+- API-Version laut metadata: `{"schema": "3.26.0", "version": "3.26.0"}`
 - Startperson laut metadata (`default_person`): `nicht gesetzt`
-- Mittelperson: `I0001` Handle `1051e1fd7896bb447616685e8e7`
+- Mittelperson: `I0001` Handle `10552fca6fd81594210e4b4499cc`
 - Vorschaubild mit Header: HTTP 200
 - Vorschaubild mit Parameter jwt: HTTP 200
 - Vorschaubild ohne Anmeldung: HTTP 401

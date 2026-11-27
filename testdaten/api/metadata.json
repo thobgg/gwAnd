@@ -13,14 +13,11 @@
     "version": "6.0.8"
   },
   "gramps_object_query_language": {
-    "version": "0.5.8"
-  },
-  "gramps_ql": {
-    "version": "0.5.0"
+    "version": "0.5.12"
   },
   "gramps_webapi": {
-    "schema": "3.25.2",
-    "version": "3.25.2"
+    "schema": "3.26.0",
+    "version": "3.26.0"
   },
   "locale": {
     "description": "English (USA)",
@@ -33,7 +30,7 @@
     "events": 2507,
     "families": 155,
     "media": 142,
-    "notes": 710,
+    "notes": 715,
     "people": 493,
     "places": 35,
     "repositories": 40,
@@ -56,13 +53,14 @@
   "search": {
     "building": false,
     "sifts": {
-      "count": 5703,
-      "version": "3.25.2"
+      "count": 5708,
+      "version": "3.26.0"
     }
   },
   "server": {
     "backups": false,
     "chat": false,
+    "chat_vision": false,
     "email": false,
     "face_detection": true,
     "max_thumbnail_file_bytes": 52428800,
@@ -126,6 +124,6 @@
     }
   },
   "yclade": {
-    "version": "0.7.0"
+    "version": "0.7.1"
   }
 }

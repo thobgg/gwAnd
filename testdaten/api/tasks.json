@@ -1,101 +1,902 @@
 [
   {
-    "created_at": "2026-11-11T08:58:52.976483",
+    "created_at": "2026-11-27T20:43:06.123833",
+    "name": "gramps_webapi.api.tasks.generate_report",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "9d985e12-998c-4b87-aefa-818b76a9cad0",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:43:03.936264",
+    "name": "gramps_webapi.api.tasks.export_db",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "450b9b1d-71ee-4256-a977-3a0072957bdb",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:43:01.562465",
     "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "71cb921c-c523-455c-b709-83f26a934fd2",
-    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
-    "user_name": "admin"
+    "task_id": "eebb9017-40f1-4f2d-9dbb-7f83f45dc04c",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:49:53.242254",
-    "name": "gramps_webapi.api.tasks.search_reindex_incremental",
+    "created_at": "2026-11-27T20:43:00.710073",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "e7e7bbee-aee5-4087-b0c7-938e030b295c",
-    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
-    "user_name": "admin"
+    "task_id": "0c066176-322f-405c-b502-5266247720b5",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:49:53.193325",
+    "created_at": "2026-11-27T20:43:00.159641",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "03cfd879-aede-433e-b439-a9ecef603a51",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:59.705813",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "8e0d2deb-495b-4f56-91b8-7950cb5e20f9",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:58.819623",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "517b5e29-766d-40d9-ac7f-ab00595d9057",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:58.353896",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "68ccd13a-f1ce-4c2c-9dcf-8ca548b32bbf",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:57.905120",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "f8082282-b36d-46a1-8a40-d352a22203b8",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:57.305191",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "05c1e5df-05c1-4ba2-8202-ffffaedde1d0",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:54.945442",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "315e2845-edf6-4337-8c4f-29279551246b",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:54.608718",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "678b5151-5f8b-441a-b4d5-a35bf199033b",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:53.229961",
+    "name": "gramps_webapi.api.tasks.process_transactions",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "7f5ab99a-7575-4d4a-bf7b-6ada3bb763bf",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:53.063841",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "94cec4af-3a2e-42e7-8319-c2420eb115a8",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:52.576455",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "2f23999e-af0e-48fc-b446-4e5c74b245a0",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:52.213570",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "de3eb65d-e3b3-46d4-8694-42b43311bbb9",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:51.752380",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "bb8b593f-d99c-4933-8b9f-834851126f01",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:47.799157",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "39e39690-adb1-4aca-ab07-261a586ac387",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:47.477310",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "814484cc-be7d-4806-aa1b-a770c82afa42",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:47.195066",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "a7d3043a-1fb6-4004-a668-066a62058978",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:46.754923",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "4cfb1bf1-359e-4a3c-9b70-fa7455a7f683",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:46.688450",
     "name": "gramps_webapi.api.tasks.update_media_usage_task",
     "state": null,
     "status": "succeeded",
-    "task_id": "6df9c606-b6cb-43a9-abef-5147af76fb80",
-    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
-    "user_name": "admin"
+    "task_id": "988abdf1-b4bf-456a-8aef-bfd671503199",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:49:43.788456",
-    "name": "gramps_webapi.api.tasks.import_file",
+    "created_at": "2026-11-27T20:42:45.992004",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "ea93b1a8-131c-4806-a6e3-1eec7bb6fb90",
-    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
-    "user_name": "admin"
+    "task_id": "6ac0a481-652d-45e8-8f26-e83aecb1f329",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:49:35.559314",
-    "name": "gramps_webapi.api.tasks.import_file",
+    "created_at": "2026-11-27T20:42:45.425683",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "714c94ed-f57e-42d1-a55b-526c737cecee",
-    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
-    "user_name": "admin"
+    "task_id": "f6c444b0-b605-4291-98eb-eda1dedf2a97",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:48:56.462940",
-    "name": "gramps_webapi.api.tasks.search_reindex_full",
+    "created_at": "2026-11-27T20:42:44.967334",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "2dbe522a-6433-4f89-8f90-0561e3db64bc",
-    "user_id": "1c2d8b88-b9d9-407a-91ae-4460a6d74c40",
-    "user_name": "admin"
+    "task_id": "dd111332-7a19-48e8-abce-cd1376fc9382",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:48:56.127739",
-    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "created_at": "2026-11-27T20:42:44.557561",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "4cf35c19-42ab-4b80-a859-6a8fd772d747",
-    "user_id": null,
-    "user_name": null
+    "task_id": "c384a737-6eec-48eb-b29c-17c6167502f7",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:48:56.099539",
-    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "created_at": "2026-11-27T20:42:44.173443",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "b20c4d2f-3abe-4fa6-8d07-cdf6d865db8b",
-    "user_id": null,
-    "user_name": null
+    "task_id": "7a4cd0a9-3b54-4f84-943f-c8052e0d327c",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:48:56.071772",
-    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "created_at": "2026-11-27T20:42:43.732874",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "a83ebba6-8b7f-43bd-a985-0eed302b71e6",
-    "user_id": null,
-    "user_name": null
+    "task_id": "cefca705-6c56-48c5-abe3-21e5796792ee",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:48:56.040299",
-    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "created_at": "2026-11-27T20:42:43.394657",
+    "name": "gramps_webapi.api.tasks.update_media_usage_task",
     "state": null,
     "status": "succeeded",
-    "task_id": "6fb6f018-41ab-41a0-878c-9f12c313e742",
-    "user_id": null,
-    "user_name": null
+    "task_id": "91cdb131-5c14-45e5-919d-c930d2fcefb2",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   },
   {
-    "created_at": "2026-11-11T08:48:55.988275",
-    "name": "gramps_webapi.api.tasks.send_telemetry_task",
+    "created_at": "2026-11-27T20:42:42.870297",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
     "state": null,
     "status": "succeeded",
-    "task_id": "8c40adf6-71da-481a-8750-9413f3cf4d2e",
-    "user_id": null,
-    "user_name": null
+    "task_id": "47cc18d9-f425-45cf-a640-1a0ea549fb77",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:42.458392",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "55813324-33c3-4069-8356-075ce4714520",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:41.909232",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "7830a5d4-f61f-4806-902d-0af3f0e3ff91",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:41.498761",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "dca08f6b-bb25-4290-a045-c219f32a38a9",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:41.155496",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ba458e26-2950-4c7b-94dc-c919a7fcb2c2",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:40.751585",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "26bbf74c-db77-4b24-adc8-42ff84fba6d8",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:40.187431",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "698b2939-8af2-406d-8bcd-3d35a7f28652",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:39.534322",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "d61f67ef-8102-457b-b144-0917b553ac22",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:39.192087",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "f17dc63b-d7f7-4146-9154-dc7d14708133",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:38.698443",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "794f493a-f249-494d-b5cc-f64f08d0e114",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:38.223905",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "cf9d5836-d65f-4dde-a6bc-d93ae12a41f4",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:36.722521",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "1d688f1f-02e5-4a6f-a7d4-436d263072c9",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:17.221152",
+    "name": "gramps_webapi.api.tasks.generate_report",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ce6529ef-94b9-41fd-bcda-55259fff6629",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:15.097018",
+    "name": "gramps_webapi.api.tasks.export_db",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "94998cbd-9ffe-437c-a383-5a31a662ca9d",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:12.771190",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "1b4b1684-71ef-40df-b484-99c9a82e947f",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:11.914862",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "2eafcf62-1c7d-46b7-9e23-86d44cc4d2ce",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:11.413743",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "1d3ed390-5d8b-45f9-810c-fc7ae4a5806f",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:10.958500",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "b3062947-bd14-4693-8bf5-0ef0096e67c4",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:10.101601",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "176fe27d-56c7-4cab-80c4-ceb88c1b46ae",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:09.612434",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "d1e46727-b746-4e26-ae6f-7808e301c4e6",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:09.277770",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ae917bdd-c4ca-4e57-983c-0fb7105fe41e",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:08.683382",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ddb54cd3-3bb9-4b13-8222-06f95cf24682",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:06.411118",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "6ded3224-7466-4e1c-aa19-247135eab343",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:06.066229",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "fabfa5f6-6852-4476-8c2a-4106ac5ed444",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:04.721637",
+    "name": "gramps_webapi.api.tasks.process_transactions",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ca7b8bdb-5c24-401d-880e-1b88114c8428",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:04.473968",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "03e9260f-f35c-4e5e-9912-5bea5cb8979d",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:04.027485",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "8406bddc-8a5f-4a45-ac95-8539c4bcacc6",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:03.675523",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "a798807b-685e-4625-a3dc-a707c3f5e3ac",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:42:03.165114",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "3be60bed-3885-4a43-8ac5-51782525c9b1",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:59.563285",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "1a0273f4-693a-4617-bb45-46be008b0bef",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:59.255863",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "79442b0e-b8ee-4086-9e12-5aff91429268",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:58.990255",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "2429ddb4-6b9e-419b-bd60-e15e2663afb6",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:58.670579",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "131d37d2-273d-4d84-8bc8-bcf9e7990957",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:58.557166",
+    "name": "gramps_webapi.api.tasks.update_media_usage_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "cb0f894e-f6f7-4ebf-b810-e38be7224cf1",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:57.900487",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "57c34b45-f0db-4677-ab2a-7a11b03621a4",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:57.349953",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "371342cd-e463-42b3-8a80-59a1ddfdbd6c",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:56.888710",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ec87fe9f-9da9-4c7b-80ab-974bf53da15b",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:56.494420",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "196c79dc-bfba-4a6f-96e6-8f59f30b6786",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:56.134585",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "27e33096-1904-40a7-8529-ca376ddbf5f9",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:55.709676",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "dcdc7825-d95d-4d29-91fc-73e268653ccc",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:55.334147",
+    "name": "gramps_webapi.api.tasks.update_media_usage_task",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "7f3d6fbc-218d-4213-956b-3047da08e3b1",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:54.820250",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "80a624b1-ef1c-4add-b1c6-683fcc455491",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:54.392693",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "e2b6b495-177e-4786-b608-5ffabe9b581a",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:53.848284",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "04084dc1-61d0-4bfb-996c-44c5b46f27f3",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:53.419968",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "c879892e-3364-4332-8bd1-8625c691ae25",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:53.032835",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "141de344-2b1d-4728-b185-14be3281c8dc",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:52.583174",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "68468c6b-d189-42e0-bfc3-2dfbb97c8bf4",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:52.011069",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "70f1063c-ccd0-4540-992d-cde29f367947",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:51.342463",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "c1823c50-b0af-4496-9da7-0a3ffe258ff0",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:50.986842",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "9a51fddb-c6b8-450a-94b3-0cc6bf34dd15",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:50.510353",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "4fffbf27-1b64-472b-837f-5062d428c487",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:50.057795",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "8d0c5290-e0ea-4760-b674-7fe9608d3dba",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:41:48.562637",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "ff67dfed-639e-4fb7-a2bd-2e18c8c5e327",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:33:41.959583",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "c96962cf-ce08-447d-b695-069ea045821c",
+    "user_id": "dcb91997-3568-4276-a792-4a26bf1fa959",
+    "user_name": "besitzer"
+  },
+  {
+    "created_at": "2026-11-27T20:33:10.150277",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "da9df6b0-d3f7-483e-b329-e8040e136e82",
+    "user_id": "dcb91997-3568-4276-a792-4a26bf1fa959",
+    "user_name": "besitzer"
+  },
+  {
+    "created_at": "2026-11-27T20:33:09.533918",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "9f6abcb1-6dd6-49e2-80fb-abfe0c8f4bf3",
+    "user_id": "dcb91997-3568-4276-a792-4a26bf1fa959",
+    "user_name": "besitzer"
+  },
+  {
+    "created_at": "2026-11-27T20:06:02.905733",
+    "name": "gramps_webapi.api.tasks.generate_report",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "c7dd15c8-779c-4d04-acde-f9c7af7ee24f",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:06:00.776101",
+    "name": "gramps_webapi.api.tasks.export_db",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "1edfe03c-64bd-4cf3-8d4b-dde922cd5c22",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:58.440029",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "d9b283ce-fe16-4940-9879-9bfdba110990",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:57.525713",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "a46d2619-f3a5-408d-8891-68796c09510a",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:57.004933",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "aedd3bbd-7f92-4930-a126-57462ae962fc",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:56.539300",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "556a3451-21d5-4938-8cee-07c09b1cf2b2",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:55.704879",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "50e0901d-36b7-4ce3-b000-50062a3c535b",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:55.236025",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "4ae1bf79-36ba-4180-b1b2-ffeb8808907f",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:54.805863",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "575fafac-75b6-4be1-ae05-ac3d5efe4746",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:54.214573",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "4702bf4c-88cf-400f-8279-fa7d52b8c92e",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:51.901884",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "fdd4554e-c851-43d6-a65f-625ff854f65d",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:51.557313",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "58efd6c8-db02-4d72-9508-67115530e59c",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:50.165983",
+    "name": "gramps_webapi.api.tasks.process_transactions",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "6e0d4c5e-6f5d-44ae-8377-c7f59db1ab07",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:49.953041",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "8dd35a36-8b96-4565-b94c-24e1c2a536c8",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
+  },
+  {
+    "created_at": "2026-11-27T20:05:49.468784",
+    "name": "gramps_webapi.api.tasks.update_search_indices_from_transaction",
+    "state": null,
+    "status": "succeeded",
+    "task_id": "84497849-da11-4ce4-a40c-14398fd3003a",
+    "user_id": "79195897-60a6-4f42-a9bd-104608800997",
+    "user_name": "editor"
   }
 ]

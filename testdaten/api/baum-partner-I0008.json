@@ -1,12 +1,12 @@
 [
   {
-    "change": 1794386988,
+    "change": 1795806006,
     "family_list": [
-      "1051e1fd78e07bd25b7228b8533c"
+      "10552fca707b26c4d23c2f954ceb"
     ],
     "gender": 0,
     "gramps_id": "I0002",
-    "handle": "1051e1fd78ea45d88eafd260dda2",
+    "handle": "10552fca70873942e0f2136f1313",
     "media_list": [],
     "parent_family_list": [],
     "private": false,
@@ -21,7 +21,7 @@
       },
       "death": {},
       "gramps_id": "I0002",
-      "handle": "1051e1fd78ea45d88eafd260dda2",
+      "handle": "10552fca70873942e0f2136f1313",
       "name_display": "Sandvoss, Mira",
       "name_given": "Mira",
       "name_suffix": "",
@@ -30,13 +30,13 @@
     }
   },
   {
-    "change": 1794386988,
+    "change": 1795806006,
     "family_list": [
-      "1051e1fd793531916f5694233e71"
+      "10552fca70d67e1507c4c917b9e2"
     ],
     "gender": 1,
     "gramps_id": "I0006",
-    "handle": "1051e1fd793a668d47e839384e7b",
+    "handle": "10552fca70db32cc26127548002",
     "media_list": [],
     "parent_family_list": [],
     "private": false,
@@ -51,7 +51,7 @@
       },
       "death": {},
       "gramps_id": "I0006",
-      "handle": "1051e1fd793a668d47e839384e7b",
+      "handle": "10552fca70db32cc26127548002",
       "name_display": "Wolniak, Tomasz",
       "name_given": "Tomasz",
       "name_suffix": "",
@@ -60,16 +60,16 @@
     }
   },
   {
-    "change": 1794386988,
+    "change": 1795806006,
     "family_list": [
-      "1051e1fd78d842ae4faf12795e46"
+      "10552fca707175d6a83c62b147a6"
     ],
     "gender": 0,
     "gramps_id": "I0009",
-    "handle": "1051e1fd7a054ed6f85116883ae8",
+    "handle": "10552fca71bb64c369742003534b",
     "media_list": [],
     "parent_family_list": [
-      "1051e1fd7a1b73173276d2455b98"
+      "10552fca71e35ceae37506e789b"
     ],
     "private": false,
     "profile": {
@@ -83,7 +83,7 @@
       },
       "death": {},
       "gramps_id": "I0009",
-      "handle": "1051e1fd7a054ed6f85116883ae8",
+      "handle": "10552fca71bb64c369742003534b",
       "name_display": "Ilgner, Karin",
       "name_given": "Karin",
       "name_suffix": "",
