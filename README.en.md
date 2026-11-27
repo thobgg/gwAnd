@@ -41,7 +41,7 @@ The screenshots show the fictional demo tree "Falkenrath" from `testdaten/` (Ger
 
 ## New in version 1.4
 
-OIDC sign-in in the system browser, with password manager and existing session at the identity provider (Gramps Web API 3.26 or newer, see requirements). Short server outages no longer sign you out. Tree without a start person: a hint instead of an empty screen, a newly chosen start person shows up right away.
+OIDC sign-in in the system browser, with password manager and existing session at the identity provider (Gramps Web API 3.26 or newer, see requirements). Short server outages no longer sign you out. Tree without a start person: a hint instead of an empty screen, a newly chosen start person shows up right away. DNA as in Gramps Web: view matches with summary, chromosome view and segment table, add and delete matches, show the Y-DNA haplogroup.
 
 ## New in version 1.3
 

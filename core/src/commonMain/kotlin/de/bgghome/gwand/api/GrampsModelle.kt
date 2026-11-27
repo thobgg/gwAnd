@@ -508,13 +508,46 @@ data class VerwandtschaftWeg(
     @SerialName("common_ancestors") val gemeinsameVorfahren: List<String> = emptyList(),
 )
 
+/** Ein gemeinsames Segment; [side] "P" vaeterlich, "M" muetterlich, "U" unbekannt (der Server leitet es aus dem Verwandtschaftsweg ab). */
 @Serializable
-data class DnaSegment(val chromosome: String = "", val start: Long = 0, val stop: Long = 0, val cM: Double = 0.0, @SerialName("SNPs") val snps: Int = 0)
+data class DnaSegment(
+    val chromosome: String = "",
+    val start: Long = 0,
+    val stop: Long = 0,
+    val side: String = "U",
+    val cM: Double = 0.0,
+    @SerialName("SNPs") val snps: Int = 0,
+    val comment: String = "",
+)
 
-/** Ein DNA-Treffer einer Person: wer (Handle), Verwandtschaft, gemeinsame Segmente. */
+/**
+ * Ein DNA-Treffer einer Person: wer (Handle), Verwandtschaft, gemeinsame Vorfahren, gemeinsame Segmente.
+ * [verweisIndex] ist die Stelle der Beziehung in `person_ref_list`, [notizen] sind die Notizen mit Segmentdaten.
+ */
 @Serializable
-data class DnaTreffer(val handle: String = "", val relation: String = "", val segments: List<DnaSegment> = emptyList()) {
+data class DnaTreffer(
+    val handle: String = "",
+    val relation: String = "",
+    val segments: List<DnaSegment> = emptyList(),
+    @SerialName("ancestor_profiles") val vorfahren: List<PersonProfil> = emptyList(),
+    @SerialName("person_ref_idx") val verweisIndex: Int = -1,
+    @SerialName("note_handles") val notizen: List<String> = emptyList(),
+) {
     val cM: Double get() = segments.sumOf { it.cM }
+    val groesstes: Double get() = segments.maxOfOrNull { it.cM } ?: 0.0
+}
+
+/** Eine Stelle im Y-Baum (YFull), z. B. "R-M269". */
+@Serializable
+data class YKlade(val name: String = "")
+
+/** Y-DNA einer Person: die Linie im Y-Baum von der Wurzel bis zur genauesten Stelle; leer = keine Y-DNA-Daten. */
+@Serializable
+data class YDna(
+    @SerialName("clade_lineage") val linie: List<YKlade> = emptyList(),
+    @SerialName("tree_version") val baumVersion: String = "",
+) {
+    val haplogruppe: String? get() = linie.lastOrNull()?.name?.takeIf { it.isNotBlank() }
 }
 
 /** Ein Bericht des Servers: ID, Name, Kategorie (0 Text, 1 Grafik, 5 Graph). */

@@ -41,7 +41,7 @@ Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
 
 ## Neu in Version 1.4
 
-Anmeldung über OIDC im Systembrowser, mit Passwort-Manager und bestehender Anmeldung beim Anmeldedienst (ab Gramps Web API 3.26, siehe Voraussetzungen). Kurze Serverstörungen melden nicht mehr ab. Baum ohne Startperson: Hinweis statt leerer Fläche, eine neu gewählte Startperson erscheint sofort.
+Anmeldung über OIDC im Systembrowser, mit Passwort-Manager und bestehender Anmeldung beim Anmeldedienst (ab Gramps Web API 3.26, siehe Voraussetzungen). Kurze Serverstörungen melden nicht mehr ab. Baum ohne Startperson: Hinweis statt leerer Fläche, eine neu gewählte Startperson erscheint sofort. DNA wie in Gramps Web: Treffer mit Zusammenfassung, Chromosomen-Ansicht und Segmenttabelle ansehen, Treffer eintragen und löschen, Y-DNA-Haplogruppe anzeigen.
 
 ## Neu in Version 1.3
 

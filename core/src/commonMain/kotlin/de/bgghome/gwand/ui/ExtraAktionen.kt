@@ -93,19 +93,43 @@ fun GwViewModel.exportieren(format: String) {
 
 // ── DNA ──────────────────────────────────────────────────────────────
 
-fun GwViewModel.dnaDialog() {
+/** DNA-Seite der Person im Profil oeffnen. */
+fun GwViewModel.dnaOeffnen() {
     val p = zustand.value.profil ?: return
-    zustand.update { it.copy(dialog = Dialog.DnaDialog(p.anzeige?.name.orEmpty())) }
+    zustand.update { it.copy(dna = DnaAnsicht(p.handle, p.anzeige)) }
+    dnaLaden()
+}
+
+/** Treffer und Y-DNA der offenen DNA-Seite (neu) laden; die Y-DNA ist Beigabe und darf fehlen (aeltere Server). */
+internal fun GwViewModel.dnaLaden() {
+    val handle = zustand.value.dna?.handle ?: return
     viewModelScope.launch(sicher) {
         try {
-            val treffer = client.dnaTreffer(p.handle)
+            val treffer = client.dnaTreffer(handle)
             val personen = client.personenNachHandle(treffer.map { it.handle }.toSet()).associate { it.handle to anzeige.person(it) }
-            zustand.update { s -> val d = s.dialog; if (d is Dialog.DnaDialog) s.copy(dialog = d.copy(treffer = treffer.sortedByDescending { it.cM }.map { personen[it.handle] to it })) else s }
+            val eintraege = treffer.sortedByDescending { it.cM }.map { t -> DnaEintrag(personen[t.handle], t, t.vorfahren.map(anzeige::ausProfil)) }
+            zustand.update { s -> if (s.dna?.handle == handle) s.copy(dna = s.dna.copy(treffer = eintraege,
+                gewaehlt = s.dna.gewaehlt?.takeIf { g -> eintraege.any { it.treffer.handle == g } })) else s }
         } catch (e: Exception) {
-            zustand.update { s -> val d = s.dialog; if (d is Dialog.DnaDialog) s.copy(dialog = d.copy(treffer = emptyList())) else s }
+            zustand.update { s -> if (s.dna?.handle == handle && s.dna.treffer == null) s.copy(dna = s.dna.copy(treffer = emptyList())) else s }
             fehlschlag(e)
         }
     }
+    viewModelScope.launch(sicher) {
+        val y = runCatching { client.ydna(handle) }.getOrNull()
+        zustand.update { s -> if (s.dna?.handle == handle) s.copy(dna = s.dna.copy(ydna = y)) else s }
+    }
+}
+
+fun GwViewModel.dnaSchliessen() = zustand.update { it.copy(dna = null) }
+
+/** Einen Treffer einzeln zeigen ([handle] der anderen Person) oder mit null zurueck zur Uebersicht. */
+fun GwViewModel.dnaWaehlen(handle: String?) = zustand.update { s -> s.dna?.let { s.copy(dna = it.copy(gewaehlt = handle)) } ?: s }
+
+/** Von der DNA-Seite zum Profil einer Person. */
+fun GwViewModel.dnaPerson(handle: String) {
+    dnaSchliessen()
+    profilOeffnen(handle)
 }
 
 // ── KI-Assistent ─────────────────────────────────────────────────────

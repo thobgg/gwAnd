@@ -84,7 +84,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
     LaunchedEffect(s.meldung) {
         s.meldung?.let { snackbar.showSnackbar(it); viewModel.meldungGezeigt() }
     }
-    BackHandler(enabled = s.pdf != null || s.chat != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum || s.baumVollbild || s.wurzelVerlauf.isNotEmpty()) {
+    BackHandler(enabled = s.pdf != null || s.chat != null || s.dna != null || s.gesichter != null || s.betrachter != null || s.detail != null || s.profil != null || s.ausgewaehlt != null || s.bereich != Bereich.Baum || s.baumVollbild || s.wurzelVerlauf.isNotEmpty()) {
         viewModel.zurueck()
     }
     val ansicht = remember { BaumAnsicht() }
@@ -96,6 +96,7 @@ fun HauptBildschirm(s: Zustand, viewModel: GwViewModel) {
         when {
             s.gesichter != null -> GesichterSeite(s.gesichter, s, viewModel)
             s.chat != null -> ChatSeite(s.chat, viewModel)
+            s.dna != null -> DnaSeite(s.dna, s, viewModel)
             // Vollbild-Seiten am Handy: Detail und Profil decken alles ab, mit eigener Kopfzeile und Zurueck.
             s.detail != null -> DetailSeite(s.detail, s, viewModel)
             s.profil != null && !profilDaneben -> ProfilSeite(s.profil, s, viewModel)

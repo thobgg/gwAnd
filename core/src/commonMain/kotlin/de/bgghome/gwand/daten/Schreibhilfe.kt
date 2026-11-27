@@ -307,6 +307,31 @@ object Schreibhilfe {
         return person.mit("person_ref_list", JsonArray(alt + verweis))
     }
 
+    // ── DNA-Treffer (wie die Web-Oberflaeche: GrampsjsViewDnaMatches.js) ──
+
+    /** Beziehungsart, an der Gramps Web einen DNA-Treffer erkennt. */
+    const val DNA = "DNA"
+
+    /** Notiz mit den Segmentdaten eines Treffers, so wie eingefuegt; den Typ vergibt der Server. */
+    fun dnaNotiz(handle: String, rohdaten: String, privat: Boolean): JsonObject = buildJsonObject {
+        put("_class", "Note")
+        put("handle", handle)
+        put("text", buildJsonObject { put("_class", "StyledText"); put("string", rohdaten) })
+        put("private", privat)
+    }
+
+    /** DNA-Treffer: Beziehung "DNA" zur anderen Person mit der Notiz der Segmentdaten, gleiche Privatheit wie die Notiz. */
+    fun dnaBeziehung(person: JsonObject, andere: String, notiz: String, privat: Boolean): JsonObject {
+        val verweis = buildJsonObject {
+            put("_class", "PersonRef")
+            put("ref", andere)
+            put("rel", DNA)
+            put("note_list", JsonArray(listOf(JsonPrimitive(notiz))))
+            put("private", privat)
+        }
+        return person.mit("person_ref_list", JsonArray(person.liste("person_ref_list") + verweis))
+    }
+
     fun beziehungEntfernen(person: JsonObject, andere: String, art: String): JsonObject =
         person.mit("person_ref_list", JsonArray(person.liste("person_ref_list").filterNot {
             it.ref() == andere && (((it as? JsonObject)?.get("rel") as? JsonPrimitive)?.content.orEmpty() == art)

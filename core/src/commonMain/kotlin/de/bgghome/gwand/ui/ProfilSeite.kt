@@ -157,7 +157,7 @@ fun ProfilSeite(p: Profil, s: Zustand, viewModel: GwViewModel, eingebettet: Bool
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.profile_browser)) }, onClick = { menue = false; viewModel.imBrowser() })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.menu_relationship)) }, onClick = { menue = false; viewModel.verwandtschaftDialog() })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.menu_report)) }, onClick = { menue = false; viewModel.berichtDialog() })
-                                DropdownMenuItem(text = { Text(stringResource(Res.string.menu_dna)) }, onClick = { menue = false; viewModel.dnaDialog() })
+                                DropdownMenuItem(text = { Text(stringResource(Res.string.menu_dna)) }, onClick = { menue = false; viewModel.dnaOeffnen() })
                                 DropdownMenuItem(text = { Text(stringResource(Res.string.menu_history)) }, onClick = { menue = false; viewModel.objektVerlauf() })
                                 if (s.darfBearbeiten) DropdownMenuItem(text = { Text(stringResource(Res.string.menu_merge)) }, onClick = { menue = false; viewModel.zusammenfuehrenDialog() })
                                 if (s.darfBearbeiten) DropdownMenuItem(

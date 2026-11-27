@@ -11,6 +11,7 @@ import de.bgghome.gwand.res.Res
 import de.bgghome.gwand.res.conflict_reloaded
 import de.bgghome.gwand.res.delete_event_confirm
 import de.bgghome.gwand.res.delete_person_confirm
+import de.bgghome.gwand.res.dna_delete_confirm
 import de.bgghome.gwand.res.saved
 import de.bgghome.webtrees.nativ.api.Person
 import de.bgghome.webtrees.nativ.data.DateForm
@@ -232,6 +233,51 @@ fun GwViewModel.beziehungSpeichern(d: Dialog.BeziehungDialog, andere: String, ar
 fun GwViewModel.beziehungEntfernen(andere: String, art: String) {
     val p = zustand.value.profil?.person ?: return
     speichern { bearbeiten.beziehungEntfernen(p.handle, andere, art) }
+}
+
+// ── DNA-Treffer ──────────────────────────────────────────────────────
+
+private var dnaVorschauJob: Job? = null
+
+fun GwViewModel.dnaNeuDialog() {
+    val d = zustand.value.dna ?: return
+    zustand.update { it.copy(dialog = Dialog.DnaNeuDialog(d.handle), personVorschlaege = emptyList()) }
+}
+
+/** Die eingefuegten Segmentdaten vom Server lesen lassen (Vorschau); gespeichert wird dabei nichts. */
+fun GwViewModel.dnaVorschau(rohdaten: String) {
+    dnaVorschauJob?.cancel()
+    val text = rohdaten.trim()
+    zustand.update { s -> (s.dialog as? Dialog.DnaNeuDialog)?.let { s.copy(dialog = it.copy(vorschau = null, prueft = text.isNotEmpty())) } ?: s }
+    if (text.isEmpty()) return
+    dnaVorschauJob = viewModelScope.launch(sicher) {
+        delay(400)
+        try {
+            val segmente = client.dnaVorschau(text)
+            zustand.update { s -> (s.dialog as? Dialog.DnaNeuDialog)?.let { s.copy(dialog = it.copy(vorschau = segmente, prueft = false)) } ?: s }
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            zustand.update { s -> (s.dialog as? Dialog.DnaNeuDialog)?.let { s.copy(dialog = it.copy(prueft = false)) } ?: s }
+            fehlschlag(e)
+        }
+    }
+}
+
+fun GwViewModel.dnaSpeichern(d: Dialog.DnaNeuDialog, andere: String, rohdaten: String, privat: Boolean) =
+    speichern(nachher = { dnaLaden() }) { bearbeiten.dnaTrefferHinzu(d.person, andere, rohdaten, privat) }
+
+/** Rueckfrage, dann nur die DNA-Beziehung entfernen (wie die Web-Oberflaeche; die Notiz bleibt). */
+fun GwViewModel.dnaLoeschen(e: DnaEintrag) {
+    val d = zustand.value.dna ?: return
+    viewModelScope.launch(sicher) {
+        val text = getString(Res.string.dna_delete_confirm, e.person?.name ?: e.treffer.handle)
+        zustand.update { it.copy(dialog = Dialog.LoeschenDialog(text) {
+            bearbeiten.dnaTrefferEntfernen(d.handle, e.treffer.handle)
+            dnaWaehlen(null)
+            dnaLaden()
+        }) }
+    }
 }
 
 // ── Vorschlaege beim Tippen ──────────────────────────────────────────

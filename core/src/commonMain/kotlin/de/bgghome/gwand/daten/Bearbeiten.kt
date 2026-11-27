@@ -203,6 +203,23 @@ class Bearbeiten(private val client: GwClient) {
     suspend fun beziehungEntfernen(person: String, andere: String, art: String) =
         client.aendern("people", person) { Schreibhilfe.beziehungEntfernen(it, andere, art) }
 
+    // ── DNA ──────────────────────────────────────────────────────────
+
+    /**
+     * DNA-Treffer eintragen wie die Web-Oberflaeche: Notiz mit den Rohdaten, dann Beziehung "DNA" an [person] mit
+     * dieser Notiz; beide gleich privat. Ergebnis: Handle der Notiz.
+     */
+    suspend fun dnaTrefferHinzu(person: String, andere: String, rohdaten: String, privat: Boolean): String {
+        require(person != andere) { "DNA-Treffer mit sich selbst" }
+        val n = Schreibhilfe.neuesHandle()
+        client.anlegen(listOf(Schreibhilfe.dnaNotiz(n, rohdaten.trim(), privat)))
+        mitRuecknahme(listOf("notes" to n)) { client.aendern("people", person) { Schreibhilfe.dnaBeziehung(it, andere, n, privat) } }
+        return n
+    }
+
+    /** DNA-Treffer loeschen wie die Web-Oberflaeche: nur die Beziehung "DNA"; Notiz und andere Beziehungen bleiben. */
+    suspend fun dnaTrefferEntfernen(person: String, andere: String) = beziehungEntfernen(person, andere, Schreibhilfe.DNA)
+
     private fun handles(o: JsonObject, schluessel: String): List<String> =
         (o[schluessel] as? kotlinx.serialization.json.JsonArray).orEmpty().mapNotNull { (it as? JsonPrimitive)?.content }
 }

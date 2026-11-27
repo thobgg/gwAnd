@@ -26,6 +26,18 @@ enum class Nachschlagart { Orte, Quellen, Archive, Verlauf }
 /** Darstellung des Baums: Sanduhr (Vorfahren und Nachkommen) oder Faecher (Vorfahren im Halbkreis). */
 enum class BaumArt { Sanduhr, Faecher }
 
+/** Ein DNA-Treffer fuer die Anzeige: die andere Person (null = nicht lesbar), die Daten, die gemeinsamen Vorfahren. */
+data class DnaEintrag(val person: Person?, val treffer: de.bgghome.gwand.api.DnaTreffer, val vorfahren: List<Person> = emptyList())
+
+/** DNA-Seite einer Person; [treffer] null = laedt, [gewaehlt] = Handle des Treffers in der Einzelansicht. */
+data class DnaAnsicht(
+    val handle: String,
+    val person: Person? = null,
+    val treffer: List<DnaEintrag>? = null,
+    val ydna: de.bgghome.gwand.api.YDna? = null,
+    val gewaehlt: String? = null,
+)
+
 data class Chat(val verlauf: List<Pair<String, String>> = emptyList(), val laeuft: Boolean = false)
 
 /** Ein Vorgang im Verlauf, aufbereitet: wer, wann, was (Personen mit Namen). */
@@ -108,6 +120,7 @@ data class Zustand(
     val offline: Boolean = false,
     val chatMoeglich: Boolean = false,
     val chat: Chat? = null,
+    val dna: DnaAnsicht? = null,
     val zeigeGeschwister: Boolean = true,
     val zeigeCousins: Boolean = true,
     /** Partner der Cousins (nur wenn Cousins gezeigt werden) */
@@ -255,7 +268,8 @@ sealed interface Dialog {
 
     data object UeberDialog : Dialog
 
-    data class DnaDialog(val name: String, val treffer: List<Pair<Person?, de.bgghome.gwand.api.DnaTreffer>>? = null) : Dialog
+    /** DNA-Treffer eintragen; [vorschau] null = noch nichts geprueft, leer = der Server erkennt keine Segmente. */
+    data class DnaNeuDialog(val person: String, val vorschau: List<de.bgghome.gwand.api.DnaSegment>? = null, val prueft: Boolean = false) : Dialog
 
     /** Zusammenfuehren: [bleibt] ist die Person im Profil, [geht] die gewaehlte zweite. */
     data class ZusammenfuehrenDialog(val bleibt: Person, val geht: Person? = null) : Dialog

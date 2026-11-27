@@ -155,25 +155,7 @@ fun BearbeitenDialoge(s: Zustand, viewModel: GwViewModel) {
             },
             confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.cancel)) } },
         )
-        is Dialog.DnaDialog -> AlertDialog(
-            onDismissRequest = viewModel::dialogSchliessen,
-            title = { Text(stringResource(Res.string.menu_dna)) },
-            text = {
-                val t = d.treffer
-                when {
-                    t == null -> CircularProgressIndicator()
-                    t.isEmpty() -> Text(stringResource(Res.string.dna_none))
-                    else -> Column(Modifier.heightIn(max = 460.dp).verticalScroll(rememberScrollState())) {
-                        t.forEach { (p, m) ->
-                            if (p != null) PersonRow(p, label = m.relation, onClick = { viewModel.dialogSchliessen(); viewModel.profilOeffnen(p.xref) })
-                            Text(stringResource(Res.string.dna_cm, "%.1f".format(m.cM), m.segments.size), Modifier.padding(start = 72.dp, bottom = 8.dp),
-                                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                        }
-                    }
-                }
-            },
-            confirmButton = { TextButton(onClick = viewModel::dialogSchliessen) { Text(stringResource(Res.string.search_close)) } },
-        )
+        is Dialog.DnaNeuDialog -> DnaNeuFormular(d, s, viewModel)
         is Dialog.LoeschenDialog -> AlertDialog(
             onDismissRequest = viewModel::dialogSchliessen,
             text = { Text(d.text) },
@@ -476,6 +458,39 @@ private fun BeziehungFormular(d: Dialog.BeziehungDialog, s: Zustand, viewModel: 
         OutlinedTextField(art, { art = it }, Modifier.fillMaxWidth(), singleLine = true,
             label = { Text(stringResource(Res.string.association_type)) }, placeholder = { Text(stringResource(Res.string.association_hint)) })
         PersonSuche(s, viewModel, gewaehlt) { gewaehlt = it }
+    }
+}
+
+// ── DNA-Treffer ──────────────────────────────────────────────────────
+
+/** Wie das Formular der Web-Oberflaeche: zweite Person, Segmentdaten, privat, Vorschau; speichern erst, wenn der Server Segmente erkennt. */
+@Composable
+private fun DnaNeuFormular(d: Dialog.DnaNeuDialog, s: Zustand, viewModel: GwViewModel) {
+    var gewaehlt by remember(d.person) { mutableStateOf<Person?>(null) }
+    var rohdaten by remember(d.person) { mutableStateOf("") }
+    var privat by remember(d.person) { mutableStateOf(false) }
+    val vorschau = d.vorschau
+    Formular(Res.string.dna_add, s, viewModel,
+        speichernAktiv = gewaehlt != null && gewaehlt?.xref != d.person && !d.prueft && !vorschau.isNullOrEmpty(),
+        onSpeichern = { gewaehlt?.let { viewModel.dnaSpeichern(d, it.xref, rohdaten, privat) } }) {
+        PersonSuche(s.copy(personVorschlaege = s.personVorschlaege.filter { it.xref != d.person }), viewModel, gewaehlt) { gewaehlt = it }
+        OutlinedTextField(rohdaten, { rohdaten = it; viewModel.dnaVorschau(it) }, Modifier.fillMaxWidth().heightIn(min = 140.dp), minLines = 5, maxLines = 12,
+            label = { Text(stringResource(Res.string.dna_raw)) }, placeholder = { Text(stringResource(Res.string.dna_raw_hint)) },
+            textStyle = MaterialTheme.typography.bodySmall.copy(fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace))
+        Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.clickable { privat = !privat }) {
+            Checkbox(privat, { privat = it })
+            Text(stringResource(Res.string.dna_private))
+        }
+        Text(stringResource(Res.string.dna_preview), style = MaterialTheme.typography.titleSmall)
+        when {
+            d.prueft -> CircularProgressIndicator(Modifier.size(24.dp))
+            vorschau == null -> Text(stringResource(Res.string.dna_preview_empty), color = MaterialTheme.colorScheme.onSurfaceVariant)
+            vorschau.isEmpty() -> Text(stringResource(Res.string.dna_preview_none), color = MaterialTheme.colorScheme.error)
+            else -> {
+                Text(stringResource(Res.string.dna_cm, "%.1f".format(vorschau.sumOf { it.cM }), vorschau.size), style = MaterialTheme.typography.bodyMedium)
+                DnaSegmentTabelle(vorschau)
+            }
+        }
     }
 }
 

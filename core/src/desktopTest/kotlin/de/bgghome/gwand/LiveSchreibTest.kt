@@ -136,6 +136,70 @@ class LiveSchreibTest {
         }
     }
 
+    /** DNA-Treffer wie die Web-Oberflaeche: Vorschau, eintragen (Beziehung "DNA" plus Notiz, gleich privat), lesen, loeschen. */
+    @Test
+    fun dnaTrefferEintragenUndLoeschen() = runBlocking {
+        val pass = File(System.getProperty("user.home"), ".config/gwand/editor-pass")
+        if (!pass.exists()) return@runBlocking
+        val client = GwClient(Speicher(), "gwAnd-Test")
+        Thread.sleep(1500)
+        try { client.anmelden("http://192.168.178.73:8096", "editor", pass.readText().trim()) } catch (e: Exception) { return@runBlocking }
+        val b = Bearbeiten(client)
+        val personen = mutableListOf<String>()
+        val notizen = mutableListOf<String>()
+        try {
+            val p = b.personAnlegen(NeuePerson("Dna", "Testperson", 1)); personen += p
+            val vater = b.verwandterHinzu(p, 1, Verwandtschaftsart.Vater, NeuePerson("DnaVater", "Testperson", 1), null); personen += vater
+            val rohdaten = "Chromosome,Start,End,cM,SNPs\n3,56950055,64247327,10.9,1404\nX,1000000,20000000,22.5,3000"
+
+            val vorschau = client.dnaVorschau(rohdaten)
+            assertEquals(listOf("3", "X"), vorschau.map { it.chromosome })
+            assertEquals(33.4, vorschau.sumOf { it.cM }, 0.001)
+            assertTrue(client.dnaVorschau("das ist keine Tabelle").isEmpty(), "Unlesbares ergibt eine leere Vorschau")
+            assertTrue(client.dnaTreffer(p).isEmpty())
+
+            val notiz = b.dnaTrefferHinzu(p, vater, "\n$rohdaten\n", privat = true); notizen += notiz
+            val verweis = (client.roh("people", p)["person_ref_list"] as JsonArray).single().jsonObject
+            assertEquals("DNA", verweis["rel"]!!.jsonPrimitive.content)
+            assertEquals(vater, verweis["ref"]!!.jsonPrimitive.content)
+            assertEquals("true", verweis["private"]!!.jsonPrimitive.content)
+            assertEquals(notiz, (verweis["note_list"] as JsonArray).single().jsonPrimitive.content)
+            val n = client.roh("notes", notiz)
+            assertEquals(rohdaten, n["text"]!!.jsonObject["string"]!!.jsonPrimitive.content, "Rohdaten unveraendert (nur aussen gekuerzt) in der Notiz")
+            assertEquals("true", n["private"]!!.jsonPrimitive.content, "Notiz so privat wie die Beziehung")
+
+            val t = client.dnaTreffer(p).single()
+            assertEquals(vater, t.handle)
+            assertEquals(listOf(notiz), t.notizen)
+            assertEquals(0, t.verweisIndex)
+            assertEquals(2, t.segments.size)
+            assertEquals(22.5, t.groesstes, 0.001)
+            assertTrue(t.relation.isNotBlank(), "Verwandtschaft zum Vater benannt")
+            assertEquals("P", t.segments.single { it.chromosome == "3" }.side, "ueber den Vater verwandt: vaeterliche Seite")
+            assertEquals("M", t.segments.single { it.chromosome == "X" }.side, "das X eines Mannes kommt von der Mutter")
+            assertEquals(null, client.ydna(p).haplogruppe, "ohne Y-DNA-Attribut keine Haplogruppe")
+
+            // Loeschen nimmt nur die DNA-Beziehung: eine andere Beziehung zur selben Person und die Notiz bleiben
+            b.beziehungHinzu(p, vater, "Pate")
+            b.dnaTrefferEntfernen(p, vater)
+            assertTrue(client.dnaTreffer(p).isEmpty())
+            assertEquals("Pate", (client.roh("people", p)["person_ref_list"] as JsonArray).single().jsonObject["rel"]!!.jsonPrimitive.content)
+            assertEquals(rohdaten, client.roh("notes", notiz)["text"]!!.jsonObject["string"]!!.jsonPrimitive.content)
+
+            // Scheitert das Eintragen an der Person, bleibt keine Notiz zurueck
+            val vorher = client.roh("people", p)["person_ref_list"]
+            assertFailsWith<Exception> { b.dnaTrefferHinzu("gibtesnicht", vater, rohdaten, false) }
+            assertEquals(vorher, client.roh("people", p)["person_ref_list"])
+        } finally {
+            for (h in notizen) runCatching { client.loeschen("notes", h) }
+            for (h in personen) runCatching {
+                val r = client.roh("people", h)
+                for (k in listOf("family_list", "parent_family_list")) (r[k] as? JsonArray).orEmpty().forEach { runCatching { client.loeschen("families", it.jsonPrimitive.content) } }
+            }
+            for (h in personen) runCatching { client.loeschen("people", h) }
+        }
+    }
+
     @Test
     fun exportBerichtVerwandtschaft() = runBlocking {
         val pass = File(System.getProperty("user.home"), ".config/gwand/editor-pass")
@@ -147,7 +211,8 @@ class LiveSchreibTest {
         assertTrue(String(ged.daten.copyOf(200)).contains("0 HEAD"), "GEDCOM beginnt mit HEAD")
         val pdf = client.bericht("ancestor_report", "I0001", "Ahnentafel")
         assertTrue(pdf.name.endsWith(".pdf") && String(pdf.daten.copyOf(5)) == "%PDF-", "Bericht ist ein PDF")
-        val wege = client.verwandtschaftsWege("1051e1fd7896bb447616685e8e7", "1051e1fd79e51ca886c7f74dcb01")
+        // Handles ueber die Gramps-ID holen: sie aendern sich, wenn der Testbaum neu eingespielt wird
+        val wege = client.verwandtschaftsWege(client.personNachId("I0001")!!.handle, client.personNachId("I0008")!!.handle)
         assertTrue(wege.isNotEmpty() && wege.first().text.isNotBlank())
     }
 

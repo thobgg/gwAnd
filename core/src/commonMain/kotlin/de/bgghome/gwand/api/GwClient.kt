@@ -630,6 +630,15 @@ class GwClient(private val ablage: Ablage, val userAgent: String, private val ca
     suspend fun dnaTreffer(person: String): List<DnaTreffer> =
         holen("/people/$person/dna/matches", ListSerializer(DnaTreffer.serializer()), mapOf("locale" to sprache))
 
+    /** Segmentdaten (Tabelle eines Testanbieters) vom Server lesen lassen, ohne etwas zu speichern; leer = nichts erkannt. */
+    suspend fun dnaVorschau(rohdaten: String): List<DnaSegment> {
+        val rumpf = buildJsonObject { put("string", rohdaten) }.toString()
+        return senden(Request.Builder().url(url("/parsers/dna-match")).post(rumpf.toRequestBody(JSON_TYP)).build(), ListSerializer(DnaSegment.serializer()))
+    }
+
+    /** Y-DNA-Haplogruppe aus dem Attribut "Y-DNA" der Person; ohne Attribut kommt ein leeres Ergebnis. */
+    suspend fun ydna(person: String): YDna = holen("/people/$person/ydna", YDna.serializer(), mapOf("locale" to sprache))
+
     /** Frage an den KI-Assistenten des Servers; [verlauf] als (Rolle, Text). Ergebnis: Antworttext. */
     suspend fun chat(frage: String, verlauf: List<Pair<String, String>>): String {
         val rumpf = buildJsonObject {

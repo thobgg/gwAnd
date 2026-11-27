@@ -1,0 +1,1117 @@
+[
+  {
+    "ancestor_handles": [
+      "10552fca72f47ed2b31c1b1963d8",
+      "10552fca73405b2d5ce3a77c00d0"
+    ],
+    "ancestor_profiles": [
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1928-02-08",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "2003-10-17",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0015",
+        "handle": "10552fca72f47ed2b31c1b1963d8",
+        "name_display": "Falkenrath, Wilhelm",
+        "name_given": "Wilhelm",
+        "name_suffix": "",
+        "name_surname": "Falkenrath",
+        "sex": "M"
+      },
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1931-06-30",
+          "place": "Uelzen, Niedersachsen, Deutschland",
+          "place_name": "Uelzen, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "2014-04-04",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0016",
+        "handle": "10552fca73405b2d5ce3a77c00d0",
+        "name_display": "Oberlin, Hannelore",
+        "name_given": "Hannelore",
+        "name_suffix": "",
+        "name_surname": "Oberlin",
+        "sex": "F"
+      }
+    ],
+    "distance": 4,
+    "handle": "10552fca705d2fe60083e8a4b68e",
+    "note_handles": [
+      "10552fca705e41e8fa1fc4dfba15"
+    ],
+    "person_ref_idx": 0,
+    "relation": "Cousin",
+    "segments": [
+      {
+        "SNPs": 4795,
+        "cM": 21.1,
+        "chromosome": "1",
+        "comment": "",
+        "side": "P",
+        "start": 31096348,
+        "stop": 50093545
+      },
+      {
+        "SNPs": 9914,
+        "cM": 45.8,
+        "chromosome": "2",
+        "comment": "",
+        "side": "P",
+        "start": 58299515,
+        "stop": 105875496
+      },
+      {
+        "SNPs": 7259,
+        "cM": 38.1,
+        "chromosome": "2",
+        "comment": "",
+        "side": "P",
+        "start": 125449870,
+        "stop": 170262809
+      },
+      {
+        "SNPs": 9578,
+        "cM": 46.9,
+        "chromosome": "3",
+        "comment": "",
+        "side": "P",
+        "start": 9203441,
+        "stop": 61194248
+      },
+      {
+        "SNPs": 8809,
+        "cM": 37.3,
+        "chromosome": "3",
+        "comment": "",
+        "side": "P",
+        "start": 65591678,
+        "stop": 109403303
+      },
+      {
+        "SNPs": 4774,
+        "cM": 23.8,
+        "chromosome": "4",
+        "comment": "",
+        "side": "P",
+        "start": 13636159,
+        "stop": 36176328
+      },
+      {
+        "SNPs": 6712,
+        "cM": 28.9,
+        "chromosome": "4",
+        "comment": "",
+        "side": "P",
+        "start": 104656978,
+        "stop": 130285236
+      },
+      {
+        "SNPs": 8010,
+        "cM": 35.4,
+        "chromosome": "5",
+        "comment": "",
+        "side": "P",
+        "start": 19795622,
+        "stop": 57454837
+      },
+      {
+        "SNPs": 7211,
+        "cM": 33.6,
+        "chromosome": "6",
+        "comment": "",
+        "side": "P",
+        "start": 35959766,
+        "stop": 64670712
+      },
+      {
+        "SNPs": 5185,
+        "cM": 24.9,
+        "chromosome": "6",
+        "comment": "",
+        "side": "P",
+        "start": 112046254,
+        "stop": 138895488
+      },
+      {
+        "SNPs": 10330,
+        "cM": 43.4,
+        "chromosome": "7",
+        "comment": "",
+        "side": "P",
+        "start": 2606445,
+        "stop": 40389674
+      },
+      {
+        "SNPs": 6196,
+        "cM": 30.8,
+        "chromosome": "7",
+        "comment": "",
+        "side": "P",
+        "start": 104370691,
+        "stop": 131852115
+      },
+      {
+        "SNPs": 8510,
+        "cM": 37.9,
+        "chromosome": "8",
+        "comment": "",
+        "side": "P",
+        "start": 9504786,
+        "stop": 43395471
+      },
+      {
+        "SNPs": 9608,
+        "cM": 45.1,
+        "chromosome": "8",
+        "comment": "",
+        "side": "P",
+        "start": 86800705,
+        "stop": 129453263
+      },
+      {
+        "SNPs": 4839,
+        "cM": 20.8,
+        "chromosome": "10",
+        "comment": "",
+        "side": "P",
+        "start": 65380322,
+        "stop": 86995098
+      },
+      {
+        "SNPs": 9055,
+        "cM": 45.8,
+        "chromosome": "11",
+        "comment": "",
+        "side": "P",
+        "start": 32115015,
+        "stop": 81620651
+      },
+      {
+        "SNPs": 5887,
+        "cM": 26.6,
+        "chromosome": "11",
+        "comment": "",
+        "side": "P",
+        "start": 89686596,
+        "stop": 113634077
+      },
+      {
+        "SNPs": 10825,
+        "cM": 45.5,
+        "chromosome": "12",
+        "comment": "",
+        "side": "P",
+        "start": 4934524,
+        "stop": 45439980
+      },
+      {
+        "SNPs": 7028,
+        "cM": 35.3,
+        "chromosome": "12",
+        "comment": "",
+        "side": "P",
+        "start": 88750603,
+        "stop": 123290403
+      },
+      {
+        "SNPs": 5050,
+        "cM": 26.5,
+        "chromosome": "13",
+        "comment": "",
+        "side": "P",
+        "start": 52926964,
+        "stop": 84518474
+      },
+      {
+        "SNPs": 4863,
+        "cM": 25.3,
+        "chromosome": "14",
+        "comment": "",
+        "side": "P",
+        "start": 4474063,
+        "stop": 34584552
+      },
+      {
+        "SNPs": 6332,
+        "cM": 30.3,
+        "chromosome": "16",
+        "comment": "",
+        "side": "P",
+        "start": 24883876,
+        "stop": 60577329
+      },
+      {
+        "SNPs": 8913,
+        "cM": 37.3,
+        "chromosome": "17",
+        "comment": "",
+        "side": "P",
+        "start": 7925421,
+        "stop": 52237663
+      },
+      {
+        "SNPs": 4932,
+        "cM": 21.1,
+        "chromosome": "18",
+        "comment": "",
+        "side": "P",
+        "start": 5766082,
+        "stop": 27931816
+      },
+      {
+        "SNPs": 10009,
+        "cM": 42.4,
+        "chromosome": "19",
+        "comment": "",
+        "side": "P",
+        "start": 9152232,
+        "stop": 50161763
+      }
+    ]
+  },
+  {
+    "ancestor_handles": [
+      "10552fca73e477566dedbfe966ff",
+      "10552fca741c21f975e65e4dacf6"
+    ],
+    "ancestor_profiles": [
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1926-09-19",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1998-06-07",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0019",
+        "handle": "10552fca73e477566dedbfe966ff",
+        "name_display": "Ilgner, Friedrich",
+        "name_given": "Friedrich",
+        "name_suffix": "",
+        "name_surname": "Ilgner",
+        "sex": "M"
+      },
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1930-11-11",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "2011-08-22",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0020",
+        "handle": "10552fca741c21f975e65e4dacf6",
+        "name_display": "Krümmel, Margarete",
+        "name_given": "Margarete",
+        "name_suffix": "",
+        "name_surname": "Krümmel",
+        "sex": "F"
+      }
+    ],
+    "distance": 4,
+    "handle": "10552fca706271a3ea35b3fa77eb",
+    "note_handles": [
+      "10552fca70622de23bbd2b86a1b7"
+    ],
+    "person_ref_idx": 1,
+    "relation": "Cousin",
+    "segments": [
+      {
+        "SNPs": 8978,
+        "cM": 42.2,
+        "chromosome": "1",
+        "comment": "",
+        "side": "M",
+        "start": 137303753,
+        "stop": 187453148
+      },
+      {
+        "SNPs": 8905,
+        "cM": 42.6,
+        "chromosome": "2",
+        "comment": "",
+        "side": "M",
+        "start": 23033382,
+        "stop": 67373216
+      },
+      {
+        "SNPs": 8693,
+        "cM": 37.5,
+        "chromosome": "2",
+        "comment": "",
+        "side": "M",
+        "start": 179045838,
+        "stop": 221633008
+      },
+      {
+        "SNPs": 7059,
+        "cM": 35.9,
+        "chromosome": "3",
+        "comment": "",
+        "side": "M",
+        "start": 91617998,
+        "stop": 132488123
+      },
+      {
+        "SNPs": 4826,
+        "cM": 25.1,
+        "chromosome": "3",
+        "comment": "",
+        "side": "M",
+        "start": 161914306,
+        "stop": 187601322
+      },
+      {
+        "SNPs": 5691,
+        "cM": 26.2,
+        "chromosome": "5",
+        "comment": "",
+        "side": "M",
+        "start": 19327196,
+        "stop": 45589264
+      },
+      {
+        "SNPs": 7753,
+        "cM": 39.0,
+        "chromosome": "6",
+        "comment": "",
+        "side": "M",
+        "start": 126851979,
+        "stop": 165317138
+      },
+      {
+        "SNPs": 5843,
+        "cM": 27.8,
+        "chromosome": "7",
+        "comment": "",
+        "side": "M",
+        "start": 23692673,
+        "stop": 52540215
+      },
+      {
+        "SNPs": 9803,
+        "cM": 42.8,
+        "chromosome": "7",
+        "comment": "",
+        "side": "M",
+        "start": 74362669,
+        "stop": 122865362
+      },
+      {
+        "SNPs": 8415,
+        "cM": 38.5,
+        "chromosome": "9",
+        "comment": "",
+        "side": "M",
+        "start": 33147442,
+        "stop": 79291608
+      },
+      {
+        "SNPs": 6063,
+        "cM": 31.2,
+        "chromosome": "9",
+        "comment": "",
+        "side": "M",
+        "start": 106592469,
+        "stop": 139206934
+      },
+      {
+        "SNPs": 8777,
+        "cM": 38.4,
+        "chromosome": "10",
+        "comment": "",
+        "side": "M",
+        "start": 48730595,
+        "stop": 92894072
+      },
+      {
+        "SNPs": 8788,
+        "cM": 38.9,
+        "chromosome": "11",
+        "comment": "",
+        "side": "M",
+        "start": 9630109,
+        "stop": 53431521
+      },
+      {
+        "SNPs": 5764,
+        "cM": 28.9,
+        "chromosome": "11",
+        "comment": "",
+        "side": "M",
+        "start": 74029713,
+        "stop": 104198377
+      },
+      {
+        "SNPs": 7200,
+        "cM": 36.7,
+        "chromosome": "12",
+        "comment": "",
+        "side": "M",
+        "start": 5022181,
+        "stop": 37672740
+      },
+      {
+        "SNPs": 5929,
+        "cM": 28.8,
+        "chromosome": "12",
+        "comment": "",
+        "side": "M",
+        "start": 75607741,
+        "stop": 104973826
+      },
+      {
+        "SNPs": 3883,
+        "cM": 20.3,
+        "chromosome": "13",
+        "comment": "",
+        "side": "M",
+        "start": 30475682,
+        "stop": 47753377
+      },
+      {
+        "SNPs": 5747,
+        "cM": 27.0,
+        "chromosome": "13",
+        "comment": "",
+        "side": "M",
+        "start": 72575368,
+        "stop": 98840352
+      },
+      {
+        "SNPs": 6091,
+        "cM": 30.6,
+        "chromosome": "14",
+        "comment": "",
+        "side": "M",
+        "start": 22843347,
+        "stop": 49980650
+      },
+      {
+        "SNPs": 9371,
+        "cM": 39.6,
+        "chromosome": "14",
+        "comment": "",
+        "side": "M",
+        "start": 53200103,
+        "stop": 88056685
+      },
+      {
+        "SNPs": 9647,
+        "cM": 42.0,
+        "chromosome": "15",
+        "comment": "",
+        "side": "M",
+        "start": 32641638,
+        "stop": 81434867
+      },
+      {
+        "SNPs": 4253,
+        "cM": 20.0,
+        "chromosome": "17",
+        "comment": "",
+        "side": "M",
+        "start": 24264693,
+        "stop": 42066634
+      },
+      {
+        "SNPs": 5688,
+        "cM": 24.7,
+        "chromosome": "18",
+        "comment": "",
+        "side": "M",
+        "start": 3741720,
+        "stop": 28914041
+      },
+      {
+        "SNPs": 6309,
+        "cM": 30.3,
+        "chromosome": "18",
+        "comment": "",
+        "side": "M",
+        "start": 35025963,
+        "stop": 69219361
+      },
+      {
+        "SNPs": 8424,
+        "cM": 38.3,
+        "chromosome": "19",
+        "comment": "",
+        "side": "M",
+        "start": 6384458,
+        "stop": 42616970
+      },
+      {
+        "SNPs": 6547,
+        "cM": 28.7,
+        "chromosome": "21",
+        "comment": "",
+        "side": "M",
+        "start": 9760850,
+        "stop": 42759698
+      },
+      {
+        "SNPs": 7246,
+        "cM": 38.0,
+        "chromosome": "X",
+        "comment": "",
+        "side": "M",
+        "start": 14136942,
+        "stop": 49846099
+      }
+    ]
+  },
+  {
+    "ancestor_handles": [
+      "10552fca78bf48d3ae3c35cd0ed6",
+      "10552fca78ff77de4615efede611"
+    ],
+    "ancestor_profiles": [
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1902-05-01",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1980-01-16",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0032",
+        "handle": "10552fca78bf48d3ae3c35cd0ed6",
+        "name_display": "Krümmel, Paul",
+        "name_given": "Paul",
+        "name_suffix": "",
+        "name_surname": "Krümmel",
+        "sex": "M"
+      },
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1905-12-24",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1993-07-08",
+          "place": "Lüneburg, Niedersachsen, Deutschland",
+          "place_name": "Lüneburg, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0033",
+        "handle": "10552fca78ff77de4615efede611",
+        "name_display": "Hagedorn, Berta",
+        "name_given": "Berta",
+        "name_suffix": "",
+        "name_surname": "Hagedorn",
+        "sex": "F"
+      }
+    ],
+    "distance": 5,
+    "handle": "10552fca70642b9341abb56f253b",
+    "note_handles": [
+      "10552fca70666091cf7c700cd9cf"
+    ],
+    "person_ref_idx": 2,
+    "relation": "Tante zweiten Grades",
+    "segments": [
+      {
+        "SNPs": 8249,
+        "cM": 35.4,
+        "chromosome": "4",
+        "comment": "",
+        "side": "M",
+        "start": 141880612,
+        "stop": 182962728
+      },
+      {
+        "SNPs": 5931,
+        "cM": 29.5,
+        "chromosome": "6",
+        "comment": "",
+        "side": "M",
+        "start": 52470294,
+        "stop": 85611124
+      },
+      {
+        "SNPs": 5500,
+        "cM": 26.7,
+        "chromosome": "6",
+        "comment": "",
+        "side": "M",
+        "start": 114794006,
+        "stop": 143340212
+      },
+      {
+        "SNPs": 5298,
+        "cM": 24.3,
+        "chromosome": "7",
+        "comment": "",
+        "side": "M",
+        "start": 38359634,
+        "stop": 66407463
+      },
+      {
+        "SNPs": 6716,
+        "cM": 31.4,
+        "chromosome": "7",
+        "comment": "",
+        "side": "M",
+        "start": 69541639,
+        "stop": 104624897
+      },
+      {
+        "SNPs": 5144,
+        "cM": 26.1,
+        "chromosome": "10",
+        "comment": "",
+        "side": "M",
+        "start": 106224197,
+        "stop": 133892695
+      },
+      {
+        "SNPs": 5393,
+        "cM": 26.6,
+        "chromosome": "11",
+        "comment": "",
+        "side": "M",
+        "start": 29745835,
+        "stop": 56957587
+      },
+      {
+        "SNPs": 7947,
+        "cM": 33.8,
+        "chromosome": "11",
+        "comment": "",
+        "side": "M",
+        "start": 86786381,
+        "stop": 117034011
+      },
+      {
+        "SNPs": 4684,
+        "cM": 19.9,
+        "chromosome": "12",
+        "comment": "",
+        "side": "M",
+        "start": 36252408,
+        "stop": 54346643
+      },
+      {
+        "SNPs": 5768,
+        "cM": 25.4,
+        "chromosome": "13",
+        "comment": "",
+        "side": "M",
+        "start": 15577142,
+        "stop": 41485448
+      },
+      {
+        "SNPs": 7889,
+        "cM": 37.3,
+        "chromosome": "14",
+        "comment": "",
+        "side": "M",
+        "start": 39376352,
+        "stop": 75976856
+      },
+      {
+        "SNPs": 5390,
+        "cM": 22.8,
+        "chromosome": "15",
+        "comment": "",
+        "side": "M",
+        "start": 1737403,
+        "stop": 26215450
+      },
+      {
+        "SNPs": 6640,
+        "cM": 32.5,
+        "chromosome": "15",
+        "comment": "",
+        "side": "M",
+        "start": 29838087,
+        "stop": 57749624
+      },
+      {
+        "SNPs": 8667,
+        "cM": 37.2,
+        "chromosome": "18",
+        "comment": "",
+        "side": "M",
+        "start": 15582598,
+        "stop": 49856825
+      },
+      {
+        "SNPs": 4988,
+        "cM": 21.0,
+        "chromosome": "X",
+        "comment": "",
+        "side": "M",
+        "start": 92726631,
+        "stop": 115645872
+      }
+    ]
+  },
+  {
+    "ancestor_handles": [
+      "10552fca77c6756a8f92d0457e22",
+      "10552fca7804363d2d345190f5c8"
+    ],
+    "ancestor_profiles": [
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1899-10-02",
+          "place": "Uelzen, Niedersachsen, Deutschland",
+          "place_name": "Uelzen, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1978-05-25",
+          "place": "Uelzen, Niedersachsen, Deutschland",
+          "place_name": "Uelzen, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0028",
+        "handle": "10552fca77c6756a8f92d0457e22",
+        "name_display": "Oberlin, Georg",
+        "name_given": "Georg",
+        "name_suffix": "",
+        "name_surname": "Oberlin",
+        "sex": "M"
+      },
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1904-02-18",
+          "place": "Uelzen, Niedersachsen, Deutschland",
+          "place_name": "Uelzen, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1990-09-06",
+          "place": "Uelzen, Niedersachsen, Deutschland",
+          "place_name": "Uelzen, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0029",
+        "handle": "10552fca7804363d2d345190f5c8",
+        "name_display": "Behnke, Frieda",
+        "name_given": "Frieda",
+        "name_suffix": "",
+        "name_surname": "Behnke",
+        "sex": "F"
+      }
+    ],
+    "distance": 5,
+    "handle": "10552fca706836a1d771aacfe70b",
+    "note_handles": [
+      "10552fca706ae99f4da28c13af9"
+    ],
+    "person_ref_idx": 3,
+    "relation": "Tante zweiten Grades",
+    "segments": [
+      {
+        "SNPs": 5413,
+        "cM": 28.0,
+        "chromosome": "1",
+        "comment": "",
+        "side": "P",
+        "start": 144694551,
+        "stop": 171886969
+      },
+      {
+        "SNPs": 7512,
+        "cM": 37.5,
+        "chromosome": "3",
+        "comment": "",
+        "side": "P",
+        "start": 73730702,
+        "stop": 112540491
+      },
+      {
+        "SNPs": 4651,
+        "cM": 19.5,
+        "chromosome": "5",
+        "comment": "",
+        "side": "P",
+        "start": 38721285,
+        "stop": 56184435
+      },
+      {
+        "SNPs": 5805,
+        "cM": 26.5,
+        "chromosome": "6",
+        "comment": "",
+        "side": "P",
+        "start": 108999107,
+        "stop": 132041724
+      },
+      {
+        "SNPs": 4324,
+        "cM": 19.7,
+        "chromosome": "6",
+        "comment": "",
+        "side": "P",
+        "start": 136634676,
+        "stop": 155867422
+      },
+      {
+        "SNPs": 5899,
+        "cM": 30.3,
+        "chromosome": "7",
+        "comment": "",
+        "side": "P",
+        "start": 20668719,
+        "stop": 49848395
+      },
+      {
+        "SNPs": 6985,
+        "cM": 33.3,
+        "chromosome": "7",
+        "comment": "",
+        "side": "P",
+        "start": 83001874,
+        "stop": 122180715
+      },
+      {
+        "SNPs": 5357,
+        "cM": 27.0,
+        "chromosome": "8",
+        "comment": "",
+        "side": "P",
+        "start": 97829988,
+        "stop": 129704624
+      },
+      {
+        "SNPs": 8450,
+        "cM": 36.4,
+        "chromosome": "10",
+        "comment": "",
+        "side": "P",
+        "start": 73624340,
+        "stop": 113317430
+      },
+      {
+        "SNPs": 8469,
+        "cM": 36.8,
+        "chromosome": "15",
+        "comment": "",
+        "side": "P",
+        "start": 17866041,
+        "stop": 60423810
+      },
+      {
+        "SNPs": 4241,
+        "cM": 18.9,
+        "chromosome": "15",
+        "comment": "",
+        "side": "P",
+        "start": 68521288,
+        "stop": 86295908
+      },
+      {
+        "SNPs": 4621,
+        "cM": 20.4,
+        "chromosome": "19",
+        "comment": "",
+        "side": "P",
+        "start": 23819061,
+        "stop": 43849197
+      },
+      {
+        "SNPs": 8691,
+        "cM": 40.4,
+        "chromosome": "20",
+        "comment": "",
+        "side": "P",
+        "start": 18562656,
+        "stop": 53560703
+      },
+      {
+        "SNPs": 5514,
+        "cM": 25.3,
+        "chromosome": "22",
+        "comment": "",
+        "side": "P",
+        "start": 17124118,
+        "stop": 47043362
+      }
+    ]
+  },
+  {
+    "ancestor_handles": [
+      "10552fca764870f679d8a54f14ec",
+      "10552fca76a42d1e0079304014d6"
+    ],
+    "ancestor_profiles": [
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1897-04-26",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1969-01-09",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0021",
+        "handle": "10552fca764870f679d8a54f14ec",
+        "name_display": "Falkenrath, Heinrich",
+        "name_given": "Heinrich",
+        "name_suffix": "",
+        "name_surname": "Falkenrath",
+        "sex": "M"
+      },
+      {
+        "addresses": [],
+        "birth": {
+          "date": "1901-08-13",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Geburt"
+        },
+        "death": {
+          "date": "1985-11-30",
+          "place": "Celle, Niedersachsen, Deutschland",
+          "place_name": "Celle, Niedersachsen, Deutschland",
+          "type": "Tod"
+        },
+        "gramps_id": "I0022",
+        "handle": "10552fca76a42d1e0079304014d6",
+        "name_display": "Rosskamp, Anna",
+        "name_given": "Anna",
+        "name_suffix": "",
+        "name_surname": "Rosskamp",
+        "sex": "F"
+      }
+    ],
+    "distance": 6,
+    "handle": "10552fca706d3c447f62e23ab5eb",
+    "note_handles": [
+      "10552fca706e41a86ed15d09525c"
+    ],
+    "person_ref_idx": 4,
+    "relation": "Cousine zweiten Grades",
+    "segments": [
+      {
+        "SNPs": 6121,
+        "cM": 26.2,
+        "chromosome": "1",
+        "comment": "",
+        "side": "P",
+        "start": 105339516,
+        "stop": 131551037
+      },
+      {
+        "SNPs": 5490,
+        "cM": 25.6,
+        "chromosome": "5",
+        "comment": "",
+        "side": "P",
+        "start": 99376661,
+        "stop": 124978950
+      },
+      {
+        "SNPs": 6191,
+        "cM": 26.3,
+        "chromosome": "8",
+        "comment": "",
+        "side": "P",
+        "start": 31743493,
+        "stop": 60347728
+      },
+      {
+        "SNPs": 5629,
+        "cM": 27.4,
+        "chromosome": "10",
+        "comment": "",
+        "side": "P",
+        "start": 36870936,
+        "stop": 60181696
+      },
+      {
+        "SNPs": 5393,
+        "cM": 25.2,
+        "chromosome": "13",
+        "comment": "",
+        "side": "P",
+        "start": 79476206,
+        "stop": 108159663
+      },
+      {
+        "SNPs": 5062,
+        "cM": 26.0,
+        "chromosome": "14",
+        "comment": "",
+        "side": "P",
+        "start": 16375199,
+        "stop": 41824682
+      },
+      {
+        "SNPs": 4479,
+        "cM": 22.0,
+        "chromosome": "14",
+        "comment": "",
+        "side": "P",
+        "start": 74041638,
+        "stop": 96535118
+      },
+      {
+        "SNPs": 5631,
+        "cM": 23.8,
+        "chromosome": "17",
+        "comment": "",
+        "side": "P",
+        "start": 41845244,
+        "stop": 63944545
+      },
+      {
+        "SNPs": 6500,
+        "cM": 27.4,
+        "chromosome": "19",
+        "comment": "",
+        "side": "P",
+        "start": 4627573,
+        "stop": 35886255
+      }
+    ]
+  }
+]

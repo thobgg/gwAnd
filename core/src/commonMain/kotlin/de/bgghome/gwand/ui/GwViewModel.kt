@@ -285,6 +285,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         val s = zustand.value
         when {
             s.chat != null -> zustand.update { it.copy(chat = null) }
+            s.dna != null -> zustand.update { it.copy(dna = if (s.dna.gewaehlt != null) s.dna.copy(gewaehlt = null) else null) }
             s.gesichter != null -> zustand.update { it.copy(gesichter = null) }
             s.pdf != null -> zustand.update { it.copy(pdf = null) }
             s.betrachter != null -> zustand.update { it.copy(betrachter = null) }
