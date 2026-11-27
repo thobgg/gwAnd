@@ -1,0 +1,1 @@
+Anmeldung über OIDC im Systembrowser, mit Passwort-Manager (ab Gramps Web API 3.26, wenn der Server es erlaubt). Kurze Serverstörungen melden nicht mehr ab. Baum ohne Startperson: Hinweis statt leerer Fläche, eine neu gewählte Startperson erscheint sofort.

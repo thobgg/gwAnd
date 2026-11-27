@@ -1,0 +1,1 @@
+OIDC sign-in in the system browser, with password manager (Gramps Web API 3.26 or newer, if the server allows it). Short server outages no longer sign you out. Tree without a start person: a hint instead of an empty screen, a newly chosen start person shows up right away.

@@ -1,0 +1,1 @@
+Connexion OIDC dans le navigateur du système, avec gestionnaire de mots de passe (Gramps Web API 3.26 ou plus récent, si le serveur l’autorise). Une courte panne du serveur ne déconnecte plus. Arbre sans personne de départ : une indication au lieu d’un écran vide, une personne de départ choisie s’affiche aussitôt.

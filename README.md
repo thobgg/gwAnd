@@ -39,6 +39,10 @@ Die App beachtet die Rolle des Kontos (Gast bis Besitzer).
 
 Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
 
+## Neu in Version 1.4
+
+Anmeldung über OIDC im Systembrowser, mit Passwort-Manager und bestehender Anmeldung beim Anmeldedienst (ab Gramps Web API 3.26, siehe Voraussetzungen). Kurze Serverstörungen melden nicht mehr ab. Baum ohne Startperson: Hinweis statt leerer Fläche, eine neu gewählte Startperson erscheint sofort.
+
 ## Neu in Version 1.3
 
 Einzelne Äste im Baum auf- und zuklappen. Vorbereitet auf Gramps Web API 3.26 (Abfragen über `MatchesQuery`).
@@ -61,6 +65,9 @@ Ein Gramps-Web-Server ab API 3.0 und ein Konto darauf. Gesichts- und Texterkennu
 hängen davon ab, was der Server eingeschaltet hat. Android 8.0 oder neuer.
 
 Anmeldung mit Benutzername und Passwort oder über OIDC (zentraler Anmeldedienst wie Authentik oder Keycloak, Server ab API 3.21).
+Ab Gramps Web API 3.26 läuft die OIDC-Anmeldung im Systembrowser, wenn der Server die Rücksprungadresse von gwAnd erlaubt:
+`GRAMPSWEB_OIDC_ALLOWED_REDIRECT_URIS='["https://gwand.bgg-home.de/oidc/complete"]'`. Ohne diese Einstellung meldet
+gwAnd sich wie bisher im eigenen Anmeldefenster an.
 
 ## Datenschutz
 

@@ -1,0 +1,1 @@
+Inicio de sesión OIDC en el navegador del sistema, con gestor de contraseñas (Gramps Web API 3.26 o posterior, si el servidor lo permite). Una breve caída del servidor ya no cierra la sesión. Árbol sin persona inicial: un aviso en lugar de una pantalla vacía, la persona inicial elegida aparece enseguida.

@@ -39,6 +39,10 @@ The app respects the account's role (guest to owner).
 
 The screenshots show the fictional demo tree "Falkenrath" from `testdaten/` (German UI).
 
+## New in version 1.4
+
+OIDC sign-in in the system browser, with password manager and existing session at the identity provider (Gramps Web API 3.26 or newer, see requirements). Short server outages no longer sign you out. Tree without a start person: a hint instead of an empty screen, a newly chosen start person shows up right away.
+
 ## New in version 1.3
 
 Expand and collapse single branches in the tree. Ready for Gramps Web API 3.26 (queries through `MatchesQuery`).
@@ -61,6 +65,9 @@ A Gramps Web server with API 3.0 or later and an account on it. Face and text re
 depend on what the server has enabled. Android 8.0 or later.
 
 Sign-in with user name and password or via OIDC (single sign-on such as Authentik or Keycloak, server with API 3.21 or newer).
+From Gramps Web API 3.26, OIDC sign-in runs in the system browser if the server allows gwAnd's redirect URI:
+`GRAMPSWEB_OIDC_ALLOWED_REDIRECT_URIS='["https://gwand.bgg-home.de/oidc/complete"]'`. Without this setting, gwAnd
+signs in through its own sign-in window as before.
 
 ## Privacy
 
