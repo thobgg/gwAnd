@@ -312,7 +312,7 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
         baumJob = viewModelScope.launch(sicher) {
             try {
                 val wurzel = client.personenNachHandle(listOf(handle), mitFamilien = true).firstOrNull()
-                    ?: throw ApiFehler(404, handle)
+                if (wurzel == null) { mitteFehlt(handle); return@launch }
                 val (vorfahren, tafel, baum) = coroutineScope {
                     val vorfahrenA = async { client.vorfahren(wurzel.grampsId, s.ahnenGenerationen) }
                     val nachkommenA = async { client.nachkommen(wurzel.grampsId, s.nachkommenGenerationen) }
@@ -335,6 +335,18 @@ class GwViewModel(internal val plattform: GwPlattform) : ViewModel() {
                 fehlschlag(e)
             }
         }
+    }
+
+    /**
+     * Die Person in der Mitte gibt es auf dem Server nicht mehr (geloescht oder Baum neu eingespielt): zur Startperson
+     * wechseln; war sie selbst die Startperson, diese Wahl verwerfen - dann zeigt der Baum den Hinweis mit der Personensuche
+     * statt endlos zu laden.
+     */
+    private fun mitteFehlt(handle: String) {
+        val start = zustand.value.startperson
+        if (start != null && start != handle) { baumLaden(start); return }
+        if (start == handle) ablage.putString(schluessel("start"), null)
+        zustand.update { if (it.wurzel == handle) it.copy(wurzel = null, startperson = null, wurzelVerlauf = emptyList()) else it }
     }
 
     private suspend fun heiraten(familien: Set<String>): Map<String, EventJson> =

@@ -1,6 +1,7 @@
 package de.bgghome.gwand.ui
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -68,6 +69,9 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun DnaSeite(d: DnaAnsicht, s: Zustand, viewModel: GwViewModel) {
     val eintrag = d.treffer?.firstOrNull { it.treffer.handle == d.gewaehlt }
+    // Die Uebersicht behaelt ihre Stelle, ein geoeffneter Treffer beginnt oben
+    val uebersicht = rememberScrollState()
+    val einzeln = remember(d.gewaehlt) { ScrollState(0) }
     Scaffold(
         topBar = {
             TopAppBar(
@@ -87,7 +91,7 @@ fun DnaSeite(d: DnaAnsicht, s: Zustand, viewModel: GwViewModel) {
             )
         },
     ) { innen ->
-        Column(Modifier.fillMaxSize().padding(innen).verticalScroll(rememberScrollState()).padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+        Column(Modifier.fillMaxSize().padding(innen).verticalScroll(if (eintrag != null) einzeln else uebersicht).padding(vertical = 12.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             val treffer = d.treffer
             when {
                 eintrag != null -> Einzeltreffer(d, eintrag, s, viewModel)
@@ -191,8 +195,10 @@ private fun Kennzahl(name: String, wert: String) {
 @Composable
 internal fun DnaSegmentTabelle(segmente: List<DnaSegment>) {
     val spalten = listOf(
-        Res.string.dna_col_chr to 48.dp, Res.string.dna_col_start to 112.dp, Res.string.dna_col_end to 112.dp,
-        Res.string.dna_col_side to 104.dp, null to 64.dp, null to 72.dp,
+        // So bemessen, dass an einem 360 dp breiten Handy alles bis cM ohne Schieben passt (zusammen 326 dp);
+        // nur die SNPs liegen rechts ausserhalb
+        Res.string.dna_col_chr to 30.dp, Res.string.dna_col_start to 88.dp, Res.string.dna_col_end to 88.dp,
+        Res.string.dna_col_side to 74.dp, null to 46.dp, null to 72.dp,
     )
     val kopf = listOf("", "", "", "", "cM", "SNPs")
     Column(Modifier.horizontalScroll(rememberScrollState())) {
