@@ -260,7 +260,9 @@ sealed interface Dialog {
     data class ObjektVerlaufDialog(val titel: String, val eintraege: List<Verlaufseintrag>? = null) : Dialog
 
     /** Verwandtschaft zwischen [von] und einer gewaehlten Person; [wege] null = noch nicht berechnet. */
-    data class VerwandtschaftDialog(val von: Person, val zu: Person? = null, val wege: List<Pair<String, List<Person>>>? = null, val laedt: Boolean = false) : Dialog
+    data class VerwandtschaftDialog(val von: Person, val zu: Person? = null, val wege: List<Pair<String, List<Person>>>? = null, val laedt: Boolean = false,
+        /** Die Abfrage ist gescheitert: Meldung statt "keine Verwandtschaft gefunden". */
+        val fehler: String? = null) : Dialog
 
     data class BerichtDialog(val person: Person, val grampsId: String, val berichte: List<de.bgghome.gwand.api.Bericht>? = null, val laeuft: String? = null) : Dialog
 

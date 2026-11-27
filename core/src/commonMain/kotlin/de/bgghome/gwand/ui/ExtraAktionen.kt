@@ -26,16 +26,20 @@ fun GwViewModel.verwandtschaftDialog() {
 }
 
 fun GwViewModel.verwandtschaftBerechnen(d: Dialog.VerwandtschaftDialog, zu: Person) {
-    zustand.update { it.copy(dialog = d.copy(zu = zu, wege = null, laedt = true)) }
+    zustand.update { it.copy(dialog = d.copy(zu = zu, wege = null, laedt = true, fehler = null)) }
     viewModelScope.launch(sicher) {
         try {
-            val wege = client.verwandtschaftsWege(d.von.xref, zu.xref)
-            val vorfahren = client.personenNachHandle(wege.flatMap { it.gemeinsameVorfahren }.toSet()).associate { it.handle to anzeige.person(it) }
-            val ergebnis = wege.map { w -> w.text to w.gemeinsameVorfahren.mapNotNull { vorfahren[it] } }
+            // Nicht verwandt: der Server schickt einen leeren Eintrag
+            val wege = client.verwandtschaftsWege(d.von.xref, zu.xref).filter { it.text.isNotBlank() || it.gemeinsameVorfahren.isNotEmpty() }
+            // Die gemeinsamen Vorfahren sind Beigabe: scheitert das Nachladen, bleiben die Wege stehen
+            val vorfahren = runCatching { client.personenNachHandle(wege.flatMap { it.gemeinsameVorfahren }.toSet()) }.getOrDefault(emptyList())
+                .associate { it.handle to anzeige.person(it) }
+            val ergebnis = wege.map { w -> w.text to w.gemeinsameVorfahren.distinct().mapNotNull { vorfahren[it] } }
             zustand.update { s -> val dd = s.dialog; if (dd is Dialog.VerwandtschaftDialog && dd.zu?.xref == zu.xref) s.copy(dialog = dd.copy(wege = ergebnis, laedt = false)) else s }
         } catch (e: Exception) {
-            zustand.update { s -> val dd = s.dialog; if (dd is Dialog.VerwandtschaftDialog) s.copy(dialog = dd.copy(wege = emptyList(), laedt = false)) else s }
             fehlschlag(e)
+            // Die Meldung in den Dialog: hinter ihm waere sie nicht zu sehen, und "keine Verwandtschaft" waere falsch
+            zustand.update { s -> val dd = s.dialog; if (dd is Dialog.VerwandtschaftDialog) s.copy(dialog = dd.copy(wege = emptyList(), laedt = false, fehler = s.meldung ?: e.message.orEmpty()), meldung = null) else s }
         }
     }
 }

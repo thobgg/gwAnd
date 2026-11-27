@@ -39,6 +39,10 @@ Die App beachtet die Rolle des Kontos (Gast bis Besitzer).
 
 Die Bilder zeigen den erfundenen Demo-Baum „Falkenrath“ aus `testdaten/`.
 
+## Neu in Version 1.4.1
+
+Verwandtschaft zu …: Scheitert die Abfrage, zeigt der Dialog die Fehlermeldung statt „Keine Verwandtschaft gefunden“; die Wege erscheinen auch, wenn die gemeinsamen Vorfahren nicht geladen werden können. In der DNA-Segmenttabelle sind „Chr.“ und „Unbekannt“ nicht mehr abgeschnitten.
+
 ## Neu in Version 1.4
 
 Anmeldung über OIDC im Systembrowser, mit Passwort-Manager und bestehender Anmeldung beim Anmeldedienst (ab Gramps Web API 3.26, siehe Voraussetzungen). Kurze Serverstörungen melden nicht mehr ab. Baum ohne Startperson: Hinweis statt leerer Fläche, eine neu gewählte Startperson erscheint sofort. DNA wie in Gramps Web: Treffer mit Zusammenfassung, Chromosomen-Ansicht und Segmenttabelle ansehen, Treffer eintragen und löschen, Y-DNA-Haplogruppe anzeigen.

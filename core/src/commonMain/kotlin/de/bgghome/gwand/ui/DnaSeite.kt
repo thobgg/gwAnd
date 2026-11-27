@@ -195,10 +195,10 @@ private fun Kennzahl(name: String, wert: String) {
 @Composable
 internal fun DnaSegmentTabelle(segmente: List<DnaSegment>) {
     val spalten = listOf(
-        // So bemessen, dass an einem 360 dp breiten Handy alles bis cM ohne Schieben passt (zusammen 326 dp);
-        // nur die SNPs liegen rechts ausserhalb
-        Res.string.dna_col_chr to 30.dp, Res.string.dna_col_start to 88.dp, Res.string.dna_col_end to 88.dp,
-        Res.string.dna_col_side to 74.dp, null to 46.dp, null to 72.dp,
+        // Bis cM zusammen 346 dp: passt ohne Schieben auf ein Handy ab 380 dp Breite (S25: 384 dp), neunstellige
+        // Positionen, "Chr." und "Unbekannt" sind ganz zu lesen; die SNPs liegen rechts ausserhalb
+        Res.string.dna_col_chr to 36.dp, Res.string.dna_col_start to 90.dp, Res.string.dna_col_end to 90.dp,
+        Res.string.dna_col_side to 84.dp, null to 46.dp, null to 72.dp,
     )
     val kopf = listOf("", "", "", "", "cM", "SNPs")
     Column(Modifier.horizontalScroll(rememberScrollState())) {

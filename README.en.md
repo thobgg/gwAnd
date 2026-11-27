@@ -39,6 +39,10 @@ The app respects the account's role (guest to owner).
 
 The screenshots show the fictional demo tree "Falkenrath" from `testdaten/` (German UI).
 
+## New in version 1.4.1
+
+Relationship to …: if the query fails, the dialog shows the error message instead of "No relationship found"; the paths also appear when the common ancestors cannot be loaded. In the DNA segment table, "Chr." and "Unknown" are no longer cut off.
+
 ## New in version 1.4
 
 OIDC sign-in in the system browser, with password manager and existing session at the identity provider (Gramps Web API 3.26 or newer, see requirements). Short server outages no longer sign you out. Tree without a start person: a hint instead of an empty screen, a newly chosen start person shows up right away. DNA as in Gramps Web: view matches with summary, chromosome view and segment table, add and delete matches, show the Y-DNA haplogroup.

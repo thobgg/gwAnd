@@ -1,0 +1,1 @@
+Parenté avec … : si la requête échoue, la fenêtre affiche le message d’erreur au lieu de « Aucune parenté trouvée » ; les liens s’affichent aussi quand les ancêtres communs ne peuvent pas être chargés. Tableau des segments ADN : les libellés ne sont plus tronqués.

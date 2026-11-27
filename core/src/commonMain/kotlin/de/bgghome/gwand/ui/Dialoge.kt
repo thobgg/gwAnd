@@ -526,6 +526,7 @@ private fun VerwandtschaftFenster(d: Dialog.VerwandtschaftDialog, s: Zustand, vi
             val wege = d.wege
             when {
                 d.laedt || wege == null -> CircularProgressIndicator()
+                d.fehler != null -> Text(d.fehler, color = MaterialTheme.colorScheme.error)
                 wege.isEmpty() -> Text(stringResource(Res.string.rel_none))
                 else -> wege.forEach { (text, vorfahren) ->
                     Text(text.ifBlank { "–" }, style = MaterialTheme.typography.titleMedium, color = MaterialTheme.colorScheme.primary)

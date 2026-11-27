@@ -1,0 +1,1 @@
+Verwantschap met …: als de opvraging mislukt, toont het venster de foutmelding in plaats van ‘Geen verwantschap gevonden’; de paden verschijnen ook als de gemeenschappelijke voorouders niet geladen kunnen worden. DNA-segmententabel: teksten worden niet meer afgekapt.

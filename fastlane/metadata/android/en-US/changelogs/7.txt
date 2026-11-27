@@ -1,0 +1,1 @@
+Relationship to …: if the query fails, the dialog shows the error message instead of “No relationship found”; the paths also appear when the common ancestors cannot be loaded. DNA segment table: “Chr.” and “Unknown” are no longer cut off.

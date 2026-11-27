@@ -212,8 +212,18 @@ class LiveSchreibTest {
         val pdf = client.bericht("ancestor_report", "I0001", "Ahnentafel")
         assertTrue(pdf.name.endsWith(".pdf") && String(pdf.daten.copyOf(5)) == "%PDF-", "Bericht ist ein PDF")
         // Handles ueber die Gramps-ID holen: sie aendern sich, wenn der Testbaum neu eingespielt wird
-        val wege = client.verwandtschaftsWege(client.personNachId("I0001")!!.handle, client.personNachId("I0008")!!.handle)
+        client.metadaten() // wie die App beim Start: daran erkennt der Client, welche Abfrageform der Server versteht
+        val jonas = client.personNachId("I0001")!!.handle
+        val wege = client.verwandtschaftsWege(jonas, client.personNachId("I0008")!!.handle)
         assertTrue(wege.isNotEmpty() && wege.first().text.isNotBlank())
+        // Der Dialog "Verwandtschaft zu" holt zu den Wegen die gemeinsamen Vorfahren nach (Issue 1: das scheiterte in 1.2 an API 3.26)
+        val cousin = client.verwandtschaftsWege(jonas, client.personNachId("I0012")!!.handle)
+        val vorfahren = cousin.first().gemeinsameVorfahren.toSet()
+        assertEquals(2, vorfahren.size, "Cousins haben ein gemeinsames Grosselternpaar")
+        assertEquals(vorfahren, client.personenNachHandle(vorfahren).map { it.handle }.toSet())
+        // Nicht verwandt: ein leerer Eintrag, den der Dialog als "keine Verwandtschaft" zeigt
+        val fremd = client.verwandtschaftsWege(jonas, client.personNachId("I0493")!!.handle)
+        assertTrue(fremd.all { it.text.isBlank() && it.gemeinsameVorfahren.isEmpty() })
     }
 
     @Test

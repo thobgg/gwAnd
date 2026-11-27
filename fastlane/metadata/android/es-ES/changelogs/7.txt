@@ -1,0 +1,1 @@
+Parentesco con …: si la consulta falla, el diálogo muestra el mensaje de error en lugar de «No se encontró parentesco»; las relaciones aparecen también cuando no se pueden cargar los antepasados comunes. Tabla de segmentos de ADN: los textos ya no se cortan.

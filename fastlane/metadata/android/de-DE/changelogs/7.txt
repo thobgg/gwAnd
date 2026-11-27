@@ -1,0 +1,1 @@
+Verwandtschaft zu …: scheitert die Abfrage, zeigt der Dialog die Fehlermeldung statt „Keine Verwandtschaft gefunden“; die Wege erscheinen auch, wenn die gemeinsamen Vorfahren nicht geladen werden können. DNA-Segmenttabelle: „Chr.“ und „Unbekannt“ sind nicht mehr abgeschnitten.
